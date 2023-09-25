@@ -1,2 +1,2 @@
 # LPB2024
-LPB courses from 2024 : Area useful for Student
+LPB course from 2024 : Area useful for Student
