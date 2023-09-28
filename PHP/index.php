@@ -25,7 +25,7 @@
             <div class="col-6">
                 <h2>Sommaire</h2>
                 <ol>
-                    <li><a href="commentaires-echo-print.php" class="link">Ecrire ses premières lignes en PHP : commentaires, echo et print</a></li>                    
+                    <li><a href="01.commentaires-echo-print.php" class="link">Ecrire ses premières lignes en PHP : commentaires, echo et print</a></li>                    
                 </ol>
             </div>
             <div class="col-3"></div>

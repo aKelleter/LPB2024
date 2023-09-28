@@ -30,7 +30,7 @@
         </ol>
         <p class="alert alert-info text-center">
             <strong>
-                A l'aide de votre éditeur (ex.: VS Code), accédez au code source du fichier <span class="pathfiles">/LPB2024/PHP/commentaires-echo-print.php</span><br>
+                A l'aide de votre éditeur (ex.: VS Code), accédez au code source du fichier <span class="pathfiles">/LPB2024/PHP/01.commentaires-echo-print.php</span><br>
                 Lisez le code source ainsi que les commentaires pour comprendre les affichages ci-dessous.
             </strong></p>
         <p>--------------------------------------------------------</p>

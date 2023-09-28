@@ -7,6 +7,10 @@ a.link{
     font-size: 15;
 }
 
+a.link:hover{
+    color: rgb(228, 153, 15) !important;        
+}
+
 a.menu{
     color: rgb(252, 21, 117);  
     font-weight: bold;
