@@ -57,3 +57,9 @@ a.menu:hover{
     margin-bottom: 10px;
 }
 
+.lpb-hr{
+    border: 1px solid rgb(10, 97, 93);
+    background-color: rgb(209, 236, 235);
+    border-radius: 10px;
+    padding: 5px;
+}

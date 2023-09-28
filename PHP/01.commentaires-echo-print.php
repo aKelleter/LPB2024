@@ -34,7 +34,7 @@
                 A l'aide de votre éditeur (ex.: VS Code), accédez au code source du fichier <span class="pathfiles">/LPB2024/PHP/01.commentaires-echo-print.php</span><br>
                 Lisez le code source ainsi que les commentaires pour comprendre les affichages ci-dessous.
             </strong></p>
-        <p>--------------------------------------------------------</p>
+        <hr class="lpb-hr">
         <h1>Ci-dessous, les affichages générés par l'interprétation du code source</h1>
 
     <?php 
