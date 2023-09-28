@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container-fluid">  
-    <nav class="mt-2 text-center">
+    <nav class="mt-2 text-center mb-3">
         <a href="index.php" class="menu">Home</a>
     </nav>    
     <h1>
@@ -93,15 +93,13 @@
             echo'<div id="myID" class="article">My article</div>';
 
         ?>
-</div>
-<footer>
-        <div class="container-fluid">
+        <footer>        
             <div class="row mt-5">
                 <div class="col-12 text-center">
                     <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION); ?></p>
                 </div>
-            </div>
-        </div>
-    </footer>
+            </div>        
+        </footer> 
+    </div>   
 </body>
 </html>
