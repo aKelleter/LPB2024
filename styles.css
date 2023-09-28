@@ -1,0 +1,55 @@
+body{
+    background-color: rgb(245, 245, 245);
+}
+
+a.link{
+    color: rgb(7, 159, 147);    
+    font-size: 15;
+}
+
+a.menu{
+    color: rgb(252, 21, 117);  
+    font-weight: bold;
+    font-size: 15;
+    text-decoration: none;
+    border: 1px solid rgb(252, 21, 117);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 3px;
+}
+
+a.menu:hover{    
+    background-color: rgb(235, 215, 223);  ;    
+}
+
+.header-site{
+    max-width: 600px;
+    margin: auto;
+}
+
+.pathfiles{
+    background-color: rgb(245, 245, 245);
+    color: rgb(225, 29, 29);
+    padding: 5px;
+    border-radius: 9px;
+    margin-bottom: 10px;
+}
+
+.title-h1{
+    color: rgb(35, 215, 206);
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;    
+    border: 1px solid rgb(35, 215, 206);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.text-footer{
+    text-align: center;
+    font-size: 12px;
+    color: rgb(19, 118, 140);  
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+

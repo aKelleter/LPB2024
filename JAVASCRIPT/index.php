@@ -7,25 +7,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="../styles.css" rel="stylesheet">
 
-    <title>Apprendre les bases du PHP</title>
+    <title>Apprendre les bases du JAVASCRIPT</title>
 </head>
 <body>
     <div class="container-fluid">        
         <div class="row mt-2 text-center">    
             <div class="col-12 mt-2 header-site">
-                <h1 class="title-h1">Le langage PHP</h1>
-                <p>Apprentissage du langage PHP à l'aide de scripts</p>
+                <h1 class="title-h1">Le langage JAVASCRIPT</h1>
+                <p>Apprentissage du langage JAVASCRIPT à l'aide de scripts</p>
                 <nav>
                     <a href="../index.php" class="menu">Home</a>
-                </nav>
-            </div>      
+                </nav>  
+            </div>
         </div>
         <div class="row mt-5">
             <div class="col-3"></div>           
             <div class="col-6">
                 <h2>Sommaire</h2>
                 <ol>
-                    <li><a href="commentaires-echo-print.php" class="link">Ecrire ses premières lignes en PHP : commentaires, echo et print</a></li>                    
+                    <li>Rien pour l'instant... patience :)</li>                    
                 </ol>
             </div>
             <div class="col-3"></div>
