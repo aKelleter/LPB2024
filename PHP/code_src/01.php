@@ -51,5 +51,6 @@
     // Pour afficher des balises HTML et éviter ainsi les échappements avec '\'
     // préférez délimiter vos chaînes avec des single quotes ''
     echo'<div id="myID" class="article">My article</div>';
+    echo 'TOTO is alive';
 
 ?>

@@ -1,4 +1,8 @@
-<?php include_once('../conf.php'); ?>
+<?php 
+    include('../conf.php'); 
+    const NOFILE = 'code_src/no-file.php';
+    const SRCFILE = 'code_src/01.php';    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,11 +51,12 @@
     <h1 class="lpb-h1-script">Les affichages générés par l'interprétation du code source</h1>
 
     <!-- Inclusion du code source pour interprétation-->
-    <?php include('code_src/01.php'); ?>
+    <?php (file_exists(SRCFILE)) ? include(SRCFILE) : include(NOFILE); ?>
+
 
     <!-- Affichage du code source -->
     <h1 class="lpb-h1-script mt-3">Le code source</h1>
-    <?php (file_exists('code_src/01.php'))? $contenu = file_get_contents('code_src/01.php') : $contenu = "Sorry, no file exist"; ?>
+    <?php (file_exists(SRCFILE))? $contenu = file_get_contents(SRCFILE) : $contenu = file_get_contents(NOFILE); ?>
     <textarea class="codemirror-textarea mb-2" name="code-src" id="code-src" cols="100%"> <?php echo $contenu; ?> </textarea>
 
     <footer>        
