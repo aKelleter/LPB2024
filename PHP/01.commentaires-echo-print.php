@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    
-    <link href="../styles.css" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.ico">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    
+
+    <link rel=stylesheet href="../assets/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../assets/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../assets/codemirror/theme/material.css">
+    <link href="../styles.css" rel="stylesheet">
 
     <title>PHP : Les commentaires, echo, print</title>
 </head>
@@ -35,75 +40,37 @@
         <div class="col-3"></div>
     </div>
     <p class="lpb-info">            
-        A l'aide de votre éditeur (ex.: VS Code), accédez au code source du fichier <span class="pathfiles">/LPB2024/PHP/01.commentaires-echo-print.php</span><br>
+        Accédez au code source du fichier a l'aide, soit de votre éditeur, <span class="pathfiles">/LPB2024/PHP/code_src/01.php</span>, soit à l'aide de l'affichage du code source intégré à la page, ci-dessous <br>
         <span class="lpb-marker">Lisez le code source ainsi que les commentaires pour comprendre les affichages ci-dessous.</span>
     </p>        
     <hr class="lpb-hr">
-    <h1 class="lpb-h1-script">Ci-dessous, les affichages générés par l'interprétation du code source</h1>
+    <h1 class="lpb-h1-script">Les affichages générés par l'interprétation du code source</h1>
 
-    <?php 
-            // "<?php" -> Balise indiquant que l'on va insérer un bloc de code PHP 
+    <!-- Inclusion du code source pour interprétation-->
+    <?php include('code_src/01.php'); ?>
 
-            // "//" -> Affiche un commentaire sur une seule ligne
-            
-            /*
-                Affiche un
-                commentaire sur
-                plusieurs lignes
-            */
+    <!-- Affichage du code source -->
+    <h1 class="lpb-h1-script mt-3">Le code source</h1>
+    <?php (file_exists('code_src/01.php'))? $contenu = file_get_contents('code_src/01.php') : $contenu = "Sorry, no file exist"; ?>
+    <textarea class="codemirror-textarea mb-2" name="code-src" id="code-src" cols="100%"> <?php echo $contenu; ?> </textarea>
 
-            // On termine une instruction par un point-virgule ";" -> echo "Hello";
-
-            // "?" -> Balise de fermeture du bloc de de code PHP        
-        ?>
-        
-        <!-- Un second bloc de code PHP (vous pouvez en placer autant que nécessaire) -->
-        <?php
-
-            // Utiliser les structures(p.24) "echo" et "print" pour afficher une résultat en PHP 
-            echo 'Hello World !<br>'; // Affiche la chaîne Hello World ! avec un retour à la ligne <br>
-            
-            /* On délimite les chaînes de caractères avec:
-                - des simple quote : '' 
-                - ou des guillemets : ""
-            */
-
-            echo 555; // Affiche le nombre 555
-            echo "<br>";
-            echo "555"; // Affiche la chaîne 555
-            echo "<br>";
-
-            // Même chose avec la structure print'';
-            print 'Hello World ! with print';
-            print "<br>";
-            print 777+1; // Si besoin, on peut manipuler des nombres lors de l'affichage 
-            echo "<br>";
-            print "777";
-            echo "<br>";
-
-            // Les structure echo et print peuvent également utiliser des parenthèses ()
-            echo ('echo avec des parenthèses ()<br>');
-            print ('print avec des parenthèses ()<br>');
-
-            // Pour afficher des appostrophes 
-            // avec une chaîne délimitée par des appostrophes '' (single quotes)
-            // on utilise le caractères d'échappement '\' : le carctère backslash
-            // même chose avec les guillemets
-            echo 'Aujourd\'hui<br>';
-            echo "Bonjour \"John\", il est l'heure de se lever<br>";
-
-            // Pour afficher des balises HTML et éviter ainsi les échappements avec '\'
-            // préférez délimiter vos chaînes avec des single quotes ''
-            echo'<div id="myID" class="article">My article</div>';
-
-        ?>
-        <footer>        
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION); ?></p>
-                </div>
-            </div>        
-        </footer> 
-    </div>   
+    <footer>        
+      <div class="row mt-5">
+            <div class="col-12 text-center">
+                <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION); ?></p>
+            </div>
+        </div>        
+    </footer> 
+</div>   
+<script src="../assets/jquery/jquery.min.js"></script>
+<script src="../assets/codemirror/lib/codemirror.js"></script>
+<script src="../assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../assets/codemirror/mode/javascript/javascript.js"></script>
+<script src="../assets/codemirror/mode/css/css.js"></script>
+<script src="../assets/codemirror/mode/php/php.js"></script>
+<script src="../assets/codemirror/mode/sql/sql.js"></script>   
+<script src="../assets/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="../assets/codemirror/addon/display/fullscreen.js"></script>
+<script src="../assets/lpb/lpb.js"></script>
 </body>
 </html>
