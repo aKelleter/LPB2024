@@ -13,8 +13,11 @@
 <body>
     <div class="container-fluid">    
         <div class="row mt-2 text-center">    
-            <div class="col-12 mt-2 header-site">
-                <h1 class="title-h1">Mini-site<br> Langages de programmation : Les bases (LPB)</h1>
+            <div class="col-12 mt-2 header-site"> 
+                <h1 class="title-h1">
+                    <img src="logo.svg" alt="logo" class="lpb-logo">
+                    Mini-site<br> Langages de programmation : Les bases (LPB)
+                </h1>
                 <p>Page d'acceuil du cours sur les bases de la programmation en PHP et JAVASCRIPT</p>
             </div>    
         </div>

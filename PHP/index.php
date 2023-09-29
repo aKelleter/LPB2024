@@ -14,10 +14,13 @@
     <div class="container-fluid">        
         <div class="row mt-2 text-center">    
             <div class="col-12 mt-2 header-site">
-                <h1 class="title-h1">Le langage PHP</h1>
+                <h1 class="title-h1">
+                    <img src="../logo.svg" alt="logo" class="lpb-logo">
+                    Le langage PHP
+                </h1>
                 <p>Apprentissage du langage PHP à l'aide de scripts</p>
                 <nav>
-                    <a href="../index.php" class="menu">Home</a>
+                    <a href="../index.php" class="menu">Back</a>
                 </nav>
             </div>      
         </div>

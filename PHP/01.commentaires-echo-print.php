@@ -13,29 +13,33 @@
 <body>
 <div class="container-fluid">  
     <nav class="mt-2 text-center mb-3">
-        <a href="index.php" class="menu">Home</a>
+        <a href="index.php" class="menu">Back</a>
     </nav>    
-    <h1>
-        <u>Ecrire ses premières lignes de code en PHP</u>
-    </h1>
-    <h2>Sommaire</h2>    
-        <ol>
-            <li>Les balises PHP (ouverture et fermeture)</li>
-            <li>Les commentaires</li>
-            <li>Le point-virgule de fin d'intruction</li>
-            <li>Les structures d'affichage echo et print</li>
-            <li>Les délimiteurs de chaînes de caractères : les single quotes ' ' et les double quotes " "</li>
-            <li>Les structures avec des parenthèses</li>
-            <li>Le caractère d'échappement \</li>
-            <li>Affichage des balises HTML avec des single quotes ' '</li>
-        </ol>
-        <p class="alert alert-info text-center">
-            <strong>
-                A l'aide de votre éditeur (ex.: VS Code), accédez au code source du fichier <span class="pathfiles">/LPB2024/PHP/01.commentaires-echo-print.php</span><br>
-                Lisez le code source ainsi que les commentaires pour comprendre les affichages ci-dessous.
-            </strong></p>
-        <hr class="lpb-hr">
-        <h1>Ci-dessous, les affichages générés par l'interprétation du code source</h1>
+    <h1 class="lpb-h1-script">Ecrire ses premières lignes de code en PHP</h1>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h2>Sommaire</h2> 
+            <p>Présents dans le code source:</p>   
+            <ol>
+                <li>Les balises PHP (ouverture et fermeture)</li>
+                <li>Les commentaires</li>
+                <li>Le point-virgule de fin d'intruction</li>
+                <li>Les structures d'affichage echo et print</li>
+                <li>Les délimiteurs de chaînes de caractères : les single quotes ' ' et les double quotes " "</li>
+                <li>Les structures avec des parenthèses</li>
+                <li>Le caractère d'échappement '\' (backslash ou antislash)</li>
+                <li>Afficher du code HTML avec des single quotes ' '</li>
+            </ol>        
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <p class="lpb-info">            
+        A l'aide de votre éditeur (ex.: VS Code), accédez au code source du fichier <span class="pathfiles">/LPB2024/PHP/01.commentaires-echo-print.php</span><br>
+        <span class="lpb-marker">Lisez le code source ainsi que les commentaires pour comprendre les affichages ci-dessous.</span>
+    </p>        
+    <hr class="lpb-hr">
+    <h1 class="lpb-h1-script">Ci-dessous, les affichages générés par l'interprétation du code source</h1>
 
     <?php 
             // "<?php" -> Balise indiquant que l'on va insérer un bloc de code PHP 
