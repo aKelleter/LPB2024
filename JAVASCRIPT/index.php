@@ -10,7 +10,7 @@
 
     <title>Apprendre les bases du JAVASCRIPT</title>
 </head>
-<body>
+<body id="top">
     <div class="container-fluid">        
         <div class="row mt-2 text-center">    
             <div class="col-12 mt-2 header-site">
@@ -33,11 +33,11 @@
                 </ol>
             </div>
             <div class="col-3"></div>
-        </div>    
+        </div>          
         <footer>        
             <div class="row mt-5">
                 <div class="col-12 text-center">
-                    <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION); ?></p>
+                    <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../'); ?></p>
                 </div>
             </div>        
         </footer> 

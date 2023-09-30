@@ -1,7 +1,7 @@
 <?php
 
-    const APP_UPDATE = '29/09/2023 17:55';
-    const APP_VERSION = 'v1.0.7';
+    const APP_UPDATE = '30/09/2023 16:16';
+    const APP_VERSION = 'v1.1.0';
     const APP_YEAR = '2024';
      
     /**
@@ -12,10 +12,10 @@
      * @param string $version	Version of the site	
      * @return string	HTML code of the footer
      */
-    function displayFooter($year, $date, $version)
+    function displayFooter($year, $date, $version, $path = '')
     {
         $string = '';
-        $string .= "LPB $year - Updated $date - $version";
+        $string .= "LPB $year - Updated $date - $version -".'<a href="https://github.com/aKelleter/LPB2024"><img src="'.$path.'github-mark.svg"  alt="LPB20214 Github Repository" class="lpb-github"></a>';
         return $string;
     }
   

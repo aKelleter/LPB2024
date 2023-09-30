@@ -29,7 +29,7 @@
             <div class="col-6">
                 <h2>Sommaire</h2>
                 <ol>
-                    <li><a href="01.commentaires-echo-print.php" class="link">Ecrire ses premières lignes en PHP : commentaires, echo et print</a></li>                    
+                    <li><a href="course.php?code=01" class="link">Ecrire ses premières lignes en PHP : commentaires, echo et print</a></li>                    
                 </ol>
             </div>
             <div class="col-3"></div>
@@ -37,7 +37,7 @@
         <footer>        
             <div class="row mt-5">
                 <div class="col-12 text-center">
-                    <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION); ?></p>
+                    <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../'); ?></p>
                 </div>
             </div>        
         </footer> 

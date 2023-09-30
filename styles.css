@@ -63,12 +63,23 @@ a.menu:hover{
     border: 1px solid rgb(20, 148, 239);
     background-color: rgb(209, 226, 236);
     border-radius: 10px;
-    padding: 5px;    
+    padding: 5px;   
+    margin-top: 10px; 
 }
+
 .lpb-hr{
     border: 1px solid rgb(10, 97, 93);
     background-color: rgb(209, 236, 235);
     border-radius: 10px;
+    padding: 5px;
+}
+
+.lpb-pathfile{
+    color: rgb(209, 226, 236);
+    border: 1px 1px 0 1px solid rgb(10, 97, 93);
+    background-color: rgb(114, 143, 142);
+    border-radius: 10px 10px 0 0;
+    text-align: center;
     padding: 5px;
 }
 
@@ -88,9 +99,29 @@ a.menu:hover{
     background-color: rgb(209, 236, 235);
     border-radius: 10px;
     padding: 5px;
+    margin: 20px;
 }
 
 .lpb-marker{
     color: rgb(244, 21, 132);  
     font-weight: 500; 
+}
+
+.lpb-msg{
+    width: 500px;
+    font-size: 1.7em;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(246, 17, 17);
+    border: 1px solid rgb(165, 21, 21);
+    background-color: rgb(228, 213, 213);
+    border-radius: 10px;
+    padding: 10px;   
+    margin: 20px; 
+}
+
+.lpb-github{
+    width: 15px !important;
+    vertical-align: top !important;   
+    margin-left: 3px;
 }
