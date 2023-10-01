@@ -1,33 +1,42 @@
 <?php 
-   include('../conf.php'); 
+   include('../../conf.php'); 
    
    // Déclaration et initialisations des variables 
 
    // Message si fichier absent
-   $noFile = 'no-file.php';
+   $noFileMsg = 'no-file.php';
+   // Message généré par l'application
+   $msg = null;
+
    // Code du cours
    $code = null;
-   // Message  
-   $msg = null;
+
    // Fichier code source du cours
    $codeSrcFile = null;
    // Fichier titre du cours
    $titleFile = null;
    // Fichier du contenu (sommaire) du cours
    $contentFile = null;
-  
+
+   // Variable contenant le titre du cours 
+   $title = null;
+   // Variable contenant le sommaire du cours
+   $content = null;
+   // Variable contenant le code source du cours
+   $codeSrc = null;
+   
    // Aller chercher les différents contenus si le paramètre code est présent dans l'URL
    if(!empty($_GET['code'])) {
        $code = $_GET['code'];  
        
        $codeSrcFile = $code.'/code_src/code.php';
-       (file_exists($codeSrcFile))? $codeSrc = file_get_contents($codeSrcFile) : $codeSrc = file_get_contents($noFile);
+       (file_exists($codeSrcFile))? $codeSrc = file_get_contents($codeSrcFile) : $codeSrc = file_get_contents($noFileMsg);
        
        $titleFile = $code.'/title_html/title.html';  
-       (file_exists($titleFile))? $title = file_get_contents($titleFile) : $title = file_get_contents($noFile);  
+       (file_exists($titleFile))? $title = file_get_contents($titleFile) : $title = file_get_contents($noFileMsg);  
 
        $contentFile = $code.'/content_html/content.html';     
-       (file_exists($contentFile))? $content = file_get_contents($contentFile) : $content = file_get_contents($noFile);       
+       (file_exists($contentFile))? $content = file_get_contents($contentFile) : $content = file_get_contents($noFileMsg);       
 
    } else {       
        $msg = '<span class="lpb-msg">The course code must be present as a valid parameter in the url</span>';
@@ -38,14 +47,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../../assets/img/favicon.ico">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    
 
-    <link rel=stylesheet href="../assets/codemirror/lib/codemirror.css">
-    <link rel=stylesheet href="../assets/codemirror/addon/display/fullscreen.css">
-    <link rel=stylesheet href="../assets/codemirror/theme/material.css">
-    <link href="../styles.css" rel="stylesheet">
+    <link rel=stylesheet href="../../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../../vendors/codemirror/theme/material.css">
+    <link href="../../assets/css/styles.css" rel="stylesheet">
 
     <title><?php echo $title; ?></title>
 </head>
@@ -77,7 +86,7 @@
     <!-- Inclusion du code source pour interprétation-->
     <div class="row">        
         <div class="col-12 ps-5 pe-5">
-            <?php (file_exists($codeSrcFile)) ? include($codeSrcFile) : include($noFile); ?>
+            <?php (file_exists($codeSrcFile)) ? include($codeSrcFile) : include($noFileMsg); ?>
         </div>        
     </div>
 
@@ -96,20 +105,20 @@
     <footer>        
       <div class="row mt-5 mb-3">
             <div class="col-12 text-center">
-                <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../'); ?></p>
+                <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../../'); ?></p>
             </div>
         </div>        
     </footer> 
 </div>   
-<script src="../assets/jquery/jquery.min.js"></script>
-<script src="../assets/codemirror/lib/codemirror.js"></script>
-<script src="../assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-<script src="../assets/codemirror/mode/javascript/javascript.js"></script>
-<script src="../assets/codemirror/mode/css/css.js"></script>
-<script src="../assets/codemirror/mode/php/php.js"></script>
-<script src="../assets/codemirror/mode/sql/sql.js"></script>   
-<script src="../assets/codemirror/addon/edit/matchbrackets.js"></script>
-<script src="../assets/codemirror/addon/display/fullscreen.js"></script>
-<script src="../assets/lpb/lpb.js"></script>
+<script src="../../vendors/jquery/jquery.min.js"></script>
+<script src="../../vendors/codemirror/lib/codemirror.js"></script>
+<script src="../../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../vendors/codemirror/mode/javascript/javascript.js"></script>
+<script src="../../vendors/codemirror/mode/css/css.js"></script>
+<script src="../../vendors/codemirror/mode/php/php.js"></script>
+<script src="../../vendors/codemirror/mode/sql/sql.js"></script>   
+<script src="../../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="../../vendors/codemirror/addon/display/fullscreen.js"></script>
+<script src="../../assets/js/lpb.js"></script>
 </body>
 </html>
