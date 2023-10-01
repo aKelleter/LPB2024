@@ -13,7 +13,7 @@
 <body>
     <div class="container-fluid">        
         <div class="row mt-2 text-center">    
-            <div class="col-12 mt-2 header-site">
+            <div class="col-md-12 mt-2 header-site">
                 <h1 class="title-h1">
                     <img src="../../assets/img/logo.svg" alt="logo" class="lpb-logo">
                     Le langage PHP
@@ -25,18 +25,18 @@
             </div>      
         </div>
         <div class="row mt-5">
-            <div class="col-3"></div>           
-            <div class="col-6">
+            <div class="col-md-3"></div>           
+            <div class="col-md-6">
                 <h2>Sommaire</h2>
                 <ol>
                     <li><a href="course.php?code=01" class="link">Ecrire ses premières lignes en PHP : commentaires, echo et print</a></li>                    
                 </ol>
             </div>
-            <div class="col-3"></div>
+            <div class="col-md-3"></div>
         </div>    
         <footer>        
             <div class="row mt-5">
-                <div class="col-12 text-center">
+                <div class="col-md-12 text-center">
                     <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../../'); ?></p>
                 </div>
             </div>        

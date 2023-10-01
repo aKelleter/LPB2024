@@ -13,17 +13,17 @@
 <body>
     <div class="container-fluid">    
         <div class="row mt-2 text-center">    
-            <div class="col-12 mt-2 header-site"> 
+            <div class="col-md-12 mt-2 header-site"> 
                 <h1 class="title-h1">
                     <img src="assets/img/logo.svg" alt="logo" class="lpb-logo">
-                    Mini-site<br> Langages de programmation : Les bases (LPB)
+                    Mini-App<br> Langages de programmation : Les bases (LPB 2024)
                 </h1>
                 <p>Page d'acceuil du cours sur les bases de la programmation en PHP et JAVASCRIPT</p>
             </div>    
         </div>
         <div class="row mt-5">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
                 <h2>Sommaire</h2>
                 <ol>
                     <li><a href="courses/php/" class="link">Les scripts PHP</a></li>
@@ -34,7 +34,7 @@
         </div>   
         <footer>        
             <div class="row mt-5">
-                <div class="col-12 text-center">
+                <div class="col-md-12 text-center">
                     <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION); ?></p>
                 </div>
             </div>        

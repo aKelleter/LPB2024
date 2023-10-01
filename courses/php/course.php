@@ -68,8 +68,8 @@
     <h1 class="lpb-h1-script"><?php echo $title; ?></h1>
 
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
             <!-- Affiche un message si initialisé -->
             <div class="text-center"><?php if(isset($msg)) echo $msg; ?></div>
 
@@ -79,14 +79,14 @@
             <!-- Affiche le contenu du cours (sommaire) --> 
             <?php echo $content; ?>
         </div>
-        <div class="col-3"></div>
+        <div class="col-md-3"></div>
     </div>
     
     <h1 class="lpb-h1-script">Les affichages générés par l'interprétation du code source</h1>
 
     <!-- Inclusion du code source pour interprétation-->
     <div class="row">        
-        <div class="col-12 ps-5 pe-5">
+        <div class="col-md-12 ps-5 pe-5">
             <?php (file_exists($codeSrcFile)) ? include($codeSrcFile) : include($noFileMsg); ?>
         </div>        
     </div>
@@ -105,7 +105,7 @@
     <!-- Affichage du footer -->
     <footer>        
       <div class="row mt-5 mb-3">
-            <div class="col-12 text-center">
+            <div class="col-md-12 text-center">
                 <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../../'); ?></p>
             </div>
         </div>        
