@@ -29,13 +29,13 @@
    if(!empty($_GET['code'])) {
        $code = $_GET['code'];  
        
-       $codeSrcFile = $code.'/code_src/code.php';
+       $codeSrcFile = $code.'/code.php';
        (file_exists($codeSrcFile))? $codeSrc = file_get_contents($codeSrcFile) : $codeSrc = file_get_contents($noFileMsg);
        
-       $titleFile = $code.'/title_html/title.html';  
+       $titleFile = $code.'/title.html';  
        (file_exists($titleFile))? $title = file_get_contents($titleFile) : $title = file_get_contents($noFileMsg);  
 
-       $contentFile = $code.'/content_html/content.html';     
+       $contentFile = $code.'/content.html';     
        (file_exists($contentFile))? $content = file_get_contents($contentFile) : $content = file_get_contents($noFileMsg);       
 
    } else {       
