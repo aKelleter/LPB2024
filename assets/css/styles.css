@@ -1,10 +1,12 @@
 body{
     background-color: rgb(245, 245, 245);
+    font-size: 17px;
 }
 
 a.link{
     color: rgb(7, 159, 147);    
-    font-size: 15;
+    font-size: 1.1em;
+    text-decoration: none;
 }
 
 a.link:hover{
