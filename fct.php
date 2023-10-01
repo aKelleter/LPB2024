@@ -73,7 +73,7 @@ function displayCoursesList($courses)
         } 
         $string .= '</ol>';   
     }else {
-        $string .= '<p class="lpb-msg">No course available... patience :)</p>';
+        $string .= '<div class="lpb-msg">No course available... patience :)</div>';
     }
     
     
