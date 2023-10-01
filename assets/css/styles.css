@@ -92,6 +92,17 @@ a.menu:hover{
     padding: 5px;
 }
 
+.lpb-brand{
+    width: 64px;   
+    margin-bottom: 10px;
+    border: 1px solid rgb(20, 239, 228);
+    background-color: rgb(209, 236, 235);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px 0;
+ 
+}
+
 .lpb-h1-script{
     text-align: center;    
     color: rgb(12, 113, 110);

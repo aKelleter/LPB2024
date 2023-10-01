@@ -60,7 +60,8 @@
 </head>
 <body>
 <div class="container-fluid">  
-    <nav class="mt-2 text-center mb-3">
+    <div class="text-center"><img src="../../assets/img/logo.svg" alt="logo" class="lpb-brand"></div>  
+    <nav class="mt-2 text-center mb-3">        
         <a href="index.php" class="menu">Back</a>
     </nav>    
 
