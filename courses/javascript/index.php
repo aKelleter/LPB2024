@@ -39,9 +39,10 @@
             <div class="col-md-3"></div>           
             <div class="col-md-6">
                 <h2>Sommaire</h2>
-                <ol>
-                    <li>Rien pour l'instant... patience :)</li>                    
-                </ol>
+                <?php
+                    // Afficher la liste des cours JAVASCRIPT
+                    echo displayCoursesList(listCourses())                     
+                ?>
             </div>
             <div class="col-md-3"></div>
         </div>          

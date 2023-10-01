@@ -38,10 +38,11 @@
         <div class="row mt-5">
             <div class="col-md-3"></div>           
             <div class="col-md-6">
-                <h2>Sommaire</h2>
-                <ol>
-                    <li><a href="course.php?code=01" class="link">Ecrire ses premières lignes en PHP : commentaires, echo et print</a></li>                    
-                </ol>
+                <h2>Sommaire</h2>                
+                <?php
+                    // Afficher la liste des cours PHP
+                    echo displayCoursesList(listCourses())                     
+                ?>
             </div>
             <div class="col-md-3"></div>
         </div>    
