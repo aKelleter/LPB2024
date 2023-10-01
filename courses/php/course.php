@@ -39,7 +39,7 @@
        (file_exists($contentFile))? $content = file_get_contents($contentFile) : $content = file_get_contents($noFileMsg);       
 
    } else {       
-       $msg = '<span class="lpb-msg">The course code must be present as a valid parameter in the url</span>';
+       $msg = '<div class="lpb-msg">The course code must be present as a valid parameter in the url</div>';
    }
 ?>
 <!DOCTYPE html>
