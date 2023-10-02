@@ -4,13 +4,26 @@ body{
 }
 
 a.link{
-    color: rgb(7, 159, 147);    
+    color: rgb(7, 159, 147); 
+    background-color: rgb(209, 236, 235);   
     font-size: 1.1em;
+    font-weight: bold;
     text-decoration: none;
 }
 
 a.link:hover{
-    color: rgb(228, 153, 15) !important;        
+    background-color: rgb(7, 159, 147);  
+    color: rgb(209, 236, 235) !important;        
+}
+
+a.link-script{
+    color: rgb(7, 159, 147); 
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+a.link-script:hover{
+    color: rgb(252, 21, 117);
 }
 
 a.menu{
@@ -101,8 +114,7 @@ a.menu:hover{
     background-color: rgb(209, 236, 235);
     border-radius: 10px;
     padding: 5px;
-    margin: 10px 0;
- 
+    margin: 10px 0; 
 }
 
 .lpb-h1-script{

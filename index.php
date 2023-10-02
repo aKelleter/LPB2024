@@ -35,11 +35,11 @@
         <div class="row mt-5">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <h2>Sommaire</h2>
-                <ol>
-                    <li><a href="courses/php/" class="link">Les scripts PHP</a></li>
-                    <li><a href="courses/javascript/" class="link">Les scripts JAVASCRIPT</a></li>
-                </ol>
+                <h2>Les cours</h2>
+              
+                <a href="courses/php/" class="btn btn-outline-success link" role="button">Le PHP</a></li>
+                <a href="courses/javascript/" class="btn btn-outline-success link" role="button">Le JAVASCRIPT</a>
+              
             </div>
             <div class="col-3"></div>
         </div>   

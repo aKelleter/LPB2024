@@ -69,7 +69,7 @@ function displayCoursesList($courses, $courseType)
         $string .= '<ol>';
         foreach($courses as $course)
         {
-            $string .= '<li><a href="../course.php?code='.$course['id'].'&type='.$courseType.'" class="link">'.$course['title'].'</a></li>';
+            $string .= '<li><a href="../course.php?code='.$course['id'].'&type='.$courseType.'" class="link-script">'.$course['title'].'</a></li>';
         } 
         $string .= '</ol>';   
     }else {
@@ -86,7 +86,7 @@ function displayCoursesList($courses, $courseType)
 * @param string $str
 * @return string 
 */
-function LPBRemoveAccents($str)
+function LPBremoveAccents($str)
 {
     $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð',
         'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã',
@@ -122,13 +122,13 @@ function LPBRemoveAccents($str)
 * @param string $text
 * @return string
 */
-function LPBSlugify($text)
+function LPBslugify($text)
 {
     // replace non letter or digits by -
     $text = preg_replace('~[^\pL\d]+~u', '-', $text);
 
     // remove accents
-    $text = LPBRemoveAccents($text);
+    $text = LPBremoveAccents($text);
 
     // transliterate
     $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
