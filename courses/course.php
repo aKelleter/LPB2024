@@ -1,5 +1,5 @@
 <?php 
-   include('../../conf.php'); 
+   include('../conf.php'); 
    
    // Déclaration et initialisations des variables 
 
@@ -10,6 +10,8 @@
 
    // Code du cours
    $code = null;
+   // Type de cours
+   $type = null;
 
    // Fichier code source du cours
    $codeSrcFile = null;
@@ -25,17 +27,18 @@
    // Variable contenant le code source du cours
    $codeSrc = null;
    
-   // Aller chercher les différents contenus si le paramètre code est présent dans l'URL
-   if(!empty($_GET['code'])) {
+   // Aller chercher les différents contenus si les paramètres code et type sont présents(et non vides) et dans l'URL
+   if(!empty($_GET['code']) && !empty($_GET['type'])) {
        $code = $_GET['code'];  
+       $type = $_GET['type'];  
        
-       $codeSrcFile = $code.'/code.php';
+       $codeSrcFile = $type.'/'.$code.'/code.php';
        (file_exists($codeSrcFile))? $codeSrc = file_get_contents($codeSrcFile) : $codeSrc = file_get_contents($noFileMsg);
        
-       $titleFile = $code.'/title.html';  
+       $titleFile = $type.'/'.$code.'/title.html';  
        (file_exists($titleFile))? $title = file_get_contents($titleFile) : $title = file_get_contents($noFileMsg);  
 
-       $contentFile = $code.'/content.html';     
+       $contentFile = $type.'/'.$code.'/content.html';     
        (file_exists($contentFile))? $content = file_get_contents($contentFile) : $content = file_get_contents($noFileMsg);       
 
    } else {       
@@ -47,33 +50,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../assets/img/favicon.ico">
+    <link rel="shortcut icon" href="../assets/img/favicon.ico">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    
 
-    <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png" />
-    <link rel="apple-touch-icon" sizes="57x57" href="../../assets/img/apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="../../assets/img/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-touch-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="../../assets/img/apple-touch-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/img/apple-touch-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="../../assets/img/apple-touch-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="../../assets/img/apple-touch-icon-152x152.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/img/apple-touch-icon-180x180.png" />
+    <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="../assets/img/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="../assets/img/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="../assets/img/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="../assets/img/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="../assets/img/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/img/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon-180x180.png" />
 
-    <link rel=stylesheet href="../../vendors/codemirror/lib/codemirror.css">
-    <link rel=stylesheet href="../../vendors/codemirror/addon/display/fullscreen.css">
-    <link rel=stylesheet href="../../vendors/codemirror/theme/material.css">
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/material.css">
 
-    <link href="../../assets/css/styles.css" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet">
 
     <title><?php echo $title; ?></title>
 </head>
 <body>
 <div class="container-fluid">  
-    <div class="text-center"><img src="../../assets/img/logo.svg" alt="logo" class="lpb-brand"></div>  
+    <div class="text-center"><img src="../assets/img/logo.svg" alt="logo" class="lpb-brand"></div>  
     <nav class="mt-2 text-center mb-3">        
-        <a href="index.php" class="menu">Back</a>
+        <a href="<?php echo $type.'/index.php'; ?>" class="menu">Back</a>
     </nav>    
 
     <h1 class="lpb-h1-script"><?php echo $title; ?></h1>
@@ -117,20 +120,20 @@
     <footer>        
       <div class="row mt-5 mb-3">
             <div class="col-md-12 text-center">
-                <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../../'); ?></p>
+                <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../'); ?></p>
             </div>
         </div>        
     </footer> 
 </div>   
-<script src="../../vendors/jquery/jquery.min.js"></script>
-<script src="../../vendors/codemirror/lib/codemirror.js"></script>
-<script src="../../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-<script src="../../vendors/codemirror/mode/javascript/javascript.js"></script>
-<script src="../../vendors/codemirror/mode/css/css.js"></script>
-<script src="../../vendors/codemirror/mode/php/php.js"></script>
-<script src="../../vendors/codemirror/mode/sql/sql.js"></script>   
-<script src="../../vendors/codemirror/addon/edit/matchbrackets.js"></script>
-<script src="../../vendors/codemirror/addon/display/fullscreen.js"></script>
-<script src="../../assets/js/lpb.js"></script>
+<script src="../vendors/jquery/jquery.min.js"></script>
+<script src="../vendors/codemirror/lib/codemirror.js"></script>
+<script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+<script src="../vendors/codemirror/mode/css/css.js"></script>
+<script src="../vendors/codemirror/mode/php/php.js"></script>
+<script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+<script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+<script src="../assets/js/lpb.js"></script>
 </body>
 </html>

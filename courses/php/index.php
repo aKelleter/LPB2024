@@ -41,7 +41,7 @@
                 <h2>Sommaire</h2>                
                 <?php
                     // Afficher la liste des cours PHP
-                    echo displayCoursesList(listCourses())                     
+                    echo displayCoursesList(listCourses(), PHP);                     
                 ?>
             </div>
             <div class="col-md-3"></div>

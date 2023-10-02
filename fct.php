@@ -60,7 +60,7 @@ function listCourses() {
  * @param array $courses	List of courses
  * @return string	HTML code of the list of courses
  */
-function displayCoursesList($courses)
+function displayCoursesList($courses, $courseType)
 {
     $string = '';
   
@@ -69,7 +69,7 @@ function displayCoursesList($courses)
         $string .= '<ol>';
         foreach($courses as $course)
         {
-            $string .= '<li><a href="course.php?code='.$course['id'].'" class="link">'.$course['title'].'</a></li>';
+            $string .= '<li><a href="../course.php?code='.$course['id'].'&type='.$courseType.'" class="link">'.$course['title'].'</a></li>';
         } 
         $string .= '</ol>';   
     }else {
