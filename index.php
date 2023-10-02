@@ -26,20 +26,20 @@
         <div class="row mt-2 text-center">    
             <div class="col-md-12 mt-2 header-site"> 
                 <h1 class="title-h1">
-                    <img src="assets/img/logo.svg" alt="logo" class="lpb-logo">
-                    Mini-App<br> Langages de programmation : Les bases (LPB 2024)
+                    <img src="assets/img/logo.svg" alt="logo" class="lpb-logo"><br>
+                    <span class="lpb-acronym">L</span>angages de <span class="lpb-acronym">P</span>rogrammation : Les <span class="lpb-acronym">B</span>ases (2024)
                 </h1>
                 <p>Page d'acceuil du cours sur les bases de la programmation en PHP et JAVASCRIPT</p>
             </div>    
         </div>
         <div class="row mt-5">
             <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <h2>Les cours</h2>
-              
-                <a href="courses/php/" class="btn btn-outline-success link" role="button">Le PHP</a></li>
-                <a href="courses/javascript/" class="btn btn-outline-success link" role="button">Le JAVASCRIPT</a>
-              
+            <div class="col-md-6">                
+                <div class="text-center">
+                    <h2 class="lpb-courses">.. Les cours ..</h2>             
+                    <a href="courses/php/" class="btn btn-outline-success link" role="button">Le PHP</a></li>
+                    <a href="courses/javascript/" class="btn btn-outline-success link" role="button">Le JAVASCRIPT</a>
+                </div>              
             </div>
             <div class="col-3"></div>
         </div>   
