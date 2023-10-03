@@ -14,7 +14,7 @@
 
     */
 
-    // Déclaration d'une variable
+    // Déclaration  et intialisé des variables
     // Le signe = est un opérateur d'affectation !!
     $nom = "Doe";
     $prenom = "John";
@@ -38,9 +38,11 @@
     // Mettre à jour une variable
     echo '<div class="lpb-inter">Mettre à jour la variable: $age</div>';
     echo "Age (\$age) avant : $age <br>";
+
     // Mise à jour de la variable $age
-    $age = 30;
-    echo "Age (\$age) après : $age <br>";
+    $age = 30; 
+    echo 'TYPE : '.gettype($age).'<br>';
+    echo "Age (\$age) après : {$age} <br>";
     echo '<br>';
 
     /*  (ref:(p37))
@@ -66,16 +68,16 @@
     $chaine_de_caractères = "Je suis une chaîne de caractères";
     $nombre_entier = 25;
     $nombre_décimal = 100.53; // Attention il faut utiliser le . à la place d'une virgule ,
-    $booleen = true;
+    $booleen = true; //false
     $vide = null;
-    //$vide2;
+    $vide2 = null;
 
     echo '$chaine_de_caractères = ' . gettype($chaine_de_caractères).'<br>';
     echo '$nombre_entier = ' . gettype($nombre_entier).'<br>';
     echo '$nombre_décimal = ' . gettype($nombre_décimal).'<br>';
     echo '$booleen = ' . gettype($booleen).'<br>';
     echo '$vide = ' . gettype($vide).'<br>';
-    //echo '$vide2 = ' . gettype($vide2).'<br>';
+    echo '$vide2 = ' . gettype($vide2).'<br>';
 
 
 ?>
