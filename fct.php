@@ -24,7 +24,9 @@ function displayFooter($year, $date, $version, $path = '')
 function listCourses() {
     
     $donnees = null;
-    $courses = null;            
+    $courses = null; 
+    $titre = null;
+    $id = null;           
     $compteur = 0;
     $cours = array();
     $dossiers = glob('*');

@@ -39,6 +39,7 @@
                     <h2 class="lpb-courses">.. Les cours ..</h2>             
                     <a href="courses/php/" class="btn btn-outline-success link" role="button">Le PHP</a></li>
                     <a href="courses/javascript/" class="btn btn-outline-success link" role="button">Le JAVASCRIPT</a>
+                    <a href="courses/tests/" class="btn btn-outline-success link" role="button">Tests</a>
                 </div>              
             </div>
             <div class="col-3"></div>
