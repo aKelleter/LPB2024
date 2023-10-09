@@ -37,11 +37,36 @@
     echo 5 % 3 . '<br>';  
     echo 2 ** 3 . '<br>'; 
 
+    /*
+        L’ordre de priorité des opérations, celui-ci va être le même qu’en mathématiques : 
+        l’élévation à la puissance va être prioritaire sur les autres opérations, 
+        la multiplication, la division et le modulo vont avoir le même ordre de priorité et 
+        sont prioritaires sur l’addition et la soustraction qui ont également le même niveau de priorité. 
+
+        Si deux opérateurs ont le même ordre de priorité, alors c’est leur sens d’association qui va décider du résultat.
+        Pour les opérateurs arithmétiques, le sens d’association correspond à l’ordre de leur écriture à l’exception de 
+        l’élévation à la puissance qui sera calculée en partant de la fin. 
+
+        Nous pouvons forcer l’ordre de priorité en utilisant des couples de parenthèses () 
+        pour indiquer qu’une opération doit se faire avant toutes les autres
+    */
     echo '<div class="lpb-inter">Ordre de priorité des opérations</div>';
 
     echo 2 + 3 * 4 . '<br>';            // 14
     echo (2 + 3) * 4 . '<br>';          // 20
     echo 2 ** 3 - 4 * 4 / 8 . '<br>';   // 6 
+
+    // Les opérateurs d'affectation et les opérateurs combinés
+    // = Affectation
+    /*
+        .=  Concatène puis affecte le résultat 
+        +=  Additionne puis affecte le résultat 
+        -=  Soustrait puis affecte le résultat 
+        *=  Multiplie puis affecte le résultat 
+        /=  Divise puis affecte le résultat 
+        %=  Calcule le modulo puis affecte le résultat 
+        **= Élève à la puissance puis affecte le résultat 
+    */
 
 ?>
     
