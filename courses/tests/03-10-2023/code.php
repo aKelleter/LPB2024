@@ -20,7 +20,8 @@ print "Aujourd'hui Noah n'a pas envie de travailler";
 // Comment afficher/générer du code HTML avec du PHP ?
 // Comment échape-ton un caractère en PHP ?
 
-echo "<div id=\"formulaire\">Titre 1</div>" ;
-echo '<div id="formulaire">Titre 2</div>' ;
+echo "<div id=\"formulaire\">Titre 1</div>";
+echo '<div id="formulaire">Titre 2</div>';
+
 
 ?>

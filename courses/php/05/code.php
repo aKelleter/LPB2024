@@ -133,8 +133,8 @@ echo '<br>';
  $y = null;
  $z;    
 
- $ressultx = $x ?? 'null';
+ $resultx = $x ?? 'null';
  $resulty = $y ?? 'null';
  $resultz = $z ?? 'null';
 
- print $ressultx.'<br>'.$resulty.'<br>'.$resultz.'<br>';
+ print $resultx.'<br>'.$resulty.'<br>'.$resultz.'<br>';
