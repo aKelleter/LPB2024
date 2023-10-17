@@ -11,6 +11,8 @@
     echo "$a<br>";
     */
 
+    // L'opérateur combiné .= permet de concaténer une chaîne de caractères à une autre 
+
     $string = '';
 
     $string .= '<div>';
