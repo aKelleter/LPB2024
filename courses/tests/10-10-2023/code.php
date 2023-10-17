@@ -14,7 +14,10 @@
     $string = '';
 
     $string .= '<div>';
-    $string .= 'Hello';
+
+/**
+ * 
+ */
     $string .= '</div>';
 
     echo $string;
