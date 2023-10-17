@@ -56,6 +56,8 @@
     echo (2 + 3) * 4 . '<br>';          // 20
     echo 2 ** 3 - 4 * 4 / 8 . '<br>';   // 6 
 
+    // !!! https://www.php.net/manual/fr/language.operators.precedence.php !!!
+
     // Les opérateurs d'affectation et les opérateurs combinés
     // = Affectation
     /*
