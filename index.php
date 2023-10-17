@@ -36,10 +36,11 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">                
                 <div class="text-center">
-                    <h2 class="lpb-courses">.. Les cours ..</h2>             
+                    <h2 class="lpb-courses">.. Les tools ..</h2>             
                     <a href="courses/php/" class="btn btn-outline-success link" role="button">Le PHP</a></li>
                     <a href="courses/javascript/" class="btn btn-outline-success link" role="button">Le JAVASCRIPT</a>
                     <a href="courses/tests/" class="btn btn-outline-success link" role="button">Tests</a>
+                    <a href="pgms/" class="btn btn-outline-success link" role="button">PGM's</a>
                 </div>              
             </div>
             <div class="col-3"></div>
