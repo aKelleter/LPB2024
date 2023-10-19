@@ -75,9 +75,12 @@
 <body>
 <div class="container-fluid">  
     <div class="text-center"><img src="../assets/img/logo.svg" alt="logo" class="lpb-brand"></div>  
-    <nav class="mt-2 text-center mb-3">        
-        <a href="<?php echo $type.'/index.php'; ?>" class="menu">Back</a>
-    </nav>    
+    <div class="col-md-12 mt-2 header-site">
+        <?php 
+            // Afficher le menu principal
+            echo getHtmlMainMenu('../', 'courses', $type); 
+        ?>   
+    </div>  
 
     <h1 class="lpb-h1-script"><?php echo $title; ?></h1>
 
@@ -120,7 +123,7 @@
     <footer>        
       <div class="row mt-5 mb-3">
             <div class="col-md-12 text-center">
-                <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../'); ?></p>
+                <p class="text-footer"><?php echo getHtmlFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../'); ?></p>
             </div>
         </div>        
     </footer> 
@@ -135,5 +138,7 @@
 <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
 <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
 <script src="../assets/js/lpb.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
 </body>
 </html>

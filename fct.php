@@ -8,10 +8,45 @@
 * @param string $version	Version of the site	
 * @return string	HTML code of the footer
 */
-function displayFooter($year, $date, $version, $path = '')
+function getHtmlFooter($year, $date, $version, $path = '')
 {
     $string = '';
     $string .= "LPB $year - Updated $date - $version -".'<a href="https://github.com/aKelleter/LPB2024"><img src="'.$path.'assets/img/github-mark.svg"  alt="LPB20214 Github Repository" class="lpb-github"></a>';
+    return $string;
+}
+
+/**
+ * Display the main menu of the site
+ * 
+ * @param string $path	Path of the site
+ * @param string $active	Active menu
+ * @return string	HTML code of the main menu
+ */
+function getHtmlMainMenu($path, $active = '', $tools = '')
+{
+    $string = '<nav class="navbar navbar-expand-lg bg-body-tertiary menu">';
+    $string .= '    <div class="container-fluid">';
+    $string .= '    <a class="navbar-brand" href="'.$path.'index.php"><i class="bi bi-house"></i></a>';
+    $string .= '    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>';
+    $string .= '    <div class="collapse navbar-collapse" id="navbarNav">';
+    $string .= '    <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">';    
+    $string .= '<li class="nav-item dropdown">';
+        $string .= '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Tools </a>';
+        $string .= '<ul class="dropdown-menu">';
+            ($active == 'php') ? $string .= '<li><a class="dropdown-item active" href="'.$path.'courses/php">Php</a></li>': $string .= '<li><a class="dropdown-item" href="'.$path.'courses/php">Php</a></li>';
+            ($active == 'javascript') ? $string .= '<li><a class="dropdown-item active" href="'.$path.'courses/javascript">Javascript</a></li>': $string .= '<li><a class="dropdown-item" href="'.$path.'courses/javascript">Javascript</a></li>';
+            $string .= '<li><hr class="dropdown-divider"></li>';
+            ($active == 'tests') ? $string .= '<li><a class="dropdown-item active" href="'.$path.'courses/tests">Tests</a></li>': $string .= '<li><a class="dropdown-item" href="'.$path.'courses/tests">Tests</a></li>';
+            $string .= '<li><a class="dropdown-item" href="'.$path.'pgms">PGM\'s</a></li>';         
+        $string .= '</ul>';
+    $string .= '</li>'; 
+    ($active == 'courses') ? $string .= '<li class="nav-item"> <a class="nav-link" href="'.$tools.'/index.php"><i class="bi bi-arrow-counterclockwise"></i> back</a> </li>' : $string .= '';      
+    $string .= '</ul>';
+    $string .= '<div class="d-flex" > <span class="menu">'.strtoupper($active).'</span> </div>';
+    $string .= '</div></div></nav>';
+    
     return $string;
 }
 
@@ -62,7 +97,7 @@ function listCourses() {
  * @param array $courses	List of courses
  * @return string	HTML code of the list of courses
  */
-function displayCoursesList($courses, $courseType)
+function getHtmlCoursesList($courses, $courseType)
 {
     $string = '';
   
