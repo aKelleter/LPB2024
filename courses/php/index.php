@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="../../assets/img/apple-touch-icon-57x57.png" />
@@ -29,10 +30,11 @@
                     <img src="../../assets/img/logo.svg" alt="logo" class="lpb-logo">
                     Le langage PHP
                 </h1>
-                <p>Apprentissage du langage PHP à l'aide de scripts</p>
-                <nav>
-                    <a href="../../index.php" class="menu">Back</a>
-                </nav>
+                <p>Apprentissage du langage PHP à l'aide de scripts</p>               
+                <?php 
+                    // Afficher le menu principal
+                    echo getHtmlMainMenu('../../', 'php'); 
+                ?>   
             </div>      
         </div>
         <div class="row mt-5">
@@ -41,7 +43,7 @@
                 <h2>Sommaire</h2>                
                 <?php
                     // Afficher la liste des cours PHP
-                    echo displayCoursesList(listCourses(), PHP);                     
+                    echo getHtmlCoursesList(listCourses(), PHP);                     
                 ?>
             </div>
             <div class="col-md-3"></div>
@@ -49,10 +51,11 @@
         <footer>        
             <div class="row mt-5">
                 <div class="col-md-12 text-center">
-                    <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../../'); ?></p>
+                    <p class="text-footer"><?php echo getHtmlFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../../'); ?></p>
                 </div>
             </div>        
         </footer> 
-    </div>   
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
 </body>
 </html>

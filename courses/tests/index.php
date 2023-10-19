@@ -27,12 +27,13 @@
             <div class="col-md-12 mt-2 header-site">
                 <h1 class="title-h1">
                     <img src="../../assets/img/logo.svg" alt="logo" class="lpb-logo">
-                    Nos tests
+                    Les tests
                 </h1>
                 <p>Tester du code à l'aide de scripts</p>
-                <nav>
-                    <a href="../../index.php" class="menu">Back</a>
-                </nav>  
+                <?php 
+                    // Afficher le menu principal
+                    echo getHtmlMainMenu('../../', 'tests'); 
+                ?>  
             </div>
         </div>
         <div class="row mt-5">
@@ -41,7 +42,7 @@
                 <h2>Sommaire</h2>
                 <?php
                     // Afficher la liste des cours JAVASCRIPT
-                    echo displayCoursesList(listCourses(), TEST);                     
+                    echo getHtmlCoursesList(listCourses(), TEST);                     
                 ?>
             </div>
             <div class="col-md-3"></div>
@@ -49,10 +50,11 @@
         <footer>        
             <div class="row mt-5">
                 <div class="col-md-12 text-center">
-                    <p class="text-footer"><?php echo displayFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../../'); ?></p>
+                    <p class="text-footer"><?php echo getHtmlFooter(APP_YEAR, APP_UPDATE, APP_VERSION, '../../'); ?></p>
                 </div>
             </div>        
         </footer> 
     </div>   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
 </body>
 </html>
