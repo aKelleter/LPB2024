@@ -3,7 +3,20 @@
 // ----------------------------------
 // Mon premier vrai programme en PHP
 // ----------------------------------
-
+echo '
+    <a href="../">BACK</a>  
+    <h2>Mon premier vrai programme en PHP</h2>
+    <h3>Passer un paramètre à mon script PHP avec l\'url</h3>
+    <p>
+        le paramètre doit s\'appeler "nombre" et la valeur doit être un nombre entier
+    </p>
+    <p>
+        Placer un paramètre la fin de l\'url, exemple : <br>
+        <a href="index.php?nombre=15">index.php?nombre=15</a>
+    </p>
+    
+    <hr>
+';
 // --------------------------------------------------------
 // PASSER LES DONNEES A MON SCRIPT PHP PAR L'URL AVEC $_GET
 // --------------------------------------------------------

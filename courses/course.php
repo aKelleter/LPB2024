@@ -64,10 +64,6 @@
     <link rel="apple-touch-icon" sizes="152x152" href="../assets/img/apple-touch-icon-152x152.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon-180x180.png" />
 
-    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
-    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
-    <link rel=stylesheet href="../vendors/codemirror/theme/material.css">
-
     <link href="../assets/css/styles.css" rel="stylesheet">
 
     <title><?php echo $title; ?></title>

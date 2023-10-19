@@ -94,6 +94,37 @@ function listCourses() {
 /**
  * Display the ordered list HTML of courses
  * 
+ * @return string	HTML code of the list of courses
+ */
+function listProgrammes() {
+    
+    $compteur = 0;
+    $pgms = array();
+    $dossiers = glob('*');
+
+    // Classement des dossiers afin qu'ils soient affichés par ordre alphabétique / croissant
+    asort($dossiers); 
+    
+    // Lister les dossiers
+    foreach($dossiers as $repertoire) 
+    {
+        // Vérifier si c'est un dossier que l'on traite et non un fichier
+        if(is_dir($repertoire)) 
+        {
+      
+            $pgms[$compteur]['id'] = $repertoire;
+            $pgms[$compteur]['title'] = $repertoire; 
+
+            $compteur++; 
+        }
+    }
+    
+    return $pgms;    
+}
+
+/**
+ * Display the ordered list HTML of courses
+ * 
  * @param array $courses	List of courses
  * @return string	HTML code of the list of courses
  */
@@ -111,6 +142,26 @@ function getHtmlCoursesList($courses, $courseType)
         $string .= '</ol>';   
     }else {
         $string .= '<div class="lpb-msg">No course available... patience :)</div>';
+    }
+    
+    
+    return $string;
+}
+
+function getHtmlPgmList($pgms)
+{
+    $string = '';
+  
+    if(!empty($pgms))
+    {
+        $string .= '<ol>';
+        foreach($pgms as $pgm)
+        {
+            $string .= '<li><a href="'.$pgm['id'].'" class="link-script">'.$pgm['title'].'</a></li>';
+        } 
+        $string .= '</ol>';   
+    }else {
+        $string .= '<div class="lpb-msg">No program available... work! :)</div>';
     }
     
     
