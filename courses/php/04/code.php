@@ -15,7 +15,7 @@
     ==      Permet de tester l’égalité sur les valeurs 
     ===     Permet de tester l’égalité en termes de valeurs et de types 
     !=      Permet de tester la différence en valeurs 
-    ><      Permet également de tester la différence en valeurs 
+    <>      Permet également de tester la différence en valeurs 
     !==     Permet de tester la différence en valeurs ou en types 
     <       Permet de tester si une valeur est strictement inférieure à une autre 
     >       Permet de tester si une valeur est strictement supérieure à une autre 
@@ -52,9 +52,10 @@ echo '<br>';
 $x = 4;
 $y = 2;
 
-if($x > 1){
+//  4 > 1  => true
+if($x < 1)
     echo 'La valeur de $x est strictement supérieure à 1 <br>';
-}
+
 
 if($x == $y){
     echo '$x et $y contienne la même valeur<br>';
@@ -69,9 +70,9 @@ if($x <= 1 == false){
 $age = 18;
 
 if($age >= 18){
-    echo 'Vous êtes majeur<br>';
+    echo 'Vous êtes majeur (1)<br>';
 }else{ // Siginifie, dans tous le autres cas
-    echo 'Vous êtes mineur<br>';
+    echo 'Vous êtes mineur (1)<br>';
 }   
 
 // La condition if... elseif... else (si... sinon si... sinon)

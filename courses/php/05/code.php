@@ -46,7 +46,10 @@ $puissanceVehicule2 = 320;
 $puissanceVehicule3 = 80;
 
 // Avec &&
-if($puissanceVehicule > PMIN && $puissanceVehicule < PMAX){
+
+//                     (TRUE)
+//    (true)                &&              (true) 
+if(($puissanceVehicule > PMIN) && ($puissanceVehicule < PMAX)){
     echo 'La voiture est puissante<br>';
 }
 
@@ -57,6 +60,9 @@ if($puissanceVehicule2 >= PMIN AND $puissanceVehicule2 > PMAX){
 
 
 // Avec ||
+//                             (TRUE) 
+//             (true)           ||                       (false)
+//              (true)        ||             ( false        &&           true)
 if($puissanceVehicule3 < PMIN || ($puissanceVehicule3 > PMIN && $puissanceVehicule3 < 120)){
     echo 'La voiture est raisonnable en terme de puissance <br>';
 }
@@ -133,6 +139,7 @@ echo '<br>';
  $y = null;
  $z;    
 
+ echo '-----------------<br>';
  $resultx = $x ?? 'null';
  $resulty = $y ?? 'null';
  $resultz = $z ?? 'null';

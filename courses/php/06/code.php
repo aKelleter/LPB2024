@@ -12,7 +12,7 @@
     */
 
     // Exemple d'utilisation de la structure switch case
-    $variable = 'php';
+    $variable = 'javascript';
     
     switch ($variable) {
         case 'php':
@@ -24,10 +24,25 @@
 
         default:
             echo 'Vous n\'avez pas choisi de langage<br>';    
-            break;
+            
     }
 
+    // Deux fonctions fournie avec PHP
+    // empty()  vérifie si la variable passée en paramètre est == vide
+    if(empty($variable))
+        echo 'La variable est vide <br>';
+    else
+        echo 'La variable n\'est pas vide <br>';
+    
+
+    // isset()  vérifie si la variable passée en paramètre existe et et/ou diffente de la valeur null
+    if (isset($variable))
+        echo 'La variable existe et ne contient pas null <br>';
+    else
+        echo 'La variable n\'existe pas et n\'est pas initialisée à null <br>';
+
     // Alternative avec if elseif else
+    echo '<br>Idem avec un if elseif else<br>';
     if($variable == 'php'){
         echo 'Vous avez choisi PHP<br>';
     }elseif($variable == 'javascript'){

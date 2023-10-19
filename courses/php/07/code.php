@@ -25,7 +25,7 @@
     $x-- Post-décrémentation : retourne la valeur contenue dans $x avant décrémentation, puis décrémente la valeur de $x
 */
 
-/* 
+
     $x = 4;
     //Pré-incrémentation
 
@@ -39,13 +39,13 @@
     echo 'Valeur de x (post) : ' . $x . '<br>'; // 5
 
     echo '<br>';
-*/
+
 
 // --------------------------------
 // LA BOUCLE WHILE (réf : p 94)
 // --------------------------------
 
-/* 
+
     // Déclare et initialise le compteur à 0
     $cpt = 0;
 
@@ -59,15 +59,15 @@
     }
 
     echo '<br>';
-*/
 
 // --------------------------------
 // LA BOUCLE DO WHILE (réf : p 97)
 // --------------------------------
 
-/* 
+ 
     // Déclare et initialise le compteur à 0
-    $cpt = 5;
+    $cpt = 25;
+
     do {
         
         // Code à exécuter tant que la condition est vraie
@@ -79,13 +79,12 @@
     } while ($cpt <= 5);
 
     echo '<br>';
-*/
 
 // --------------------------------
 // LA BOUCLE FOR (réf : p 98)
 // --------------------------------
 
-/*     
+   
     //     (1)        (2)      (3)
     for ($cpt = 0; $cpt <= 5; $cpt++) {
         echo 'Compteur : ' . $cpt . '<br>';
@@ -96,7 +95,7 @@
     // (3) $cpt++; // Incrémentation du compteur   
 
     echo '<br>'; 
-*/
+
 
 // --------------------------------
 //  LA BOUCLE FOREACH (réf : p 99 - mais plus tard :) )
