@@ -181,6 +181,6 @@ a.dropdown-item.active{
     background-color: rgb(7, 159, 147);  
     color: rgb(209, 236, 235) !important;        
 }
-a.nav-link:hover, a.dropdown-item:hover{
+a.nav-link:hover, a.dropdown-item:hover, a.navbar-brand:hover{
     color: rgb(244, 21, 132);
 }
