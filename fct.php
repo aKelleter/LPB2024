@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Display the footer of the page
+* Returns the HTML code of footer of the page
 * 
 * @param string $year	Current site Year 
 * @param string $date	Date of the last update	
@@ -16,7 +16,7 @@ function getHtmlFooter($year, $date, $version, $path = '')
 }
 
 /**
- * Display the main menu of the site
+ * Returns the HTML code of the application's main menu
  * 
  * @param string $path	Path of the site
  * @param string $active	Active menu
@@ -51,10 +51,9 @@ function getHtmlMainMenu($path, $active = '', $tools = '')
 }
 
 /** 
- * Display the list of courses
+ * Returns the LIST (array) of courses
  * 
- * @param string $path	Path of the courses
- * @return string	HTML code of the list of courses
+ * @return array	The list of courses
  */
 function listCourses() {
     
@@ -92,9 +91,9 @@ function listCourses() {
 }
 
 /**
- * Display the ordered list HTML of courses
+ * Returns the LIST (array) of program
  * 
- * @return string	HTML code of the list of courses
+ * @return array  of the list of program
  */
 function listProgrammes() {
     
@@ -123,9 +122,10 @@ function listProgrammes() {
 }
 
 /**
- * Display the ordered list HTML of courses
- * 
+ * Returns the HTML code of the ordered list HTML of courses
+ *  
  * @param array $courses	List of courses
+ * @param string $courseType	Type of course
  * @return string	HTML code of the list of courses
  */
 function getHtmlCoursesList($courses, $courseType)
@@ -148,6 +148,12 @@ function getHtmlCoursesList($courses, $courseType)
     return $string;
 }
 
+/**
+ * Returns the HTML code of the ordered list HTML of program
+ * 
+ * @param array $pgms	List of program
+ * @return string	HTML code of the list of program
+ */
 function getHtmlPgmList($pgms)
 {
     $string = '';
@@ -206,7 +212,7 @@ function LPBremoveAccents($str)
 
 /**
 * Returns a character string in the form of a slug
-
+*
 * @param string $text
 * @return string
 */
