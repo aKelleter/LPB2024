@@ -1,6 +1,6 @@
 <?php
 
-    const APP_UPDATE = '20/10/2023 16:35';
+    const APP_UPDATE = '21/10/2023 18:26';
 
     const APP_VERSION = 'v1.5.1';
     const APP_YEAR = '2024';
