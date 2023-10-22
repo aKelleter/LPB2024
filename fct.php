@@ -33,7 +33,7 @@ function getHtmlMainMenu($path, $active = '', $tools = '')
     $string .= '    <div class="collapse navbar-collapse" id="navbarNav">';
     $string .= '    <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">';    
     $string .= '<li class="nav-item dropdown">';
-        $string .= '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Tools </a>';
+        $string .= '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Sections </a>';
         $string .= '<ul class="dropdown-menu">';
             ($active == 'php') ? $string .= '<li><a class="dropdown-item active" href="'.$path.'courses/php">Php</a></li>': $string .= '<li><a class="dropdown-item" href="'.$path.'courses/php">Php</a></li>';
             ($active == 'javascript') ? $string .= '<li><a class="dropdown-item active" href="'.$path.'courses/javascript">Javascript</a></li>': $string .= '<li><a class="dropdown-item" href="'.$path.'courses/javascript">Javascript</a></li>';

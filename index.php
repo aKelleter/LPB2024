@@ -26,8 +26,8 @@
         <div class="row mt-2 text-center">    
             <div class="col-md-12 mt-2 header-site"> 
                 <h1 class="title-h1">
-                    <img src="assets/img/logo.svg" alt="logo" class="lpb-logo"><br>
-                    <span class="lpb-acronym">L</span>angages de <span class="lpb-acronym">P</span>rogrammation : Les <span class="lpb-acronym">B</span>ases (2024)
+                    <a href="index.php"><img src="assets/img/logo.svg" alt="logo" class="lpb-logo"></a><br>
+                    <span class="lpb-acronym">L</span>angages de <span class="lpb-acronym">P</span>rogrammation : Les <span class="lpb-acronym">B</span>ases (<?php echo APP_YEAR; ?>)
                 </h1>
                 <p>Page d'acceuil du cours sur les bases de la programmation en PHP et JAVASCRIPT</p>
             </div>    
@@ -36,10 +36,10 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">                
                 <div class="text-center">
-                    <h2 class="lpb-courses">.. Les tools ..</h2>             
-                    <a href="courses/php/" class="btn btn-outline-success link" role="button">Le PHP</a></li>
-                    <a href="courses/javascript/" class="btn btn-outline-success link" role="button">Le JAVASCRIPT</a>
-                    <a href="courses/tests/" class="btn btn-outline-success link" role="button">Tests</a>
+                    <h2 class="lpb-courses">.. Les sections ..</h2>             
+                    <a href="courses/php/" class="btn btn-outline-success link" role="button">PHP</a></li>
+                    <a href="courses/javascript/" class="btn btn-outline-success link" role="button">JAVASCRIPT</a>
+                    <a href="courses/tests/" class="btn btn-outline-success link" role="button">TESTS</a>
                     <a href="pgms/" class="btn btn-outline-success link" role="button">PGM's</a>
                 </div>              
             </div>
