@@ -246,3 +246,16 @@ function LPBslugify($text)
 
     return $text;
 }
+
+/**
+ * Display a HTML separator line with a character or a string
+ */
+function sep($sep = '-'){
+    $string = '';
+
+    for($i = 0 ; $i <= 30 ; $i++){
+         $string .= $sep;
+    }
+
+    echo $string .'<br>';
+}
