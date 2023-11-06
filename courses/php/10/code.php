@@ -85,3 +85,23 @@ helloYou('Noah');
 helloYou('Noah', 'administrateur');
 
 sep();
+
+/*
+    Comment définir des fonctions qui vont pouvoir accepter un nombre variable d’arguments 
+    en valeurs. Pour cela, il suffit d’ajouter … avant la liste des paramètres dans 
+    la définition de la fonction pour indiquer que la fonction pourra recevoir 
+    un nombre d’arguments variable.      
+*/
+
+function listeUtilisateurs(...$users)
+{
+    foreach($users as $user)
+    {
+        echo '- ' . $user . '<br>';
+    }
+}
+
+
+listeUtilisateurs('Flavio','Emilien','Yannick');
+
+sep();

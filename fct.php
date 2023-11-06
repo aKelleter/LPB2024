@@ -259,3 +259,11 @@ function sep($sep = '-'){
 
     echo $string .'<br>';
 }
+
+/**
+ * Display a HTML <br>  
+ */
+function br()
+{
+    echo '<br>';
+}
