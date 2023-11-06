@@ -4,13 +4,13 @@
  function addNT($a, $b)
  {
     echo 'addNT<br>';
-    echo $a . ' + ' . $b . ' = ' . $a+$b . '<br>';
+    echo $a . ' + ' . $b . ' = ' . ($a+$b) . '<br>';
  }
 
  function addTF(float $a, float $b)
  {
     echo 'addTF<br>';
-    echo $a . ' + ' . $b . ' = ' . $a+$b . '<br>';
+    echo $a . ' + ' . $b . ' = ' . ($a+$b) . '<br>';
  }
 
  addNT(5,10);
