@@ -33,6 +33,21 @@ echo '<h2>Résultats de l\'exercice n°1</h2>';
 // Ecrire votre code ici pour réaliser l'exercice n°1
 // .. votre code ici ..
 
+$age = 10;
+echo $age .'<br>';
+
+if($age >=12 && $age <=18)
+{
+  echo "Vous avez entre 12 et 18 ans et vous êtes un adolescent";
+}elseif($age > 18 && $age <= 21){
+  echo "Vous avez entre 18 et 21 ans et vous êtes un jeune adulte avide d'expériences" ;
+}elseif($age > 21 && $age <= 25){
+  echo "Vous avez entre 21 et 25 ans et vous êtes sur le point de partir à l'aventure";
+}else{
+  echo "Il est encore temps de réaliser vos rêves";
+}
+
+
 // .. fin de votre code ..
 echo '<hr>';
 
@@ -52,6 +67,37 @@ echo '
 echo '<h2>Résultats de l\'exercice n°2</h2>';
 // Ecrire votre code ici pour réaliser l'exercice n°2
 // .. votre code ici ..
+
+//-----------------------------------
+//  1 initialisation de(s) variables ; 2 condition de sortie de la boucle ; 3 traitement de fin de boucle (incr / desincr)
+// $i = $i + 1 == $i++
+for($cpt = 0 ; $cpt <= 10 ; $cpt++)
+{
+  echo 'Nombre : ' . $cpt . '<br>';
+}
+
+//-------------------------------------
+$cpt2 = 0; 
+while($cpt2 <= 10){
+  /*
+    echo $cpt2 . '<br>';
+    $cpt2+=2;
+  */
+  if($cpt2 %2 == 0)
+    echo $cpt2 . '<br>';  
+  
+  $cpt2++;
+     
+}
+
+$cpt3 = 1;
+const TABLE = 9;
+do{
+
+  echo $cpt3 .' x '. TABLE . ' = ' . $cpt3 * TABLE . '<br>';
+  $cpt3++;
+
+}while($cpt3 <=10);
 
 // .. fin de votre code ..
 echo '<hr>';
@@ -83,6 +129,7 @@ $nom = "Zelda";
 // Ecrire votre code ici pour réaliser l'exercice n°3
 // .. votre code ici ..
 
+echo 'Bonjour ' . $nom . ', aujourd\'hui nous sommes le ' . $date .'. La météo sera : '. $meteo. '<br>';
 
 // .. fin de votre code ..
 echo '<hr>';
