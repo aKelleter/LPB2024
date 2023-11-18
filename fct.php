@@ -175,6 +175,15 @@ function getHtmlPgmList($pgms)
 }
 
 /**
+* Génère et retourne un token
+* 
+*/
+function LPBgetToken()
+{
+    return sha1(uniqid(rand()));
+}
+
+/**
 *  Replaces accented characters in a string
 *
 * @param string $str
@@ -241,7 +250,7 @@ function LPBslugify($text)
 
     if (empty($text))
     {
-        return 'na-'.getToken();
+        return 'na-'.LPBgetToken();
     }
 
     return $text;
