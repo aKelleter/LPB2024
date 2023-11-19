@@ -28,10 +28,14 @@
  * 
  */
 
- // Déclarer des tableaux de données numéroté ou indexé 
+ // Déclarer des tableaux de données numéroté  
 
   // INDEXES :            0        1        2         3
   $personnages = array("Mario", "Luigi", "Peach", "Bowser");
+
+  // Avec la syntaxe courte
+  //INDEXES :   0        1        2         3
+  $persos = ["Link", "Zelda", "Ganondorf", "Sheik"];
 
   // IND : 0   1   2   3
   $ages = [12, 18, 25, 30];
@@ -48,17 +52,20 @@
   $datas[3] = 10.77;
 
   // Comment accéder (pour éventuellement comme ci-dessous les afficher) aux données des tableaux
-  echo $personnages[0]; // Mario
+  echo ln(__LINE__) . $personnages[0]; // Mario
   br();
-  echo $ages[2]; // 25
+  echo ln(__LINE__) .  $ages[2]; // 25
   br();
-  echo $heros[3]; // Spiderman
+  echo ln(__LINE__) .  $heros[3]; // Spiderman
   br();
-  echo $datas[1]; // 1000
+  echo ln(__LINE__) .  $datas[1]; // 1000
   br();
 
+  // Comment modifier une valeur d'un tableau
+  $personnages[0] = 'Link';
+
   // Comment connaître le nombre d'éléments d'un tableau avec la fonction count()
-  echo 'Nombre de personnages avec count() : ' . count($personnages); // 4
+  echo ln(__LINE__) .  'Nombre de personnages avec count() : ' . count($personnages); // 4
   br();  
   sep();
 
@@ -74,6 +81,13 @@
   // Afficher les données d'un tableau avec une boucle foreach
   foreach ($heros as $hero) {
     echo $hero . ' ';
+    br();
+  }
+
+  sep();  
+
+  foreach ($persos as $key => $perso) {
+    echo $perso . ' ';
     br();
   }
 
