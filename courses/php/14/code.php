@@ -29,7 +29,7 @@
  
  // Définition des constantes
  const NOM_JEU = "Super Mario Odyssey";
- define("PI", 3,14159);
+ define("PI", 3.14159);
  
  // Affichage des constantes
  echo NOM_JEU; // Affiche "Super Mario Odyssey"
