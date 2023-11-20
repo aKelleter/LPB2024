@@ -175,6 +175,15 @@ function getHtmlPgmList($pgms)
 }
 
 /**
+* Génère et retourne un token
+* 
+*/
+function LPBgetToken()
+{
+    return sha1(uniqid(rand()));
+}
+
+/**
 *  Replaces accented characters in a string
 *
 * @param string $str
@@ -241,7 +250,7 @@ function LPBslugify($text)
 
     if (empty($text))
     {
-        return 'na-'.getToken();
+        return 'na-'.LPBgetToken();
     }
 
     return $text;
@@ -251,7 +260,7 @@ function LPBslugify($text)
  * Display a HTML separator line with a character or a string
  */
 function sep($sep = '-'){
-    $string = '';
+    $string = '<br>';
 
     for($i = 0 ; $i <= 30 ; $i++){
          $string .= $sep;
@@ -266,4 +275,37 @@ function sep($sep = '-'){
 function br()
 {
     echo '<br>';
+}
+
+/**
+ * Display the line number of the code
+ * 
+ * @return void 
+ */
+function ln($line)
+{
+    return 'LIGNE ' . $line . ' : ' ;
+}
+
+/**
+ * Display an array variable in a more readable way
+ * 
+ * @param mixed $array 
+ * @param string $type 'PR' for print_r() or 'VD' for var_dump()
+ * @return void 
+ */
+function disp_ar($array, $type = 'PR'){
+
+    if($type == 'PR')
+    {
+        echo '<pre>';
+        print_r($array);
+        echo '</pre>';
+    }elseif($type == 'VD')
+    {
+        echo '<pre>';
+        var_dump($array);
+        echo '</pre>';
+    }
+    
 }
