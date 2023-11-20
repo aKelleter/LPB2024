@@ -8,18 +8,18 @@
 $var = 100; // Variable à portée globale
 
 function portee1(){
-   echo 'La valeur de $varGlobale  est : ' . $var . '<br>';
+   echo 'La valeur de $var global  est : ' . $var . '<br>';
 }
 
 function portee2(){
    $var = 1000; // Variable à portée locale
-   echo 'La valeur de $varGlobale  est : ' . $var . '<br>';
+   echo 'La valeur de $var local  est : ' . $var . '<br>';
 }
 
 function portee3(){
    $var2 = 0;
    $var2++;
-   echo 'La valeur de $varGlobale  est : ' . $var2 . '<br>';
+   echo 'La valeur de $var local  est : ' . $var2 . '<br>';
 }
 
 function portee4(){

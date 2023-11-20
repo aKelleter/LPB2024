@@ -1,5 +1,5 @@
 <?php
-//declare(strict_types = 1);
+declare(strict_types = 1);
 
  function addNT($a, $b)
  {
@@ -17,4 +17,32 @@
  addNT(5,'15');
  echo '-----------<br>';
  addTF(3, 9);
- addTF(3,'11');
+ //addTF(3,'11');
+
+ //-----------------------------------------------------------
+
+ // Remarquez ici le ": float" qui force type de retour de la fonction à float
+ function addition (float $nb1 , float $nb2) : float
+ {
+    return $nb1 + $nb2;
+ }
+
+
+ // Rien n'est affiché à l'écran
+ addition(8, 6);
+ 
+
+ // Affiche un message concaténé au retour de la fonction
+ echo'Retour de la fonction addition : ' . addition(8, 6.5);
+ echo '<br>';
+ var_dump (gettype(6.5));
+ echo '<br>';
+
+ var_dump (gettype(addition(8, 6.5)));
+
+ echo '<br>';
+
+ // Affiche le retour de la fonction
+ echo addition(3, 40);
+
+

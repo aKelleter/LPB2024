@@ -77,12 +77,13 @@ sep();
     Dans le cas contraire, le PHP renverra une erreur et la fonction ne pourra pas être exécutée.
 */
 
-function helloYou($nom, $role = 'visiteur'){
-    echo 'Bonjour ' . $nom . ', vous êtes un ' . $role . ' !<br>';
+function helloYou($nom, $prenom, $role = 'visiteur'){
+    echo 'Bonjour '. $prenom . ' ' . $nom . ', vous êtes un ' . $role . ' !<br>';
+    //echo "Bonjour {$prenom} {$nom}, vous êtes un {$role} !<br>";
 }
 
-helloYou('Noah');
-helloYou('Noah', 'administrateur');
+helloYou('Le boss','Noah');
+helloYou('Le boss', 'Noah', 'administrateur');
 
 sep();
 
