@@ -40,6 +40,7 @@ function getHtmlMainMenu($path, $active = '', $tools = '')
             $string .= '<li><hr class="dropdown-divider"></li>';
             ($active == 'tests') ? $string .= '<li><a class="dropdown-item active" href="'.$path.'courses/tests">Tests</a></li>': $string .= '<li><a class="dropdown-item" href="'.$path.'courses/tests">Tests</a></li>';
             $string .= '<li><a class="dropdown-item" href="'.$path.'pgms">PGM\'s</a></li>';         
+            $string .= '<li><a class="dropdown-item" href="'.$path.'exos">EXO\'s</a></li>';         
         $string .= '</ul>';
     $string .= '</li>'; 
     ($active == 'courses') ? $string .= '<li class="nav-item"> <a class="nav-link" href="'.$tools.'/index.php"><i class="bi bi-arrow-counterclockwise"></i> back</a> </li>' : $string .= '';      
@@ -163,7 +164,8 @@ function getHtmlPgmList($pgms)
         $string .= '<ol>';
         foreach($pgms as $pgm)
         {
-            $string .= '<li><a href="'.$pgm['id'].'" class="link-script">'.$pgm['title'].'</a></li>';
+            if($pgm['title'] != '_src')
+                $string .= '<li><a href="'.$pgm['id'].'" class="link-script">'.$pgm['title'].'</a></li>';
         } 
         $string .= '</ol>';   
     }else {

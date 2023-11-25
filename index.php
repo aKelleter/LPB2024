@@ -37,10 +37,11 @@
             <div class="col-md-6">                
                 <div class="text-center">
                     <h2 class="lpb-courses">.. Les sections ..</h2>             
-                    <a href="courses/php/" class="btn btn-outline-success link" role="button">PHP</a></li>
-                    <a href="courses/javascript/" class="btn btn-outline-success link" role="button">JAVASCRIPT</a>
-                    <a href="courses/tests/" class="btn btn-outline-success link" role="button">TESTS</a>
-                    <a href="pgms/" class="btn btn-outline-success link" role="button">PGM's</a>
+                    <a href="courses/php/" class="btn btn-outline-success link" role="button" data-bs-toggle="tooltip" data-bs-title="Mise en application de la théorie en PHP">PHP</a>
+                    <a href="courses/javascript/" class="btn btn-outline-success link" role="button" data-bs-toggle="tooltip" data-bs-title="Mise en application de la théorie en Javascript">JAVASCRIPT</a>
+                    <a href="courses/tests/" class="btn btn-outline-success link-second" role="button" data-bs-toggle="tooltip" data-bs-title="Tests intégrés à LPB">TESTS</a>
+                    <a href="pgms/" class="btn btn-outline-success link-second" role="button" data-bs-toggle="tooltip" data-bs-title="Programmes/scripts indépendants de LPB">PGM's</a>
+                    <a href="exos/" class="btn btn-outline-success link-second" role="button" data-bs-toggle="tooltip" data-bs-title="Exercices pour s'améliorer">EXO's</a>
                 </div>              
             </div>
             <div class="col-3"></div>
@@ -52,6 +53,8 @@
                 </div>
             </div>        
         </footer> 
-    </div>   
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="assets/js/lpb.js"></script>  
 </body>
 </html>

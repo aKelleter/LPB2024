@@ -17,9 +17,25 @@ a.link{
     margin: 8px;
 }
 
+a.link-second{
+    color: rgb(7, 106, 159); 
+    background-color: rgb(177, 206, 223);   
+    border: 1px solid rgb(36, 112, 194);
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 8px;
+}
+
 a.link:hover{
     background-color: rgb(7, 159, 147);  
     color: rgb(209, 236, 235) !important;        
+}
+
+a.link-second:hover{
+    background-color: rgb(7, 96, 159);   
+    color: rgb(209, 225, 236) !important;   
+    border: 1px solid rgb(36, 112, 194);   
 }
 
 a.link-script{

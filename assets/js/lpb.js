@@ -1,6 +1,10 @@
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 $(document).ready(function(){
-    var codeEditorElement = $(".codemirror-textarea")[0];
-    var editor = CodeMirror.fromTextArea(codeEditorElement, {
+
+    let codeEditorElement = $(".codemirror-textarea")[0];
+    let editor = CodeMirror.fromTextArea(codeEditorElement, {
        // mode: "application/x-httpd-php",
        mode: "javascript",
         lineNumbers: true,
@@ -21,3 +25,4 @@ $(document).ready(function(){
     editor.setSize("100%","100%") // Width, Height of editor 
 
 });
+
