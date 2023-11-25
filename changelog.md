@@ -5,6 +5,6 @@ v1.8.0 : 25/11/2023 14:25
     Ajout d'exemples de code concernant les tableaux dans la section pgms
 v1.7.0 : 20/11/2023 16:29
     Add sections Exo's files : 4 exercices on array
-v1.6.2 : 19/11/2023 21:56
+v1.6.2 : 19/11/2023 21:56 
     Fix constant PI value
 
