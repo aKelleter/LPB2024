@@ -17,7 +17,8 @@ declare(strict_types = 1);
  addNT(5,'15');
  echo '-----------<br>';
  addTF(3, 9);
- //addTF(3,'11');
+ // DECOMMENTEZ LA LIGNE CI-DESSOUS POUR AFFICHER L'ERREUR
+ // addTF(3,'11');
 
  //-----------------------------------------------------------
 
