@@ -1,0 +1,53 @@
+
+.container { max-width: 1200px !important; } 
+
+.navigation {
+    background-color: rgba(232, 234, 241, 0.5);
+    min-height: 25px;
+    padding: 5px;
+    margin-top: 2px;
+    border: 1px solid rgb(196, 199, 203);
+    border-radius: 3px;
+}
+
+.brand{
+    color: rgb(12, 48, 80);
+    font-weight: bold;
+    border: 1px solid rgb(12, 48, 80);
+    border-radius: 3px;
+    padding: 2px;
+    margin : 0 5px 0 0;
+}
+
+.nav-item {
+    color: rgb(35, 129, 180);
+    font-weight: bold;    
+    padding: 2px;
+    margin : 0 5px 0 5px;    
+}
+
+.nav-item > a.item {
+    color: rgb(35, 129, 180) !important;
+    border: 1px solid rgb(163, 199, 223);
+    border-radius: 3px;
+    padding: 2px;
+    text-decoration: none;
+}
+
+.nav-item > a.sign-out{
+    color: rgb(155, 11, 11) !important;
+    border: 1px solid rgb(225, 172, 172);
+    border-radius: 3px;
+    padding: 2px;
+    text-decoration: none;
+}
+
+.hr-note{
+    margin-top:0% !important;
+}
+
+.ico-note{
+    margin : 0 2px 0 2px;
+}
+
+
