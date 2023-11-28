@@ -37,6 +37,9 @@ $prenom = "John";
 $nom = "Doe";
 $fctSymbole = '()';
 
+//disp_ar($GLOBALS);
+//die();
+
 // WTF is  : What is The Function :)
 function WTF($functionName = __FUNCTION__) {    
     $variableLocale = "Je suis une variable locale inutilisable depuis l'espace global";

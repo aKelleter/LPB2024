@@ -55,7 +55,7 @@
         (isset($_POST['passwd']) && !empty($_POST['passwd']))
       ) {
         
-        if($_POST['email'] == $user['email'] && $_POST['passwd'] == $user['passwd']) {
+        if($_POST['email'] === $user['email'] && $_POST['passwd'] === $user['passwd']) {
             $msgIdent =  '<span style="color:red;">Bienvenue ' . $_POST['email'] . '</span><br>';
         }
         else {
@@ -66,9 +66,10 @@
         disp_ar($_POST, '$_POST');
     }
     else {
-        $msgIdent =  "Le formulaire d'identification n'a pas été envoyé<br>";
+        //$msgIdent =  "Le formulaire d'identification n'a pas été envoyé<br>";
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -35,7 +35,6 @@
      Le formulaire doit être envoyé en POST  
      Cette page doit afficher les données envoyées par le formulaire 
      Si le formulaire est vide, afficher un message d'erreur 
-     Si le mot de passe et la confirmation du mot de passe sont différents, afficher un message d'erreur 
      Si le formulaire est valide, c.-à-d si le mot de passe et l'email correspondent aux données de la variable user[],
      afficher un message de succès     
     -->
