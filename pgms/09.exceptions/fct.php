@@ -23,19 +23,21 @@ function division($a, $b) {
     // Test si les valeurs sont numériques
     if(!is_numeric($a) || !is_numeric($b))
     {
-        throw new Exception('Les valeurs saisies ne sont pas nombres !');
+        throw new Exception('Les valeurs saisies doivent être des nombres !');
     }
+
 
     return $a / $b;
 }
 
 // Retourne une erreur formatée
 function createError($e) {
-    $string = '';
+
     $string = '<div style="color:red;">Erreur lors de la division<br>';
     $string .= $e->getMessage() . '<br>';
     (DEBUG)? $string .= 'Code d\'erreur : ' . $e->getCode() . '<br>' : $string .= '';
     (DEBUG)? $string .= 'Fichier : ' . $e->getFile() . '<br>' : $string .= '';
     $string .= '</div>';
+
     return $string;
 }

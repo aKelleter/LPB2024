@@ -15,9 +15,9 @@
     if (!empty($_POST))
     {
         // Test si le premier nombre existe et n'est pas vide
-        if(isset($_POST['nombre1']) && !empty($_POST['nombre1'])) {
+        if(isset($_POST['nombre1']) || !empty($_POST['nombre1'])) {
           
-            // Si les valeurs sont numériques, on peut ESSAYER d'effectuer la division (bloc try/catch)
+            // Surveiller le code dans un bloc try/catch la division
             try {
                 // Affecte le résultat de la fonction division() à la variable $resultat
                 $resultat = division($_POST['nombre1'], $_POST['nombre2']);
