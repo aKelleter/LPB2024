@@ -42,7 +42,7 @@
         <h1>Formulaire d'identification</h1>
         <p>
             <a href="../">Back</a> -
-            <a href="form_2_soluce.php">Retour au formulaire</a>
+            <a href="form_2_enonce.php">Retour au formulaire</a>
         </p>
 
         <!-- VOTRE CODE EN DESSOUS  DU COMMENTAIRE -->

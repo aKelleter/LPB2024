@@ -43,7 +43,7 @@
         <h1>Formulaire d'inscription</h1>
         <p>
             <a href="../">Back</a> -
-            <a href="form_1_soluce.php">Retour au formulaire</a>
+            <a href="form_1_enonce.php">Retour au formulaire</a>
         </p>
 
         <!-- VOTRE CODE EN DESSOUS  DU COMMENTAIRE -->
