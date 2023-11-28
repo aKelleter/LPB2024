@@ -91,7 +91,6 @@
             </div>    
         </form>
 
-        <!-- VOTRE CODE EN DESSOUS  DU COMMENTAIRE -->
     </div>    
 
 
