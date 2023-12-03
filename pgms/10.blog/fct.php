@@ -212,16 +212,16 @@ function identificationDB($conn, $datas) {
         $login = dataPrepare($datas['login']);
         $pwd = dataPrepare($datas['pwd']);
 
-        // Insertion des données dans la table articles
+        // Sélection des données dans la table users
         $req = $conn->prepare("SELECT * FROM users WHERE email = :login AND passwd = :pwd");
         $req->bindParam(':login', $login);
         $req->bindParam(':pwd', $pwd);
         $req->execute();
 
-        // Retourne un tableau associatif pour chaque entrée de la table articles avec le nom des colonnes comme clé
+        // Retourne les données si il y a une correspondance
         $resultat = $req->fetch(PDO::FETCH_ASSOC);
 
-        if($resultat['email'] === $login && $resultat['passwd'] === $pwd)
+        if((isset($resultat['email']) && $resultat['email'] === $login) && (isset($resultat['passwd']) && $resultat['passwd'] === $pwd))
             return true;
         else
             return false;

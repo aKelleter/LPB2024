@@ -14,12 +14,12 @@
             //header('refresh:3;url=login.php');
         }else{
             $datas = $_POST;
-             $user = identificationDB($conn, $datas);
-            //DEBUG// 
-            disp_ar($user, 'USER', 'VD');   
+            $user = identificationDB($conn, $datas);
+            //DEBUG// disp_ar($user, 'USER', 'VD');   
         }
     }
 
+    // Traitement en fonction du retour de la fonction identificationDB()  
     if($user === true) {
         $_SESSION['IDENTIFY'] = true;
         header('Location: admin.php');     
@@ -54,11 +54,11 @@
                <form action="login.php" method="post">
                     <div class="mb-3">
                         <label for="login" class="form-label">Login</label>
-                        <input type="text" class="form-control" id="login" name="login" value="">
+                        <input type="email" class="form-control" id="login" name="login" value="<?php echo (!empty($_POST['login']))? $_POST['login'] : null; ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="pwd" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control" id="pwd" name="pwd" value="">
+                        <input type="password" class="form-control" id="pwd" name="pwd" value="" required>
                     </div>
                     <input type="hidden" id="form" name="form" value="login">
                     <button type="submit" class="btn btn-primary">Se connecter</button>
