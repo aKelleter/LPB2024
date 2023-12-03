@@ -3,7 +3,7 @@
     $_SESSION['APP'] = 'LPB 2024';
 
     // Définition des constantes
-    const APP_UPDATE = '28/11/2023 21:35';
+    const APP_UPDATE = '03/12/2023 16:10';
 
     const APP_VERSION = 'v1.12.4';
     const APP_YEAR = '2024';
