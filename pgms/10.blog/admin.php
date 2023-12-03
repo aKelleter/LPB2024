@@ -35,7 +35,7 @@
     // Traitements des status de retour des fonctions et affichage des messages correspondants
     if($status) {
          $msg = '<div class="alert alert-success text-center" role="alert">Action effectuée avec succès</div>';
-         header('refresh:3;url=admin.php');
+         header('refresh:2;url=admin.php');
     }elseif($status === false) {
          $msg = '<div class="alert alert-danger text-center" role="alert">Erreur lors de la l\'action</div>';
          header('refresh:3;url=admin.php');
