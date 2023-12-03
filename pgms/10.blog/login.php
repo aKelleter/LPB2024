@@ -50,6 +50,7 @@
             <div class="col-3"></div>
             <div class="col-6">
                <h2 class="mb-5 text-primary">Identification</h2> 
+               <?php displayNavigation(); ?>
                <?php if(isset($msg)) echo $msg; ?>
                <form action="login.php" method="post">
                     <div class="mb-3">
