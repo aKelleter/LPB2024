@@ -4,6 +4,13 @@
  * Se connecter à une base de données avec PDO  
  */
 
+/*
+    // Définition des variables de connexion pour XAMPP
+    $serverName = 'localhost';
+    $userName = 'root';
+    $userPwd = '';
+    $dbName = 'blog';
+*/ 
 $serverName = '94.176.233.50';
 $userName = 'ifapme';
 $userPwd = 'ifapme+*;';
