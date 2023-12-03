@@ -5,7 +5,7 @@
     // Définition des constantes
     const APP_UPDATE = '28/11/2023 21:35';
 
-    const APP_VERSION = 'v1.12.3';
+    const APP_VERSION = 'v1.12.4';
     const APP_YEAR = '2024';
     
     const JS = 'javascript';

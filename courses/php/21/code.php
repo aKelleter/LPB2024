@@ -4,9 +4,9 @@
  * Se connecter à une base de données avec PDO  
  */
 
-$serverName = 'localhost';
-$userName = 'root';
-$userPwd = '';
+$serverName = '94.176.233.50';
+$userName = 'ifapme';
+$userPwd = 'ifapme+*;';
 $dbName = 'blog';
 
 try {
