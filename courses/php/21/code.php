@@ -4,9 +4,18 @@
  * Se connecter à une base de données avec PDO  
  */
 
-$serverName = 'localhost';
-$userName = 'root';
-$userPwd = '';
+/*
+    // Définition des variables de connexion pour XAMPP
+    $serverName = 'localhost';
+    $userName = 'root';
+    $userPwd = '';
+    $dbName = 'blog';
+*/ 
+
+/************************* CONNEXION ************************************** */
+$serverName = '94.176.233.50';
+$userName = 'ifapme';
+$userPwd = 'ifapme+*;';
 $dbName = 'blog';
 
 try {
@@ -22,15 +31,23 @@ try {
 } catch (PDOException $e) {
     echo 'Echec de la connexion : ' . $e->getMessage();
 }
+/***************************************************************************** */
 
 
+/****************** ALLER CHERCHER DES DONNEES EN DB ************************** */
 // Récupérer des données de notre table articles
 $req = $conn->prepare("SELECT * FROM articles");
 $req->execute();
 
-// Retourne un tableau associatif pour chaque entrée de la table articles avec le nom des colonnes en clé
+// Retourne un tableau associatif pour chaque entrée de la table articles avec le nom des colonnes comme clé
 $resultat = $req->fetchall(PDO::FETCH_ASSOC);
 
+// Fermeture de la connexion
+$conn = null; 
+/***************************************************************************** */
+
+
+/****************** AFFICHER LE TABLEAU DES DONNEES  ************************** */
 // Affichage BRUT du résultat
 echo '<pre>'; print_r($resultat); echo '</pre>';
 
@@ -40,9 +57,9 @@ foreach ($resultat as $article) {
     echo '<p>' . $article['content'] . '</p>';
     echo '<hr>';
 }
+/***************************************************************************** */
 
-// Fermeture de la connexion
-$conn = null; 
+
 
 
 
