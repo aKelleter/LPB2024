@@ -4,7 +4,8 @@
      if (!isset($_SESSION['IDENTIFY'])) {
          $_SESSION['IDENTIFY'] = false;
      }
-       
+     
+     const APP_NAME = 'Techno 2:40 AM';
 
     // Définition des constantes de connexion sur un serveur externe
     const SERVER_NAME = '94.176.233.50';

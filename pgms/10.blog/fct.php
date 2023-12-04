@@ -59,7 +59,7 @@ function getArticleByIDDB($conn) {
     try {
         // Récupérer des données de notre table articles
         $req = $conn->prepare("SELECT * FROM articles WHERE id = :id");
-        $req->bindParam(':id', $_GET['art']);
+        $req->bindParam(':id', $_GET['id']);
         $req->execute();
     
         // Retourne un tableau associatif pour chaque entrée de la table articles avec le nom des colonnes comme clé
@@ -84,6 +84,22 @@ function displayArticles($resultat) {
     foreach ($resultat as $article) {
         echo '<h2>' . $article['title'] . '</h2>';
         echo '<p>' . $article['content'] . '</p>';
+        echo '<p><a class="btn btn-outline-secondary btn-sm" href="article.php?id=' . $article['id'] . '">Lire</a></p>';
+        echo '<hr>';
+    }
+}
+
+/**
+ * Afficher un résumé des articles
+ * 
+ * @param mixed $resultat 
+ * @return void 
+ */
+function displaySummaryArticles($resultat) {
+    // Affichage propre des données de la table articles
+    foreach ($resultat as $article) {
+        echo '<h2>' . $article['title'] . '</h2>';       
+        echo '<p><a class="btn btn-outline-secondary btn-sm" href="article.php?id=' . $article['id'] . '">Lire</a></p>';
         echo '<hr>';
     }
 }
@@ -99,9 +115,21 @@ function displayArticles_ADMIN($resultats) {
     foreach ($resultats as $article) {
         echo '<h2>' . $article['title'] . '</h2>';
         echo '<p>' . $article['content'] . '</p>';
-        echo '<p class="small"><a href="edit.php?art='.$article['id'].'"> Modifier </a> - <a href="admin.php?id='.$article['id'].'"> Supprimer </a></p>';
+        echo '<p class="small"><a class="btn btn-outline-secondary btn-sm" href="edit.php?id='.$article['id'].'"> Modifier </a>  <a class="btn btn-outline-danger btn-sm" href="admin.php?id='.$article['id'].'"> Supprimer </a></p>';
         echo '<hr>';
     }
+}
+
+/**
+ * Affiche l'article reçu en paramètre
+ * 
+ * @param mixed $article 
+ * @return void 
+ */
+function displayArticle($article)
+{
+    echo '<h2>' . $article['title'] . '</h2>';
+    echo '<p>' . $article['content'] . '</p>';
 }
 
 /**
@@ -246,8 +274,8 @@ function displayNavigation() {
         ';  
 
     ($_SESSION['IDENTIFY'])? $nav .= '
-        <a type="button" class="btn btn-primary btn-sm" href="admin.php">Admin</a>
-        <a type="button" class="btn btn-primary btn-sm" href="add.php" >Ajouter un article</a>
+        <a type="button" class="btn btn-primary btn-sm" href="admin.php">Gérer</a>
+        <a type="button" class="btn btn-primary btn-sm" href="add.php" >Ajouter</a>
         <a type="button" class="btn btn-danger btn-sm" href="logoff.php" >Déconnexion</a>
         ' : $nav .= '<a type="button" class="btn btn-info btn-sm" href="login.php">Connexion</a>';
     $nav .= '</div>';
