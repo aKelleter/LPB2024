@@ -41,7 +41,7 @@
          header('refresh:3;url=admin.php');
     }
 
-    // Récupérer des données de notre table articles
+    // Récupérer des données de notre table articles pour les afficher
     $article = getAllArticlesDB($conn);
 
 ?>    

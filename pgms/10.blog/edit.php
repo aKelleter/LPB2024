@@ -30,7 +30,8 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h1 class="mb-5 text-primary">Modifier un article</h1>   
+                <h1 class="mb-3 text-primary">Modifier un article</h1> 
+                <hr>  
                 <?php displayNavigation(); ?>               
                 <form action="admin.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $article['id']; ?>">

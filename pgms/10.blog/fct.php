@@ -41,6 +41,10 @@ function getAllArticlesDB($conn) {
         // Retourne un tableau associatif pour chaque entrée de la table articles avec le nom des colonnes comme clé
         $resultat = $req->fetchall(PDO::FETCH_ASSOC);
 
+        // Fermeture connexion
+        $req = null;
+        $conn = null;
+
         return $resultat;
 
     } catch (PDOException $e) {
@@ -64,6 +68,10 @@ function getArticleByIDDB($conn) {
     
         // Retourne un tableau associatif pour chaque entrée de la table articles avec le nom des colonnes comme clé
         $resultat = $req->fetch(PDO::FETCH_ASSOC);
+
+        // Fermeture connexion
+        $req = null;
+        $conn = null;
 
         return $resultat;
 
@@ -114,7 +122,7 @@ function displayArticles_ADMIN($resultats) {
     // Affichage des données de la table articles
     foreach ($resultats as $article) {
         echo '<h2>' . $article['title'] . '</h2>';
-        echo '<p>' . $article['content'] . '</p>';
+        //echo '<p>' . $article['content'] . '</p>';
         echo '<p class="small"><a class="btn btn-outline-secondary btn-sm" href="edit.php?id='.$article['id'].'"> Modifier </a>  <a class="btn btn-outline-danger btn-sm" href="admin.php?id='.$article['id'].'"> Supprimer </a></p>';
         echo '<hr>';
     }
@@ -126,8 +134,7 @@ function displayArticles_ADMIN($resultats) {
  * @param mixed $article 
  * @return void 
  */
-function displayArticle($article)
-{
+function displayArticle($article) {
     echo '<h2>' . $article['title'] . '</h2>';
     echo '<p>' . $article['content'] . '</p>';
 }
@@ -163,6 +170,10 @@ function addArticleDB($conn, $datas) {
         $req->bindParam(':content', $content);
         $req->execute();
 
+        // Fermeture connexion
+        $req = null;
+        $conn = null;
+
         return true;
 
     }catch(PDOException $e) {
@@ -192,6 +203,10 @@ function updateArticleDB($conn, $datas) {
         $req->bindParam(':id', $id);
         $req->execute();
 
+        // Fermeture connexion
+        $req = null;
+        $conn = null;
+
         return true;
 
     }catch(PDOException $e) {
@@ -215,6 +230,10 @@ function deleteArticleDB($conn, $id) {
         $req = $conn->prepare("DELETE FROM articles WHERE id = :id");
         $req->bindParam(':id', $id);
         $req->execute();
+
+        // Fermeture connexion
+        $req = null;
+        $conn = null;
 
         return true;
 
@@ -246,8 +265,12 @@ function identificationDB($conn, $datas) {
         $req->bindParam(':pwd', $pwd);
         $req->execute();
 
-        // Retourne les données si il y a une correspondance
+        // Génère un résultat si il y a correspondance
         $resultat = $req->fetch(PDO::FETCH_ASSOC);
+
+        // Fermeture connexion
+        $req = null;
+        $conn = null;
 
         if((isset($resultat['email']) && $resultat['email'] === $login) && (isset($resultat['passwd']) && $resultat['passwd'] === $pwd))
             return true;
@@ -280,6 +303,18 @@ function displayNavigation() {
         ' : $nav .= '<a type="button" class="btn btn-info btn-sm" href="login.php">Connexion</a>';
     $nav .= '</div>';
     echo $nav;
+}
+
+/**
+ * Affichage du footer (pied de page)
+ * 
+ * @return void 
+ */
+function displayFooter() {
+    $footer = '
+        <footer class="appFooter text-center small mt-5"><span class="align-text-top"> <a href="https://www.gnu.org/licenses/copyleft.fr.html">CopyLeft</a> - '.APP_NAME. ' - ' . APP_VERSION . ' from ' . APP_UPDATED . ' </span> - <i class="fi-xtluxl-code-thin"></i> by ' . APP_AUTHOR . '</footer>
+    ';
+    echo $footer;
 }
 
 /*********************************************************************** */
