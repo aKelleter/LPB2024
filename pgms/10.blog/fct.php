@@ -35,7 +35,7 @@
 function getAllArticlesDB($conn) {
     try {
         // Récupérer des données de notre table articles
-        $req = $conn->prepare("SELECT * FROM articles");
+        $req = $conn->prepare("SELECT * FROM articles WHERE active = 1");
         $req->execute();
     
         // Retourne un tableau associatif pour chaque entrée de la table articles avec le nom des colonnes comme clé
