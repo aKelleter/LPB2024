@@ -1,0 +1,13 @@
+29-11-23 14:06:22.405  Started
+29-11-23 14:06:22.405  With command line: C:\DATAS-2\www\prj\LPB2024\exos\_src\fireshot-firefox-plugin.exe 
+29-11-23 14:06:22.405  Target engine is: Firefox
+29-11-23 14:06:22.409  Using folder for deployment: C:\Users\kellalai001\AppData\Roaming\FireShot\1.12.18
+29-11-23 14:06:22.410  Created directory with result: 1
+29-11-23 14:06:22.411  Copying myself...
+29-11-23 14:06:22.412  Successfully written 368856 bytes.
+29-11-23 14:06:22.412  Extracting manifest...
+29-11-23 14:06:22.459  Written 391 bytes
+29-11-23 14:06:22.459  Done
+29-11-23 14:06:22.459  Writing registry...
+29-11-23 14:06:22.460  Successfully registered to HKEY_CURRENT_USER
+29-11-23 14:06:22.460  Exit
