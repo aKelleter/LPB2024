@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Affichage de la navigation
+ * 
+ * @return void 
+ */
 function displayNavigation(){
     $navigation = '
     <nav>
