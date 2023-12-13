@@ -1,20 +1,51 @@
 <?php
-    require_once('conf.php');
+    require_once('settings.php');
+
+    $res = getAllArticlesDB($conn);
+
+    // DEBUG // Affichage brut des articles reçu de la DB // 
+    // disp_ar($res, 'ARTICLES');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/styles.css">
-    
-    <title><?php echo APP_NAME; ?></title>
+    <?php displayHeadSection('Accueil'); ?>
 </head>
 <body>
     <div class="container">
-        <h1><?php echo APP_NAME; ?></h1>
-        <?php displayNavigation(); ?>
+            <div id="header-logo">
+                <h1><?php echo APP_NAME; ?></h1>
+            </div>
+            <div id="main-menu">
+                <?php displayNavigation(); ?>
+            </div>
+            <div id="content">
+                <!-- 
+                    Ouvrez une balise php pour lancer la fonction d'affichage 
+                    des articles publiés. Fonction que vous allez écrire dans fct-ui.php 
+                -->
+                <!-- Exemple en HTML, vous, vous devez créer une fonction qui va afficher
+                     les données de la DB. SUPPRIMEZ L'EXEMPLE.
+                -->
+                <p><a href="article.php?id=xx" class="titre-article">Titre du premier article</a></p>
+                <p><a href="article.php?id=xx" class="titre-article">Titre du second article</a></p>
+                <p><a href="article.php?id=xx" class="titre-article">Titre du troisième article</a></p>
+                
+            </div>  
+            <footer>                
+                <!-- 
+                    Ouvrez une balise php pour lancer la fonction d'affichage 
+                    du footer. Fonction que vous allez écrire dans fct-ui.php
+                    Affichez le nom de l'app sa version sa date de mise à jour
+                    et d'autres choses si vous le souhaitez 
+                -->
+                <!-- Exemple en HTML du footer, vous, vous devez créer une fonction qui va afficher
+                     les données de la DB. SUPPRIMEZ L'EXEMPLE.
+                -->
+                <p>Superblog - v0.0.1 - 13-12-2023 16:45 by Vous<p>
+            </footer>     
+        </div>
     </div>    
 </body>
 </html>

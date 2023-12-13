@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700;900&display=swap");
+
+:root{
+    --body-backg-color: rgb(246, 254, 255);
+    --menu-item: rgb(15, 125, 235);
+    --menu-item-hover: rgb(12, 72, 132);
+}
+
+body{
+  font-family: "Exo 2", sans-serif;
+  font-size: 1.1em;
+  background-color: var(--body-backg-color);
+  color: var(--body-color)
+}
+
+footer{
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.container{
+    width: 100%;
+    margin: 0 1rem 0 1rem;
+}
+
+#header-logo {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+}
+
+#main-menu {
+    display: block;  
+    margin: 0;
+    text-align: center;
+}
+
+#main-menu ul{        
+    list-style-type: none; 
+}
+
+#main-menu ul li{
+    display: inline;    
+    margin: 0 !important;   
+}
+
+
+.menu{
+    list-style-type: none;   
+    padding-left: 0; 
+    margin-bottom: 3rem;
+}
+
+.menu a {
+    text-decoration: none;
+    border: 1px solid var(--menu-item);
+    border-radius: 5px;
+    color: var(--menu-item);
+    padding: 3px;
+    margin-right: 10px;
+ }
+
+ .menu a:hover {
+    color: var(--menu-item-hover);
+    border: 1px solid var(--menu-item-hover);
+    background-color: var(--menu-item);
+    color: var(--body-backg-color);
+    font-weight: 500;
+ }
+
+ #content{
+    display: block;
+ }
