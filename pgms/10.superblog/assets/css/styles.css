@@ -3,7 +3,8 @@
 :root{
     --body-backg-color: rgb(246, 254, 255);
     --menu-item: rgb(15, 125, 235);
-    --menu-item-hover: rgb(12, 72, 132);
+    --menu-item-hover: rgb(40, 118, 196);
+    --h1-title-app : rgb(6, 136, 223);
 }
 
 body{
@@ -16,6 +17,10 @@ body{
 footer{
     text-align: center;
     font-size: 0.8em;
+}
+h1{
+    color: var(--h1-title-app);
+    font-weight: 900;
 }
 
 .container{
@@ -45,7 +50,6 @@ footer{
     display: inline;    
     margin: 0 !important;   
 }
-
 
 .menu{
     list-style-type: none;   
