@@ -26,7 +26,7 @@
         return $conn;
 
     } catch (PDOException $e) {
-        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = false;            
+        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = "Error : Database connexion";            
         return $st; 
     }
 }
@@ -55,8 +55,8 @@ function getAllArticlesDB($conn, $active = '%') {
         return $resultat;
 
     } catch (PDOException $e) {
-        (DEBUG)? $errocode = 'Error : ' . $e->getMessage() : $errorcode = 300;            
-        return $errorcode; 
+        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = "Error in : getAllArticlesDB() function";            
+        return $st;  
     }
 }
 
@@ -83,8 +83,8 @@ function getArticleByIDDB($conn, $id) {
         return $resultat;
 
     } catch (PDOException $e) {
-        (DEBUG)? $errocode = 'Error : ' . $e->getMessage() : $errorcode = 300;            
-        return $errorcode;
+        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = "Error in : getArticleByIDDB() function";            
+        return $st;  
     }
 }
 
@@ -120,8 +120,8 @@ function addArticleDB($conn, $datas) {
         return true;
 
     }catch(PDOException $e) {
-        (DEBUG)? $errocode = 'Error : ' . $e->getMessage() : $errorcode = 300;            
-        return $errorcode;      
+        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = "Error in : addArticleDB() function";            
+        return $st;  
     }       
 }
 
@@ -165,8 +165,8 @@ function updateArticleDB($conn, $datas) {
         return true;
 
     }catch(PDOException $e) {
-        (DEBUG)? $errocode = 'Error : ' . $e->getMessage() : $errorcode = 300;            
-        return $errorcode;
+        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = "Error in : updateArticleDB() function";            
+        return $st;  
     } 
 }   
 
@@ -193,8 +193,8 @@ function deleteArticleDB($conn, $id) {
         return true;
 
     }catch(PDOException $e) {
-        (DEBUG)? $errocode = 'Error : ' . $e->getMessage() : $errorcode = 300;            
-        return $errorcode;   
+        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = "Error in : deleteArticleDB() function";            
+        return $st;     
     }       
 
 }   
@@ -208,7 +208,7 @@ function deleteArticleDB($conn, $id) {
  */
 function userIdentificationDB($conn, $datas) {
     try{
-        $resultat = null;
+        $user = null;
 
         // Préparation des données avant insertion dans la base de données
         $login = filterInputs($datas['login']);
@@ -221,21 +221,23 @@ function userIdentificationDB($conn, $datas) {
         $req->execute();
 
         // Génère un résultat si il y a correspondance
-        $resultat = $req->fetch(PDO::FETCH_ASSOC);
+        $user = $req->fetch(PDO::FETCH_ASSOC);
 
         // Fermeture connexion
         $req = null;
         $conn = null;
 
-        if((isset($resultat['email']) && $resultat['email'] === $login) && (isset($resultat['passwd']) && $resultat['passwd'] === $pwd))
-            return true;
-        else
+        if((isset($user['email']) && $user['email'] === $login) && (isset($user['passwd']) && $user['passwd'] === $pwd)){
+            // On supprime le mot de passe de l'objet $user
+            $user['passwd'] = null; 
+            return $user;
+        }else
             return false;
         
 
     }catch(PDOException $e) {
-        (DEBUG)? $errocode = 'Error : ' . $e->getMessage() : $errorcode = 300;            
-        return $errorcode;      
+        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = "Error in : userIdentificationDB() function";            
+        return $st;      
     }       
 }
 
