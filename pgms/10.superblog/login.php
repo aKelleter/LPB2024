@@ -21,25 +21,26 @@
             </div>
             <h1>S'identifier</h1>
             <div id="message">
-                <!-- Ici nous affichons les messages éventuels (CODE PHP)-->
+                <?php if(isset($msg)) echo $msg; ?>
             </div>
             <div id="content">
-                <!-- 
-                    Créez ici un formulaire HTML s'identifier sur l'application
-                    * Astuces :
-                        - L'attribut "action" de votre balise form devra contenir "login.php"
-                          C'est ici même dans login.php que nous traiterons l'identification
-                        - L'attribut "method" devra contenir "post"                    
-                -->
+
+                <form class="mt-15" action="login.php" method="post">
+                    <div class="form-ctrl">
+                        <label for="login" class="form-ctrl">E-mail</label>
+                        <input type="email" class="form-ctrl" id="login" name="login" value="<?php echo (!empty($_POST['login']))? $_POST['login'] : null; ?>" required>
+                    </div>
+                    <div class="form-ctrl">
+                        <label for="pwd" class="form-ctrl">Mot de passe</label>
+                        <input type="password" class="form-ctrl" id="pwd" name="pwd" value="" required>
+                    </div>
+                    <input type="hidden" id="form" name="form" value="login">
+                    <button type="submit" class="btn-classic">Se connecter</button>
+                </form>
                                 
             </div>  
             <footer>
-                 <!-- 
-                    Ouvrez une balise php pour lancer la fonction d'affichage 
-                    du footer. Fonction que vous allez écrire dans fct-ui.php
-                    Affichez le nom de l'app sa version sa date de mise à jour
-                    et d'autres choses si vous le souhaitez 
-                -->
+                <?php displayFooter(); ?>
             </footer>     
         </div>
     </div>    

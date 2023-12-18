@@ -20,7 +20,7 @@
                 <?php displayNavigation(); ?>
             </div>
             <h1>Modifier un article<h1>
-            <div id="content">
+            <div id="content-edit">
                 <!-- 
                     Créez ici un formulaire HTML pour modifier le contenu d'un article
                     * Astuces :
@@ -31,14 +31,10 @@
                                 
             </div>  
             <footer>
-                <!-- 
-                    Ouvrez une balise php pour lancer la fonction d'affichage 
-                    du footer. Fonction que vous allez écrire dans fct-ui.php
-                    Affichez le nom de l'app sa version sa date de mise à jour
-                    et d'autres choses si vous le souhaitez 
-                -->
+                <?php displayFooter(); ?>
             </footer>     
         </div>
-    </div>    
+    </div>  
+    <?php displayJSSection(); ?>    
 </body>
 </html>

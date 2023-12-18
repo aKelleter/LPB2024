@@ -1,9 +1,17 @@
 <?php
     require_once('settings.php');
 
-    /**
-     * ICI VOUS ECRIVEZ LE CODE PHP QUI GERE LA LOGIQUE ET LES DONNEES DE l'APPLICATION
-     */
+    $msg = null;
+    $id = null;
+
+    if(isset($_GET['id']) && !empty($_GET['id'])) {
+        $id = $_GET['id'];
+        $res = getArticleByIDDB($conn, $id);
+        //disp_ar($res);
+
+    }else
+        $msg = getMessage("Il n'y a pas d'article à afficher", 'success');
+    
 
 ?>
 <!DOCTYPE html>
@@ -19,24 +27,15 @@
             <div id="main-menu">
                 <?php displayNavigation(); ?>
             </div>
-            <h1>Afficher l'article passé en paramètre</h1>
-            <div id="message">
-                <!-- Ici nous affichons les messages éventuels (CODE PHP) -->
-            </div>
+            <div id="message">               
+                <?php if(isset($msg)) echo $msg; ?>
+            </div>            
             <div id="content">
-                <!-- 
-                      Vous devez créer une fonction d'affichage pour afficher l'article:
-                      Son titre et son contenu
-                -->
+                <?php displayArticleByID($res); ?>
                                 
             </div>  
             <footer>
-                 <!-- 
-                    Ouvrez une balise php pour lancer la fonction d'affichage 
-                    du footer. Fonction que vous allez écrire dans fct-ui.php
-                    Affichez le nom de l'app sa version sa date de mise à jour
-                    et d'autres choses si vous le souhaitez 
-                -->
+                <?php displayFooter(); ?>
             </footer>     
         </div>
     </div>    

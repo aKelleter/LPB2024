@@ -46,6 +46,26 @@ function displayFormRadioBtnArticlePublished($published, $typeForm = 'ADD')
 }
 
 /**
+ * Affichage de la section JS
+ * 
+ * @param bool $tinyMCE 
+ * @return void 
+ */
+function displayJSSection($tinyMCE = false)
+{
+    $js = '';
+
+    // Chargement de TinyMCE si nécessaire (paramètre $tinyMCE = true)
+    $js .= ($tinyMCE)? '
+    <script src="vendors/tinymce/tinymce.min.js" referrerpolicy="origin"></script>  
+    <script src="assets/js/conf-tinymce.js"> </script>
+    ' : null;  
+    
+    // Affichage de la chaîne des scripts JS
+    echo $js;
+}
+
+/**
  * Affichage de la section head d'une page
  * 
  * @param string $title 
@@ -86,14 +106,14 @@ function displayNavigation(){
                 <li><a href="logoff.php" class="btn-danger">Déconnexion</a></li>                        
             </ul>
             <div class="welcome"> Bienvenue <span>'.$_SESSION['user_email'].'</span></div>
-        <nav>';
+        </nav>';
     }else{
         $navigation .= '
         <nav>
             <ul class="menu">
-                <li><a href="index.php">Home</a></li>
-                <!--<li><a href="manager.php">Gérer</a></li>
-                <li><a href="add.php">Ajouter</a></li>-->
+                <li><a href="index.php">Home</a></li>   
+                <li><a href="manager.php">Gérer</a></li>
+                <li><a href="add.php">Ajouter</a></li>            
                 <li><a href="login.php">Se connecter</a></li>                        
             </ul>
         <nav>';
@@ -113,4 +133,36 @@ function getMessage($message, $type = 'success')
 {
     $html = '<div class="msg-'.$type.'">'.$message.'</div>';
     return $html;
+}
+
+function displayArticles($articles){
+
+    $listArticles = '';    
+
+    foreach ($articles as $article) {
+        $listArticles .= '<p><a href="article.php?id='.$article['id'].'">'.$article['title'].'</a></p>';
+    }
+
+    echo $listArticles;
+}
+
+
+function displayFooter($name = APP_NAME, $version = APP_VERSION , $update = APP_UPDATED, $author = APP_AUTHOR){
+    echo "$name - $version - $update - $author"; 
+}
+
+function displayArticleByID($article) {
+
+    $art = '';
+
+    $art .= '<article>
+        <h2>'.$article['title'].'</h2>
+        <hr>
+        <div class="">
+        '.$article['content'].'
+        </div>
+    </article>';
+
+    echo $art;
+
 }

@@ -21,7 +21,7 @@
             </div>
             <h1>Gérer les articles</h1>
             <div id="message">
-                <!-- Ici nous affichons les messages éventuels (CODE PHP)-->
+                <?php if(isset($msg)) echo $msg; ?>
             </div>
             <div id="content">
                 <!-- 
@@ -32,12 +32,7 @@
                                 
             </div>  
             <footer>
-                 <!-- 
-                    Ouvrez une balise php pour lancer la fonction d'affichage 
-                    du footer. Fonction que vous allez écrire dans fct-ui.php
-                    Affichez le nom de l'app sa version sa date de mise à jour
-                    et d'autres choses si vous le souhaitez 
-                -->
+                <?php displayFooter(); ?>
             </footer>     
         </div>
     </div>    

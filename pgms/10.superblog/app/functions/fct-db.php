@@ -241,5 +241,51 @@ function userIdentificationDB($conn, $datas) {
     }       
 }
 
+/**
+ * Identification d'un utilisateur avec mot de passe hashé
+ * 
+ * @param mixed $conn 
+ * @param mixed $datas 
+ * @return mixed 
+ */
+function userIdentificationWithHashPwdDB($conn, $datas) {
+    try{
+        $user = null;
+        $isConnected = false;
+       
+        // Préparation des données avant insertion dans la base de données
+        $login = filterInputs($datas['login']);
+        $pwd = filterInputs($datas['pwd']);
+        
+        // Sélection des données dans la table users
+        $req = $conn->prepare("SELECT * FROM users WHERE email = :login");
+        $req->bindParam(':login', $login);        
+        $req->execute();
+
+         // Génère un résultat avec les données de l'utilisateur
+        $user = $req->fetch(PDO::FETCH_ASSOC);    
+        //DEBUG// disp_ar($user, 'USER', 'VD');     
+        if(!empty($user['email']))
+            $isConnected = password_verify($pwd, $user['passwd']);
+        
+        //DEBUG// echo 'PWD : '.$pwd.'<br>';disp_ar($isConnected, 'IS CONNECTED', 'VD'); 
+
+        // Fermeture connexion
+        $req = null;
+        $conn = null;
+
+        if($isConnected){
+            // On supprime le mot de passe de l'objet $user
+            $user['passwd'] = null; 
+            return $user;
+        }else
+            return false;
+        
+
+    }catch(PDOException $e) {
+        (DEBUG)? $st = 'Error : ' . $e->getMessage() : $st = "Error in : userIdentificationDB() function";            
+        return $st;      
+    }       
+}
 
 
