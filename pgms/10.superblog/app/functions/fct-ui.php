@@ -102,3 +102,15 @@ function displayNavigation(){
     echo $navigation;
 }
 
+/**
+ * Retour d'un message au format HTML
+ * 
+ * @param string $message 
+ * @param string $type 
+ * @return string 
+ */
+function getMessage($message, $type = 'success')
+{
+    $html = '<div class="msg-'.$type.'">'.$message.'</div>';
+    return $html;
+}
