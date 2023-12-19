@@ -6,7 +6,25 @@
     setcookie(session_name(), '', 100);
     session_destroy();
 
-    session_name(APP_NAME);
+    // Configuration de la session / du cookie de session
+    $name = session_name(str_replace(' ', '', APP_NAME).'_session'); 
+    $domain = $_SERVER['HTTP_HOST'];
+    $time = time() + 3600; // 3600 sec = 1 heure
+
+    setcookie($name, APP_NAME, [
+        'expires' => $time,
+        'path' => '/',
+        'domain' => $domain,
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'strict',
+    ]);
+
+    // Lancement de la session
     session_start();
+
+    // Initialisation de la variable $_SESSION['IDENTIFY'] à false (pas d'utilisateur connecté)
     $_SESSION['IDENTIFY'] = false;
+
+    // Redirection vers la page d'accueil
     header('Location: index.php');

@@ -2,22 +2,36 @@
     require_once('settings.php');
 
     $msg = null;
-    $id = null;
+    $result = null;
+    $execute = false;
 
-    if(isset($_GET['id']) && !empty($_GET['id'])) {
+    // On vérifie si l'ID de l'article est passé en paramètre dans l'url ($_GET)
+    if(isset($_GET['id']) && !empty($_GET['id'])){
+
+        // On récupère l'ID de l'article passé en paramètre
         $id = $_GET['id'];
-        $res = getArticleByIDDB($conn, $id);
-        //disp_ar($res);
 
-    }else
-        $msg = getMessage("Il n'y a pas d'article à afficher", 'success');
-    
+        // On vérifie l'objet de connexion $conn
+        if(!is_object($conn)){            
+            $msg = getMessage($conn, 'error');
+        }else{
+            
+             // Récupérer l'article spécifié par l'ID
+            $result = getArticleByIDDB($conn, $id);
+
+            // On vérifie le retour de la fonction : si c'est un tableau, on continue, sinon on affiche un message d'erreur
+            (isset($result) && is_array($result) && !empty($result))? $execute = true : $msg = getMessage('Il n\'y a pas d\'article à afficher', 'error');
+        }       
+        
+    }else{
+        $msg = getMessage('Il n\'y a pas d\'article à afficher', 'success');
+    }    
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php displayHeadSection('***Titre de l\'article***'); ?>
+    <?php displayHeadSection((isset($result['title'])?$result['title']:APP_NAME)); ?>
 </head>
 <body>
     <div class="container">
@@ -26,12 +40,17 @@
             </div>
             <div id="main-menu">
                 <?php displayNavigation(); ?>
-            </div>
-            <div id="message">               
-                <?php if(isset($msg)) echo $msg; ?>
             </div>            
+            <div id="message">              
+                <?php if(isset($msg)) echo $msg; ?>
+            </div>
             <div id="content">
-                <?php displayArticleByID($res); ?>
+              
+                <?php 
+                   // Peut-on exécuter l'affichage de l'article
+                   if($execute)
+                       displayArticleByID($result); 
+                ?>
                                 
             </div>  
             <footer>

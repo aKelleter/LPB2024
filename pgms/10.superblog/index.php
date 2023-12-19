@@ -1,10 +1,24 @@
 <?php
     require_once('settings.php');
 
-    $res = getAllArticlesDB($conn, 1);
+    // Déclaration et initalisation des variables
+    $msg = null;
+    $result = null;
+    $execute = false;
 
-    // DEBUG // Affichage brut des articles reçu de la DB // 
-    // disp_ar($res, 'ARTICLES');
+    if(!is_object($conn)){       
+        $msg = getMessage($conn, 'error');
+    }else{
+        
+        // Va cherche en DB les articles publiés
+        $result = getAllArticlesDB($conn, 1);
+
+        //DEBUG// disp_ar($result);
+
+        // On vérifie le retour de la fonction  getAllArticlesDB(), elle doit nous retourner un tableau 
+        // Si c'est un tableau, on continue donc on initialise $execute = true, sinon on affiche le message d'erreur retourné par la fonction     
+        (isset($result) && is_array($result))? $execute = true : $msg = getMessage($result, 'error');            
+    }
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +38,11 @@
                 <?php if(isset($msg)) echo $msg; ?>
             </div>
             <div id="content">
-                <?php displayArticles($res); ?>            
+                <?php               
+                    // Peut-on exécuter l'affichage des articles
+                    if($execute)
+                        displayArticles($result);
+                ?>           
             </div>  
             <footer>                
                <?php displayFooter(); ?>

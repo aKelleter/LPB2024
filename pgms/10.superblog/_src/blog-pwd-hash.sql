@@ -60,8 +60,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `passwd`) VALUES
-(1, 'john@mail.com', '1234'),
-(2, 'alain@mail.com', 'AZERTY');
+(1, 'john@mail.com', '$2y$10$PKHM5I1VOsv1.oHiqvxoH.uUqadjmk8g3e1rWudZDHULYNN9tZDjK'),
+(2, 'alain@mail.com', '$2y$10$wwh4PZz3hnC1UDbNbh1U.uFTWawxNBRR5ya3FxQuRHBhNUR3gdvUm');
 
 --
 -- Index pour les tables déchargées

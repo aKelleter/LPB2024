@@ -5,11 +5,12 @@
     if (!$_SESSION['IDENTIFY']) {
         header('Location: login.php');
     }
-  
+    
     $msg = null;
     $tinyMCE = true;
     $execute = false;
- 
+    
+    // Vérification de la connexion à la DB
     if(!is_object($conn)){
         $msg = getMessage($conn, 'error');
     }
@@ -29,6 +30,9 @@
                 <?php displayNavigation(); ?>
             </div>
             <h2 class="title">Ajouter un article<h2>
+            <div id="message">               
+                <?php if(isset($msg)) echo $msg; ?>
+            </div>
             <div id="content-add">
 
                 <form action="manager.php" method="post">                    

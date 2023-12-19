@@ -10,6 +10,7 @@
 * le status de publication de l'article
 * 
 * @param boolean     $published
+* @param string      $typeForm  (ADD ou EDIT)
 * @return string
 */
 function displayFormRadioBtnArticlePublished($published, $typeForm = 'ADD')
@@ -111,9 +112,7 @@ function displayNavigation(){
         $navigation .= '
         <nav>
             <ul class="menu">
-                <li><a href="index.php">Home</a></li>   
-                <li><a href="manager.php">Gérer</a></li>
-                <li><a href="add.php">Ajouter</a></li>            
+                <li><a href="index.php">Home</a></li>                  
                 <li><a href="login.php">Se connecter</a></li>                        
             </ul>
         <nav>';
@@ -135,34 +134,44 @@ function getMessage($message, $type = 'success')
     return $html;
 }
 
-function displayArticles($articles){
 
-    $listArticles = '';    
-
+/**
+ * Affichage des articles 
+ * 
+ * @param mixed $articles 
+ * @return void 
+ */
+function displayArticles($articles) {
     foreach ($articles as $article) {
-        $listArticles .= '<p><a href="article.php?id='.$article['id'].'">'.$article['title'].'</a></p>';
+        echo '<article><a href="article.php?id='.$article['id'].'" title="Lire l\'article"><h2 class="article-item">' . $article['title'] . '</h2></a></article>';
+        echo '<hr>';
     }
-
-    echo $listArticles;
 }
 
 
-function displayFooter($name = APP_NAME, $version = APP_VERSION , $update = APP_UPDATED, $author = APP_AUTHOR){
-    echo "$name - $version - $update - $author"; 
+/**
+ * Affichage du footer
+ * 
+ * @param string $app_name 
+ * @param string $app_version 
+ * @param string $app_update 
+ * @param string $app_author 
+ * @return void 
+ */
+function displayFooter($app_name = APP_NAME, $app_version = APP_VERSION, $app_update = APP_UPDATED, $app_author = APP_AUTHOR) {
+    echo"<p>$app_name - $app_version -$app_update by $app_author<p>";
 }
 
+/**
+ * Affiche l'article reçu en paramètre
+ * 
+ * @param mixed $article 
+ * @return void 
+ */
 function displayArticleByID($article) {
-
-    $art = '';
-
-    $art .= '<article>
-        <h2>'.$article['title'].'</h2>
-        <hr>
-        <div class="">
-        '.$article['content'].'
-        </div>
-    </article>';
-
-    echo $art;
-
+    echo '<article>';
+    echo '<h2 class="">' . $article['title'] . '</h2>';
+    echo '<hr>';
+    echo '<p>' . html_entity_decode($article['content']) . '</p>';
+    echo '</article>';
 }
