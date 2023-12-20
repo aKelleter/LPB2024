@@ -1,8 +1,8 @@
 <?php
     // Constantes de l'application
     const APP_NAME = "SuperBlog LPB";
-    const APP_VERSION = 'v0.5.0';
-    const APP_UPDATED = '19-12-2023 17:00';
+    const APP_VERSION = 'v0.5.1';
+    const APP_UPDATED = '20-12-2023 16:45';
     const APP_AUTHOR = 'Joyeuses Fêtes';
        
     // Constante d'activation/désactivation du mode DEBUG
