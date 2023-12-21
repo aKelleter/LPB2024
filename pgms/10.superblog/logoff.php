@@ -3,11 +3,11 @@
     
     // Script de déconnexion
     unset($_SESSION);
-    setcookie(session_name(), '', 100);
+    setcookie(session_name(), '', time()-3600);
     session_destroy();
 
     // Configuration de la session / du cookie de session
-    $name = session_name(str_replace(' ', '', APP_NAME).'_session'); 
+    $name = session_name(str_replace(' ', '', APP_NAME).'_session');
     $domain = $_SERVER['HTTP_HOST'];
     $time = time() + 3600; // 3600 sec = 1 heure
 
@@ -15,7 +15,7 @@
         'expires' => $time,
         'path' => '/',
         'domain' => $domain,
-        'secure' => true,
+        'secure' => false,
         'httponly' => true,
         'samesite' => 'strict',
     ]);
