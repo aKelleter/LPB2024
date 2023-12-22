@@ -58,12 +58,10 @@ function getHtmlMainMenu($path, $active = '', $tools = '')
  */
 function listCourses() {
     
-    $donnees = null;
     $courses = null; 
     $titre = null;
     $id = null;           
     $compteur = 0;
-    $cours = array();
     $dossiers = glob('*');
 
     // Classement des dossiers afin qu'ils soient affichés par ordre alphabétique / croissant
