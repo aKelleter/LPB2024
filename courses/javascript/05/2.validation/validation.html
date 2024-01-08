@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    input:invalid  {
+        border: 1px solid red; 
+    }
+
+    input:valid  {
+        border: 1px solid green; 
+    }
+
+    input {
+        outline: none;
+    }
+</style>
+<body>
+    <h1>Validations</h1>
+    <form action="">
+
+        <!-- Validations liées aux navigateurs -->
+
+        <label for="">Email</label>
+        <input type="email" name="" id=""><br><br>
+        <label for="">Number</label>
+        <input type="number" name="" id=""><br><br>
+        <label for="">Url</label>
+        <input type="url" name="" id=""><br><br>
+
+        <label for="">Max/Min Length</label>
+        <input type="text" name="" id="" maxlength="5" minlength="2"><br><br>
+
+        <label for="">Max/Min Number</label>
+        <input type="number" name="" id="" min="10" max="100"><br><br>
+
+        <label for="">Required</label>
+        <input type="text" name="" id="" required><br><br>
+
+        <!-- Les paternes -->
+        <label for="">Paterne : Suite de car. minuscules</label>
+        <input type="text" name="" id="" pattern="[a-z]+" ><br><br>
+
+        <label for="">Paterne : Suite de nombres</label>
+        <input type="text" name="" id="" pattern="[0-9]+" ><br><br>
+
+        <label for="">Paterne : Au moins 6 alpha</label>
+        <input type="text" name="" id="" pattern="[0-9a-zA-Z]{6,}" ><br><br>
+
+
+        <label for="">Paterne : Avec script JS</label>
+        <input type="text" name="" id="input-script" pattern="[0-9a-z]{6,}" ><br><br>
+
+        <br><br>
+
+        <button>Valider</button>
+        
+    </form>
+
+    <script>
+
+        const inputScript = document.getElementById('input-script');
+        inputScript.setCustomValidity(
+            'INFORMATION : Au moins 6 caractères et uniquement des chiffres de 0 à 9 et des caractères minuscules'
+        );
+
+    </script>
+
+</body>
+</html>

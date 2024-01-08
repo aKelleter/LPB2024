@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les opérateurs d'arithmétiques et d'affectation</title>
+</head>
+<body>
+    <h1>Les opérateurs d'arithmétiques et d'affectation</h1>
+    <hr>
+    <p>
+        Un opérateur est un symbole qui va être utilisé pour effectuer certaines actions notamment 
+        sur les variables et leurs valeurs. <br>
+        Par exemple, l’opérateur * va nous permettre de multiplier les valeurs de deux variables, 
+        tandis que l’opérateur = va nous permettre d’affecter une valeur à une variable. <br>
+        Il existe différents types d’opérateurs qui vont nous servir à réaliser des opérations de 
+        types différents. Les plus fréquemment utilisés sont : <br> <br>
+        • Les opérateurs arithmétiques ; <br>
+        • Les opérateurs d’affectation / d’assignation ; <br>
+        • Les opérateurs de comparaison ; <br>
+        • Les opérateurs d’incrémentation et décrémentation ; <br>
+        • Les opérateurs logiques ; <br>
+        • L’opérateur de concaténation ; <br> 
+        • L’opérateur ternaire ; <br>
+        • l’opérateur virgule. <br> <br>
+        Pour le moment, nous allons nous concentrer particulièrement sur les opérateurs arithmétiques et d’affectation ou d’assignation. Nous étudierons les autres par la suite lorsqu’on devra les utiliser dans certaines structures JavaScript. 
+    </p>
+
+    <h2>Les opérateurs arithmétiques</h2>
+    <hr>
+    <p>
+        Les opérateurs arithmétiques vont nous permettre d’effectuer des opérations mathématiques sur des valeurs numériques. <br>
+        Les opérateurs arithmétiques les plus courants sont : <br> <br>
+        • L’addition (+) ; <br>
+        • La soustraction (-) ; <br>
+        • La multiplication (*) ; <br>
+        • La division (/) ; <br>
+        • Le modulo (%) ; <br>
+        • L’élévation à la puissance (**). <br> <br>
+        Pour utiliser un opérateur arithmétique, il suffit de placer le symbole de l’opérateur entre deux valeurs numériques. <br>
+        Par exemple, pour additionner deux nombres, il suffit d’utiliser l’opérateur + entre ces deux nombres. <br>
+        
+    </p>
+    <p>
+        x = 5; <br>
+        y = 3;<br>
+        z = 4;<br><br>
+
+        a = x + 1;<br>
+        b = x + y;<br>
+        c = x - y;<br>
+        d = x * y;<br>
+        e = x / y;<br>
+        f = x % y;<br>
+        g = x ** y;<br>
+    </p>
+    <script>
+        let x = 5;
+        let y = 3;
+        let z = 4;
+
+        let a = x + 1;
+        let b = x + y;
+        let c = x - y;
+        let d = x * y;
+        let e = x / y;
+        let f = x % y;
+        let g = x ** y;
+        
+        console.log('a = ' + a);
+        console.log('b = ' + b);
+        console.log('c = ' + c);
+        console.log('d = ' + d);
+        console.log('e = ' + e);
+        console.log('f = ' + f);
+        console.log('g = ' + g);        
+        
+    </script>
+
+    <h2>Les opérateurs d’affectation</h2>
+    <hr>
+    <p>
+        Les opérateurs d’affectation vont nous permettre d’affecter une valeur à une variable. <br>
+        Les opérateurs d’affectation les plus courants sont : <br> <br>
+        • L’opérateur d’affectation simple (=) ; <br>
+        • L’opérateur d’affectation d’addition = additionne puis affecte (+=) ; <br>
+        • L’opérateur d’affectation de soustraction = soustrait puis affecte (-=) ; <br>
+        • L’opérateur d’affectation de multiplication = multiplie puis affecte (*=) ; <br>
+        • L’opérateur d’affectation de division (/=)  = divise puis affecte; <br>
+        • L’opérateur d’affectation de modulo  =  effectue le modulo puis affecte  (%=) ;  <br>
+        • L’opérateur d’affectation d’élévation à la puissance  =  effectue l'élévation de puissance puis affecte (**=). <br> <br>
+        Pour utiliser un opérateur d’affectation, il suffit de placer le symbole de l’opérateur entre le nom de la variable et la valeur à affecter. <br>
+        Par exemple, pour affecter la valeur 5 à la variable x, il suffit d’utiliser l’opérateur = entre x et 5. <br>
+    </p>
+    <p>
+        t = 5;<br>
+        u = 3;<br>
+        v = 4;<br><br>
+
+        t += 1;<br>
+        u -= 1;<br>
+        v *= 2;<br>
+        t /= 2;<br>
+        u %= 2;<br>
+        v **= 2;<br>    
+    </p>
+    <script>
+        console.log('Les opérateurs d’affectation');
+        console.log('---------');
+        let t = 5;
+        let u = 3;
+        let v = 4;
+
+        console.log('t = ' + t);
+        t += 1;
+        console.log('t = ' + t);
+
+        console.log('u = ' + u);
+        u -= 1;
+        console.log('u = ' + u);
+        
+        console.log('v = ' + v);
+        v *= 2;
+        console.log('v = ' + v);
+
+        console.log('t = ' + t);
+        t /= 2;
+        console.log('t = ' + t);
+
+        console.log('u = ' + u);
+        u %= 2;
+        console.log('u = ' + u);
+
+        console.log('v = ' + v);
+        v **= 2;
+        console.log('v = ' + v);
+
+    </script>
+    
+    <p>
+        Ici, vous devez bien comprendre que les opérateurs d’affectation combinés nous 
+        permettent d’effectuer deux types d’opérations à la suite. Dans l’exemple ci-dessus, on 
+        réalise des opérations arithmétiques puis d’affectation. 
+        Ainsi, l’opérateur += par exemple va nous permettre d’ajouter une valeur à la valeur 
+        contenue dans une variable puis d’affecter le résultat dans cette même variable. La 
+        nouvelle valeur va ainsi écraser la valeur précédente. 
+    </p>
+</body>
+</html>

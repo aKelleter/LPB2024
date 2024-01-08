@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le type String</title>
+</head>
+<body>
+    <h1>Le type String</h1>
+    <hr>
+    <p>
+        Une chaine de caractères est une séquence de caractères, ou ce qu’on appelle communément un texte. <br>
+        Même si il y a des chiffres dans la chaîne. <br>
+
+        l’utilisation de guillemets ou d’apostrophe fait qu’une valeur est immédiatement considérée 
+        comme une chaine de caractères, quelle que soit cette valeur. <br>
+        Pour s’en convaincre, on peut utiliser la fonction typeof qui nous permet de vérifier 
+        le type d’une valeur <br>
+    </p>
+    <script>
+
+        let str1 = "Bonjour";
+        let str2 = 'Je suis John Doe';
+        let str3 = "30";
+
+        console.log(typeof str1);
+        console.log(typeof str2);
+        console.log(typeof str3);
+
+        
+
+    </script>
+
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    
+
+    <script>
+        document.getElementById("p1").innerHTML = str1 + " est un : " + typeof str1;
+        document.getElementById("p2").innerHTML = str2 + " est un : " + typeof str2;
+        document.getElementById("p3").innerHTML = str3 + " est un : " + typeof str3;
+
+    </script>
+
+    <p>
+        En JavaScript, on va pouvoir utiliser indifféremment des guillemets droits 
+        ou des apostrophes pour entourer une chaine de caractères et ces deux méthodes 
+        vont être strictement équivalentes à la différence d’autres langages comme le PHP par exemple. 
+    </p>
+    <p>
+        Faites attention cependant à un point : si votre chaine contient un caractère qui est 
+        le même que le délimiteur de chaine choisi, il faudra neutraliser ce caractère en l’échappant
+        au moyen d’un antislash \ ou changer de délimiteur. 
+    </p>
+
+    <script>
+        let str4 = "Je m'appelle John Doe";
+        let str5 = 'Je m\'appelle John Doe';
+        let str6 = "Je m'appelle \"John Doe\"";
+
+        console.log(str4);
+        console.log(str5);
+        console.log(str6);
+    </script>
+    <script>
+        /* 
+            Exercice : Les chaines de caractères
+            1. Déclarer et affecter les variables suivantes :
+                - message avec la valeur : "Je m'appelle "John Doe" et j'ai 30 ans. Mon surnom est "JD"."
+            2. Afficher la valeur et le type de la variable message dans la console
+        */
+    </script>
+
+</body>
+</html>

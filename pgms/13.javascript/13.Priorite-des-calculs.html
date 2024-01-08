@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priorité des calculs</title>
+</head>
+<body>
+    <h1>Priorité des calculs</h1>
+    <hr>
+    <p>
+        Priorité des calculs et utilisation des parenthèses <br>
+        Concernant les règles de calcul, c’est-à-dire l’ordre de priorité des opérations, 
+        celui-ci va être le même qu’en mathématiques : l’élévation à la puissance va être prioritaire 
+        sur les autres opérations, tandis que la multiplication, la division et le modulo vont avoir 
+        le même ordre de priorité et être prioritaires sur l’addition et la soustraction qui ont également 
+        le même niveau de priorité. <br><br>
+        Si deux opérateurs ont le même ordre de priorité, alors c’est leur sens d’association qui va 
+        décider du résultat. <br><br>
+        Pour les opérateurs arithmétiques, le sens d’association correspond à l’ordre de leur écriture 
+        à l’exception de l’élévation à la puissance qui sera calculée en partant de la fin. 
+        Ainsi, si on écrit let x = 1 – 2 – 3, la variable let x va stocker la valeur -4 
+        (les opérations se font de gauche à droite). En revanche, si on écrit let z = 2 ** 3 ** 2, 
+        la variable let z stockera 512 qui correspond à 2 puissance 9 puisqu’on va commencer par 
+        calculer 3 ** 2 = 9 dans ce cas. <br><br>
+        Nous allons finalement, comme en mathématiques, pouvoir forcer l’ordre de priorité en utilisant
+        des couples de parenthèses pour indiquer qu’une opération doit se faire avant toutes les autres : 
+    </p>
+    
+    <script>
+        let x = 1 - 2 - 3; // x = -4 / Calcul de gauche à droite : 1 - 2 = -1 puis -1 - 3 = -4
+        let y = 1 - (2 - 3); // y = 2 / Calcul de l'intérieur vers l'extérieur : 2 - 3 = -1 puis 1 - (-1) = 2
+        let z = 2 ** 3 ** 2; // z = 512 / Calcul de droite à gauche : 3 ** 2 = 9 puis 2 ** 9 = 512
+
+        console.log('x = ' + x);
+        console.log('y = ' + y);
+        console.log('z = ' + z);       
+
+    </script>
+</body>
+</html>

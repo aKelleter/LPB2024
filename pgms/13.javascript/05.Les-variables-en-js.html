@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les variables en javascript</title>
+</head>
+<body>
+    
+    <p>
+        Pour déclarer une variable en JavaScript, nous allons devoir utiliser 
+        le mot clef var ou le mot clef let (nous allons expliquer la différence entre les deux 
+        dans la suite de cette leçon) suivi du nom qu’on souhaite donner à notre variable. 
+    </p>
+
+    <p>
+        Règles à respecter : <br>
+        • Le nom d’une variable doit obligatoirement commencer par une lettre ou un underscore (_) et ne doit pas commencer par un chiffre ; <br>
+        • Le nom d’une variable ne doit contenir que des lettres, des chiffres et des underscores mais pas de caractères spéciaux ; <br>
+        • Le nom d’une variable ne doit pas contenir d’espace. <br>
+        <br>
+        De plus, notez que le nom des variables est sensible à la casse en JavaScript !
+    </p>
+
+    <p>
+        Enfin, sachez qu’il existe des noms « réservés » en JavaScript. Vous ne pouvez pas utiliser ces noms. <br><br>
+        Vous pouvez également noter qu’on utilise généralement la convention lower camel case pour définir les noms de variable en JavaScript. Cette convention stipule simplement que lorsqu’un nom de variable est composé de plusieurs mots, on colle les mots ensemble en utilisant une majuscule pour chaque mot sauf le premier. Par exemple, 
+        si je décide de nommer une variable « monage » j’écrirai en JavaScript let monAge ou var monAge. 
+    </p>
+
+    <script>
+        
+        // Déclaration de variables
+        let age;
+        let prenom;
+
+        // Affectation de valeurs
+        age = 25;
+        prenom = "John";
+
+        //En général, on va déclarer et affecter une variable en même temps
+        let nom = "Doe";      
+
+        // Affichage des valeurs des variables dans la console
+        console.log(age);
+        console.log(prenom);
+        console.log(nom);
+
+        // Affecter de nouvelles valeurs aux variables
+        age = 30;
+        prenom = "Jane";
+        nom = "Smith";
+
+        // Affichage des nouvelles valeurs des variables dans la console
+        console.log(age);
+        console.log(prenom);
+        console.log(nom);
+
+        /*
+            Exercice :
+            1. Déclarer et affecter les variables suivantes :
+                - nom avec la valeur "Doe"
+                - prenom avec la valeur "John"
+                - age avec la valeur 25
+            2. Afficher les valeurs des variables dans la console
+            3. Affecter de nouvelles valeurs aux variables
+            4. Afficher les nouvelles valeurs des variables dans la console
+        */
+        
+    </script>
+</body> 
+</html>

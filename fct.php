@@ -65,7 +65,7 @@ function listCourses() {
     $dossiers = glob('*');
 
     // Classement des dossiers afin qu'ils soient affichés par ordre alphabétique / croissant
-    asort($dossiers); 
+    asort($dossiers);     
     
     // Lister les dossiers
     foreach($dossiers as $repertoire) 
@@ -78,6 +78,8 @@ function listCourses() {
             // Lecture du titre
             if(file_exists($repertoire.'/'.'title.html'))
                 $titre = file_get_contents($repertoire.'/'.'title.html');
+            else
+                $titre = 'No title file here...';
 
             $courses[$compteur]['id'] = $id;
             $courses[$compteur]['title'] = $titre; 
@@ -130,13 +132,18 @@ function listProgrammes() {
 function getHtmlCoursesList($courses, $courseType)
 {
     $string = '';
-  
+
+    //DEBUG//disp_ar($courses, 'courses', 'VD');
+
     if(!empty($courses))
     {
         $string .= '<ol>';
         foreach($courses as $course)
         {
-            $string .= '<li><a href="../course.php?code='.$course['id'].'&type='.$courseType.'" class="link-script">'.$course['title'].'</a></li>';
+            if($courseType == 'php')
+                $string .= '<li><a href="../course.php?code='.$course['id'].'&type='.$courseType.'" class="link-script">'.$course['title'].'</a></li>';
+            elseif($courseType == 'javascript')
+                $string .= '<li><a href="'.$course['id'].'/index.html" class="link-script">'.$course['title'].'</a></li>';
         } 
         $string .= '</ol>';   
     }else {

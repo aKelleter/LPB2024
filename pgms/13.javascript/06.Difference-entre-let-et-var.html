@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Différence entre let et var</title>
+</head>
+<body>
+    <h1>Let et Var</h1>
+    <hr>
+    <p>
+        Pourquoi possède-t-on deux mots clefs différents pour déclarer des variables en JavaScript ? 
+        Cela provient du fait que les languages évoluent beaucoup et rapidement. 
+    </p>
+    <p>
+        Pour être tout à fait précis, lorsque le JavaScript a été créé et jusqu’à il y a quelques années, 
+        nous n’avions accès qu’au mot clef var qu’on devait utiliser pour déclarer nos variables. 
+    </p>
+    <p>
+        Finalement, les créateurs du JavaScript ont fini par penser que le mot clef var pouvait porter 
+        à confusion et ont créé un nouveau mot clef pour déclarer les variables : le mot clef let. 
+    </p>
+    <p>
+        Il existe 3 grandes différences de comportement entre les variables déclarées avec var et avec let 
+        que nous allons illustrer immédiatement. 
+    </p>
+    <p>
+        <h3>La remontée ou « hoisting » des variables</h3> 
+        Lorsqu’on utilise la syntaxe avec var, on n’est pas obligé de déclarer la variable avant de la 
+        manipuler dans le code, on peut très bien effectuer des manipulations en haut du code et 
+        la déclarer en fin de code. 
+
+        Cela est possible car le JavaScript va traiter les déclarations de variables effectuées avec var 
+        avant le reste du code JavaScript. Ce comportement est appelé remontée ou hoisting. 
+        Ce comportement a été jugé comme inadapté dans les versions récentes de JavaScript et a donc 
+        été corrigé dans la déclaration de variables avec let : les variables utilisant la syntaxe let 
+        doivent obligatoirement être déclarées avant de pouvoir être utilisées. <br>
+        Le but de ce comportement est de pousser les développeurs à créer des scripts plus compréhensibles 
+        et plus clairs en apportant de la structure au code avec notamment la déclaration des différentes 
+        variables au début de chaque script. 
+    </p>
+
+    <p>
+        <h3>La redéclaration de variables </h3>
+        Avec l’ancienne syntaxe var, on avait le droit de déclarer plusieurs fois une même variable 
+        en utilisant à chaque fois var (ce qui avait pour effet de modifier la valeur stockée). 
+        La nouvelle syntaxe avec let n’autorise pas cela. Pour modifier la valeur stockée dans une 
+        variable avec la nouvelle syntaxe, il suffit d’utiliser le nom de la variable et de lui 
+        affecter une autre valeur. <br>
+        Cette décision a été prise une nouvelle fois pour des raisons de clarté et de pertinence du code.
+        En effet, il n’y a aucun intérêt à redéfinir une même variable plusieurs fois. 
+    </p>
+    <p>
+        <h3>La portée des variables </h3>
+        La « portée » d’une variable désigne l’endroit où cette variable va pouvoir être utilisée 
+        dans un script. On reparlera de portée des variables dans la leçon sur les fonctions.
+    </p>
+
+    <p>
+        La syntaxe de déclaration des variables avec let correspond à la nouvelle syntaxe. 
+        La syntaxe avec var est l’ancienne syntaxe qui est vouée à disparaitre. 
+        Vous devriez donc aujourd’hui toujours utiliser le mot clef let pour déclarer vos variables 
+        et c’est le mot clef qu’on utilisera dans ce cours. 
+    </p>
+
+    <p>
+        il existe de nombreux moyens d’afficher le contenu d’une variable en 
+        JavaScript, que ce soit via la console JavaScript du navigateur (console.Log()), en utilisant une 
+        fonction alert() ou encore en insérant le contenu de notre variable au sein u contenu HTML 
+        en notre page. Nous verrons chacune de ces méthodes en détail en temps et en heure, 
+        au fil de ce cours. 
+    </p>
+</body>
+</html>

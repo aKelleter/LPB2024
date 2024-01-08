@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place du code et ordre d'exécution</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            alert("Le DOM est chargé");
+            let bonjour = document.getElementById("bonjour");
+            bonjour.addEventListener("click", function(){
+                alert("Bonjour");
+            });
+        }); // Add closing parenthesis here
+    </script>
+</head>
+<body>
+    <h1>Place du code et ordre d'exécution</h1>
+    <hr>
+    <p>
+        Ici, il va avant tout être important de bien comprendre que par défaut, un navigateur va lire 
+        et exécuter le code dans l’ordre de son écriture. 
+        Plus précisément, lorsque le navigateur arrive à un élément script, 
+        il va stopper le traitement du reste du HTML jusqu’à ce que le code JavaScript 
+        soit chargé dans la page et exécuté. 
+    </p>
+    <p>
+        En effet résumons ce qu’il se passe dans ce cas : <br>
+        1. Le navigateur commence à analyser (ou à traiter) le code HTML ; <br>
+        2. L’analyseur du navigateur rencontre un élément script ; <br>
+        3. Le contenu JavaScript est demandé et téléchargé (dans le cas où il se situe dans un fichier externe)
+        puis exécuté. Durant tout ce temps, l’analyseur bloque l’affichage du HTML, ce qui peut dans le cas 
+        où le script est long ralentir significativement le temps d’affichage de la page ; <br>
+        4. Dès que le JavaScript a été exécuté, le contenu HTML finit d’être analysé et est affiché. <br>
+        Ce problème précis de temps d’attente de chargement des fichiers JavaScript va pouvoir être résolu en grande partie grâce au téléchargement asynchrone des données qui va pouvoir être ordonné en précisant un attribut async ou defer dans nos éléments script.<br>
+    </p>
+
+    <button id="bonjour">Bonjour</button>
+    <button id="addPara">Ajouter un paragraphe</button>
+    
+    <script>
+        let ajouter = document.getElementById("addPara");
+        ajouter.addEventListener("click", function(){
+            let p = document.createElement("p");
+            p.innerHTML = "Nouveau paragraphe ajouté !";
+            document.body.appendChild(p);
+        });
+    </script>
+</body>
+</html>

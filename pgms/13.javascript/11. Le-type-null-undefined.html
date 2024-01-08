@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le type null ou undefined</title>
+</head>
+<body>
+    <h1>Le type null ou undefined</h1>
+    <hr>
+    <p>
+        Les types de valeurs Null et Undefined sont des types un peu particuliers car ils ne 
+        contiennent qu’une valeur chacun : les valeurs null et undefined. <br>
+        La valeur null correspond à l’absence de valeur ou du moins à l’absence de valeur connue. 
+        Pour qu’une variable contienne null, il va falloir stocker cette valeur qui représente 
+        donc l’absence de valeur de manière explicite. <br><br> 
+        La valeur null va être utile dans certains cas où on souhaite explicitement indiquer une 
+        absence de valeur connue. <br><br>
+        La valeur undefined correspond à une variable « non définie », c’est-à-dire une variable à 
+        laquelle on n’a pas affecté de valeur. Cette définition peut vous paraitre similaire à 
+        celle de null et pourtant ces deux valeurs ont une signification différente. 
+    </p>
+    
+
+    <p id="1"></p>
+    <p id="2"></p>
+    <p id="3"></p>
+    <p id="4"></p>
+
+    <script>
+        let a = null;
+        let b;
+        let c = 8;
+        let d = 'Hello World';
+
+        document.getElementById('1').innerHTML = a + ' = ' + typeof a;
+        document.getElementById('2').innerHTML = b + ' = ' + typeof b;
+        document.getElementById('3').innerHTML = c + ' = ' + typeof c;
+        document.getElementById('4').innerHTML = d + ' = ' + typeof d;
+    </script>
+
+    <p>
+        Le type renvoyé par typeof pour null est ici Object (objet en français). Les objets sont des 
+        types complexes de valeurs que nous étudierons plus tard dans ce cours. <br><br>
+        Pour le moment, vous pouvez simplement retenir que null ne devrait pas être de type Object 
+        mais bien de type Null et que cela est considéré comme une erreur du langage JavaScript 
+        par la majorité des développeurs. Cependant, historiquement, ça a toujours été le cas. 
+    </p>
+</body>
+</html>

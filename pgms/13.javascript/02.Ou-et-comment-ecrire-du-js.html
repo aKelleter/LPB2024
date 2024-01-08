@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Où et comment écrire du JS</title>
+    <meta charset ="utf-8">
+    <script>
+       /*
+        Placer le code JavaScript dans la balise ouvrante d’un élément HTML 
+        Il est possible que vous rencontriez encore aujourd’hui du code JavaScript placé 
+        directement dans la balise ouvrante d’éléments HTML. 
+
+        Ce type de construction était fréquent à l’époque notamment pour prendre en charge des 
+        évènements comme par exemple un clic. 
+
+        Regardez plutôt les exemples ci-dessous : 
+       */
+      
+        function affiche(){
+            alert("Bonjour");
+        }
+
+        
+    </script>
+    <script src="2.fichier.js"></script>
+    </head>
+<body>
+
+<h1>Où et comment écrire du JS</h1>
+<hr>
+<button onclick="affiche()">Afficher une alerte</button>
+
+<button onclick="myFunction()">Ajouter un paragraphe avec du texte</button>
+<script>
+    function myFunction() {
+        let p = document.createElement('p');
+        p.innerHTML = 'Bonjour';
+        document.body.appendChild(p);
+    }
+</script>
+
+<button onclick="(() => {
+    let p = document.createElement('p');
+    p.innerHTML = 'Hello World';
+    document.body.appendChild(p);
+    })()">Ajouter un paragraphe avec du texte</button>
+</body>
+</html>

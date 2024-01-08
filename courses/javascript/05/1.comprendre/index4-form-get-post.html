@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire théorie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--  Attribut action :  Quel script reçoit les données (php ou autre) -->
+    <!--  Attribut method :  GET (via url) et POST (dans le corps de la requêt http) -->
+    <form action="https://ktdev.info/ifapme/" method="post">
+        
+        <label for="inputTxt">Input Text</label>
+        
+        <br><br>
+
+        <!-- Attribut name : fournit un libellé au backend -->
+        <!-- Attribut value : donne une valeur à l'input (préférez le placeholder)-->
+        <input type="text" name="inputTxt" id="inputTxt" value="" placeholder="text">
+        
+        <br><br>
+
+        <!-- Textarea -->
+        <textarea name="textarea" id="" cols="30" rows="10"></textarea>
+
+        <br><br>
+
+        <!-- Select -->
+        <select name="quand" id="">
+            <option value="monday">Lundi</option>
+            <option value="tuesday">Mardi</option>
+            <option value="wednesday">Mercredi</option>
+            <option value="thursday" selected>Jeudi</option>
+            <option value="friday">Vendredi</option>
+            <option value="saturday">Samedi</option>
+            <option value="sunday" >Dimanche</option>
+            <optgroup label="Moment">
+                <option value="morning" >Matin</option>
+                <option value="evening" >Soir</option>
+            </optgroup>
+        </select>
+        
+        <br><br>
+
+        <!-- Datalist -->
+        <label for="fruits">Quel est votre fruit préféré</label>
+        <input type="text" name="fruits" id="fruits" list="suggestions">
+        <datalist id="suggestions">
+            <option value="pomme"></option>
+            <option value="fraise"></option>
+            <option value="poire"></option>
+        </datalist>
+
+        <br><br>
+
+        <!-- Checkbox -->
+        <label for="accord">Etes-vous d'accord ?</label>
+        <input type="checkbox" id="accord" name="accord" value="accord-ok" checked>
+
+        <br><br>
+
+        <!-- Radio button -->
+        <p>Votre couleur préférée</p>
+
+        <label for="rouge">Rouge</label>
+        <input type="radio" name="couleur" id="rouge" value="rouge">
+        <label for="vert">Vert</label>
+        <input type="radio" name="couleur" id="vert" value="vert">
+        <label for="bleu">Bleu</label>
+        <input type="radio" name="couleur" id="bleu" value="bleu">
+
+        <br><br>
+
+        <!-- Input Color -->
+        <input type="color" name="color" id="">
+                
+        <br><br>
+
+        <button>Envoyer</button> 
+  
+    </form>
+
+</body>
+</html>

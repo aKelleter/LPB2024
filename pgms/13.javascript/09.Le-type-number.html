@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le type Number</title>
+</head>
+<body>
+
+    <h1>Le type Number</h1>
+    <hr>
+    
+    <p>
+        Les variables en JavaScript vont également pouvoir stocker des nombres. En JavaScript, 
+        et contrairement à la majorité des langages, il n’existe qu’un type prédéfini qui va regrouper 
+        tous les nombres qu’ils soient positifs, négatifs, entiers ou décimaux (à virgule) et qui est 
+        le type Number. <br>
+        Pour affecter une valeur de type Number à une variable, on n’utilise ni guillemet ni apostrophe. 
+        <br> <br>
+        Attention ici : lorsque nous codons nous utilisons toujours des notations anglo-saxonnes, 
+        ce qui signifie qu’il faut remplacer nos virgules par des points pour les nombres décimaux. <br>
+        
+    </p>
+
+    <script>
+        let num1 = 10;
+        let num2 = 3.14;
+        let num3 = -5;
+        let num4 = 0;
+        
+        console.log(typeof num1);
+        console.log(typeof num2);
+        console.log(typeof num3);
+        console.log(typeof num4);
+    </script>
+
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+
+    <script>    
+        document.getElementById("p1").innerHTML = num1 + " est un : " + typeof num1;
+        document.getElementById("p2").innerHTML = num2 + " est un : " + typeof num2;
+        document.getElementById("p3").innerHTML = num3 + " est un : " + typeof num3;
+        document.getElementById("p4").innerHTML = num4 + " est un : " + typeof num4;
+
+    </script>
+    
+</body>
+</html>
