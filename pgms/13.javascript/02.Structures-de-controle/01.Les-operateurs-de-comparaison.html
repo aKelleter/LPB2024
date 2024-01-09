@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation des conditions</title>
+    <link rel="stylesheet" href="../styles.css">
+    
+</head>
+<body>
+    <h1>Présentation des conditions</h1>
+    <hr>
+    <p>
+        Nous allons souvent créer nos conditions en nous appuyant sur le contenu 
+        de variables. On va ainsi pouvoir exécuter un code si une variable contient 
+        telle valeur ou tel autre code si notre variable contient une autre valeur. <br> <br>
+        Nous avons accès aux structures conditionnelles suivantes en JavaScript : <br>
+        • La condition if (si) ; <br>
+        • La condition if… else (si… sinon) ; <br>
+        • La condition if… elseif… else (si… sinon si… sinon). <br>
+    </p>
+    
+    <h2>Les opérateurs de comparaison</h2>
+    <hr>
+    <p>
+        Pour comparer des valeurs, nous allons devoir utiliser des opérateurs de comparaison. 
+        On va pouvoir utiliser les opérateurs de comparaison suivants en JavaScript : <br> <br>
+        == Permet de tester l’égalité sur les valeurs <br>        
+        === Permet de tester l’égalité en termes de valeurs et de types <br>
+        != Permet de tester la différence en valeurs <br>
+        <> Permet également de tester la différence en valeurs  <br>
+        == Permet de tester la différence en valeurs ou en types  <br>
+        < Permet de tester si une valeur est strictement inférieure à une autre  <br>
+        > Permet de tester si une valeur est strictement supérieure à une autre  <br>
+        <= Permet de tester si une valeur est inférieure ou égale à une autre  <br>
+        >= Permet de tester si une valeur est supérieure ou égale à une autre  <br> <br>
+        
+        Lorsqu’on utilise un opérateur de comparaison on demande au JavaScript de comparer les 
+        deux opérandes selon l’opérateur choisi (on parle également « d’évaluer » la comparaison) 
+        et de nous dire si cette comparaison est vérifiée (c’est-à-dire si elle est vraie 
+        d’un point de vue mathématique) ou pas. <br> <br>
+
+        Dans le cas où la comparaison est vérifiée, le JavaScript renvoie le booléen <strong>true</strong>. 
+        Dans le cas contraire, le booléen <strong>false</strong> est renvoyé. Revenons à nos opérateurs. 
+        Tout d’abord, notez que notre « égal » mathématique (l’égalité en termes de valeurs) 
+        se traduit en JavaScript par le double signe égal <strong>==</strong>.
+    </p>
+
+    <h2>Utiliser les opérateurs de comparaison</h2>
+    <hr>
+    <p>
+        Pour bien utiliser les opérateurs de comparaison et comprendre tout leur intérêt, 
+        vous devez bien vous rappeler que lorsqu’on utilise un opérateur de comparaison, 
+        le JavaScript va automatiquement comparer la valeur à gauche de l’opérateur à celle 
+        à droite selon l’opérateur de comparaison fourni et renvoyer le booléen <strong>true</strong>  si la 
+        comparaison est validée ou <strong>false</strong> si elle ne l’est pas.
+    </p>
+
+    <script>
+        let x = 4;
+        let test1 = x == 4; // true
+        let test2 = x === 4; // true 
+        let test3 = x == "4"; // true
+        let test4 = x === "4"; // false
+        let test5 = x != 4; // false
+        let test6 = x > 4; // false
+        let test7 = x < 4; // false
+        let test8 = x >= 4; // true
+        let test9 = x <= 4; // true
+
+        console.log("x == 4 " + test1);
+        console.log("x === 4 " + test2);
+        console.log("x == \"4\" " + test3);
+        console.log("x === \"4\" " + test4);
+        console.log("x != 4 " + test5);
+        console.log("x > 4 " + test6);
+        console.log("x < 4 " + test7);
+        console.log("x >= 4 " + test8);
+        console.log("x <= 4 " + test9); 
+    </script>
+    
+</body>
+</html>

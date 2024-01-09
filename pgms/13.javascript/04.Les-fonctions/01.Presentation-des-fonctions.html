@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation des fonctions</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>Présentation des fonctions</h1>
+    <hr>
+    <p>
+        Une fonction correspond à un bloc de code nommé et réutilisable et dont le but est 
+        d’effectuer une tâche précise. En JavaScript, comme dans la plupart des langages les 
+        supportant, nous allons très souvent utiliser des fonctions car celles-ci possèdent 
+        de nombreux atouts que l’on va énumérer par la suite. 
+        <br><br>
+        Le langage JavaScript dispose de nombreuses fonctions que nous pouvons utiliser pour 
+        effectuer différentes tâches. Les fonctions définies dans le langage sont appelées 
+        fonctions prédéfinies ou fonctions prêtes à l’emploi car il nous suffit de les appeler 
+        pour nous en servir. <br><br> Pour être tout à fait précis, les fonctions prédéfinies en JavaScript 
+        sont des méthodes. Une méthode est tout simplement le nom donné à une fonction définie au 
+        sein d’un objet. Pour le moment, nous allons considérer que ce sont simplement des fonctions.
+        <br><br>
+        Par exemple, le JavaScript dispose d’une fonction nommée random() (qui appartient à l’objet Math 
+        que nous étudierons plus tard) et qui va générer un nombre décimal aléatoire entre 0 et 1 ou encore 
+        d’une fonction replace() (qui appartient cette fois-ci à l’objet String) qui va nous permettre de 
+        chercher et de remplacer une expression par une autres dans une chaine de caractères.
+        <br><br>
+        Aller lire le code source ->
+    </p>
+
+    <p id="p1"></p>
+    <p id="p2"></p>
+
+    <script> 
+        // La fonction random() va nous permettre de générer un nombre décimal aléatoire entre 0 et 1
+        document.getElementById('p1').innerHTML = Math.random();
+
+        // La fonction replace() va nous permettre de chercher et de remplacer une expression par une autres dans une chaine de caractères
+        let str = 'Bonjour tout le monde';
+        document.getElementById('p2').innerHTML = str.replace('Bonjour', 'Hello');          
+    </script>
+   
+    <p>
+        L’intérêt principal des fonction prédéfinies est de nous permettre de réaliser des opérations complexes de 
+        manière très simple : en les appelant, tout simplement. En effet, vous devez bien comprendre que derrière 
+        ces noms de fonctions se cachent des codes parfois longs et complexes qui vont être exécutés lorsqu’on 
+        appelle la fonction et qui vont permettre de réaliser une opération précise (générer un nombre aléatoire, etc.).
+    </p>
+</body>
+</html>

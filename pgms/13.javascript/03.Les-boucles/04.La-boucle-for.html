@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La boucle For</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>La boucle For</h1>
+    <hr>
+    <p>
+        La boucle for (« pour » en français) est structurellement différente des boucles while et do… while 
+        puisqu’on va cette fois-ci initialiser notre variable à l’intérieur de la boucle. La boucle for utilise 
+        une syntaxe relativement condensée et est relativement puissante ce qui en fait la condition la plus 
+        utilisée en JavaScript. <br><br>
+
+        Aller lire le code source ->
+    </p>
+    <script>       
+        for (let i = 0; i < 10; i++) {
+            document.write(i + ' ');
+        }
+        document.write('<br>');
+        
+    </script>
+    <p>
+        Une boucle for contient trois « phases » à l’intérieur du couple de parenthèses : <br><br>
+        une phase d’initialisation, <br>
+        une phase de test (condition de sortie) <br>
+        une phase d’itération (généralement une incrémentation). <br><br>
+        Chaque phase est séparée des autres par un point-virgule.
+    </p>
+
+    <h2>Le mot clé continue</h2>
+    <hr>
+    <p>
+        Pour sauter une itération de boucle et passer directement à la suivante, on peut utiliser une instruction 
+        continue. Cette instruction va nous permettre de sauter l’itération actuelle et de passer directement à 
+        l’itération suivante. Cette instruction peut s’avérer très utile pour optimiser les performances 
+        d’une boucle et économiser les ressources lorsqu’on utilise une boucle pour rechercher spécifiquement 
+        certaines valeurs qui répondent à des critères précis.<br><br>
+
+        Aller lire le code source ->
+    </p>
+    <script>
+        for (let i = 0; i < 10; i++) {
+            
+            if(i % 2 != 0){
+                continue;
+            }
+            document.write(i + ' ');
+        }
+    </script>
+
+<h2>Le mot clé break</h2>
+<hr>
+<p>
+    On va également pouvoir complètement stopper l’exécution d’une boucle et sortir à un moment donné 
+    en utilisant une instruction break au sein de la boucle. Utiliser cette instruction peut à nouveau 
+    s’avérer très intéressant pour optimiser les performances de notre script lorsqu’on utilise une boucle
+    pour chercher une valeur en particulier en itérant parmi un grand nombre de valeurs.<br><br>
+
+    Aller lire le code source ->
+</p>
+<script>
+    for (let i = 0; i < 10; i++) {
+        
+        if(i == 6){
+            break;
+        }
+        document.write(i + ' ');
+    }
+</script>
+   
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les fonctions personnalisées</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>Les fonctions personnalisées</h1>
+    <hr>
+    <p> 
+        En plus des nombreuses fonctions JavaScript prédéfinies et immédiatement utilisables, 
+        nous allons pouvoir créer nos propres fonctions en JavaScript lorsque nous voudrons 
+        effectuer une tâche très précise. Lorsqu’on crée une fonction en JavaScript, 
+        celle-ci n’est utilisable que par les scripts qui ont accès à sa définition. 
+        Une fonction n’est pas « magiquement incluse » dans le langage. Créer nos propres 
+        fonctions va nous permettre de gagner du temps de développement et de créer des 
+        scripts plus facilement maintenables et plus sécurisés.
+        
+        <br><br>
+        Aller lire le code source ->
+    </p>
+
+    <p id="p1"></p>
+    <p id="p2"></p>
+
+    <script> 
+
+    function aleatoire(min, max) {
+        let nb = min + (max - min + 1) * Math.random();
+        return Math.floor(nb);
+    }
+
+    document.getElementById('p1').innerHTML = aleatoire(1, 100);
+                
+    </script>
+   
+    <p>
+        Résumé des choses importantes à retenir à votre niveau sur les fonctions : <br><br>
+        • Les fonctions sont des blocs de code nommés et réutilisables et dont le but est d’effectuer une tâche précise ; <br>
+        • Il existe deux grands types de fonctions en JavaScript : les fonction natives ou prédéfinies 
+        (qui sont en fait des méthodes) qu’on n’aura qu’à appeler et les fonctions personnalisées qu’on va pouvoir créer ; <br>
+        • Pour exécuter le code d’une fonction, il faut l’appeler. Pour cela, il suffit d’écrire son nom suivi d’un 
+        couple de parenthèses en passant éventuellement des arguments dans les parenthèses ; <br>
+        • On crée une fonction personnalisée grâce au mot clef function ; <br><br>
+        • Si une fonction a besoin qu’on lui passe des valeurs pour fonctionner, alors on définira des paramètres 
+        lors de sa définition. Lors de son appel, on lui passera des arguments qui prendront la place des arguments.
+    </p>
+</body>
+</html>

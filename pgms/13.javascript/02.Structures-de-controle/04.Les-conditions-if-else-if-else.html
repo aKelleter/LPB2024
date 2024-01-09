@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La condition if…else if…else</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <h1>La condition if… else if …else</h1>
+    <hr>
+    <p>
+        Nous allons ici nous concentrer sur la structure de 
+        contrôle conditionnelles if… else if …else.
+    </p>
+    <h2>La condition : <em>if… else if …else</em></h2>
+    <hr>
+    <p>
+        La condition if…else if…else (« si…sinon si…sinon ») est une structure conditionnelle encore 
+        plus complète que la condition if…else puisqu’elle va nous permettre cette fois-ci de générer 
+        et de prendre en charge autant de cas que l’on souhaite. <br> <br> En effet, nous allons pouvoir écrire 
+        autant de else if que l’on veut dans notre condition if…else if…else et chaque else if va 
+        posséder son propre test. <br> <br>
+
+        Allez voir le code source ->
+    </p>    
+    <script>            
+            var age = 18;
+    
+            if (age < 18) {
+    
+                document.write("Vous êtes mineur");
+    
+            } else if (age >= 18 && age < 21) {
+    
+                document.write("Vous êtes majeur mais pas encore autorisé à boire de l'alcool aux USA");
+    
+            } else {
+    
+                document.write(`Vous êtes majeur, vous avez ${age} ans`);
+    
+            }       
+    </script>
+    <p>
+        Le else if nous permet donc de gérer un nouveau cas et de lui associer un nouveau test. <br>
+        On peut ainsi écrire autant de else if que l’on veut dans notre condition if… else if …else. <br>
+        Notez que le else if, comme le else seul, est une structure conditionnelle qui n’est pas obligatoire. <br>
+    </p>    
+</body>
+</html>

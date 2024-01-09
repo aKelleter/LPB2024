@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les conditions if else</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <h1>Les conditions if else</h1>
+    <hr>
+    <p>
+        Nous allons ici nous concentrer sur la structure de 
+        contrôle conditionnelles if…else.
+    </p>
+    <h2>La condition : <em>if else</em></h2>
+    <hr>
+    <p>
+        La condition if est une structure conditionnelle limitée par définition puisqu’elle 
+        ne nous permet d’exécuter un bloc de code que dans le cas où le résultat d’un test 
+        est évalué à true mais elle ne nous offre aucun support dans le cas contraire. <br> <br>
+        La structure conditionnelle if…else (« si… sinon » en français) va être plus complète 
+        que la condition if puisqu’elle va nous permettre d’exécuter un premier bloc de code 
+        si un test renvoie true ou un autre bloc de code dans le cas contraire. <br> <br>
+
+        Allez voir le code source ->
+    </p>    
+    <script>
+        var age = 18;
+        if (age >= 18) {
+            document.write(`Vous êtes majeur, vous avez ${age} ans`);
+        } else {
+            document.write("Vous êtes mineur");
+        }
+    </script>
+    <p>
+        Notez la syntaxe de la condition if…else : on place notre comparaison et on effectue 
+        notre test dans le if mais dans aucun cas on ne mentionne de test dans le else. <br> <br>
+        En effet, la structure else est une structure qui a été créée pour prendre en charge 
+        tous les cas non gérés précédemment. Ainsi, on ne précisera jamais de condition au 
+        sein d’un else puisque par défaut cette structure prend en charge tous les autres cas 
+        (tous les cas non gérés par le if ici). <br> <br> Si le test de notre condition est validé, 
+        le code dans le if va s’exécuter et le code dans le else va alors être ignoré.
+    </p>
+    
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les conditions if</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <h1>Les conditions if</h1>
+    <hr>
+    <p>
+        Nous allons ici nous concentrer sur la structure de 
+        contrôle conditionnelles if.
+    </p>
+    <h2>La condition : <em>if</em></h2>
+    <hr>
+    <p>
+        Elle va nous permettre d’exécuter un bloc de code si et seulement si le résultat 
+        d’un test vaut true. <br> <br>
+
+        Allez lire le code source ->
+    </p>    
+    <script>
+        let x = 4;
+        let y = 0;
+
+        if (x > y) {
+            console.log(`x est supérieur à y qui égal ${y}`);
+        }
+
+        if(x > 1) {
+            console.log("x est supérieur à 1");
+        }
+
+        if(y) { // y vaut 0, donc false
+            console.log("y est vrai"); 
+        }
+
+    </script>
+    <p>
+        Le code de notre troisième condition est un peu plus complexe à comprendre. 
+        En effet, ici, on n’effectue pas de comparaison explicite. Simplement, vous 
+        devez savoir que tout test d’une condition va être évalué dans un contexte booléen. 
+        Cela signifie que quoi qu’on passe en test d’une condition, le JavaScript renverra 
+        true ou false. Dans le cas où on ne passe qu’une valeur (ou qu’une variable), 
+        le JavaScript va donc l’évaluer et renvoyer true ou false. <br> <br> Vous devez savoir 
+        que toute valeur évaluée par le JavaScript dans un contexte booléen va être évaluée 
+        à true à l’exception des valeurs suivantes qui vont être évaluées à false : <br> <br>
+        • Le booléen false ; <br>
+        • La valeur 0 ;  <br>
+        • Une chaine de caractères vide ;  <br>
+        • La valeur null ;  <br>
+        • La valeur undefined ;  <br>
+        • La valeur NaN (« Not a Number » = « n’est pas un nombre »).  <br> <br>
+        
+        La variable let y stocke ici la valeur 0 qui est donc évaluée à false et le code 
+        dans la condition if n’est donc pas exécuté.
+    </p>
+    <h2>Inverser la valeur logique d'un test</h2>
+    <hr>
+    <p>
+        Dans les exemples ci-dessus, le code placé dans notre condition n’est exécuté que si le 
+        résultat de la comparaison est true. Dans certaines situations, nous préférerons créer 
+        nos conditions de telle sorte à ce que le code dans la condition soit exécuté si le résultat 
+        de la comparaison est false. Nous allons pouvoir faire cela de deux manières : <br> <br>
+        - soit en utilisant l’opérateur logique inverse <strong>!</strong> que nous étudierons dans la leçon suivante, <br>
+        - soit en comparant explicitement le résultat de notre comparaison à false (<strong>==false</strong>). <br> <br>
+        
+        Pour inverser la valeur logique d’un test, c’est-à-dire pour exécuter le code de la condition 
+        uniquement lorsque notre première comparaison est évaluée à false, il suffit donc de comparer 
+        le résultat de cette première comparaison à la valeur false. <br> <br>
+
+        Allez lire le code source ->
+    </p>
+    <script>
+        console.log("┤┤┤┤┤┤┤┤┤┤┤┤┤┤┤┤┤┤┤");
+        x = 4;
+        y = 0;
+
+        if ((x > y) == false) {
+            console.log(`x est inférieur à y qui égal ${y}`);
+        }
+
+        if((x > 1) == false) {
+            console.log("x est inférieur à 1");
+        }
+
+        if(y == false) { // y vaut 0, donc false
+            console.log("y est vrai"); 
+        }
+    </script>
+</body>
+</html>

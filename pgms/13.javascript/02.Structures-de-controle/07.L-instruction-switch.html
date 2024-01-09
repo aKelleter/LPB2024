@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'instruction switch</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>L'instruction switch</h1>
+    <hr>
+    <p>
+        L’instruction switch qu’on va pouvoir utiliser dans certaines situations précises à la place d’une 
+        condition if…else if…else. <br><br>
+
+        L’instruction switch va nous permettre d’exécuter un code en fonction de la valeur d’une variable. 
+        On va pouvoir gérer autant de situations ou de « cas » que l’on souhaite. En cela, l’instruction switch
+        représente une alternative à l’utilisation d’un if…else if…else. <br> <br> Cependant, ces deux types d’instructions
+        ne sont pas strictement équivalentes puisque dans un switch chaque cas va être lié à une valeur précise. 
+        En effet, l’instruction switch ne supporte pas l’utilisation des opérateurs de supériorité ou d’infériorité. <br> <br> 
+        Dans certaines (rares) situations, il va pouvoir être intéressant d’utiliser un switch plutôt qu’un 
+        if…else if…else car cette instruction peut rendre le code plus clair et légèrement plus rapide dans son 
+        exécution. <br> <br>
+
+        Aller lire le code source ->
+    </p>
+    <script>
+        var jour = prompt("Quel jour sommes-nous ?");
+        switch (jour) {
+            case "lundi":
+                alert("Demain, nous serons mardi");
+                break;
+            case "mardi":
+                alert("Demain, nous serons mercredi");
+                break;
+            case "mercredi":
+                alert("Demain, nous serons jeudi");
+                break;
+            case "jeudi":
+                alert("Demain, nous serons vendredi");
+                break;
+            case "vendredi":
+                alert("Demain, nous serons samedi");
+                break;
+            case "samedi":
+                alert("Demain, nous serons dimanche");
+                break;
+            case "dimanche":
+                alert("Demain, nous serons lundi");
+                break;
+            default:
+                alert("Je ne connais pas ce jour");
+                break;
+        }
+    </script>
+
+    <p>
+        Enfin, à la fin de chaque switch, il convient d’indiquer une instruction "default". 
+        Le "default" est l’équivalent du "else" des conditions vues précédemment : 
+        il sert à gérer tous les autres cas et son code ne sera exécuté que si aucun case ne correspond 
+        à la valeur de la variable. Pas la peine d’utiliser une instruction "break" au sein de "default" puisque 
+        "default" sera toujours placée en fin de "switch". Si le JavaScript arrive jusqu’au "default", alors il 
+        sortira ensuite naturellement du "switch" puisque celui-ci ne contient plus aucun code après "default".
+    </p>
+
+</body>
+</html>
