@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les constantes</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>Les constantes</h1>
+    <hr>
+    <p>
+        Une constante est similaire à une variable au sens où c’est également un conteneur pour
+        une valeur. Cependant, à la différence des variables, on ne va pas pouvoir modifier 
+        la valeur d’une constante. <br> <br>
+
+        Pour déclarer une constante, on utilise le mot clé <code>const</code> <br> <br>
+        Utiliser une constante va rendre notre script plus clair car on pourra rapidement identifier 
+        la valeur utilisée et également plus facilement maintenable car dans le cas où l’on doive modifier 
+        le script et cette valeur en particulier un jour, on n’aura alors qu’à modifier la constante plutôt 
+        que de modifier toutes les occurrences de la valeur dans le script.
+    </p>
+    <script>
+        const PI = 3.141592653589793;
+        console.log(PI);
+        // PI = 3.14; // Va générer une erreur : Il est impossible de modifier la valeur d'une constante
+    </script>
+
+ 
+</body>
+</html>

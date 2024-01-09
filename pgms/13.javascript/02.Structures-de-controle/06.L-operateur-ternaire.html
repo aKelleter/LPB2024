@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'opérateur ternaire</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>L'opérateur ternaire</h1>
+    <hr>
+    <p>
+        L'opérateur ternaire <strong>?:</strong> est un opérateur conditionnel 
+        qui peut être utilisé à la place d'une instruction <strong>if</strong> ou <strong>switch</strong>. <br><br>
+        Les structures conditionnelles ternaires (souvent simplement abrégées “ternaires”) correspondent à une autre 
+        façon d’écrire nos conditions en utilisant une syntaxe basée sur l’opérateur ternaire ? : qui est un opérateur 
+        de comparaison. Les ternaires vont utiliser une syntaxe très condensée et nous allons ainsi pouvoir écrire 
+        toute une condition sur une ligne et accélérer la vitesse d’exécution de notre code. <br> <br>
+        Si vous indentez et commentez bien votre code, vous ne devriez pas avoir de problème à comprendre une 
+        structure ternaire. <br><br>
+        Les structures ternaires vont se présenter sous la forme suivante : <br>
+        <pre><code>test ? code à exécuter si true : code à exécuter si false</code></pre>  
+
+        Aller lire le code source ->        
+    </p>
+    <script>
+        let age = 18;
+        let majeur = (age >= 18) ? true : false;
+        console.log('Etes-vous majeur ? ' + majeur);
+
+        let x = 10;
+        let y = -20;
+
+        let z = (x >= 0) ? 'x est positif' : 'x est négatif';
+        console.log(z);
+    </script>
+
+</body>
+</html>

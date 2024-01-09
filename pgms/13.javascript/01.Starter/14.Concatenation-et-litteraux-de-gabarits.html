@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concaténation et littéraux de gabarits</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>Concaténation et littéraux de gabarits</h1>
+    <hr>
+    <p>
+        En JavaScript, l’opérateur de concaténation est le signe +. <br>
+        Faites bien attention ici : lorsque le signe + est utilisé avec deux nombres, il sert à les additionner. <br>
+        Lorsqu’il est utilisé avec autre chose que deux nombres, il sert d’opérateur de concaténation.
+    </p>
+    
+    <script>
+
+        let x = 1 + 2 + '3'; // x = '33' / Addition de 1 et 2 puis concaténation de '3' à la chaîne '3'
+        let y = '1' + 2 + 3; // y = '123' / Concaténation de '1' à la chaîne '2' puis concaténation de '3' à la chaîne '12'
+        let a = 1 + 2 + 3; // a = 6 / Addition de 1 et 2 puis addition de 3 à 3
+        let b = "Mon nom est " + "John Doe"; // b = 'Mon nom est John Doe' / Concaténation de la chaîne 'Mon nom est ' à la chaîne 'John Doe'
+
+
+        console.log('x = ' + x + ' type ' + typeof x);
+        console.log('y = ' + y + ' type ' + typeof y);      
+        console.log('a = ' + a + ' type ' + typeof a);
+        console.log('b = ' + b + ' type ' + typeof b);        
+
+    </script>
+
+
+    <h2>Les littéraux de gabarits</h2>
+    <hr>
+    <p>
+        On a vu plus tôt dans ce cours qu’il fallait en JavaScript toujours entourer nos chaines de caractères 
+        (nos textes) avec des apostrophes ou des guillemets droits. Il existe en fait une troisième manière 
+        introduite récemment d’entourer des chaines de caractères en JavaScript qui va utiliser des accents 
+        graves ` ou backticks. <br> La grande différence entre l’utilisation d’accents graves ou l’utilisation d’apostrophes 
+        ou de guillemets est que <strong>toute expression</strong> placée entre les accents graves va être interprétée en 
+        JavaScript. <br> <br> Pour le dire simplement : tout ce qui renvoie une valeur va être remplacé par sa valeur. 
+        Cela signifie notamment qu’on va pouvoir placer du texte et des variables ensemble sans avoir besoin 
+        d’utiliser d’opérateur de concaténation puisque les variables vont être interprétées, c’est-à-dire 
+        remplacées par leur valeur. <br> <br>
+        Les littéraux de gabarits vont donc pouvoir s’avérer utiles lorsqu’on doit manipuler des chaines et 
+        des variables voire des fonctions.
+    </p>
+    <script>
+
+        let nom = 'John Doe';
+        let age = 30;
+
+        console.log(`Bonjour, je m'appelle ${nom} et j'ai ${age} ans.`); // Bonjour, je m'appelle John Doe et j'ai 30 ans.
+        console.log(`Dans 10 ans, j'aurai ${age + 10} ans.`); // Dans 10 ans, j'aurai 40 ans.
+        console.log(`2 Exposant 8 = ${2 ** 8}`);
+    </script>
+</body>
+</html>

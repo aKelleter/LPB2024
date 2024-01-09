@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les opérateurs logiques</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>Les opérateurs logiques</h1>
+    <hr>
+    <p>
+        Nous allons ici nous concentrer sur les opérateurs logiques.  
+        Ce type d’opérateurs va nous permettre d’effectuer plusieurs comparaisons dans nos conditions 
+        ou d’inverser la valeur logique du résultat d’un test.
+        Nous parlerons également de précédence et d’associativité des opérateurs, 
+        c’est-à-dire de l’ordre et de la façon selon lesquels le JavaScript va traiter les opérateurs.  <br> <br>
+        Les opérateurs logiques sont des opérateurs qui vont principalement être utilisés avec des 
+        valeurs booléennes et au sein de conditions. Le JavaScript supporte trois opérateurs logiques : <br> <br>
+        - l’opérateur logique « ET » <br>
+        - l’opérateur logique « OU »  <br>
+        - l’opérateur logique « NON » <br> <br>
+
+        Les opérateurs logiques vont être représentés par les symboles suivants en JavaScript 
+        qu’il faudra obligatoirement utiliser : <br> <br>
+        - AND (ET) -> &&  : Lorsqu’il est utilisé avec des valeurs booléennes, renvoie true si toutes les comparaisons sont évaluées à true ou false sinon <br>
+        - OR (OU) -> || : Lorsqu’il est utilisé avec des valeurs booléennes, renvoie true si au moins l’une des comparaisons est évaluée à true ou false sinon <br>
+        - NO (NON) -> ! Renvoie false si une comparaison est évaluée à true ou renvoie true dans le cas contraire <br>
+    </p>
+
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+
+    <script>
+        let x = 5;
+        let y = 20;
+
+        if(x > 1 && x < 10) {
+            document.getElementById("p1").innerHTML = "x est supérieur à 1 et inférieur à 10";
+        }
+
+        if(x > 1 || x < 10) {
+            document.getElementById("p2").innerHTML = "x est supérieur à 1 ou inférieur à 10";
+        }
+
+        if(!(x == y)) {
+            document.getElementById("p3").innerHTML = "x n'est pas égal à y";
+        }   
+    </script>
+
+    <h2>Précédence et règles d’associativité des opérateurs</h2>
+    <p>
+        il faut savoir que les différents opérateurs de chaque type ont une priorité de traitement 
+        différente. Cela signifie que le JavaScript va d’abord traiter tel opérateur, puis tel autre 
+        et etc. <br><br>
+        Comme vous pouvez vous en douter, cela rend les choses très vite complexes puisqu’il 
+        existe de nombreux opérateurs et qu’il va falloir connaitre leur ordre relatif de traitement 
+        pour être certain d’obtenir un résultat conforme à nos attentes au final. Cet ordre de 
+        priorité est appelé « précédence ». En plus de cela, vous devez également savoir que les 
+        opérateurs vont avoir différents sens d’associativité. <br><br> L’associativité détermine l’ordre 
+        dans lequel des opérateurs de même précédence sont évalués et va pouvoir se faire par 
+        la droite ou par la gauche. Une associativité par la gauche signifie qu’on va commencer 
+        réaliser les opérations en partant de la gauche et vers la droite tandis qu’une 
+        associativité par la droite signifie qu’on va commencer par la droite.
+
+        <br><br>
+        <strong>Consulter le tableau à la page 66 du cours sur le JavaScript de JP Giraud.</strong> <br><br>
+        Personne ne vous demande d’apprendre toutes ces règles par coeur immédiatement. 
+        L’important ici est de de souvenir qu’il existe une précédente et des règles d’associativité 
+        lorsqu’on utilise des opérateurs et d’aller vérifier l’ordre et le sens de traitement des 
+        opérateurs en cas de doute. Dans tous les cas, vous finirez par connaitre ce tableau à force 
+        de pratique.
+        <br>
+    </p>
+</body>
+</html>

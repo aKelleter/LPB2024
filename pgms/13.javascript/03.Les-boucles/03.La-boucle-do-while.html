@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La boucle Do While</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>La boucle Do While</h1>
+    <hr>
+    <p>
+        La boucle do… while (« faire… tant que ») est relativement semblable à la boucle while dans sa syntaxe. 
+        La grande différence entre les boucles while et do… while va résider dans l’ordre dans lequel vont se 
+        faire les opérations. En effet, lorsqu’on utilise une boucle do… while, le code de la boucle va être 
+        exécuté avant l’évaluation de la condition de sortie. Cela signifie qu’à la différence de la boucle while, 
+        on effectuera toujours un passage dans une boucle do… while même si la condition de sortie n’est jamais 
+        vérifiée et donc le code de la boucle sera toujours exécuté au moins une fois. <br><br>
+
+        Aller lire le code source ->
+    </p>
+    <script>       
+        var i = 0;
+
+        do {
+            document.write(i + ", ");
+            i++;
+        } while (i <= 10);
+
+    </script>
+    <p>
+        Il va donc être intéressant d’utiliser une boucle do… while plutôt qu’on boucle while lorsque notre script 
+        a besoin que le code dans notre boucle s’exécute au moins une fois pour fonctionner.
+    </p>
+   
+
+</body>
+</html>
