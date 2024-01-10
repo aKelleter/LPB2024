@@ -22,16 +22,17 @@
         let a = 1 + 2 + 3; // a = 6 / Addition de 1 et 2 puis addition de 3 à 3
         let b = "Mon nom est " + "John Doe"; // b = 'Mon nom est John Doe' / Concaténation de la chaîne 'Mon nom est ' à la chaîne 'John Doe'
 
-
+        
         console.log('x = ' + x + ' type ' + typeof x);
         console.log('y = ' + y + ' type ' + typeof y);      
         console.log('a = ' + a + ' type ' + typeof a);
         console.log('b = ' + b + ' type ' + typeof b);        
+        console.log(`La valeur de a = ${a}`);
 
     </script>
 
 
-    <h2>Les littéraux de gabarits</h2>
+    <h2>Les littéraux de gabarits (template literals)</h2>
     <hr>
     <p>
         On a vu plus tôt dans ce cours qu’il fallait en JavaScript toujours entourer nos chaines de caractères 
@@ -50,7 +51,7 @@
 
         let nom = 'John Doe';
         let age = 30;
-
+        
         console.log(`Bonjour, je m'appelle ${nom} et j'ai ${age} ans.`); // Bonjour, je m'appelle John Doe et j'ai 30 ans.
         console.log(`Dans 10 ans, j'aurai ${age + 10} ans.`); // Dans 10 ans, j'aurai 40 ans.
         console.log(`2 Exposant 8 = ${2 ** 8}`);
