@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les valeurs de retour des fonctions</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>Les valeurs de retour des fonctions</h1>
+    <hr>
+    <p> 
+        Une valeur de retour est une valeur renvoyée par une fonction une fois que celle-ci a <br>
+        terminé son exécution. Une valeur de retour ne doit pas être confondu avec une instruction d’affichage durant 
+        l’exécution d’une fonction, comme dans le cas d’une fonction qui possède à un moment donné dans son code un 
+        alert() par exemple. <br><br>
+
+        Pour que nos fonctions renvoient une valeur, il va falloir utiliser une instruction <b>return</b>. <br> <br>
+        Cette instruction va nous permettre de retourner le résultat de la fonction ou une valeur de notre 
+        choix qu’on va ensuite pouvoir soit manipuler immédiatement soit stocker dans une variable pour effectuer 
+        différentes opérations avec cette valeur.  <br><br>
+
+        Attention cependant : l’instruction <b>return</b> met fin à l’exécution d’une fonction, ce qui signifie que toutes les 
+        autres opérations qui suivent une instruction return dans une fonction seront ignorées. <br>
+        Pour cette raison, on fera toujours bien attention à placer l’instruction return en fin de fonction, après 
+        que toutes les opérations aient été réalisées. <br><br>
+
+        Les valeurs de retour peuvent être de n’importe quel type : nombre, chaîne de caractères, booléen, tableau, objet, etc. <br><br>
+        
+        <br><br>
+        Aller lire le code source ->
+    </p>
+    
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <hr>
+    <p id="p3"></p>
+    <p id="p4"></p>
+
+    <script>
+        /**
+         * Fonction qui retourne l'addition de deux nombres
+         * @param {number} a
+         * @param {number} b
+         * @returns {number}
+         * @example addition(2, 3) = 5
+         */
+        function addition(a, b) {
+            return a + b;
+        }
+
+        /**
+         * Fonction qui retourne un tableau contenant les arguments passés en paramètres
+         * @returns {array}
+         * @example foo() = ["zero", "un" , "deux", "trois"]
+         */
+        function foo () {
+            return ["zero", "un" , "deux", "trois"];
+        }
+
+        // Je place le retour de la fonction dans une variable
+        $resultat = addition(2, 3);
+        document.getElementById("p1").innerHTML = "addition(2, 3) = " + $resultat;
+
+        // Je place le retour de la fonction directement dans une instruction
+        document.getElementById("p2").innerHTML = "addition(2, 3) = " + addition(2, 3);
+
+        document.getElementById("p3").innerHTML = "foo() = " + foo();
+
+     </script>
+
+    
+  
+</body>
+</html>

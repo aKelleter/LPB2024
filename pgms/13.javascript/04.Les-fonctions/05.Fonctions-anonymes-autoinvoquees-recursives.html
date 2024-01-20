@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les fonctions anonymes, auto-invoquées et récursives</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <h1>Les fonctions anonymes, auto-invoquées et récursives</h1>
+    <hr>
+    <p> 
+        Les fonctions anonymes ne vont <b>pas posséder de nom</b>. on utilisera les fonctions anonymes 
+        lorsqu’on n’a pas besoin d’appeler notre fonction par son nom c’est-à-dire lorsque le code de 
+        notre <b>fonction n’est appelé qu’à un endroit dans notre script et n’est pas réutilisé</b>. 
+        <br><br>
+
+        <code>            
+            function () { <br>
+                alert("Je suis une fonction anonyme"); <br> 
+            } <br>
+        </code>
+
+        Nous avons déclaré une fonction anonyme qui affiche une alerte. <br>                
+        Ici, nous faisons pourtant face à un problème : comment appeler une fonction qui n’a pas de nom ? <br>
+
+        Solutions pour exécuter une fonction anonyme : <br>
+         - Enfermer la fonction anonyme dans une variable <br>
+         - L’auto-invoquer <br>
+         - Lui passer en paramètre une autre fonction qui va l’exécuter <br>
+         - Utiliser un événement <br>     
+         
+        <h3>Utiliser une variable</h3> 
+        <p>
+            Ici, on affecte notre fonction anonyme à une variable nommée let alerte. Notre variable contient donc ici une valeur 
+            complexe qui est une fonction et on va désormais pouvoir l’utiliser comme si c’était une fonction elle-même. 
+            Pour « appeler notre variable » et pour exécuter le code de la fonction anonyme qu’elle contient, il va falloir 
+            écrire le nom de la variable suivi d’un couple de parenthèses. Ces parenthèses sont des parenthèses dites « appelantes » 
+            car elles servent à exécuter la fonction qui les précède. 
+        </p>
+        <h3>L'auto-invoquer</h3> 
+        <p>
+            La deuxième façon d’exécuter une fonction anonyme va être de créer une fonction anonyme qui va s’auto-invoquer 
+            c’est-à-dire qui va s’invoquer (ou s’appeler ou encore s’exécuter) elle-même dès sa création. Pour créer une 
+            fonction auto-invoquée à partir d’une fonction, il va tout simplement falloir rajouter un couple de parenthèses 
+            autour de la fonction et un second après le code de la fonction. 
+        </p>
+        <h3>An tant que paramètre à une autre fonction</h3>
+        <p>
+            La troisième façon d’exécuter une fonction anonyme va être de la passer en paramètre à une autre fonction qui va 
+            l’exécuter. Pour cela, il va falloir créer une fonction qui va prendre en paramètre une autre fonction et qui va 
+            ensuite exécuter cette fonction.
+        </p>
+
+        <h2>Les fonctions récursives</h2>
+        <p>
+            Une fonction récursive est une fonction qui va s’appeler elle-même au sein de son code. 
+            Tout comme pour les boucles, les fonctions récursives vont nous permettre d’exécuter une action en boucle 
+            et jusqu’à ce qu’une certaine condition de sortie soit vérifiée. 
+        </p>
+        
+        <br><br>
+        Aller lire le code source ->
+    </p>
+    
+    <button id="myButton">My Button</button>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+
+    <script>
+        // Utiliser une variable
+            let alerteRouge = function () {
+                alert("Je suis une fonction anonyme");
+            }
+            //A DECOMMENTER// alerteRouge();
+        
+        // L’auto-invoquer
+            /*
+            (function () {
+                alert("Je suis une fonction anonyme auto-invoquée");
+            })();
+            */
+
+        // Lui passer en paramètre une autre fonction qui va l’exécuter
+            /*
+            function fn (fonction) {
+                fonction();
+            }
+
+            fn(function () {
+                alert("Je suis une fonction anonyme passée en paramètre à une autre fonction");
+            });
+            */
+
+        // Utiliser un événement            
+            document.getElementById("myButton").addEventListener("click", function () {
+                alert("Je suis une fonction anonyme utilisée comme événement");
+            });
+
+        // Les fonctions récursives
+            /**
+             * Fonction qui calcule la factorielle d'un nombre
+             * @param {number} n
+             * @returns {number}
+             * @example factorielle(5) = 120 (5*4*3*2*1)
+             */
+            function factorielle (n) {
+                if (n === 0) {
+                    return 1;
+                }
+                return n * factorielle(n - 1);
+            }
+
+            document.getElementById("p1").innerHTML = "factorielle(5) = " + factorielle(5); 
+            
+            /**
+             * Fonction qui affiche un décompte de n à 0
+             * @param {number} n
+             * @returns {number}
+             * @example decompte(5) = 5 4 3 2 1 0
+             */
+            function decompte (n) {
+                if (n > 0) {
+                    document.getElementById("p2").innerHTML += n + "<br>";
+                    return decompte(n - 1);
+                }else {
+                    return n;
+                }
+                
+            }
+
+            $result = decompte(5);
+            document.getElementById("p3").innerHTML = $result;
+    
+     </script>
+
+    
+  
+</body>
+</html>
