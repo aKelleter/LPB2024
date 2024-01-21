@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructeur objet, prototype et héritage</title>
+    <link rel="stylesheet" href="../styles.css">    
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">           
+        </div>    
+        <div class="screen">
+        <h1>Constructeur objet, prototype et héritage</h1>
+        <hr>
+        <h2>L’utilisation d’un constructeur et la performance </h2>
+        <p> 
+            Dans la leçon précédente, nous avons pu créer plusieurs objets semblables en appelant plusieurs fois 
+            une fonction constructeur personnalisée Utilisateur() et en utilisant le mot clef new
+
+            <br><br>
+            Aller lire le code source ->
+        </p>
+        
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+        <p id="p4"></p>
+        
+        <script>
+
+            // Définition de la fonction constructeur Utilisateur
+            function Utilisateur(prenom, nom, age)
+            {
+                this.prenom = prenom;
+                this.nom = nom;
+                this.age = age;
+                this.nomComplet = function() {
+                    return this.prenom + " " + this.nom;
+                }
+            }
+
+            // Instanciation de deux objets à partir de la fonction constructeur
+            let utilisateur1 = new Utilisateur("John", "Doe", 30);
+            let utilisateur2 = new Utilisateur("Jane", "Smith", 25);
+
+            // Affichage des propriétés et méthodes de chaque objet
+            document.getElementById("p1").innerHTML = utilisateur1.prenom + ' ' + utilisateur1.nom + ' ' + utilisateur1.age +
+            ' ans -> nom complet : ' + utilisateur1.nomComplet();;    
+            
+            document.getElementById("p2").innerHTML = utilisateur1.nom + ' ' + utilisateur1.prenom + ' ' + utilisateur1.age + 
+            ' ans -> nom complet : ' + utilisateur2.nomComplet();;    ;
+        
+        </script>
+
+        <p>
+          
+        </p>
+ 
+        </div>
+    </div>    
+</body>
+</html>

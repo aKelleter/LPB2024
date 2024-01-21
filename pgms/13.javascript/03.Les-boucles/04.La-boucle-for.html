@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+    <div class="container">
+    <div class="screen">
     <h1>La boucle For</h1>
     <hr>
     <p>
@@ -53,26 +55,27 @@
         }
     </script>
 
-<h2>Le mot clé break</h2>
-<hr>
-<p>
-    On va également pouvoir complètement stopper l’exécution d’une boucle et sortir à un moment donné 
-    en utilisant une instruction break au sein de la boucle. Utiliser cette instruction peut à nouveau 
-    s’avérer très intéressant pour optimiser les performances de notre script lorsqu’on utilise une boucle
-    pour chercher une valeur en particulier en itérant parmi un grand nombre de valeurs.<br><br>
+    <h2>Le mot clé break</h2>
+    <hr>
+    <p>
+        On va également pouvoir complètement stopper l’exécution d’une boucle et sortir à un moment donné 
+        en utilisant une instruction break au sein de la boucle. Utiliser cette instruction peut à nouveau 
+        s’avérer très intéressant pour optimiser les performances de notre script lorsqu’on utilise une boucle
+        pour chercher une valeur en particulier en itérant parmi un grand nombre de valeurs.<br><br>
 
-    Aller lire le code source ->
-</p>
-<script>
-    for (let i = 0; i < 10; i++) {
-        
-        if(i == 6){
-            break;
+        Aller lire le code source ->
+    </p>
+    <script>
+        for (let i = 0; i < 10; i++) {
+            
+            if(i == 6){
+                break;
+            }
+            document.write(i + ' ');
         }
-        document.write(i + ' ');
-    }
-</script>
-   
+    </script>
+    </div>
+    </div>
 
 </body>
 </html>

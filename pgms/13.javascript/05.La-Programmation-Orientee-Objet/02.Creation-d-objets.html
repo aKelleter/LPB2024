@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La création des objets</title>
+    <link rel="stylesheet" href="../styles.css">    
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">           
+        </div>    
+        <div class="screen">
+        <h1>La création des objets</h1>
+        <hr>
+        <p> 
+            Nous pouvons créer des objets de 4 manières différentes en JavaScript. On va pouvoir : <br><br>
+            • Créer un objet littéral ; (ce que l'on a fait dans le chapitre précédent)<br>
+            • Utiliser le constructeur Object() ; <br>
+            • Utiliser une fonction constructeur personnalisée ; <br>
+            • Utiliser la méthode create(). <br>
+            Ces différents moyens de procéder vont être utilisés dans des contextes différents, selon 
+            ce que l’on souhaite réaliser. <br>
+            
+            <br><br>
+            Aller lire le code source ->
+        </p>
+        
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+        <p id="p4"></p>
+
+        <h2>Création d’un objet littéral </h2>
+        <p>
+            On parle ici d’objet « littéral » car nous avons défini chacune de ses propriétés et de ses méthodes lors de 
+            la création, c’est-à-dire littéralement. 
+        </p>
+        <p>
+            Pour créer un objet littéral, on utilise une syntaxe utilisant une paire d’accolades { … } qui indique 
+            au JavaScript que nous créons un objet.
+        </p>
+        <script>
+
+            // Création d'un objet utilisateur, c'est un objet littéral (objet créé à partir d'une variable)
+            let utilisateur = {
+                nom : "John",
+                prenom : "Doe",
+                age : 25,
+
+                // Adresse est un objet imbriqué dans l'objet utilisateur
+                adresse : {
+                    rue : "1 rue de la Paix",
+                    ville : "Paris",
+                    codePostal : "75000"
+                },
+                
+                // Les méthodes sont des fonctions qui sont stockées dans des propriétés
+                direBonjour : function() {
+                    document.getElementById("p1").innerHTML = "Bonjour, je m'appelle " + this.nom + " " + this.prenom + " et j'ai " + this.age + " ans.";
+                },
+
+                donnerAdresse : function() {
+                    document.getElementById("p2").innerHTML = "J'habite au " + this.adresse.rue + " à " + this.adresse.ville + " (" + this.adresse.codePostal + ").";
+                },
+
+            };
+
+            utilisateur.direBonjour();
+            utilisateur.donnerAdresse();
+            document.getElementById("p3").innerHTML = "L'objet utilisateur est de type : " + typeof utilisateur;
+        
+        </script>
+        <p>            
+            Nos objets vont généralement être stockés dans des variables. Par abus de langage, on confondra alors souvent la variable et l’objet 
+            et on parlera donc « d’objet » pour faire référence à notre variable stockant une valeur de type objet. 
+            Un objet est composé de différentes paires  « nom : valeur » qu’on appelle membres. Chaque nom d’un membre doit être séparé 
+            de sa valeur par un caractère deux-points : et les différents membres d’un objet doivent être séparés les uns des autres par une virgule. <br> <br>
+            La partie « nom » de chaque membre suit les mêmes règles que le nommage d’une variable. La partie valeur d’un membre peut être 
+            n’importe quel type de valeur : une chaine de caractère, un nombre, une fonction, un tableau ou même un autre objet littéral. 
+            Les membres d’un objet qui ne servent qu’à stocker des données sont appelés des propriétés tandis que ceux qui manipulent des 
+            données (c’est-à-dire ceux qui contiennent des fonctions en valeur) sont appelés des méthodes. 
+        </p>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+
+
+
+

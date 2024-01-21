@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+    <div class="container">
+    <div class="screen">
     <h1>La programmation orientée objet</h1>
     <hr>
     <p> 
         JavaScript : les objets et la programmation orientée objet. <br> <br>
-        Aller lire les pages 111 et 112 du livre sur les paradigmes. <br> <br>
-       
+        <b>Important : Aller lire les pages 111 et 112 du livre sur les paradigmes.</b> <br> <br>
+        Le JavaScript est un langage qui intègre l’orienté objet dans sa définition même ce qui 
+        fait que <b>tous les éléments du JavaScript vont soit être des objets, soit pouvoir être 
+        convertis et traités comme des objets</b>. Il est donc essentiel de bien comprendre cette partie 
+        sur les objets pour véritablement maitriser le JavaScript et utiliser tout ce qui fait sa puissance. 
+    </p>
+    <p>
+        Pour le dire très simplement, un objet en JavaScript est un conteneur qui va pouvoir stocker plusieurs variables 
+        qu’on va appeler ici des propriétés. Lorsqu’une propriété contient une fonction en valeur, on appelle alors 
+        la propriété une méthode. Un objet est donc un conteneur qui va posséder un ensemble de propriétés et de méthodes 
+        qu’il est cohérent de regrouper. 
     </p>
         
         <br><br>
@@ -25,9 +36,57 @@
     <p id="p4"></p>
 
     <script>
-        
+
+        // Création d'un objet utilisateur, c'est un objet littéral (objet créé à partir d'une variable)
+        let utilisateur = {
+            nom : "John",
+            prenom : "Doe",
+            age : 25,
+
+            // Adresse est un objet imbriqué dans l'objet utilisateur
+            adresse : {
+                rue : "1 rue de la Paix",
+                ville : "Paris",
+                codePostal : "75000"
+            },
+            
+            // Les méthodes sont des fonctions qui sont stockées dans des propriétés
+            direBonjour : function() {
+                document.getElementById("p1").innerHTML = "Bonjour, je m'appelle " + this.nom + " " + this.prenom + " et j'ai " + this.age + " ans.";
+            },
+
+            donnerAdresse : function() {
+                document.getElementById("p2").innerHTML = "J'habite au " + this.adresse.rue + " à " + this.adresse.ville + " (" + this.adresse.codePostal + ").";
+            },
+
+        };
+
+        utilisateur.direBonjour();
+        utilisateur.donnerAdresse();
+        document.getElementById("p3").innerHTML = "L'objet utilisateur est de type : " + typeof utilisateur;
     
     </script>
+
+    
+    <h2> Quels avantages et intérêts de coder en orienté objet en JavaScript ? </h2>
+    <p>
+        Le développement orienté objet correspond à une autre façon d’envisager et d’organiser son code en groupant des éléments cohérents au sein d’objets. <br> <br>
+        Les intérêts supposés principaux de développer en orienté objet plutôt qu’en procédural 
+        par exemple sont de permettre une plus grande modularité ou flexibilité du code ainsi qu’une meilleure lisibilité et une meilleure maintenabilité de celui-ci. <br> <br>
+        Dans tous les cas, les objets font partie du langage JavaScript natif et il est donc obligatoire de savoir les utiliser pour déverrouiller tout le potentiel 
+        du JavaScript. En effet, vous devez bien comprendre ici que certains langages ne proposent pas de composants objets et donc ne nous permettent pas de 
+        créer des objets et ainsi de créer du code orienté objet. <br> <br> Certains autres langages supportent l’utilisation d’objets et possèdent quelques objets 
+        natifs (objets prédéfinis et immédiatement utilisables). 
+    </p>
+
+    <p>
+        Le langage JavaScript, pour sa part, possède une très grande composante objet et  <b>la plupart des éléments qu’on va manipuler en JavaScript proviennent 
+        d’objets natifs du langage</b>. Il est donc indispensable de comprendre comment la programmation orientée objet fonctionne et de connaitre ces objets 
+        natifs pour utiliser pleinement le JavaScript.
+    </p>
+    </div>
+    </div>
+
   
 </body>
 </html>

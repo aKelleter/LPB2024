@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer des objets avec une fonction constructeur</title>
+    <link rel="stylesheet" href="../styles.css">    
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">           
+        </div>    
+        <div class="screen">
+        <h1>Créer des objets avec une fonction constructeur</h1>
+        <hr>
+        <h2></h2>
+        <p> 
+            Une fonction constructeur d’objets est une fonction qui va nous permettre de créer des objets semblables. 
+            En JavaScript, n’importe quelle fonction va pouvoir faire office de constructeur d’objets. <br> <br>
+            Pour construire des objets à partir d’une fonction constructeur, nous allons devoir suivre deux étapes : 
+            il va déjà falloir définir notre fonction constructeur et ensuite nous allons appeler ce constructeur avec une syntaxe un peu spéciale 
+            utilisant le mot clefs new. Dans une fonction constructeur, on va pouvoir définir un ensemble de propriétés et de méthodes. Les objets 
+            créés à partir de ce constructeur vont automatiquement posséder les (« hériter des ») propriétés et des méthodes définies dans le constructeur. 
+            Comment une fonction peut-elle contenir des propriétés et des méthodes ? C’est très simple : <b> les fonctions sont en fait un type particulier 
+            d’objets en JavaScript ! </b> Comme tout autre objet, une fonction peut donc contenir des propriétés et des méthodes. 
+
+            <br><br>
+            Aller lire le code source ->
+        </p>
+        
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+        <p id="p4"></p>
+        
+        <script>
+
+            // Définition de la fonction constructeur Utilisateur
+            function Utilisateur(prenom, nom, age)
+            {
+                this.prenom = prenom;
+                this.nom = nom;
+                this.age = age;
+                this.nomComplet = function() {
+                    return this.prenom + " " + this.nom;
+                }
+            }
+
+            // Instanciation de deux objets à partir de la fonction constructeur
+            let utilisateur1 = new Utilisateur("John", "Doe", 30);
+            let utilisateur2 = new Utilisateur("Jane", "Smith", 25);
+
+            // Affichage des propriétés et méthodes de chaque objet
+            document.getElementById("p1").innerHTML = utilisateur1.prenom + ' ' + utilisateur1.nom + ' ' + utilisateur1.age +
+            ' ans -> nom complet : ' + utilisateur1.nomComplet();;    
+            
+            document.getElementById("p2").innerHTML = utilisateur1.nom + ' ' + utilisateur1.prenom + ' ' + utilisateur1.age + 
+            ' ans -> nom complet : ' + utilisateur2.nomComplet();;    ;
+        
+        </script>
+
+        <p>
+            Comme notre constructeur est une fonction, on va pouvoir l’appeler autant de fois qu’on le veut et donc créer autant d’objets 
+            que souhaité à partir de celui-ci et c’est d’ailleurs tout l’intérêt d’utiliser un constructeur. 
+            Chaque objet créé à partir de ce constructeur partagera les propriétés et méthodes de celui-ci. 
+        </p>
+        <p>
+            Cet exemple devrait normalement également vous permettre de comprendre toute l’utilité du mot clef this. Ce mot clef sert à représenter 
+            l’objet couramment utilisé. A chaque nouvel objet crée, il va être remplacé par l’objet en question et cela va nous permettre d’initialiser 
+            différemment chaque propriété pour chaque objet. 
+        </p>
+        <h2>Constructeur et différenciation des objets</h2>
+        <p>            
+            On pourrait à première vue penser qu’il est contraignant d’utiliser un constructeur puisque cela nous « force » à créer des objets 
+            avec une structure identique et donc n’offre pas une grande flexibilité. En réalité, ce n’est pas du tout le cas en JavaScript 
+            puisqu’on va pouvoir, une fois un objet créé et à n’importe quel moment de sa vie, modifier les valeurs de ses propriétés et ses méthodes 
+            ou lui en attribuer de nouvelles. <br> <br> La fonction constructeur doit vraiment être vue en JavaScript comme un plan de base pour la création d’objets 
+            similaires et comme un moyen de gagner du temps et de la clarté dans son code. On ne va définir dans cette fonction que les caractéristiques 
+            communes de nos objets et on pourra ensuite rajouter à la main les propriétés particulières à un objet. 
+        </p>
+ 
+        </div>
+    </div>    
+</body>
+</html>

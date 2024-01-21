@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le point , les crochets et $this</title>
+    <link rel="stylesheet" href="../styles.css">    
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">           
+        </div>    
+        <div class="screen">
+        <h1>Le point , les crochets et $this</h1>
+        <hr>
+        <h2>Utiliser le point pour accéder aux membres d’un objet, les modifier ou en définir de nouveaux</h2>
+        <p> 
+            Pour accéder aux propriétés et aux méthodes d’un objet, on utilise le caractère point . qu’on appelle également 
+            un accesseur. On va ici commencer par préciser le nom de l’objet puis l’accesseur puis enfin le membre auquel 
+            on souhaite accéder. Cet accesseur va nous permettre non seulement d’accéder aux valeurs de nos différents 
+            membres mais également de modifier ces valeurs.        
+            <br><br>
+            Aller lire le code source ->
+        </p>
+        
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+        <p id="p4"></p>
+        
+        <script>
+
+            // Création d'un objet utilisateur, c'est un objet littéral (objet créé à partir d'une variable)
+            let utilisateur = {
+                nom : "John",
+                prenom : "Doe",
+                age : 25,
+
+                // Adresse est un objet imbriqué dans l'objet utilisateur
+                adresse : {
+                    rue : "1 rue de la Paix",
+                    ville : "Paris",
+                    codePostal : "75000"
+                },
+                
+                // Les méthodes sont des fonctions qui sont stockées dans des propriétés
+                direBonjour : function(pclass) {
+                    document.getElementById(pclass).innerHTML = "Bonjour, je m'appelle " + this.nom + " " + this.prenom + " et j'ai " + this.age + " ans.";
+                },
+
+                donnerAdresse : function(pclass) {
+                    document.getElementById(pclass).innerHTML = "J'habite au " + this.adresse.rue + " à " + this.adresse.ville + " (" + this.adresse.codePostal + ").";
+                },
+
+            };
+
+
+            utilisateur.direBonjour("p1");
+            utilisateur.donnerAdresse("p2");
+
+            // Modification de la valeur d'une propriété
+            utilisateur.prenom = "Jane";
+            utilisateur.nom = "Smith";
+            utilisateur.direBonjour("p3");
+
+            // Ajout d'une propriété à l'objet utilisateur
+            utilisateur.email = "john@mail.com";
+
+            document.getElementById("p4").innerHTML = "L'email de l'utilisateur est : " + utilisateur.email;
+                    
+        </script>
+        <p>      
+            Enfin, on va encore pouvoir utiliser notre accesseur pour créer de nouveaux membres pour notre objet. 
+            Pour cela, il suffit de définir un nouveau nom de membre et de lui passer une valeur.
+        </p>
+
+        <h2>Utiliser les crochets pour accéder aux propriétés d’un objet, les modifier ou en définir de nouvelles </h2>
+        <p>
+            On va également pouvoir utiliser des crochets plutôt que le point pour accéder aux propriétés de nos objets,
+            mettre à jour leur valeur ou en définir de nouvelles. Cela ne va en revanche pas fonctionner pour les méthodes. 
+            Les crochets vont être particulièrement utiles avec les valeurs de type tableau (qui sont des objets particuliers 
+            qu’on étudiera plus tard dans ce cours) puisqu’ils vont nous permettre d’accéder à une valeur en particulier 
+            dans notre tableau. Dans le code précédent, la valeur de la propriété nom par exemple est un tableau. 
+            Notez qu’on utilise également ces mêmes crochets pour définir un tableau (encore une fois, nous reviendrons
+            plus tard là-dessus). <br><br>
+            
+            Un tableau correspond à un ensemble de valeurs auxquelles vont être associées des index ou des clefs. 
+            On appelle l’ensemble clef + valeur un élément du tableau. 
+            La plupart des langages de programmation gèrent deux types de tableaux : <br> <br>
+            - les tableaux numérotés et les tableaux associatifs. <br> <br>
+            
+            <b>Le JavaScript est un langage qui ne supporte que l’utilisation de tableaux numérotés. </b>
+
+
+            <br><br>
+            Aller lire le code source ->
+        </p>
+
+        <p id="p5"></p>
+        <p id="p6"></p>
+        <p id="p7"></p>
+        <p id="p8"></p>
+
+        <script>
+            // Ajout d'une propriété à l'objet utilisateur
+            utilisateur.hobbies = ["musique", "sport", "cinéma"];
+
+            // Accès et affichage de la valeur de la propriété hobbies
+            document.getElementById("p5").innerHTML = "Les hobbies de l'utilisateur sont : " + utilisateur["hobbies"];
+
+            // Accès et affichage de la seconde valeur du tableau hobbies
+            document.getElementById("p6").innerHTML = "Le second hobby de l'utilisateur est : " + utilisateur["hobbies"][1];
+
+        </script>
+
+        <h2>L’utilisation du mot clef this </h2>
+        <p>
+            Il nous reste une dernière partie de notre objet à définir : le mot clef this qu’on utilise au sein de notre méthode direBonjour(). 
+            Le mot clef this est un mot clef qui apparait fréquemment dans les langages orientés objets. Dans le cas présent, il sert à faire référence 
+            à l’objet qui est couramment manipulé. <br> <br>
+            Pour le dire très simplement, c’est un prête nom qui signifie représente l'objet. Il va être remplacé par le nom de l’objet actuellement utilisé 
+            lorsqu’on souhaite accéder à des membres de cet objet. En l’occurrence, lorsqu’on écrit utilisateur.direBonjour(), le mot clef this va être 
+            remplacé par utilisateur. Quel intérêt d’utiliser this plutôt que directement utilisateur ? <br> <br> Dans le cas de la création d’un objet littéral, 
+            il n’y en a strictement aucun. Cependant, vous allez voir qu’il va vite devenir indispensable d’utiliser this dès qu’on va commencer à créer 
+            des objets à la chaine de façon dynamique en utilisant par exemple un constructeur. A voir dans la prochaine leçon !
+        </p>
+
+        </div>
+    </div>
+    
+</body>
+</html>
+
+
+
+
+
