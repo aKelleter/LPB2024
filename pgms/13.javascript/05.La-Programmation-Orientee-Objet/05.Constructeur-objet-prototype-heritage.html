@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../styles.css">   
     <script> let path = "chapter";</script>  
 </head>
-<body>
+<body id="top">
     <div class="container">        
         <div class="screen">
         <nav></nav>     
@@ -111,20 +111,141 @@
             grands types de langages orientés objet : <br> <br> 
             - ceux basés sur les classes et<br>
             - ceux basés sur les prototypes. <br> <br>
+
             La majorité des langages orientés objets sont basés sur les classes et c’est souvent à cause de cela que les personnes ayant 
             déjà une certaine expérience en programmation ne comprennent pas bien comme fonctionne l’orienté objet en JavaScript. <br> <br>
-            En effet, les langages objets basés sur les classes et ceux basés sur les prototypes vont fonctionner différemment. 
+            En effet, les langages objets basés sur les classes et ceux basés sur les prototypes vont fonctionner différemment. <br> <br>
             Pour information, une classe est un plan général qui va servir à créer des objets similaires. Une classe va généralement contenir 
             des propriétés, des méthodes et une méthode constructeur. Cette méthode constructeur va être appelée automatiquement dès qu’on va créer 
             un objet à partir de notre classe et va nous permettre dans les langages basés sur les classes à initialiser les propriétés 
-            spécifiques des objets qu’on crée. <br> <br>            
+            spécifiques des objets qu’on crée. <br> <br>        
+
             Dans les langages orientés objet basés sur les classes, tous les objets sont créés à partir de classes et vont hériter des 
             propriétés et des méthodes définies dans la classe.
+        </p>
+        <p>
+            Dans les langages orientés objet utilisant des prototypes comme le JavaScript, tout est objet et il n’existe pas de classes et l’héritage va se faire au 
+            moyen de prototypes. Ce qui va suivre n’est pas forcément évident à se représenter mais est néanmoins essentiel pour bien maitriser le JavaScript orienté objet. <br> <br>
+            Soyez donc bien attentif. <br>
+            <b>Avant tout, je tiens à vous rappeler que les fonctions en JavaScript sont avant tout des objets.</b> <br> <br>
+
+            Lorsqu’on <b>créé une fonction</b>, le JavaScript va automatiquement lui <b>ajouter une propriété prototype</b> qui ne va être utile que lorsque la fonction est utilisée 
+            comme constructeur, c’est-à-dire lorsqu’on l’utilise avec la syntaxe new. <br> <br> 
+            
+            Cette propriété prototype possède une valeur qui est elle-même un objet. 
+            On parlera donc de « prototype objet » ou « d’objet prototype » pour parler de la propriété prototype. Par défaut, la propriété prototype d’un constructeur 
+            ne contient que deux propriétés : <br><br> 
+            - une propriété constructor qui renvoie vers le constructeur contenant le prototype et <br>
+            - une propriété "prototype" (anciennement __proto__ dans chrome) qui contient elle-même de nombreuses propriétés et méthodes.
+        </p>
+        <p>           
+           <b>La propriété "prototype" de l’objet créé va être égale à la propriété "prototype" du constructeur qui a servi à créer l’objet.</b>
+        </p>
+        <div class="code">
+ <pre>
+ Représentation "graphique" de la situation  : <br>
+ <code>
+     <------------<------------<-----------<----------|           
+ function() -> prop : prototype = (object) : -> constructor <br>   
+                                             -> prop : prototype (__proto__) -> prop(s)/méthode(s) : <br> 
+                                                                                 constructor, 
+                                                                                 toString, 
+                                                                                 valueOf, 
+                                                                                 hasOwnProperty, 
+                                                                                 isPrototypeOf, 
+                                                                                 propertyIsEnumerable, 
+                                                                                 getPrototypeOf, 
+                                                                                 setPrototypeOf, 
+                                                                                 __defineGetter__, 
+                                                                                 __defineSetter__, 
+                                                                                 __lookupGetter__, 
+                                                                                 __lookupSetter__, 
+                                                                                 __proto__ <br>
+ </code>
+ </pre>
+    </div>
+
+        <p id="p5"></p>
+        <p id="p6"></p>
+
+        <script>
+            document.getElementById("p5").innerHTML = "Utilisateur.prototype : " + Utilisateur.prototype + " -> plus de détails dans la console";
+            console.log(Utilisateur.prototype);
+        </script>
+
+        <h2>A quoi servent la propriété prototype d’un constructeur et la propriété prototype(__proto__) dont disposent à 
+            la fois le constructeur mais également tous les objets créés à partir de celui-ci ?</h2>
+        <p>
+             En fait, le <b>contenu de la propriété prototype d’un constructeur va être partagé par tous les objets créés à partir de ce constructeur</b>. <br> <br>
+
+             Comme cette propriété est un objet, on va pouvoir lui ajouter des propriétés et des méthodes. <br> 
+             De ce fait, tous les objets créés à partir du constructeur vont partager ces mêmes propriétés et méthodes. <br> <br>
+             Cela permet l’héritage en orienté objet JavaScript. On dit qu’un objet « hérite » des membres d’un autre 
+             objet lorsqu’il peut accéder à ces membres définis dans l’autre objet. <br> <br> En l’occurrence, ici, les objets crées à partir du constructeur
+             ne possèdent pas vraiment les propriétés et les méthodes définies dans la propriété prototype du constructeur mais vont pouvoir y accéder 
+             et se « partager » ces membres définis dans l’objet prototype du constructeur. <br> <br> Pour faire fonctionner cela en pratique, il faut se rappeler 
+             que la propriété prototype est un objet et qu’on va donc pouvoir lui ajouter des propriétés et des méthodes comme pour tout autre objet.
+        </p>
+
+        <p id="p7"></p>
+        <p id="p8"></p>
+        <p id="p9"></p>
+        <p id="p10"></p>
+
+        <script>
+            function Personnage(nom, force, vie, degats)
+            {
+                this.nom = nom;
+                this.force = force;
+                this.degats = degats;
+                this.vie = vie;
+                this.sePresenter = function() {
+                    return "Bonjour, je suis " + this.nom + " ma force est de : " + this.force + " et ma vie est de : " + this.vie;
+                }
+            }
+
+            // Ajout d'une méthode à la propriété prototype de la fonction constructeur Personnage
+            Personnage.prototype.attaque = function(cible) {
+                cible.vie -= this.degats;
+                return this.nom + " attaque " + cible.nom + " et lui inflige " + this.degats + " points de dégâts";
+            }
+
+            Personnage.prototype.magie = 10;
+
+            // Instanciation de deux objets à partir de la fonction constructeur Personnage 
+            let joueur1 = new Personnage("John", 25, 100, 5);
+            let joueur2 = new Personnage("Jane", 30, 100, 2);
+
+            // Affichage des propriétés et méthodes de chaque objet
+            document.getElementById("p7").innerHTML = joueur1.sePresenter() + ' - Mon pouvoir pouvoir magique est de ' + joueur1.magie;
+            document.getElementById("p8").innerHTML = joueur2.sePresenter() + ' - Mon pouvoir pouvoir magique est de ' + joueur1.magie;;
+
+            // Affichage de l'attaque du joueur 1 sur le joueur 2   
+            document.getElementById("p9").innerHTML = joueur1.attaque(joueur2) + "<br>" + joueur2.sePresenter();     
+            document.getElementById("p10").innerHTML = joueur2.attaque(joueur1) + "<br>" + joueur1.sePresenter();
+
+            console.log(Personnage.prototype);
+        </script>
+
+        <h2>Conclusion</h2>
+        <p>
+            Définir des propriétés et des méthodes dans le prototype d’un constructeur nous permet ainsi de les rendre accessible à tous les objets créés 
+            à partir de ce constructeur sans que ces objets aient à les redéfinir. <br> <br>
+            
+            Pour avoir le code le plus clair et le plus performant possible : <br> <br>
+            <b>1.</b> Nous <b>définirons</b> donc généralement les <b>propriétés</b> des objets (dont les valeurs 
+            doivent être spécifiques à l’objet) <b>au sein du constructeur</b>. <br> <br>
+            <b>2.</b> Les <b>méthodes</b> (que tous les objets vont pouvoir appeler de la même façon) <b>dans le prototype du constructeur</b>. <br><br>
+            
+            Ce que vous devez bien comprendre ici est que les différents objets se « partagent » ici la même propriété "magie" 
+            et la même méthode attaque() définies dans le constructeur. <br> <br>
+            
+            Pour bien comprendre comment cela est possible, il va falloir comprendre le rôle de la propriété prototype(__proto__).
         </p>
  
         </div>
     </div>    
-    <footer> Cours JavaScript</footer>
-    <script src="../javascript.js"></script>
+    <footer></footer>
+    <script src="../javascript.js" async></script>
 </body>
 </html>

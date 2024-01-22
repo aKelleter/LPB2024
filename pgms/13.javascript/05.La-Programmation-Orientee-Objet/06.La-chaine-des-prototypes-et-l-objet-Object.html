@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La chaine des prototypes ou chaine de prototypage et l’objet Object</title>
+    <link rel="stylesheet" href="../styles.css"> 
+    <script> let path = "chapter";</script>    
+</head>
+<body id="top">
+    <div class="container">                 
+        <div class="screen">
+        <nav></nav>
+        <h1>La chaine des prototypes ou chaine de prototypage et l’objet Object (p137)</h1>
+        <hr>
+        <h2>Comment un objet peut-il accéder à une propriété ou à une méthode définie dans un autre objet ?</h2>
+        <p> 
+            Pour répondre à cette question, il faut savoir que lorsqu’on essaie d’accéder à un membre d’un objet, le navigateur 
+            (qui exécute le JavaScript) va d’abord chercher ce membre au sein de l’objet. S’il n’est pas trouvé, alors le membre 
+            va être cherché au sein de la propriété prototype(__proto__) de l’objet dont le contenu est, rappelons-le, égal à celui de la 
+            propriété prototype du constructeur qui a servi à créer l’objet. <br> <br>
+            
+            Si le membre est trouvé dans la propriété prototype(__proto__) de l’objet (c’est-à-dire s’il a été défini dans la propriété prototype 
+            du constructeur), alors il est utilisé. Si ce n’est pas le cas, alors on va aller chercher dans la propriété prototype(__proto__) 
+            dont dispose également le constructeur et qui va être égale au prototype du constructeur du constructeur. <br> <br>
+            
+            On dit alors qu’on « remonte la chaine des prototypes ». A ce niveau, il faut savoir que <b> tous les objets en JavaScript descendent 
+            par défaut d’un objet de base qui s’appelle Object </b>. Cet objet est l’un des objets JavaScript prédéfinis et permet notamment de 
+            créer des objets génériques vides grâce à la syntaxe new Object(). <b>L’objet ou le constructeur Object() va être le parent de tout 
+            objet en JavaScript </b> (sauf certains objets particuliers créés intentionnellement pour ne pas dépendre d’Object) <b>et également posséder 
+            une propriété prototype</b>. <br> <br>
+            
+            Ainsi, lorsqu’on essaie d’accéder à un membre d’un objet, 
+            le membre en question sera d’abord cherché dans l’objet puis dans sa propriété prototype(__proto__) s’il n’est pas trouvé dans l’objet puis dans 
+            la propriété prototype(__proto__) de son constructeur et etc. jusqu’à remonter au constructeur Object(). 
+
+            Si finalement le membre demandé n’est pas trouvé dans le constructeur Object(), alors il sera considéré comme non présent. <br> <br>
+            Comprendre cela va nous permettre de créer des hiérarchies d’objets et notamment de mettre en place un héritage en orienté objet JavaScript.
+
+            <br><br>
+            Aller lire le code source ->
+        </p>
+
+        <h2>Mise en place d’une hiérarchie d’objets avec héritage en JavaScript</h2>
+
+        <p>
+            Lorsqu’on a compris comment le JavaScript utilise le prototypage, on est capable de créer une hiérarchie d’objets avec des objets qui héritent des membres d’autres objets. 
+            Quel intérêt à faire cela ? Parfois, nous voudrons créer des types d’objets relativement proches. Plutôt que de redéfinir un constructeur entièrement à chaque fois, 
+            il va être plus judicieux de créer un constructeur de base qui va contenir les propriétés et méthodes communes à tous nos objets puis des constructeurs plus spécialisés 
+            qui vont hériter de ce premier constructeur.
+        </p>
+        <p>
+            Attention, à partir d’ici, on commence à toucher à des choses vraiment complexes et qui sont difficiles à assimiler et dont l’intérêt est dur à percevoir 
+            en particulier pour des débutants. Pour autant, ces mécanismes sont au coeur du JavaScript et sont ce qui fait toute sa puissance. <br> <br>
+            Il est donc essentiel de les comprendre tôt ou tard pour utiliser tout le potentiel du JavaScript. Pour mettre en place un héritage ou plus exactement un 
+            système de délégation (qui est un mot beaucoup plus juste que le terme « héritage » dans le cas du JavaScript), nous allons toujours procéder en trois étapes : <br> <br>   
+            <b>1.</b> On va déjà créer un constructeur qui sera notre constructeur parent <br>
+            <b>2.</b> On va ensuite un constructeur enfant qui va appeler le parent <br>
+            <b>3.</b> On va modifier le prototype(__proto__) de la propriété prototype de l’enfant pour qu’elle soit égale au parent <br> <br>
+        </p>
+        
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+        <p id="p4"></p>
+        
+        <script>
+            
+            // On crée 3 constructeurs : un parent et deux enfants
+            // On souhaite que Rectangle() hérite de Ligne() et que Parallelepipede() hérite de Rectangle()
+            // Et donc par extension de Ligne() également
+
+            /**
+             * Notre premier constructeur Ligne() possède une propriété longueur. 
+             * Ce constructeur prend en argument la valeur relative à la propriété 
+             * longueur d’un objet en particulier lorsqu’on crée un objet à partir 
+             * de celui-ci.
+             */ 
+            function Ligne(longeur) {
+                this.longeur = longeur;
+            }
+
+            /**
+             * On ajoute ensuite une première méthode dans le prototype de notre 
+             * constructeur. Cette méthode appartient au constructeur et sera partagée 
+             * par tous les objets créés à partir de celui-ci. 
+             * Jusque-là, c’est du déjà-vu.
+             */
+            Ligne.prototype.taille = function() {
+                return this.longeur;
+            }
+
+            /**
+             * On crée ensuite un deuxième constructeur Rectangle(). Dans ce constructeur, 
+             * vous pouvez remarquer la ligne Ligne.call(this, longueur);. Pour information, 
+             * la méthode call() permet d’appeler une fonction rattachée à un objet donné 
+             * sur un autre objet. La méthode call() est une méthode prédéfinie qui 
+             * appartient au prototype de l’objet natif Function. On l’utilise ici pour 
+             * faire appel au constructeur Ligne() dans notre constructeur Rectangle(). 
+             * Le mot clef this permet de faire référence à l’objet courant et de passer la 
+             * valeur de l’objet relative à sa propriété longueur.
+             */
+            function Rectangle(longeur, largeur) {                             
+                Ligne.call(this, longeur);
+                this.largeur = largeur;
+            }
+
+            /**
+             * Ensuite, on va créer un objet en utilisant le prototype de Ligne grâce à la 
+             * méthode create() qui est une méthode de l’objet Object() et on va assigner 
+             * cet objet au prototype de Rectangle.
+             */
+
+            /**
+             * Le prototype de Rectangle possède donc en valeur un objet créé à partir du 
+             * prototype de Ligne. Cela permet à Rectangle d’hériter des propriétés et 
+             * méthodes définies dans le prototype de Ligne. 
+             */ 
+            Rectangle.prototype = Object.create(Ligne.prototype); // On copie le prototype de Ligne() dans le prototype de Rectangle()
+
+            /**
+             * Il nous reste cependant une chose à régler ici : il va nous falloir rétablir 
+             * la valeur de la propriété constructor de prototype de Rectangle car la ligne 
+             * précédente a eu pour effet de définir Rectangle.prototype.constructor comme 
+             * étant égal à celui de Ligne().
+             */
+            Rectangle.prototype.constructor = Rectangle; // On recrée le constructeur de Rectangle() qui a été écrasé par le prototype de Ligne()
+
+            /**
+             * On ajoute finalement une méthode aire() au prototype de Rectangle.
+             */ 
+            Rectangle.prototype.aire = function() { // On ajoute une méthode à Rectangle()
+                return this.longeur * this.largeur;
+            }
+
+
+            /**
+             * On répète l’opération en création un deuxième niveau d’héritage avec le 
+             * constructeur Parallélépipède() qui va hériter de Rectangle().
+             */
+            function Parallelepipede(longeur, largeur, hauteur) {
+                Rectangle.call(this, longeur, largeur);
+                this.hauteur = hauteur;
+            }
+
+            Parallelepipede.prototype = Object.create(Rectangle.prototype);
+            Parallelepipede.prototype.constructor = Parallelepipede;
+            Parallelepipede.prototype.volume = function() {
+                return this.longeur * this.largeur * this.hauteur;
+            }    
+
+            /**
+             * Enfin, on crée un objet geo à partir du constructeur Parallélépipède(). 
+             * Cet objet va pouvoir utiliser les méthodes définies dans les prototypes de 
+             * Parallélépipède(), de Rectangle() et de Ligne() ! 
+             * Je vous rassure : ce script était l’un des plus durs voire peut être le plus dur 
+             * à comprendre de ce cours.
+             */ 
+            let geo = new Parallelepipede(10, 5, 2);
+            document.getElementById("p1").innerHTML = "Volume du parralélépidède: " + geo.volume();
+            document.getElementById("p2").innerHTML = "Aire du parralélépidède: " + geo.aire();
+            document.getElementById("p3").innerHTML = "Taille de la ligne: " + geo.taille();
+            
+
+            console.log(Parallelepipede.prototype);
+
+
+        </script>
+
+        <p>
+          
+        </p>
+ 
+        </div>
+    </div>   
+    <footer></footer> 
+    <script src="../javascript.js"></script>
+</body>
+</html>
