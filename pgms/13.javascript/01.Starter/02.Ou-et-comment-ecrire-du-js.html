@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Où et comment écrire du JS</title>
     <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script>   
     <script>
        /*
         Placer le code JavaScript dans la balise ouvrante d’un élément HTML 
@@ -26,28 +27,31 @@
     <script src="2.fichier.js"></script>
     </head>
 <body>
-<div class="container">
-<div class="screen">
-<h1>Où et comment écrire du JS</h1>
-<hr>
-<button onclick="affiche()">Afficher une alerte</button>
+    <div class="container">
+        <div class="screen">
+            <nav></nav>
+            <h1>Où et comment écrire du JS</h1>
+            <hr>
+            <button onclick="affiche()">Afficher une alerte</button>
 
-<button onclick="myFunction()">Ajouter un paragraphe avec du texte</button>
-<script>
-    function myFunction() {
-        let p = document.createElement('p');
-        p.innerHTML = 'Bonjour';
-        document.body.appendChild(p);
-    }
-</script>
+            <button onclick="myFunction()">Ajouter un paragraphe avec du texte</button>
+            <script>
+                function myFunction() {
+                    let p = document.createElement('p');
+                    p.innerHTML = 'Bonjour';
+                    document.body.appendChild(p);
+                }
+            </script>
 
-<button onclick="(() => {
-    let p = document.createElement('p');
-    p.innerHTML = 'Hello World';
-    document.body.appendChild(p);
-    })()">Ajouter un paragraphe avec du texte
-</button>
-</div>
-</div>
+            <button onclick="(() => {
+                let p = document.createElement('p');
+                p.innerHTML = 'Hello World';
+                document.body.appendChild(p);
+                })()">Ajouter un paragraphe avec du texte
+            </button>
+        </div>
+    </div>
+    <footer></footer>
+    <script src="../javascript.js"></script>
 </body>
 </html>

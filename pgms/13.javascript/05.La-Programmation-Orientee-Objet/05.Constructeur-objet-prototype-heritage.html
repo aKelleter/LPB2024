@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Constructeur objet, prototype et héritage</title>
-    <link rel="stylesheet" href="../styles.css">    
+    <link rel="stylesheet" href="../styles.css">   
+    <script> let path = "chapter";</script>  
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">           
-        </div>    
+    <div class="container">        
         <div class="screen">
-        <h1>Constructeur objet, prototype et héritage</h1>
+        <nav></nav>     
+        <h1>Constructeur objet, prototype et héritage (p 131)</h1>
         <hr>
         <h2>L’utilisation d’un constructeur et la performance </h2>
         <p> 
@@ -24,10 +24,13 @@
         
         <p id="p1"></p>
         <p id="p2"></p>
-        <p id="p3"></p>
-        <p id="p4"></p>
+        
         
         <script>
+
+        /**
+         * Avec la fonction constructeur, on peut créer plusieurs objets semblables
+         */   
 
             // Définition de la fonction constructeur Utilisateur
             function Utilisateur(prenom, nom, age)
@@ -46,18 +49,82 @@
 
             // Affichage des propriétés et méthodes de chaque objet
             document.getElementById("p1").innerHTML = utilisateur1.prenom + ' ' + utilisateur1.nom + ' ' + utilisateur1.age +
-            ' ans -> nom complet : ' + utilisateur1.nomComplet();;    
+            ' ans -> nom complet : ' + utilisateur1.nomComplet();    
             
             document.getElementById("p2").innerHTML = utilisateur1.nom + ' ' + utilisateur1.prenom + ' ' + utilisateur1.age + 
-            ' ans -> nom complet : ' + utilisateur2.nomComplet();;    ;
+            ' ans -> nom complet : ' + utilisateur2.nomComplet();
+
+        </script>
+
+        <h3>
+            L’équivalent de cette écriture sous forme d’objet littéral serait la suivante :
+        </h3>
+
+        <p id="p3"></p>
+        <p id="p4"></p>
+
+        <script>
+        
+        /**
+         * Avec les déclarations littérales, on ne peut créer qu'un seul objet
+         * Nous aurons besoin autant de déclarations littérales que d'objets à créer  
+         */    
+
+        let utilisateurJohn = {
+            prenom: "John",
+            nom: "Doe",
+            age: 30,
+            nomComplet: function() {
+                return this.prenom + " " + this.nom;
+            }
+        } 
+
+        // Affichage des propriétés et méthodes de l'objet
+        document.getElementById("p3").innerHTML = utilisateurJohn.prenom + ' ' + utilisateurJohn.nom + ' ' + utilisateurJohn.age + ' ' + utilisateurJohn.nomComplet();    
+
+        let utilisateurJane = {
+            prenom: "Jane",
+            nom: "Smith",
+            age: 25,
+            nomComplet: function() {
+                return this.prenom + " " + this.nom;
+            }
+        } 
+
+        // Affichage des propriétés et méthodes de l'objet
+        document.getElementById("p4").innerHTML = utilisateurJane.prenom + ' ' + utilisateurJane.nom + ' ' + utilisateurJane.age + ' ' + utilisateurJane.nomComplet();    
+
         
         </script>
 
         <p>
-          
+          L’<b>un des enjeux principaux en tant que développeurs doit toujours être la performance de nos codes</b>. 
+          Dans le cas présent, notre code n’est pas optimal puisqu’en utilisant notre constructeur plusieurs fois on va copier à chaque 
+          fois la méthode bonjour() qui est identique pour chaque objet. Ici, <b>l’idéal serait de ne définir notre méthode qu’une seule fois 
+          et que chaque objet puisse l’utiliser lorsqu’il le souhaite. Pour cela, nous allons recourir à ce qu’on appelle des prototypes.</b>
+        </p>
+
+        <h2>Le prototype en Javascript orienté objet</h2>
+
+        <p>
+            Le JavaScript est un langage orienté objet basé sur la notion de prototypes. Vous devez en effet savoir qu’il existe deux 
+            grands types de langages orientés objet : <br> <br> 
+            - ceux basés sur les classes et<br>
+            - ceux basés sur les prototypes. <br> <br>
+            La majorité des langages orientés objets sont basés sur les classes et c’est souvent à cause de cela que les personnes ayant 
+            déjà une certaine expérience en programmation ne comprennent pas bien comme fonctionne l’orienté objet en JavaScript. <br> <br>
+            En effet, les langages objets basés sur les classes et ceux basés sur les prototypes vont fonctionner différemment. 
+            Pour information, une classe est un plan général qui va servir à créer des objets similaires. Une classe va généralement contenir 
+            des propriétés, des méthodes et une méthode constructeur. Cette méthode constructeur va être appelée automatiquement dès qu’on va créer 
+            un objet à partir de notre classe et va nous permettre dans les langages basés sur les classes à initialiser les propriétés 
+            spécifiques des objets qu’on crée. <br> <br>            
+            Dans les langages orientés objet basés sur les classes, tous les objets sont créés à partir de classes et vont hériter des 
+            propriétés et des méthodes définies dans la classe.
         </p>
  
         </div>
     </div>    
+    <footer> Cours JavaScript</footer>
+    <script src="../javascript.js"></script>
 </body>
 </html>

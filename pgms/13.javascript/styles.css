@@ -4,6 +4,7 @@
     --body-backg-color: rgb(246, 254, 255);
     --header-backg-color: rgb(217, 244, 253);
     --menu-item-color: rgb(15, 125, 235);
+    --menu-backg-color: rgb(227, 233, 240);
     --menu-item-color-hover: rgb(12, 72, 132);
     --danger-color: rgb(217, 12, 12);
     --backg-msg-danger-color: rgb(255, 208, 208);
@@ -42,15 +43,25 @@ h2.title {
     margin-bottom: 2rem;
 }
 
-article a {
+a {
     text-decoration: none;
     color: var(--menu-item-color);
+}
+
+a:hover {
+    color: var(--menu-item-color-hover);
 }
 
 hr {
     margin: 1rem 0;
     border: var(--border-width) solid var(--menu-item-color);
     opacity: .25;
+}
+
+footer{
+    margin-bottom: 5rem;
+    text-decoration: none;
+    color: var(--menu-item-color);
 }
 
 /* ***************************** */
@@ -105,14 +116,14 @@ hr {
 }
 
 .btn-mini {
-    font-size: 0.7rem;
-    background-color: var(--menu-item-color);
-    color: var(--body-backg-color);
-    border: 1px solid var(--menu-item-color);
+    font-size: 0.9rem;
+    background-color: var(--menu-backg-color);
+    color: var(--menu-item-color);
+    border: 1px solid var(--menu-backg-color);
+    text-decoration: none;
     border-radius: 5px;
     padding: 5px;
-    margin-right: 10px;    
-    font-weight: bold;
+    margin-right: 10px; 
 }
 
 .btn-mini:hover {
