@@ -4,8 +4,8 @@
     $_SESSION['APP'] = 'LPB 2024';
 
     // Définition des constantes de l'application
-    const APP_UPDATE = '22/01/2024 17:50';
-    const APP_VERSION = 'v2.5.1';
+    const APP_UPDATE = '22/01/2024 18:05';
+    const APP_VERSION = 'v2.5.2';
     const APP_YEAR = '2024';
     
     // Définition des constantes section/répertoires
