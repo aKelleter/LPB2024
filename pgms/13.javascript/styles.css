@@ -86,6 +86,20 @@ code {
     font-size: 0.8rem;
 }   
 
+.exo {
+    background-color: var(--menu-backg-color);
+    color: var(--menu-item-color);
+    border: 1px solid var(--menu-item-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 0;    
+    font-weight: bold;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    font-size: 1rem;
+}   
+
+
 .container {   
     margin: 0 1rem 0 1rem;
 }
@@ -249,6 +263,10 @@ code {
 
 .welcome > span {
     color: var(--link-color);
+}
+
+.danger {
+    color: var(--danger-color);
 }
 
 /* ***************************** */

@@ -11,27 +11,176 @@
     <div class="container">                 
         <div class="screen">
         <nav></nav>
-        <h1>Les classes dans le Javascript Orienté Objet</h1>
+        <h1>Les classes dans le Javascript Orienté Objet (p 141)</h1>
         <hr>
-        <h2></h2>
+        <h2>Introduction</h2>
         <p> 
-           
+            Il existe deux grands types de langages orientés objet : ceux basés sur les classes, et ceux basés sur les prototypes.
+            Le JavaScript est un langage orienté objet basé sur la notion de prototypes, mais la plupart des langages supportant 
+            l’orienté objet sont basés sur les classes. <br> <br>
+            Le modèle objet des langages orientés objet basés sur les classes est conçu autour de deux entités différentes : <br>
+            - les classes et les objets. <br> <br>
+
+            Une classe est un plan général qui va servir à créer des objets similaires. Le code d’une classe va généralement être 
+            composé de propriétés et de méthodes dont vont hériter les objets qui vont être créés à partir de la classe. <br> <br>
+
+            Une classe pour les langages basés sur les classes va être plus ou moins l’équivalent d’un constructeur pour les langages 
+            prototypés comme le JavaScript. Il existe de grandes différences conceptuelles entre les langages orientés objet basés sur 
+            les classes et ceux bases sur les prototypes. On peut notamment noter les suivantes : <br> <br>
+            • Dans les langages basés sur les classes, tous les objets sont créés en instanciant des classes ; <br>
+            • Une classe contient toutes les définitions des propriétés et méthodes dont dispose un objet. <br>
+              On ne peut pas ensuite rajouter ou supprimer des membres à un objet dans les langages basés sur les classes ; <br>
+            • Dans les langages basés sur les classes, l’héritage se fait en définissant des classes mères et des classes étendues ou classes enfants. <br> <br>
+
 
             <br><br>
             Aller lire le code source ->
         </p>
+        <p>Exemple de classe en PHP</p>
+        <div class="code">
+        <pre>
+            <code>
+ 
+class User
+{
+    protected const STATUS_ACTIVE = 'active';
+    protected const STATUS_INACTIVE = 'inactive';
+ 
+    public function __construct(public string $username, public string $status = self::STATUS_ACTIVE)
+    {
+    }
 
+    public function setStatus(string $status): void
+    {
+        if (!in_array($status, [self::STATUS_ACTIVE, self::STATUS_INACTIVE])) {
+            trigger_error(sprintf('Le status %s n\'est pas valide. Les status possibles sont : %s', $status, 
+            implode(', ', [self::STATUS_ACTIVE, self::STATUS_INACTIVE])), E_USER_ERROR);
+        };
+
+        $this->status = $status;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+}
+
+$utilisateur1 = new User('John Doe');
+$utilisateur2 = new User('Jane Doe', User::STATUS_INACTIVE);
+
+        </code>
+        </pre>
+    </div>
+
+    <p>
+        Retenez simplement qu’ici notre classe nous sert de plan pour créer des objets. On crée des objets en instanciant la classe 
+        et les objets créés à partir de la classe héritent tous des mêmes propriétés (avec des valeurs d’initialisation différentes) 
+        et des mêmes méthodes définies dans la classe.
+    </p>
+
+    <p>
+        Dans les langages orientés objet basés sur les classes, on va également pouvoir créer des hiérarchies de classes. 
+        En effet, on va pouvoir créer des sous-classes à partir d’une classe principale (on dit qu’on « étend » la classe). 
+        Les sous-classes vont hériter de toutes les propriétés et méthodes définies dans la classe principale et vont également pouvoir 
+        définir de nouvelles méthodes et de nouvelles propriétés.
+    </p>
+
+    <h2>Les classes en JavaScript</h2>
+    <p>Le JavaScript a également dans ses dernières versions introduit un mot clef <b>class</b> qui va nous permettre de créer des 
+        architectures objets similaires à ce qu’on a vu au-dessus.
+    </p>
+    <p>
+        <b>Attention cependant : le JavaScript est toujours un langage orienté objet à prototypes et, en tâche de fond, il va convertir nos « classes » selon son modèle prototypes.</b> Les classes JavaScript ne sont donc qu’une nouvelle syntaxe qui nous est proposée par le JavaScript notamment pour les gens plus habitués à travailler avec des langages orientés objet basés sur les classes.
+    </p>
+
+    <p>
+        Pour créer une classe en JavaScript, on va utiliser le mot clef <b>class</b> suivi du nom de la classe. On va ensuite définir
+        le contenu de la classe entre accolades. On va pouvoir définir des propriétés et des méthodes dans la classe. <br> Exemple :
+        <br><br>
+        Aller lire le code source ->
+    </p>
         
         <p id="p1"></p>
         <p id="p2"></p>
         <p id="p3"></p>
-        <p id="p4"></p>
+        
         
         <script>
+            class Ligne {
+                constructor(nom, longeur) {
+                    this.nom = nom;
+                    this.longeur = longeur;
+                }
+
+                taille() {
+                    return {nom : this.nom, longeur : this.longeur};
+                }
+            }
             
-           
+            // Création des objets
+            let ligne1 = new Ligne("ligne1", 10);
+            let ligne2 = new Ligne("ligne2", 20);
+
+            // Affichage des objets
+            document.getElementById("p1").innerHTML = ligne1.taille().nom + " : " + ligne1.taille().longeur;  
+            document.getElementById("p2").innerHTML = ligne2.taille().nom + " : " + ligne2.taille().longeur;
+            //document.getElementById("p3").innerHTML = ligne1.taille();          
 
         </script>
+
+        <p>
+            On crée une nouvelle classe grâce au mot clef <b>class</b>. Dans notre classe, on définit une méthode <b>constructor()</b> qui 
+            va nous servir à initialiser les propriétés des objets créés par la suite à partir de la classe avec les valeurs 
+            courantes des objets. <br> <br>
+            Sous la méthode constructeur, nous allons définir des méthodes de classe auxquelles les objets auront accès. <br> <br>
+            Une fois notre définition de classe complète, on va pouvoir créer des objets à partir de celle-ci de la même manière que précédemment, 
+            c’est-à-dire en utilisant le mot clef <b>new</b> suivi du nom de la classe. On dit qu’on instancie la classe. 
+            Dans le cas présent, on crée deux objets ligne1 et ligne2.
+        </p>
+
+        <h2>Les classes étendues et l'héritage en JavaScript</h2>
+
+        <p>
+            Pour étendre une classe, c’est-à-dire pour créer une classe enfant qui va hériter des propriétés et des méthodes d’une classe parent, 
+            nous allons utiliser le mot clef <b>extends</b>.
+        </p>
+
+        <p id="p4"></p>
+        <p id="p5"></p>
+
+        <script>
+            
+            class rectangle extends Ligne
+            {
+                constructor(nom, longeur, largeur) {
+                    super(nom, longeur);
+                    this.largeur = largeur;
+                }
+
+               aire() {
+                    return {nom : this.nom, aire : this.longeur * this.largeur};
+               }
+            }
+
+            // Création des objets
+            let rectangle1 = new rectangle("rectangle1", 10, 20);
+            let rectangle2 = new rectangle("rectangle2", 20, 30);
+
+            // Affichage des objets
+            document.getElementById("p4").innerHTML = rectangle1.aire().nom + " : " + rectangle1.aire().aire;
+            document.getElementById("p5").innerHTML = rectangle2.aire().nom + " : " + rectangle2.aire().aire;
+
+        </script>
+
+        <p>
+            Ici, on crée une classe Rectangle qui vient étendre notre classe de base Ligne avec la syntaxe class Rectangle extends Ligne. 
+            <b>La chose à savoir ici est que nous devons utiliser le mot clef super() qui permet d’appeler le constructeur parent dans le constructor() de notre classe fille </b> 
+            afin que les propriétés soient correctement initialisées. On peut ensuite créer des objets à partir de notre classe fille. 
+            Les objets vont également avoir accès aux propriétés et méthodes de la classe mère. <br> <br>
+
+            Nous ne pousserons pas plus loin l'étude des classes en JavaScript dans ce cours. :)
+        </p>
  
         </div>
     </div>   

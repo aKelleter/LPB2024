@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primitives et objets prédéfinis : Introduction</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Primitives et objets prédéfinis : Introduction</h1>
+    <hr>
+    <h2>Retour sur les types de valeurs En JavaScript</h2>
+    <p> 
+        En JavaScript, il existe 7 types de valeurs différents. <br>
+        Chaque valeur qu’on va pouvoir créer et manipuler en JavaScript va obligatoirement appartenir à l’un de ces types. 
+        Ces types sont les suivants : <br> <br>
+        • string ou « chaine de caractères » en français ; <br>
+        • number ou « nombre » en français ; <br>
+        • boolean ou « booléen » en français ; <br>
+        • null ou « nul / vide » en français; <br>
+        • undefined ou « indéfini » en français ; <br>
+        • symbol ou « symbole » en français ; <br>
+        • object ou « objet » en français ; <br> <br>
+        
+        Les valeurs appartenant aux 6 premiers types de valeurs sont appelées des valeurs primitives. Les valeurs appartenant au type object sont des objets.
+    </p>
+    <p>
+        Le JavaScript possède deux grandes catégories de types de données : les valeurs primitives et les objets.
+    </p>
+    <p>
+        On appelle valeur primitive en JavaScript une valeur qui n’est pas un objet et qui ne peut pas être modifiée. <br> <br>
+        En effet, une fois un nombre ou une chaine de caractères définis, on ne va plus pouvoir les modifier en JavaScript. 
+        Bien évidemment, si on stocke une chaine de caractères dans une variable, par exemple, on va tout à fait pouvoir 
+        écraser cette chaine pour stocker une autre valeur. Pour autant, la chaine de caractères stockée n’aura pas été modifiée : <br>
+        elle aura été écrasée et c’est bien une nouvelle valeur complètement différente qui va être stockée dans notre variable dans ce cas. 
+        Cela va être différent pour les objets : on va tout à fait pouvoir modifier les membres d’un objet.
+    </p>
+   
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+
+    <script>
+
+        // Primitives
+        let ch1 = "Bonjour";
+        let ch2 = "Bonjour";
+
+        document.getElementById("p1").innerHTML = "? ch1 === ch2 : " + (ch1===ch2);
+
+        // Objets
+        let obj1 = {nom : "John"};
+        let obj2 = {nom : "John"};
+        let obj3 = obj1;
+
+        // obj1 et obj2 sont deux objets différents : false
+        document.getElementById("p2").innerHTML = "? obj1 === obj2 : " + (obj1===obj2);
+
+        // obj1 et obj3 sont deux références vers le même objet : true
+        document.getElementById("p3").innerHTML = "? obj1 === obj3 : " + (obj1===obj3);
+
+
+    </script>
+    
+
+
+    <p>
+        A partir d’ici, il y a une chose que vous devez bien comprendre : chaque type de valeur primitive, à l’exception de null et de undfenied, 
+        possède un équivalent objet prédéfini en JavaScript. Ainsi, le JavaScript possède quatre objets natifs String, Number, Boolean et Symbol 
+        qui contiennent des propriétés et des méthodes.
+    </p>
+
+    <p id="p5"></p>
+    <p id="p6"></p>
+
+    <script>
+        // Création d'une chaine de caractères primitive
+        let chaine1 = "Bonjour";
+        // Création d'une chaine de caractères objet
+        let chaine2 = new String("Hello");
+
+        document.getElementById("p5").innerHTML = "Type de la variable chaine1 : " + typeof chaine1;
+        document.getElementById("p6").innerHTML = "Type de la variable chaine2 : " + typeof chaine2;
+    </script>
+
+    <h2>Valeur primitive ou objet : que préférer ?</h2>
+
+    <p>
+        Quel intérêt de pouvoir définir une chaine de caractères de deux façons et quelle syntaxe préférer ? Nous allons répondre à ces 
+        questions immédiatement. <br> <br> Ici, vous devez bien comprendre que notre constructeur String() possède de nombreuses méthodes et propriétés 
+        dont va hériter notre objet let ch2 et qu’on va donc pouvoir utiliser.
+    </p>
+
+
+    <p id="p7"></p>
+    <p id="p8"></p>
+    <p id="p9"></p>
+    <p id="p10"></p>
+
+    <p id="p11"></p>
+    <p id="p12"></p>
+
+
+    <script>
+
+        let chaine4 = new String("Hello World!");
+        let chaine5 = "Game Over";
+        document.getElementById("p7").innerHTML = "Longueur de la chaine de caractères (Hello World!): " + chaine4.length;
+        document.getElementById("p8").innerHTML = "Premier caractère de la chaine de caractères (Hello World!): " + chaine4.charAt(0);
+        document.getElementById("p9").innerHTML = "Dernier caractère de la chaine de caractères (Hello World!): " + chaine4.charAt(chaine4.length-1);
+        document.getElementById("p10").innerHTML = "Chaine de caractères en majuscules (Hello World!): " + chaine4.toUpperCase();
+
+        document.getElementById("p11").innerHTML = "Longueur de la chaine de caractères (Game Over) : " + chaine5.length;
+        document.getElementById("p12").innerHTML = "Premier caractère de la chaine de caractères (Game Over) : " + chaine5.toUpperCase();
+
+
+
+    </script>
+
+    <p>
+        A ce stade, vous devriez donc vous dire qu’il est beaucoup mieux de créer des objets que d’utiliser les valeurs primitives 
+        puisqu’on a accès de de nombreux nouveaux outils avec ceux-ci. <br> <br>
+        En fait, c’est le contraire : les valeurs primitives ont été mises en place par le JavaScript justement pour nous éviter 
+        d’avoir à créer des objets. En effet, vous devez savoir que déclarer une valeur primitive offre de bien meilleurs 
+        résultats en termes de performances que de créer un nouvel objet et c’est la raison principale de l’existence de ces valeurs. <br> <br>
+        De plus, vous devez savoir qu’on va pouvoir utiliser les méthodes et propriétés définies dans les constructeurs relatifs 
+        avec nos valeurs primitives pour avoir en quelques sortes « le meilleur des deux mondes ». <br> <br>
+        Comment cela est-ce possible ? 
+        Pour comprendre cela, il faut savoir que lorsqu’on tente d’accéder à une propriété ou à une méthode depuis une valeur 
+        primitive, le JavaScript va convertir cette valeur en un objet relatif au type de la valeur primitive (un objet String pour 
+        une chaine de caractères, Number pour un nombre, etc.).
+    </p>
+
+    <p>
+        Dans la suite de cette partie, nous allons étudier en détail les constructeurs liés aux types de valeurs primitives et découvrir 
+        leurs propriétés et méthodes les plus utiles. <br> <br>Nous allons également étudier quelques objets spéciaux qui ne permettent malheureusement 
+        pas l’établissement de valeurs primitives mais qui sont incontournables comme l’objet Math, l’objet Array (tableau) ou encore l’objet Date. 
+        Tous les objets que nous verrons dans cette partie sont des objets prédéfinis en JavaScript. On appelle également ces objets natifs des 
+        objets « globaux ».
+    </p>
+
+   
+   
+    </div>
+    </div>
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriétés et méthodes de l’objet global String</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Propriétés et méthodes de l’objet global String</h1>
+    <hr>  
+    <p> 
+        L’objet String gère les chaînes de caractères. <br> <br>
+        Le constructeur String() possède deux propriétés et une trentaine de méthodes. <br> <br>
+        Comme nous l’avons vu précédemment, nous n’utiliserons pas la fonction constructeur de cet objet pour créer de nouveaux 
+        objets de type string : on préfèrera en effet utiliser des valeurs primitives qui sont plus performantes et avec 
+        lesquelles on va également pouvoir utiliser les propriétés et méthodes définies dans le constructeur.
+    </p>
+    <h2>Les propriétés de l’objet String</h2>
+    <p>
+        Le constructeur String() ne possède que deux propriétés : <br>
+        - une propriété <b>length</b> et, bien évidemment, <br>
+        - une propriété <b>prototype</b> comme tout objet. <br> <br>
+        
+        La propriété length va nous permettre d’obtenir la longueur d’une chaine de caractères. 
+        Cette longueur est exprimée en points de code (appelées « codets ») sur la base du format UTF-16. 
+        La plupart des caractères comptent pour une unité ou un codet mais certains caractères spéciaux vont être 
+        représentés par deux codets. <br>
+        <b>Attention donc : la propriété length ne renverra pas toujours une valeur égale au nombre de caractères présents 
+        dans la chaine.</b> <br> <br>
+    </p>
+
+    <script>
+        document.write("Nbr car de Bonjour : " + "Bonjour".length);
+    </script>
+
+    <h2>Les méthodes de l’objet String</h2>
+    <p>
+        Le constructeur String() dispose d’une trentaine de méthodes. Nous allons étudier celles qui me semblent les plus utiles ici. 
+    </p>
+    
+    <ol>
+        <li>
+            La méthode <b>include()</b> : permet de déterminer si une chaine de caractères est incluse dans une autre - Retourne true ou false 
+        </li>
+        <li>
+            Les méthodes <b>startsWith()</b> et <b>endsWith()</b> : permettent de déterminer si une chaine de caractères commence ou se termine par une autre chaine - Retourne true ou false
+        </li>    
+    </ol>
+
+    <script>
+        // Méthode includes() : permet de déterminer si une chaine de caractères est incluse dans une autre - Retourne true ou false
+        let ch = "Hello World !";
+        document.write("includes() : " + ch.includes("World") + "<br>");
+
+        // Méthode startsWith() : permet de déterminer si une chaine de caractères commence par une autre chaine - Retourne true ou false
+        document.write("startsWith() : " + ch.startsWith("Hello") + "<br>");
+        document.write("endsWith() : " + ch.endsWith("World") + "<br>");
+
+
+    </script>
+   
+    </div>
+    </div>
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

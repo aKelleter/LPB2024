@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices en JavaScript</title>
+    <link rel="stylesheet" href="../styles.css">    
+    <script> let path = "chapter";</script> 
+</head>
+<body>
+    <div class="container">        
+        <div class="screen">
+            <nav></nav>     
+            <h1>Exercices en JavaScript</h1>
+            <hr>
+            <h2>Quelques exercices... </h2>
+            <h2>1. Définir et appeler une fonction sans arguments</h2>
+            <div class="exo">
+                Dans cet exercice vous devez : <br>
+                - créer une fonction nommée getNum qui renvoie le nombre 42 <br>
+                - appeler la fonction getNum et stocker le résultat dans une variable nommée num <br>
+                - afficher le contenu de la variable num dans la console <br>
+                - afficher le contenu de la variable num dans la page HTML <br>
+            </div>
+
+            <h2>2. Définir et appeler une fonction avec arguments</h2>
+            <div class="exo">
+                Dans cet exercice vous devez : <br>
+                - créez une fonction nommée divideByTwo(arg1, arg2) qui prend 2 arguments (arg1 et arg2) <br>
+                - la fonction doit diviser par deux (arg1 + arg2) si l'addition de (arg1 + arg2) est un nombre pair sinon on retourne un message <br>
+                - appeler la fonction divideByTwo avec deux paramètres de votre choix (faire plusieurs essais) et stocker le résultat dans une variable nommée resultat <br>
+                - afficher le contenu de la variable resultat dans la console <br>
+                - afficher le contenu de la variable resultat dans la page HTML <br>
+            </div>
+
+            <h2>3. Définir et appeler une fonction avec arguments sur les chaînes de caractères</h2>
+            <div class="exo">
+                Dans cet exercice vous devez : <br>
+                - créez une fonction nommée isToLong(arg1, arg2) qui prend en argument 1 (arg1) une chaîne de caractères et en argument 2 (arg2) un nombre entier<br>
+                - la fonction isToLong() retourne vrai (true) si la longueur de la chaîne ne dépasse pas le nombre passé dans l'arg2 et false dans le cas contraire <br>
+                - appeler la fonction divideByTwo avec deux paramètres de votre choix (faire plusieurs essais) et stocker le résultat dans une variable nommée resultat <br>
+                - afficher le contenu de la variable resultat dans la console <br>
+                - afficher le contenu de la variable resultat dans la page HTML <br><br>
+                <b class="danger"> Utilisez arg1.length pour connaitre la taille chaîne de caractères arg1 </b>
+            </div>
+
+            <h2>4. Définir et appeler une fonction  - Tests imbriqués</h2>
+            <div class="exo">
+                - Créez une fonction nommée funEval(note) qui : <br>
+                - prend une note sur 20 en argument <br>
+                - renvoie Hideux si la note est entre 0 et 7 exclus <br>
+                - renvoie Moche si la note entre 7 et 10 exclus <br>
+                - renvoie Nice si la note entre 10 et 15 exclus <br>
+                - renvoie Extra si la note entre 15 et 20 inclus <br>
+                - renvoie BUG si la note n'est pas correcte  <br>
+                - appeler la fonction funEval() avec un paramètre de votre choix (faire plusieurs essais) et stocker le résultat dans une variable nommée resultat <br>
+                - afficher le contenu de la variable resultat dans la console <br>
+                - afficher le contenu de la variable resultat dans la page HTML <br><br>            
+            </div>
+
+            <h2>5. Créer et afficher et utiliser 2 objets Personnage() - Fonction constructeur</h2>
+            <div class="exo">
+                - Créez deux objets avec une fonction constructeur que vous nommerez : Personnage <br>
+                - Avec les propriétés suivantes : nom, force vie, degats (placez des valeurs, au choix, de type nombre dans vos propriétés) <br>
+                - Avec les méthodes suivantes:  attaque(perso) et guerison()<br>
+                - La méthode attaque(perso) doit soustraire les dégats du personnage attaqué à sa vie <br>
+                - La méthode guerison() doit ajouter 10 points de vie au personnage <br>
+                - Créer deux personnage avec votre fonction constructeur <br> 
+                - Afficher les propriétés des personnages dans la console <br>
+                - Afficher les propriétés des personnages dans la page HTML <br>
+                - Faites les s'attaquer entre eux et se soigner <br>
+                - Ensuite, à nouveau : <br>
+                - Afficher les propriétés des personnages dans la console <br>
+                - Afficher les propriétés des personnages dans la page HTML <br>
+                - Et observer les changements <br><br>
+            </div>
+            
+    
+        </div>
+    </div>    
+    <footer></footer>
+    <script src="../javascript.js"></script>
+</body>
+</html>
