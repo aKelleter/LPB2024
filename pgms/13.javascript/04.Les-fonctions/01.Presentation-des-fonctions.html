@@ -34,17 +34,23 @@
         Aller lire le code source ->
     </p>
 
+
     <p id="p1"></p>
     <p id="p2"></p>
-
+    
     <script> 
         // La fonction random() va nous permettre de générer un nombre décimal aléatoire entre 0 et 1
-        document.getElementById('p1').innerHTML = Math.random();
+        let paragraphep1 =  document.getElementById('p1');
+        paragraphep1.style.color = "red";
+        paragraphep1.innerHTML = "La fonction random() va nous permettre de générer un nombre décimal aléatoire entre 0 et 1";
+        document.write(Math.random() + '<br>'); // 0.12345678912345678
 
         // La fonction replace() va nous permettre de chercher et de remplacer une expression par une autres dans une chaine de caractères
         let str = 'Bonjour tout le monde';
         document.getElementById('p2').innerHTML = str.replace('Bonjour', 'Hello');          
     </script>
+
+
    
     <p>
         L’intérêt principal des fonction prédéfinies est de nous permettre de réaliser des opérations complexes de 

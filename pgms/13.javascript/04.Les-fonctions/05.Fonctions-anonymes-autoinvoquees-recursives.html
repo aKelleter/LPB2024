@@ -74,33 +74,38 @@
 
     <script>
         // Utiliser une variable
+        /*
             let alerteRouge = function () {
                 alert("Je suis une fonction anonyme");
             }
             //A DECOMMENTER// alerteRouge();
-        
+        */
         // L’auto-invoquer
-            /*
+        /*    
             (function () {
                 alert("Je suis une fonction anonyme auto-invoquée");
             })();
-            */
+        */   
 
         // Lui passer en paramètre une autre fonction qui va l’exécuter
             /*
-            function fn (fonction) {
-                fonction();
+            // Déclaration
+            function fn (fctAnonyme) {
+                fctAnonyme();
             }
 
+            // Appel
             fn(function () {
                 alert("Je suis une fonction anonyme passée en paramètre à une autre fonction");
             });
             */
 
-        // Utiliser un événement            
+        // Utiliser un événement      
+        /*      
             document.getElementById("myButton").addEventListener("click", function () {
                 alert("Je suis une fonction anonyme utilisée comme événement");
             });
+        */
 
         // Les fonctions récursives
             /**
