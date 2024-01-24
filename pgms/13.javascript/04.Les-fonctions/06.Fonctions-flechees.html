@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les fonctions flèchées</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body>
+    <div class="container">
+    <div class="screen">
+    <nav></nav>
+    <h1>Les fonctions flèchées</h1>
+    <hr>
+    <p> 
+        Il existe une syntaxe plus simple et concise pour créer des fonctions.
+        <br><br>
+        Syntaxe : <br>
+        
+        <div class="div-code">   
+            <pre>
+            let func = (arg1, arg2, ..., argN) => expression;
+            </pre>            
+        </div>
+        <br> <br>
+        Cela va créer une function func qui accepte les arguments arg1...argN, puis évalue l’expression 
+        sur le côté droit et retourne le résultat. <br>
+        Le code ci-dessus est une alternative plus courte à : <br> <br>
+        <div class="div-code">
+            <pre>
+            let func = function(arg1, arg2, ...argN) {
+                return expression;
+             };
+            </pre>
+        </div>    
+
+
+        <br><br>
+        Aller lire le code source ->
+    </p>
+
+    <div class="div-code">
+        <pre>
+            let sum = (a, b) => a + b;
+
+            /* Cette fonction fléchée est la forme raccourcie de :
+                let sum = function(a, b) {
+                    return a + b;
+                };
+            */
+
+            document.write("Résultat de l'addition : " + sum(1, 2) ); // 3
+        </pre>
+    </div>
+   
+    <script>
+        let sum = (a, b) => a + b;
+
+        /* Cette fonction fléchée est la forme raccourcie de :
+            let sum = function(a, b) {
+                return a + b;
+            };
+        */
+
+        document.write("Résultat de l'addition : " + sum(1, 2) ); // 3
+    </script>
+
+    <p>
+        <b>Si nous avons un seul argument, alors les parenthèses peuvent être omises :</b> <br>
+        Par exemple : <br>
+    </p>
+
+    <div class="div-code">
+        <pre>
+            let double = n => n * 2;
+            // Similaire à : let double = function(n) { return n * 2 }
+
+            document.write("Le double de 3 = " + double(3) ); // 6
+        </pre>
+    </div>
+
+    <script>
+        let double = n => n * 2;
+        // Similaire à : let double = function(n) { return n * 2 }
+
+        document.write("Le double de 3 = " + double(3) ); // 6
+    </script>
+
+    <p>
+        <b>Si nous n’avons pas d’arguments, nous devons mettre des parenthèses vides :</b> <br>
+        Par exemple : <br>
+    </p>
+
+    <div class="div-code">
+        <pre>
+            let sayHi = () => document.write("Hello!");
+            sayHi();
+        </pre>  
+    </div>
+
+    <script>
+        let sayHi = () => document.write("Hello!");
+        sayHi();    
+    </script>
+
+    <p>
+        Les fonctions fléchées peuvent être utilisées de la même manière que les Expressions de Fonction. <br>
+        Par exemple pour créer une fonction dynamiquement : <br>
+    </p>
+
+    <div class="div-code">
+        <pre>
+            let age = prompt("Quel âge avez-vous ?", 18);
+
+            let welcome = (age < 18) ?
+            () => document.write("Salut Bro") :
+            () => document.write("Bonjour Monsieur");
+
+            welcome();
+        </pre>
+    </div>
+
+    <script>
+        //let age = prompt("Quel âge avez-vous ?", 18);
+
+        let welcome = (age < 18) ?
+        () => document.write("Salut Bro") :
+        () => document.write("Bonjour Monsieur");
+
+        welcome();
+    </script>  
+    
+    <p>
+        Les fonctions fléchées peuvent paraître étranges et peu lisibles au début, mais cela change rapidement une fois que vous êtes habitué à cette structure.
+        Elles sont très utiles pour des actions sur une ligne; sans oublier que les développeurs sont paresseux par nature (en ce qui concerne l'écriture du code)
+        :)) <br>
+    </p>
+
+    <h2>Les fonctions flèchées multilignes</h2>
+    <p>
+        Les fonctions fléchées vues jusqu’à présent étaient très simples. Elles ont pris des arguments à gauche de =>, 
+        les ont évalués et ont retourné l’expression de droite. <br>
+        Parfois nous avons besoin de plus de complexité, comme des expressions multiples ou des déclarations. <br>
+        Cela est possible avec des accolades les délimitant. Il faut ensuite utiliser un return à l’intérieur de celles-ci.
+    </p>
+
+    <div class="div-code">
+        <pre>
+            let sum = (a, b) => {  // les accolades ouvrent une fonction
+                let result = a + b;
+                return result; // si nous utilisons les accolades, alors nous devons utiliser un return
+            };
+
+            document.write("Résultat de l'addition : " + sum(1, 2) ); // 3
+        </pre>
+    </div>
+    <script>
+        let sum2 = (a, b) => {  // les accolades ouvrent une fonction
+            let result = a + b;
+            return result; // si nous utilisons les accolades, alors nous devons utiliser un return
+        };
+
+        document.write("Résultat de l'addition : " + sum2(1, 2) ); // 3
+    </script>
+    
+    </div>
+    </div>
+    <footer></footer>
+    <script src="../javascript.js"></script>  
+</body>
+</html>

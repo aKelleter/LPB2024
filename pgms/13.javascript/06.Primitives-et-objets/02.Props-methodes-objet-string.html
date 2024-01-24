@@ -33,9 +33,17 @@
         <b>Attention donc : la propriété length ne renverra pas toujours une valeur égale au nombre de caractères présents 
         dans la chaine.</b> <br> <br>
     </p>
-
+    <div class="div-code">
+        <pre>
+        // Propriété length
+        let ch = "Bonjour";
+        document.write("Nbr car de Bonjour : " + ch.length);
+        </pre>
+    </div>
     <script>
+        document.write('<div class="result">');
         document.write("Nbr car de Bonjour : " + "Bonjour".length);
+        document.write('</div>');
     </script>
 
     <h2>Les méthodes de l’objet String</h2>
@@ -50,19 +58,104 @@
         <li>
             Les méthodes <b>startsWith()</b> et <b>endsWith()</b> : permettent de déterminer si une chaine de caractères commence ou se termine par une autre chaine - Retourne true ou false
         </li>    
+        <li>
+            La méthode <b>substring()</b> : permet de retourner une sous-chaîne de la chaîne courante à partir d’un indice de départ et d'un indice de fin facultatif.
+        </li>
+        <li>
+            Les méthodes <b>indexOf()</b> et <b>lastIndexOf()</b> : permettent de retourner l'indice de la première ou de la dernière occurrence de la valeur spécifiée dans une chaîne.
+        </li>
+        <li>
+            La méthode <b>slice()</b> : permet de retourner une copie d'une partie d'un tableau dans un nouveau tableau.
+        </li>
+        <li>
+            La méthode <b>replace()</b> : permet de retourner une nouvelle chaîne de caractères dans laquelle certaines occurrences d'une chaîne de caractères spécifiée sont 
+            remplacées par une autre chaîne de caractères.
+        </li>
+        <li>
+            Les méthodes <b>toUpperCase()</b> et <b>toLowerCase()</b> : permettent de convertir une chaine de caractères en majuscules ou en minuscules.
+        </li>
+        <li>
+            La méthode <b>trim()</b> : permet de supprimer les espaces en début et en fin de chaîne. Elle retourne une nouvelle chaîne.
+        </li>
+
+
+
     </ol>
 
-    <script>
-        // Méthode includes() : permet de déterminer si une chaine de caractères est incluse dans une autre - Retourne true ou false
+    <div class="div-code">
+        <pre>
+            
         let ch = "Hello World !";
-        document.write("includes() : " + ch.includes("World") + "<br>");
+
+        // Méthode includes() : permet de déterminer si une chaine de caractères est incluse dans une autre - Retourne true ou false
+        document.write("includes() : " + ch.includes("World"));
 
         // Méthode startsWith() : permet de déterminer si une chaine de caractères commence par une autre chaine - Retourne true ou false
+        document.write("startsWith() : " + ch.startsWith("Hello"));
+
+        // Méthode endsWith() : permet de déterminer si une chaine de caractères commence par une autre chaine - Retourne true ou false
+        document.write("endsWith() : " + ch.endsWith("World"));
+
+        //La méthode substring() retourne une sous-chaîne de la chaîne courante à partir d’un 
+        indice de départ et d'un indice de fin facultatif.
+        document.write("substring() : " + ch.substring(0, 5));
+
+        // La méthode indexOf() renvoie l'indice de la première occurrence de la valeur spécifiée dans une chaîne.
+        document.write("indexOf() : " + ch.indexOf("W"));        
+        document.write("indexOf() : " + ch.indexOf("World"));
+
+        // La méthode lastIndexOf() renvoie l'indice de la dernière occurrence de la valeur spécifiée dans une chaîne.
+        document.write("lastIndexOf() : " + ch.lastIndexOf("l"));
+
+        // La méthode slice() renvoie une copie d'une partie d'un tableau dans un nouveau tableau.
+        document.write("slice() : " + ch.slice(0, 5));
+
+        // La méthode replace() renvoie une nouvelle chaîne de caractères dans laquelle certaines occurrences d'une chaîne de 
+        // caractères spécifiée sont remplacées par une autre chaîne de caractères.
+        document.write("replace() : " + ch.replace("World", "Mars"));
+
+        // Les méthodes toUpperCase() et toLowerCase() permettent de convertir une chaine de caractères en majuscules ou en minuscules.
+        document.write("toUpperCase() : " + ch.toUpperCase());
+        document.write("toLowerCase() : " + ch.toLowerCase());
+
+        // La méthode trim supprime les espaces en début et en fin de chaîne. Elle retourne une nouvelle chaîne.
+        document.write("trim() : " + ch.trim());
+
+
+
+
+
+        </pre>
+    </div>
+
+    <script>
+        
+        let ch = "Hello World !";
+        let ch2 = "      Bonjour le monde !              ";
+
+        document.write('<div class="result">');
+
+        document.write("includes() : " + ch.includes("World") + "<br>");        
         document.write("startsWith() : " + ch.startsWith("Hello") + "<br>");
         document.write("endsWith() : " + ch.endsWith("World") + "<br>");
+        document.write("substring() : " + ch.substring(0, 5) + "<br>");
+        document.write("indexOf() : " + ch.indexOf("W")+ "<br>");
+        document.write("indexOf() : " + ch.indexOf("World")+ "<br>");
+        document.write("lastIndexOf() : " + ch.lastIndexOf("l")+ "<br>");
+        document.write("slice() : " + ch.slice(0, 5)+ "<br>");
+        document.write("replace() : " + ch.replace("World", "Mars")+ "<br>");
+        document.write("toUpperCase() : " + ch.toUpperCase()+ "<br>");
+        document.write("toLowerCase() : " + ch.toLowerCase()+ "<br>");
+        document.write("trim() : >" + ch2.trim()+ "< <br>");
 
 
+        document.write('</div>');
     </script>
+    <p>
+        Il existe d’autres méthodes,telles que les méthodes <b>match</b>, <b>matchAll()</b> et <b>search()</b> qui vont trouver tout leur intérêt 
+        lorsqu’elles vont être utilisées avec des expressions régulières ou encore la méthode <b>split()</b> qui nécessite de connaitre 
+        les tableaux pour être utilisée correctement.
+    </p>
    
     </div>
     </div>

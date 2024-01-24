@@ -15,18 +15,20 @@
     <hr>
     <h2>Retour sur les types de valeurs En JavaScript</h2>
     <p> 
-        En JavaScript, il existe 7 types de valeurs différents. <br>
+        En JavaScript, il existe 8 types de valeurs différents. <br>
         Chaque valeur qu’on va pouvoir créer et manipuler en JavaScript va obligatoirement appartenir à l’un de ces types. 
         Ces types sont les suivants : <br> <br>
-        • string ou « chaine de caractères » en français ; <br>
-        • number ou « nombre » en français ; <br>
-        • boolean ou « booléen » en français ; <br>
-        • null ou « nul / vide » en français; <br>
-        • undefined ou « indéfini » en français ; <br>
-        • symbol ou « symbole » en français ; <br>
-        • object ou « objet » en français ; <br> <br>
+        • string ou « chaine de caractères » en français ; (primitive - méthodes OK)<br>
+        • number ou « nombre » en français ; (primitive - méthodes OK)<br>
+        • bigint ou « grand nombre entier » en français ; (primitive - méthodes OK)<br>
+        • boolean ou « booléen » en français ; (primitive - méthodes OK)<br>
+        • null ou « nul / vide » en français; (primitive - méthodes NON)<br>
+        • undefined ou « indéfini » en français ; (primitive - méthodes NON)<br>
+        • symbol ou « symbole » en français ; (primitive - méthodes OK)<br>
+        • object ou « objet » en français ; (object - méthodes, c'est un objet donc OUI :))<br> <br>
         
-        Les valeurs appartenant aux 6 premiers types de valeurs sont appelées des valeurs primitives. Les valeurs appartenant au type object sont des objets.
+        Les valeurs appartenant aux 7 premiers types de valeurs sont appelées des valeurs primitives. 
+        Les valeurs appartenant au type object sont des objets.
     </p>
     <p>
         Le JavaScript possède deux grandes catégories de types de données : les valeurs primitives et les objets.
@@ -39,44 +41,70 @@
         elle aura été écrasée et c’est bien une nouvelle valeur complètement différente qui va être stockée dans notre variable dans ce cas. 
         Cela va être différent pour les objets : on va tout à fait pouvoir modifier les membres d’un objet.
     </p>
-   
-    <p id="p1"></p>
-    <p id="p2"></p>
-    <p id="p3"></p>
-    <p id="p4"></p>
+    <div class="div-code">
+        <pre>
+            // Primitives
+            let ch1 = "Bonjour";
+            let ch2 = "Bonjour";
+    
+           
+    
+            // Objets
+            let obj1 = {nom : "John"};
+            let obj2 = {nom : "John"};
+            let obj3 = obj1;
+            
+            document.getElementById("p1").innerHTML = "? ch1 === ch2 : " + (ch1===ch2);
+            
+            // obj1 et obj2 sont deux objets différents : false
+            document.getElementById("p2").innerHTML = "? obj1 === obj2 : " + (obj1===obj2);
+    
+            // obj1 et obj3 sont deux références vers le même objet : true
+            document.getElementById("p3").innerHTML = "? obj1 === obj3 : " + (obj1===obj3);
+    
+        </pre>        
+    </div>
 
     <script>
-
         // Primitives
         let ch1 = "Bonjour";
         let ch2 = "Bonjour";
 
-        document.getElementById("p1").innerHTML = "? ch1 === ch2 : " + (ch1===ch2);
-
+        
         // Objets
         let obj1 = {nom : "John"};
         let obj2 = {nom : "John"};
         let obj3 = obj1;
 
+        //Affichages
+        document.write('<div class="result">');
+
+        document.write("? ch1 === ch2 : " + (ch1===ch2)+ "<br>");     
         // obj1 et obj2 sont deux objets différents : false
-        document.getElementById("p2").innerHTML = "? obj1 === obj2 : " + (obj1===obj2);
-
+        document.write("? obj1 === obj2 : " + (obj1===obj2)+ "<br>");
         // obj1 et obj3 sont deux références vers le même objet : true
-        document.getElementById("p3").innerHTML = "? obj1 === obj3 : " + (obj1===obj3);
-
-
+        document.write("? obj1 === obj3 : " + (obj1===obj3)+ "<br>");
+        
+        document.write('</div>');
     </script>
     
-
-
     <p>
         A partir d’ici, il y a une chose que vous devez bien comprendre : chaque type de valeur primitive, à l’exception de null et de undfenied, 
-        possède un équivalent objet prédéfini en JavaScript. Ainsi, le JavaScript possède quatre objets natifs String, Number, Boolean et Symbol 
-        qui contiennent des propriétés et des méthodes.
+        possède un équivalent objet prédéfini en JavaScript. <br> <br> <b>Ainsi, le JavaScript possède quatre objets natifs String, Number, Boolean et Symbol 
+        qui contiennent des propriétés et des méthodes</b>.
     </p>
 
-    <p id="p5"></p>
-    <p id="p6"></p>
+    <div class="div-code">
+        <pre>
+            // Création d'une chaine de caractères primitive
+            let chaine1 = "Bonjour";
+            // Création d'une chaine de caractères objet
+            let chaine2 = new String("Hello");
+
+            document.getElementById("p5").innerHTML = "Type de la variable chaine1 : " + typeof chaine1;
+            document.getElementById("p6").innerHTML = "Type de la variable chaine2 : " + typeof chaine2;
+        </pre>
+    </div>
 
     <script>
         // Création d'une chaine de caractères primitive
@@ -84,8 +112,10 @@
         // Création d'une chaine de caractères objet
         let chaine2 = new String("Hello");
 
-        document.getElementById("p5").innerHTML = "Type de la variable chaine1 : " + typeof chaine1;
-        document.getElementById("p6").innerHTML = "Type de la variable chaine2 : " + typeof chaine2;
+        document.write('<div class="result">');
+        document.write("Type de la variable chaine1 : " + typeof chaine1 + "<br>");
+        document.write("Type de la variable chaine2 : " + typeof chaine2 + "<br>");
+        document.write('</div>');
     </script>
 
     <h2>Valeur primitive ou objet : que préférer ?</h2>
@@ -96,29 +126,35 @@
         dont va hériter notre objet let ch2 et qu’on va donc pouvoir utiliser.
     </p>
 
+    <div class="div-code">
+        <pre>
+            let chaine4 = new String("Hello World!");
+            let chaine5 = "Game Over";
 
-    <p id="p7"></p>
-    <p id="p8"></p>
-    <p id="p9"></p>
-    <p id="p10"></p>
-
-    <p id="p11"></p>
-    <p id="p12"></p>
-
+            document.write("Longueur de la chaîne de caractères (Hello World!): " + chaine4.length);
+            document.write("Premier caractère de la chaîne de caractères (Hello World!): " + chaine4.charAt(0));
+            document.write("Dernier caractère de la chaîne de caractères (Hello World!): " + chaine4.charAt(chaine4.length-1));
+            document.write("Chaîne de caractères en majuscules (Hello World!): " + chaine4.toUpperCase());
+    
+            document.write("Longueur de la chaîne de caractères (Game Over) : " + chaine5.length);
+            document.write("Premier caractère de la chaîne de caractères (Game Over) : " + chaine5.toUpperCase());
+        </pre>
+    </div>    
 
     <script>
 
         let chaine4 = new String("Hello World!");
         let chaine5 = "Game Over";
-        document.getElementById("p7").innerHTML = "Longueur de la chaine de caractères (Hello World!): " + chaine4.length;
-        document.getElementById("p8").innerHTML = "Premier caractère de la chaine de caractères (Hello World!): " + chaine4.charAt(0);
-        document.getElementById("p9").innerHTML = "Dernier caractère de la chaine de caractères (Hello World!): " + chaine4.charAt(chaine4.length-1);
-        document.getElementById("p10").innerHTML = "Chaine de caractères en majuscules (Hello World!): " + chaine4.toUpperCase();
 
-        document.getElementById("p11").innerHTML = "Longueur de la chaine de caractères (Game Over) : " + chaine5.length;
-        document.getElementById("p12").innerHTML = "Premier caractère de la chaine de caractères (Game Over) : " + chaine5.toUpperCase();
+        document.write('<div class="result">');
+        document.write("Longueur de la chaîne de caractères (Hello World!): " + chaine4.length + "<br>");
+        document.write("Premier caractère de la chaîne de caractères (Hello World!): " + chaine4.charAt(0) + "<br>");
+        document.write("Dernier caractère de la chaîne de caractères (Hello World!): " + chaine4.charAt(chaine4.length-1) + "<br>");
+        document.write("Tous les caractères de la chaîne (Hello World!) en majuscules: " + chaine4.toUpperCase() + "<br>");
 
-
+        document.write("Longueur de la chaîne de caractères (Game Over) : " + chaine5.length + "<br>");
+        document.write("Tous les caractères de la chaîne (Game Over) en majuscules: " + chaine5.toUpperCase()+ "<br>");
+        document.write('</div>');
 
     </script>
 

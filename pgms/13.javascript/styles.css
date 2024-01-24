@@ -12,7 +12,14 @@
     --backg-msg-success-color: rgb(222, 254, 180);
     --danger-color-hover: rgb(147, 13, 13);
     --link-color: rgb(1, 125, 248);
+    --link-hover-color: rgb(160, 15, 15);
     --published-color: rgb(74, 192, 41);
+    --code-color: rgb(160, 15, 15);
+    --code-backg-color: rgb(239, 238, 236);
+    --code-border-color: rgb(155, 154, 152);
+    --result-backg-color: rgb(26, 47, 4);
+    --color-black: rgb(0, 0, 0);
+    --color-limegreen: rgb(50, 205, 50);
 
     --border-width: 1px;
 }
@@ -49,7 +56,7 @@ a {
 }
 
 a:hover {
-    color: var(--menu-item-color-hover);
+    color: var(--link-hover-color);
 }
 
 hr {
@@ -64,14 +71,35 @@ footer{
     color: var(--menu-item-color);
 }
 
-code {   
-    color: var(--danger-color);    
-}
 
 
 /* ***************************** */
 /*         CLASSES RULES         */
 /* ***************************** */
+
+.div-code {
+    color: var(--code-color);   
+    background-color: var(--code-backg-color); 
+    padding: 5px;
+    border: var(--border-width) solid var(--code-border-color);
+    border-radius: 0.2rem;    
+    font-size: 0.9rem;
+    
+}
+
+.result {
+    background-color: var(--result-backg-color);
+    color: var(--color-limegreen);
+    border: var(--border-width) solid var(--color-limegreen);
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 0;  
+    margin-top: 5px;  
+    font-weight: 500;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    font-size: 0.9rem;
+}  
 
 .code {
     background-color: var(--menu-backg-color);

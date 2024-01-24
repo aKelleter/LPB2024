@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 2</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <script>
+        function divideByTwo(arg1, arg2) {
+            if ((arg1 + arg2) % 2 == 0) {
+                return (arg1 + arg2) / 2;
+            } else {
+                return "Le résultat n'est pas un nombre pair";
+            }
+        }
+        let resultat1 = divideByTwo(10, 5);
+        console.log(resultat1);
+        document.write(resultat1 + "<br>");
+
+        let resultat2 = divideByTwo(14, 8);
+        console.log(resultat2);
+        document.write(resultat2 + "<br>") ;
+    </script>
+</body>
+</html>
