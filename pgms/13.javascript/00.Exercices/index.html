@@ -59,24 +59,78 @@
                 - afficher le contenu de la variable resultat dans la console <br>
                 - afficher le contenu de la variable resultat dans la page HTML <br><br>            
             </div>
-
-            <h2>5. Créer et afficher et utiliser 2 objets Personnage() - Fonction constructeur</h2>
+            
+            <h2>5.Créer un objet littéral</h2>
             <div class="exo">
-                - Créez deux objets avec une fonction constructeur que vous nommerez : Personnage <br>
-                - Avec les propriétés suivantes : nom, force vie, degats (placez des valeurs, au choix, de type nombre dans vos propriétés) <br>
-                - Avec les méthodes suivantes:  attaque(perso) et guerison()<br>
-                - La méthode attaque(perso) doit soustraire les dégats du personnage attaqué à sa vie <br>
-                - La méthode guerison() doit ajouter 10 points de vie au personnage <br>
-                - Créer deux personnage avec votre fonction constructeur <br> 
-                - Afficher les propriétés des personnages dans la console <br>
-                - Afficher les propriétés des personnages dans la page HTML <br>
+                - Créer un objet avec les propriétés suivantes : <br>
+                - nom : "Link" <br>
+                - force : 10 <br>
+                - vie : 100 <br>
+                - degats : 5 <br>
+                - créer une méthode bonjour() qui présente (va afficher avec document.write()) les propriétés du personnage <br>
+                - Appeler la méthode bonjour de votre objet  <br>
+            </div>
+
+            <h2>6.Créer une fonction constructeur Personnage() et 
+                instancier deux objets (deux personnages différents) à l'aide de votre fonction constructeur</h2>
+            <div class="exo">
+                - Créer une fonction constructeur Personnage() <br>
+                - Créer les propriétés suivantes : nom, force, vie, degats, elles seront initialisées avec les valeurs passées en paramètre lors de l'instanciation <br>
+                - Créer les méthodes suivantes : sePrésenter(), attaque(perso) et guerison() <br>
+                - La méthode sePrésenter() doit afficher les propriétés du personnage avec document.write() <br>
+                - La méthode attaque(perso) doit soustraire les dégats du personnage attaqué(passé en paramètre) à sa vie et afficher le résulat <br>
+                - La méthode guerison() doit ajouter 10 points de vie au personnage et afficher le résulat <br>
+                - Créer deux objets à l'aide de votre fonction constructeur (Personnage()) (ex.: personnage1 et personnage2) <br>                
+                - Afficher les propriétés de chacun des personnages  avec leur méthode sePresenter()<br>                
                 - Faites les s'attaquer entre eux et se soigner <br>
                 - Ensuite, à nouveau : <br>
-                - Afficher les propriétés des personnages dans la console <br>
-                - Afficher les propriétés des personnages dans la page HTML <br>
+                - Afficher les propriétés de chacun des personnages avec leur méthode sePresenter()<br>    
                 - Et observer les changements <br><br>
             </div>
+
+            <h2>7.Créer un tableau et afficher son contenu</h2>
+            <div class="exo">
+                - Créer un tableau avec les données suivantes : <br>
+                - "John", "Doe", 30, "1 rue de la Paix", "Paris", "75000" <br>
+                - Afficher le contenu dans votre page html avec l'instruction document.write() <br>
+            </div>
             
+            <h2>8.Créer un tableau d'objets et afficher son contenu</h2>
+            <div class="exo">
+                - Créer un tableau d'objets avec les données suivantes : <br>
+                - nom : "John", prenom : "Doe", age : 30, rue : "1 rue de la Paix", ville : "Paris", codePostal : "75000" <br>                
+                - Afficher les propriété de l'objet avec une boucle for..in et document.write() <br>
+            </div>
+
+            <h2>9. Créer une fonction SearchTermInTab(array, term) </h2>
+            <div class="exo">
+                - Créer une fonction SearchTermInTab(array, term) qui prend en paramètre un tableau et un terme recherché <br>
+                - La fonction doit retourner true si le terme de recherche est présent dans le tableau et false dans le cas contraire <br>
+                - Appeler la fonction SearchTermInTab() avec deux paramètres de votre choix (faire plusieurs essais) et stocker le résultat dans une variable nommée resultat <br>
+                - Tester le retour de la fonction (if else) et afficher un message en fonction du résultat <br>
+                - Utiliser document.write() pour afficher le résultat dans la page HTML <br>
+                <b class="danger"> Chercher dans la leçon sur l'objet global Array, la méthode adéquate pour effectuer ce travail </b>                
+            </div>
+
+            <h2>10. Créer un objet date() </h2>
+            <div class="exo">
+                - Instancier un objet date() <br>
+                - Créer avec cet objet une date locale, pour se faire, 
+                appelez la méthode toLocaleString() avec les paramètres suivants : <br>
+                ('fr-FR', <br>
+                { <br>  
+                weekday: 'long', <br>
+                year: 'numeric', <br> 
+                month: 'long', <br>
+                day: 'numeric', <br>
+                hour: 'numeric', <br>
+                minute: 'numeric', <br>
+                second: 'numeric' <br>
+                }) <br>
+                - Afficher le contenu de l'objet date() dans la page HTML avec document.write() <br>
+            </div>
+                
+
     
         </div>
     </div>    

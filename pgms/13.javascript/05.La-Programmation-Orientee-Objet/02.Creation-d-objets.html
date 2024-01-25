@@ -40,8 +40,39 @@
             Pour créer un objet littéral, on utilise une syntaxe utilisant une paire d’accolades { … } qui indique 
             au JavaScript que nous créons un objet.
         </p>
-        <script>
+        <div class="div-code">
+            <pre>
+            // Création d'un objet utilisateur, c'est un objet littéral (objet créé à partir d'une variable)
+            let utilisateur = {
+                nom : "John",
+                prenom : "Doe",
+                age : 25,
 
+                // Adresse est un objet imbriqué dans l'objet utilisateur
+                adresse : {
+                    rue : "1 rue de la Paix",
+                    ville : "Paris",
+                    codePostal : "75000"
+                },
+                
+                // Les méthodes sont des fonctions qui sont stockées dans des propriétés
+                direBonjour : function() {
+                    document.getElementById("p1").innerHTML = "Bonjour, je m'appelle " + this.nom + " " + this.prenom + " et j'ai " + this.age + " ans.";
+                },
+
+                donnerAdresse : function() {
+                    document.getElementById("p2").innerHTML = "J'habite au " + this.adresse.rue + " à " + this.adresse.ville + " (" + this.adresse.codePostal + ").";
+                },
+
+            };
+    
+            utilisateur.direBonjour();
+            utilisateur.donnerAdresse();
+            document.getElementById("p3").innerHTML = "L'objet utilisateur est de type : " + typeof utilisateur;    
+            </pre>
+        </div>
+        <script>
+            document.write('<div class="result">');
             // Création d'un objet utilisateur, c'est un objet littéral (objet créé à partir d'une variable)
             let utilisateur = {
                 nom : "John",
@@ -69,6 +100,8 @@
             utilisateur.direBonjour();
             utilisateur.donnerAdresse();
             document.getElementById("p3").innerHTML = "L'objet utilisateur est de type : " + typeof utilisateur;
+            
+            document.write('</div>');
         
         </script>
         <p>            

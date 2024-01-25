@@ -27,8 +27,53 @@
         <p id="p2"></p>
         <p id="p3"></p>
         <p id="p4"></p>
+
+        <div class="div-code">
+            <pre>
+                
+            // Création d'un objet utilisateur, c'est un objet littéral (objet créé à partir d'une variable)
+            let utilisateur = {
+                nom : "John",
+                prenom : "Doe",
+                age : 25,
+
+                // Adresse est un objet imbriqué dans l'objet utilisateur
+                adresse : {
+                    rue : "1 rue de la Paix",
+                    ville : "Paris",
+                    codePostal : "75000"
+                },
+                
+                // Les méthodes sont des fonctions qui sont stockées dans des propriétés
+                direBonjour : function() {
+                   document.write("Bonjour, je m'appelle " + this.nom + " " + this.prenom + " et j'ai " + this.age + " ans.");
+                },
+
+                donnerAdresse : function() {
+                    document.write("J'habite au " + this.adresse.rue + " à " + this.adresse.ville + " (" + this.adresse.codePostal + ")");
+                },
+
+            };
+
+
+            utilisateur.direBonjour();
+            utilisateur.donnerAdresse();
+
+            // Modification de la valeur d'une propriété
+            utilisateur.prenom = "Jane";
+            utilisateur.nom = "Smith";
+            utilisateur.direBonjour();
+
+            // Ajout d'une propriété à l'objet utilisateur
+            utilisateur.email = "john@mail.com";
+
+            document.write("L'email de l'utilisateur est : " + utilisateur.email);
+            </pre>
+        </div>
         
         <script>
+
+            document.write('<div class="result">');
 
             // Création d'un objet utilisateur, c'est un objet littéral (objet créé à partir d'une variable)
             let utilisateur = {
@@ -44,29 +89,31 @@
                 },
                 
                 // Les méthodes sont des fonctions qui sont stockées dans des propriétés
-                direBonjour : function(pclass) {
-                    document.getElementById(pclass).innerHTML = "Bonjour, je m'appelle " + this.nom + " " + this.prenom + " et j'ai " + this.age + " ans.";
+                direBonjour : function() {
+                   document.write("Bonjour, je m'appelle " + this.nom + " " + this.prenom + " et j'ai " + this.age + " ans. <br>");
                 },
 
-                donnerAdresse : function(pclass) {
-                    document.getElementById(pclass).innerHTML = "J'habite au " + this.adresse.rue + " à " + this.adresse.ville + " (" + this.adresse.codePostal + ").";
+                donnerAdresse : function() {
+                    document.write("J'habite au " + this.adresse.rue + " à " + this.adresse.ville + " (" + this.adresse.codePostal + ")<br>");
                 },
 
             };
 
 
-            utilisateur.direBonjour("p1");
-            utilisateur.donnerAdresse("p2");
+            utilisateur.direBonjour();
+            utilisateur.donnerAdresse();
 
             // Modification de la valeur d'une propriété
             utilisateur.prenom = "Jane";
             utilisateur.nom = "Smith";
-            utilisateur.direBonjour("p3");
+            utilisateur.direBonjour();
 
             // Ajout d'une propriété à l'objet utilisateur
             utilisateur.email = "john@mail.com";
 
-            document.getElementById("p4").innerHTML = "L'email de l'utilisateur est : " + utilisateur.email;
+            document.write("L'email de l'utilisateur est : " + utilisateur.email + "<br>");
+
+            document.write('</div>');
                     
         </script>
         <p>      
@@ -101,15 +148,32 @@
         <p id="p7"></p>
         <p id="p8"></p>
 
-        <script>
+        <div class="div-code">
+            <pre>
             // Ajout d'une propriété à l'objet utilisateur
             utilisateur.hobbies = ["musique", "sport", "cinéma"];
 
             // Accès et affichage de la valeur de la propriété hobbies
-            document.getElementById("p5").innerHTML = "Les hobbies de l'utilisateur sont : " + utilisateur["hobbies"];
+            document.write("Les hobbies de l'utilisateur sont : " + utilisateur["hobbies"]);
 
             // Accès et affichage de la seconde valeur du tableau hobbies
-            document.getElementById("p6").innerHTML = "Le second hobby de l'utilisateur est : " + utilisateur["hobbies"][1];
+            document.write("Le second hobby de l'utilisateur est : " + utilisateur["hobbies"][1]);
+            </pre>
+        </div>
+
+        <script>
+            document.write('<div class="result">');
+
+            // Ajout d'une propriété à l'objet utilisateur
+            utilisateur.hobbies = ["musique", "sport", "cinéma"];
+
+            // Accès et affichage de la valeur de la propriété hobbies
+            document.write("Les hobbies de l'utilisateur sont : " + utilisateur["hobbies"] + "<br>");
+
+            // Accès et affichage de la seconde valeur du tableau hobbies
+            document.write("Le second hobby de l'utilisateur est : " + utilisateur["hobbies"][1] + "<br>");
+        
+            document.write('</div>');
 
         </script>
 

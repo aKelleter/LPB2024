@@ -22,46 +22,391 @@
         Lorsqu’on travaille avec les nombres en JavaScript nous préférerons, tout comme pour les chaînes de caractères, utiliser des valeurs primitives 
         plutôt que de créer un nouvel objet avec le constructeur Number pour des raisons de performance.  <br> <br>
     </p>
+    <p>
+        Les propriétés à connaitre sont les suivantes : <br> <br>
+        • Les propriétés <b>MIN_VALUE</b> et <b>MAX_VALUE</b> représentent respectivement les plus petite valeur numérique positive et plus 
+        grand valeur numérique qu’il est possible de représenter en JavaScript <br> 
+        • Les propriétés <b>MIN_SAFE_INTEGER</b> et <b>MAX_SAFE_INTEGER</b> représentent respectivement le plus petit et le plus grand 
+        entiers représentables correctement ou de façon « sûre » en JavaScript. L’aspect « sûr » ici faire référence à la 
+        capacité du JavaScript à représenter exactement ces entiers et à les comparer entre eux. On peut représenter des entiers 
+        supérieurs à cette valeur avec le type <b>BigInt</b> <br>
+        • Les propriétés <b>NEGATIVE_INFINITY</b> et <b>POSITIVE_INFINITY</b> servent respectivement à représenter l’infini côté négatif 
+        et côté positif <br>
+        • La propriété <b>NaN</b> représente une valeur qui n’est pas un nombre (« NaN » est l’abréviation de « <b>Not a Number</b> ») 
+        et est équivalente à la valeur NaN. <br>
+    </p>
     <div class="div-code">
-        <pre>
-        
-        </pre>
+    <pre>
+    
+    document.write("Valeur de Number.MIN_VALUE : " + Number.MIN_VALUE");
+    document.write("Valeur de Number.MAX_VALUE : " + Number.MAX_VALUE);
+    document.write("Valeur de Number.MIN_SAFE_INTEGER : " + Number.MIN_SAFE_INTEGER);
+    document.write("Valeur de Number.MAX_SAFE_INTEGER : " + Number.MAX_SAFE_INTEGER);
+    document.write("Valeur de Number.NEGATIVE_INFINITY : " + Number.NEGATIVE_INFINITY);
+    document.write("Valeur de Number.POSITIVE_INFINITY : " + Number.POSITIVE_INFINITY);
+    document.write("Valeur de Number.NaN : " + Number.NaN);
+    document.write("Valeur de NaN : " + NaN);
+    
+    </pre>
     </div>
     <script>
-       
+        document.write('<div class="result">');     
+        document.write("Valeur de Number.MIN_VALUE : " + Number.MIN_VALUE + "<br>");
+        document.write("Valeur de Number.MAX_VALUE : " + Number.MAX_VALUE + "<br>");
+        document.write("Valeur de Number.MIN_SAFE_INTEGER : " + Number.MIN_SAFE_INTEGER + "<br>");
+        document.write("Valeur de Number.MAX_SAFE_INTEGER : " + Number.MAX_SAFE_INTEGER + "<br>");
+        document.write("Valeur de Number.NEGATIVE_INFINITY : " + Number.NEGATIVE_INFINITY + "<br>");
+        document.write("Valeur de Number.POSITIVE_INFINITY : " + Number.POSITIVE_INFINITY + "<br>");
+        document.write("Valeur de Number.NaN : " + Number.NaN + "<br>");
+        document.write("Valeur de NaN : " + NaN + "<br>");
+        document.write('</div>');
+
     </script>
 
-    <h2>Les propriétés de l’objet Number</h2>
+    <h2>Les méthodes de l’objet Number</h2>
     <p>
-        La plupart des propriétés de l’objet Number sont des propriétés dites statiques. Cela signifie qu’on ne va pouvoir les utiliser qu’avec l’objet Number 
-        en soi et non pas avec une instance de Number() (ni donc avec une valeur primitive). 
+        Le constructeur Number() dispose également d’une dizaine de méthodes.
     </p>
     
     <ol>
         <li>
-            
+            La méthode <b>isFinite()</b> : permet de déterminer si une valeur fournie est un nombre fini. On va lui passer 
+            en argument la valeur à tester. Si l’argument passé est bien une valeur finie, isFinite() retournera le booléen true. 
+            Dans le cas contraire, cette méthode retournera la booléen false.
+        </li>       
+        <li>
+            La méthode <b>isInteger()</b> : permet de déterminer si une valeur fournie est un entier valide. Si la valeur testée 
+            est bien un entier, la méthode isInteger() retournera le booléen true. Dans le cas contraire, cette méthode retournera 
+            false. Notez que si la valeur testée est NaN ou l’infini, la méthode renverra également false.
         </li>
-       
-
-
-
+        <li>
+            La méthode <b>isNaN()</b> : permet de déterminer si la valeur passée en argument est la valeur NaN (valeur qui appartient 
+            au type Number). On va lui passer en argument la valeur qui doit être comparée à NaN. Si la valeur passée est bien égale 
+            à NaN, notre méthode renverra le booléen true. Dans le cas contraire, le booléen false sera renvoyé.
+        </li>
+        <li>
+            La méthode <b>isSafeInteger()</b> :permet de déterminer si une valeur est un entier sûr (un entier que le JavaScript 
+            peut représenter correctement). Cette méthode prend la valeur à tester en argument et retourne le booléen true si la 
+            valeur est bien un entier sûr ou false sinon.
+        </li>
+        <li>
+            La méthode <b>parseFloat()</b> : permet de convertir une chaîne de caractères en un nombre décimal. Pour cela, on va 
+            lui passer la chaine à transformer en argument et la méthode renverra un nombre décimal en retour. L’analyse de la 
+            chaîne s’arrête dès qu’un caractère qui n’est pas +,-, un chiffre, un point ou un exposant est rencontré. 
+            Ce caractère et tous les suivants vont alors être ignorés. Si le premier caractère de la chaîne ne peut pas être 
+            converti en un nombre, parseFloat() renverra la valeur NaN.
+        </li>
+        <li>
+            La méthode <b>parseInt()</b> : permet de convertir une chaine de caractères en un entier selon une base et va renvoyer 
+            ce nombre en base 10. On va lui passer deux arguments : la chaine de caractères à convertir et la base utilisée pour 
+            la conversion.<br>
+            Les autres types de bases qui peuvent nous intéresser sont : <br>
+            - 2 pour une base binaire <br>
+            - 8 pour une base octale <br>
+            - 16 pour une base hexadécimale <br>
+            Si la base n’est pas comprise entre 2 et 36, la méthode renverra NaN.
+        </li>
+        <li>
+            La méthode <b>toFixed()</b> : permet de formater un nombre en indiquant le nombre de décimales 
+            (nombre de chiffres après la virgule) qu’on souhaite conserver. On va indiquer en argument de cette méthode le 
+            nombre de décimales souhaitées et notre méthode va renvoyer une chaine de caractères qui représente le nombre avec 
+            le nombre de décimales souhaitées. <br> Dans le cas où on demande à toFixed() de renvoyer un nombre avec moins de décimales 
+            que le nombre de base, l’arrondi se fera à la décimale supérieure si la décimale suivant celle où le nombre doit être 
+            arrondi est 5 ou supérieure à 5.
+        </li>
+        <li>
+            La méthode <b>toString()</b> : permet de transformer un nombre en une chaine de caractères. On va pouvoir lui passer une 
+            base en argument pour formater notre nombre. Elle renverra une chaine de caractères représentant notre nombre.
+        </li>
     </ol>
+
 
     <div class="div-code">
         <pre>
-            
-      
+        let nb1 = 10;
+        let nb2 = Number.POSITIVE_INFINITY;
 
+        // isFinite()    
+        if (isFinite(nb1)) {            
+            document.write("isFinite(nb1) : " + isFinite(nb1));            
+        }else{
+            document.write("Le nombre est non fini");            
+        }
+        if (isFinite(nb2)) {            
+            document.write("isFinite(nb2) : " + isFinite(nb2));            
+        }else{
+            document.write("Le nombre est non fini");            
+        }
         </pre>
     </div>
 
     <script>
-        
-      
+        let nb1 = 10;
+        let nb2 = Number.POSITIVE_INFINITY;
+
+        document.write('<div class="result">');
+
+        // isFinite()    
+        if (isFinite(nb1)) {            
+            document.write("isFinite(nb1) : " + isFinite(nb1) + "<br>");            
+        }else{
+            document.write("Le nombre est non fini <br>");            
+        }
+        if (isFinite(nb2)) {            
+            document.write("isFinite(nb2) : " + isFinite(nb2) + "<br>");            
+        }else{
+            document.write("Le nombre est non fini <br>");            
+        }
+
+
+        document.write('</div>');             
     </script>
-    <p>
-      
-    </p>
+
+<div class="div-code">
+    <pre>
+    let nb3 = 10;
+    let nb4 = 10.5;    
+       
+    // isInteger()    
+    if (Number.isInteger(nb3)) {            
+        document.write("isInteger(nb3) : " + Number.isInteger(nb3));
+    }else{
+        document.write("Le nombre n'est pas un entier");            
+    }
+    if (Number.isInteger(nb4)) {            
+        document.write("isInteger(nb4) : " + Number.isInteger(nb4));
+    }else{
+        document.write("Le nombre n'est pas un entier");            
+    }    
+    </pre>
+</div>
+
+<script>
+    let nb3 = 10;
+    let nb4 = 10.5;
+
+    document.write('<div class="result">');
+
+    // isInteger()    
+    if (Number.isInteger(nb3)) {            
+        document.write("isInteger(nb3) : " + Number.isInteger(nb3) + "<br>");
+    }else{
+        document.write("Le nombre n'est pas un entier <br>");            
+    }
+    if (Number.isInteger(nb4)) {            
+        document.write("isInteger(nb4) : " + Number.isInteger(nb4) + "<br>");
+    }else{
+        document.write("Le nombre n'est pas un entier <br>");            
+    }
+
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    let nb5 = 10;
+    let nb6 = NaN;    
+       
+    // isNaN()
+    if (Number.isNaN(nb5)) {            
+        document.write("isNaN(nb5) : " + Number.isNaN(nb5));
+    }else{
+        document.write("Le nombre n'est pas un NaN");            
+    }
+    if (Number.isNaN(nb6)) {            
+        document.write("isNaN(nb6) : " + Number.isNaN(nb6));
+    }else{
+        document.write("Le nombre n'est pas un NaN");            
+    }   
+
+    </pre>
+</div>
+
+<script>
+    let nb5 = 10;
+    let nb6 = NaN;
+
+    document.write('<div class="result">');
+
+    // isNaN()
+    if (Number.isNaN(nb5)) {            
+        document.write("isNaN(nb5) : " + Number.isNaN(nb5) + "<br>");
+    }else{
+        document.write("Le nombre n'est pas un NaN <br>");            
+    }
+    if (Number.isNaN(nb6)) {            
+        document.write("isNaN(nb6) : " + Number.isNaN(nb6) + "<br>");
+    }else{
+        document.write("Le nombre n'est pas un NaN <br>");            
+    }   
+
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    let nb7 = 10;
+    let nb8 = 1000000000000000000000000000000;
+    let bigEntier = BigInt(1000000000000000000000000000000);       
+
+    // isSafeInteger()
+    if (Number.isSafeInteger(nb7)) {            
+        document.write("isSafeInteger(nb7) : " + Number.isSafeInteger(nb7));
+    }else{
+        document.write("Le nombre nb7 n'est pas un entier sûr");            
+    }
+    if (Number.isSafeInteger(nb8)) {            
+        document.write("isSafeInteger(nb8) : " + Number.isSafeInteger(nb8));
+    }else{
+        document.write("Le nombre nb8 n'est pas un entier sûr");            
+    }
+    if (Number.isSafeInteger(bigEntier)) {            
+        document.write("isSafeInteger(bigEntier) : " + Number.isSafeInteger(bigEntier));
+    }else{
+        document.write("Le nombre bigEntier n'est pas un entier sûr");            
+        document.write("Le nombre bigEntier est de type : " + typeof bigEntier);
+    }
+    </pre>
+</div>
+
+<script>
+    let nb7 = 10;
+    let nb8 = 1000000000000000000000000000000;
+    let bigEntier = BigInt(1000000000000000000000000000000);
+
+    document.write('<div class="result">');
+
+    // isSafeInteger()
+    if (Number.isSafeInteger(nb7)) {            
+        document.write("isSafeInteger(nb7) : " + Number.isSafeInteger(nb7) + "<br>");
+    }else{
+        document.write("Le nombre nb7 n'est pas un entier sûr <br>");            
+    }
+    if (Number.isSafeInteger(nb8)) {            
+        document.write("isSafeInteger(nb8) : " + Number.isSafeInteger(nb8) + "<br>");
+    }else{
+        document.write("Le nombre nb8 n'est pas un entier sûr <br>");            
+    }
+    if (Number.isSafeInteger(bigEntier)) {            
+        document.write("isSafeInteger(bigEntier) : " + Number.isSafeInteger(bigEntier) + "<br>");
+    }else{
+        document.write("Le nombre bigEntier n'est pas un entier sûr <br>");            
+        document.write("Le nombre bigEntier est de type : " + typeof bigEntier + "<br>");
+    }
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    let nb9 = "10 mètres";
+    let nb10 = "10.5 mètres sur 15"; 
+    let nb11 = "Encore 8";
+
+    // parseFloat()
+    document.write("parseFloat(nb9) : " + parseFloat(nb9));
+    document.write("parseFloat(nb10) : " + parseFloat(nb10));
+    document.write("parseFloat(nb11) : " + parseFloat(nb11));
+    </pre>
+</div>
+
+<script>
+    let nb9 = "10 mètres";
+    let nb10 = "10.5 mètres sur 15"; 
+    let nb11 = "Encore 8";
+    
+
+    document.write('<div class="result">');
+
+    // parseFloat()
+    document.write("parseFloat(nb9) : " + parseFloat(nb9) + "<br>");
+    document.write("parseFloat(nb10) : " + parseFloat(nb10) + "<br>");
+    document.write("parseFloat(nb11) : " + parseFloat(nb11) + "<br>");
+    
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    // parseInt()
+    // 0*16 + 15*1 = 15 (0 1 2 3 4 5 6 7 8 9 A B C D E F)
+    document.write("parseInt(nb9) : " + parseInt("0F", 16));  
+    // 16*16*16-1 = 4095 
+    document.write("parseInt(nb9) : " + parseInt("FFF", 16));  
+    // 1*8 + 0*4 + 0*2 + 0*1 = 8   
+    document.write("parseInt(nb9) : " + parseInt("1000", 2));   
+    </pre>
+</div>
+
+<script>
+    document.write('<div class="result">');
+
+    // parseInt()
+    document.write("parseInt(nb9) : " + parseInt("F", 16) + "<br>");   
+    document.write("parseInt(nb9) : " + parseInt("FFF", 16) + "<br>");
+    document.write("parseInt(nb9) : " + parseInt("1000", 2) + "<br>");    
+    
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    // toFixed()
+    let nb12 = 10.123456789;
+    document.write("nb12.toFixed(2) : " + nb12.toFixed(2));
+    document.write("nb12.toFixed(5) : " + nb12.toFixed(5));
+    document.write("nb12.toFixed(10) : " + nb12.toFixed(10));
+    document.write("nb12.toFixed(15) : " + nb12.toFixed(15));       
+    </pre>
+</div>
+
+<script>
+    document.write('<div class="result">');
+
+    // toFixed()
+    let nb12 = 10.123456789;
+    document.write("nb12.toFixed(2) : " + nb12.toFixed(2) + "<br>");
+    document.write("nb12.toFixed(5) : " + nb12.toFixed(5) + "<br>");
+    document.write("nb12.toFixed(10) : " + nb12.toFixed(10) + "<br>");
+    document.write("nb12.toFixed(15) : " + nb12.toFixed(15) + "<br>");       
+    
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    // toString()
+    let nb13 = 10;
+    // En base 10 par défaut
+    document.write("nb13.toString() : " + nb13.toString());
+    // En base 2 / binaire
+    document.write("nb13.toString(2) : " + nb13.toString(2));
+    // En base 16 / hexadécimal
+    document.write("nb13.toString(6) : " + nb13.toString(16)); 
+    // Affichage du type de la variable
+    document.write(typeof nb13.toString(16));   
+    </pre>
+</div>
+
+<script>
+    document.write('<div class="result">');
+
+    // toString()
+    let nb13 = 10;
+    // En base 10 par défaut
+    document.write("nb13.toString() : " + nb13.toString() + "<br>");
+    // En base 2 / binaire
+    document.write("nb13.toString(2) : " + nb13.toString(2) + "<br>");
+    // En base 16 / hexadécimal
+    document.write("nb13.toString(16) : " + nb13.toString(16) + "<br>");    
+    // Affichage du type de la variable
+    document.write("nb13.toString(16) : " + typeof nb13.toString(16) + "<br>");
+    
+    document.write('</div>');             
+</script>
+
+<p>
+    <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank">Plus d'infos sur MDN Web docs</a>
+</p>
    
     </div>
     </div>

@@ -71,6 +71,13 @@ footer{
     color: var(--menu-item-color);
 }
 
+h4{
+    margin-bottom: 0;
+}
+code {
+    color: var(--code-color);
+ 
+}
 
 
 /* ***************************** */
@@ -84,6 +91,7 @@ footer{
     border: var(--border-width) solid var(--code-border-color);
     border-radius: 0.2rem;    
     font-size: 0.9rem;
+    margin-top: 10px;
     
 }
 

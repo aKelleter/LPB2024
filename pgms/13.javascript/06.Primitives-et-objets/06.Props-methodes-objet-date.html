@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriétés et méthodes de l’objet global Date</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>L’objet global Date en JavaScript</h1>
+    <hr>  
+    <h2>Introduction aux dates</h2>
+    <p>
+        L’objet Date qui permet de créer et de manipuler des dates grâce à ses méthodes. <br>
+        Pour travailler avec des dates et les manipuler en JavaScript, nous allons utiliser l’objet natif Date. 
+        Le constructeur Date() possède en effet de nombreuses méthodes qui vont nous permettre d’obtenir ou de définir une date. <br><br>
+        Le JavaScript stocke les dates en interne sous forme d’un Timestamp Unix exprimé en millisecondes 
+        (c’est-à-dire le Timestamp Unix multiplié par 1000). Le Timestamp Unix correspond au nombre de secondes écoulées depuis le 
+        premier janvier 1970 à minuit UTC ou GMT (c’est-à-dire minuit selon l’heure de Londres). <br> <br>
+        De nombreux langages représentent les dates sous forme de Timestamp Unix car c’est un nombre et il est beaucoup plus facile de travailler et de manipuler des nombres que des dates littérales qui peuvent s’écrire sous de nombreux différents formats. Nous allons cependant également pouvoir exprimer des dates sous forme littérale (c’est-à-dire sous forme de chaînes de caractères), en anglais, et en respectant certaines conventions.
+
+    </p>
+    <h2>Récupérer la date actuelle</h2>
+    <p>
+        Pour récupérer la date actuelle sous forme littérale, on va tout simplement utiliser <code>Date()</code>. 
+        Pour afficher cette même date sous forme de nombre (le nombre de millisecondes écoulées depuis le 1er janvier 1970), 
+        on peut utiliser la méthode statique <code>now()</code> du constructeur Date. 
+    </p>
+    <div class="div-code">
+        <pre>
+        let date = Date();
+        document.write("Date() : " + date);
+        let timestamp = Date.now();
+        document.write("Date.now() : " + timestamp);
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+        let date = Date();
+        document.write("Date() : " + date + "<br>");
+        let timestamp = Date.now();
+        document.write("Date.now() : " + timestamp + "<br>");
+
+        document.write('</div>');
+
+    </script>
+    <p>
+        Comme vous pouvez le remarquer, la forme littérale est difficilement exploitable telle quelle pour nous, car celle-ci suit les normes 
+        anglo-saxonnes. Nous allons voir comment afficher nos dates avec un format local dans la suite de cette leçon.
+    </p>
+
+    <h2>Créer un objet de type date</h2>
+    <p>
+        Pour créer et manipuler une date particulière, nous allons devoir créer un objet de type date. 
+        Pour créer un objet de type date, nous allons cette fois-ci être obligé d’utiliser le constructeur <code>Date()</code> avec donc 
+        le mot clef <code>new</code>. <br> <br>
+        On va pouvoir instancier notre constructeur Date() de différentes manières pour créer une date. On peut déjà instancier Date() 
+        sans lui passer d’argument, auquel cas le constructeur va créer un objet date contenant la date actuelle complète en fonction 
+        de l’heure locale du système. <br> <br>
+        On peut également fournir une date sous forme de millisecondes écoulées depuis le 1er janvier 1970 à Date() pour qu’il crée 
+        un objet avec la date demandée. <br> <br>
+        Enfin, on va pouvoir passer une suite de nombres à notre constructeur pour qu’il crée un objet date morceau par morceau. 
+        Ces nombres représentent, dans l’ordre : <br>
+        • L’année (argument obligatoire) de la date qu’on souhaite créer ; <br>
+        • Le numéro du mois (argument obligatoire) de la date qu’on souhaite créer, entre 0 (pour janvier) et 11 (pour décembre) ; <br>
+        • Le numéro du jour du mois (facultatif) de la date qu’on souhaite créer, entre 1 et 31 ;<br> 
+        • L’heure (facultatif) de la date qu’on souhaite créer, entre 0 et 23 ;<br> 
+        • Le nombre de minutes (facultatif) de la date qu’on souhaite créer, entre 0 et 59 ; <br>
+        • Le nombre de secondes (facultatif) de la date qu’on souhaite créer, entre 0 et 59 ;<br> 
+        • Le nombre de millisecondes (facultatif) de la date qu’on souhaite créer, entre 0 et 999.<br>
+    </p>
+    <div class="div-code">
+        <pre>
+        let dateSimple = new Date();
+        document.write("Date() : " + dateSimple);
+        let dateDuJour = new Date(2024, 0, 25, 18, 15);
+        document.write("Date(2024, 0, 25, 18, 15) : " + dateDuJour);
+        let dateTimestamp = new Date(365 * 24 * 3600 * 1000);
+        document.write("Date(365 * 24 * 3600 * 1000) : " + dateTimestamp);
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+        let dateSimple = new Date();
+        document.write("Date() : " + dateSimple + "<br>");
+        let dateDuJour = new Date(2024, 0, 25, 18, 15);
+        document.write("Date(2024, 0, 25, 18, 15) : " + dateDuJour + "<br>");
+        let dateTimestamp = new Date(365 * 24 * 3600 * 1000);
+        document.write("Date(365 * 24 * 3600 * 1000) : " + dateTimestamp + "<br>");
+
+        document.write('</div>');
+
+    </script>
+
+    <h2>Convertir une date au format local</h2>
+    <p>
+        L’objet Date dispose également de méthodes nous permettant de convertir un format de date en un format local. 
+        Ces méthodes vont notamment nous permettre d’afficher les éléments de date dans un ordre local (jour puis mois puis année par exemple) 
+        ou de pouvoir afficher une heure selon un format 12 heures ou 24 heures. <br>
+        Elles vont également nous permettre de traduire des dates littérales anglaises dans la langue locale. 
+        Pour faire cela, on va pouvoir utiliser les méthodes <code>toLocaleDateString()</code>, <code>toLocaleTimeString()</code> et 
+        <code>toLocaleString()</code>. <br> <br>
+        La méthode <code>toLocaleDateString()</code> renvoie la partie « jour-mois-année » d’une date, formatée en fonction d’une locale et d’options.  <br>
+        La méthode <code>toLocaleTimeString()</code> renvoie la partie « heures-minutes-secondes » d’une date, formatée en fonction d’une locale et d’options. <br>
+        La méthode <code>toLocaleString()</code> renvoie la date complète, formatée en fonction d’une locale et d’options. <br> <br>
+        Ces trois méthodes vont donc pouvoir prendre deux arguments : un premier argument qui est une locale et un second qui correspond à des options.
+    </p>
+    <p>
+        La locale sert à définir la langue dans laquelle la date doit être formatée. 
+        Pour la France, on utilisera fr-FR (belgique : fr-BE / nl-BE / de-BE). <br> <br>
+        Les options vont permettre de modifier le comportement par défaut de nos méthodes et notamment d’expliciter si on souhaite que la date 
+        passée soit renvoyée sous forme de chiffres ou sous forme littérale. <br>
+        Les options qui vont particulièrement nous intéresser vont être 
+        les suivantes : <br>
+        • <code>weekday</code> qui représente le jour de la semaine. Les valeurs possibles sont « <code>narrow</code> », « <code>short</code> » et « <code>long</code> » ; <br>
+        • <code>day</code> qui représente le jour du mois. Les valeurs possibles sont <b>numeric et 2-digit</b><br>
+        • <code>month</code> qui représente le mois. Les valeurs possibles sont numeric et 2-digit<br>
+        • <code>year</code> qui représente l’année. Les valeurs possibles sont numeric et 2-digit  <br>
+        • <code>hour</code> qui représente l’heure. Les valeurs possibles sont numeric et 2-digit  <br>
+        • <code>minute</code> qui représente les minutes. Les valeurs possibles sont numeric et 2-digit <br>
+        • <code>second</code> qui représente les secondes. Les valeur possibles sont numeric et 2-digit <br> <br>
+
+        A noter que les navigateurs sont obligés de supporter à minima les ensembles suivants. <br>
+        Si vous utilisez une autre combinaison, celle-ci pourra ne pas être supportée : <br>
+        • weekday, year, month, day, hour, minute, second <br>
+        • weekday, year, month, day <br> 
+        • year, month, day <br> 
+        • year, month <br> 
+        • month, day <br> 
+        • hour, minute, second <br>
+        • hour, minute.<br><br> 
+        Une autre option intéressante est l’option timeZone qui permet de définir le fuseau horaire à utiliser.
+    </p>
+
+    <div class="div-code">
+        <pre>
+        let dateObj = new Date();
+        let dateLocale = dateObj.toLocaleDateString('fr-FR', {
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        }
+        );
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+        let dateObj = new Date();
+        let dateLocale = dateObj.toLocaleDateString('fr-FR', {
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        }
+        );
+        document.write("dateLocale : " + dateLocale + "<br>");
+
+        document.write('</div>');
+
+    </script>
+
+
+    
+    <p>
+        <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Plus d'infos sur MDN Web docs</a>
+    </p>
+    </div>
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

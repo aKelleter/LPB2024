@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriétés et méthodes de l’objet global Math</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Propriétés et méthodes de l’objet global Math</h1>
+    <hr>  
+    <p> 
+        A la différence des autres objets globaux, l’objet natif Math n’est pas un constructeur. En conséquence, toutes 
+        les propriétés et méthodes de cet objet sont statiques et vont donc devoir être utilisées directement avec cet objet. <br> <br>
+        Comme vous pouvez vous en douter, l’objet Math va être utilisé lorsqu’on aura besoin d’effectuer des opérations mathématiques 
+        et notamment de trigonométrie (calculs de cosinus, sinus, tangentes, etc.). Je vous conseille ici de ne pas vous braquer à la 
+        vue de ces termes. <br>
+        La programmation informatique est basée sur des concepts mathématiques, il faut à minima ne pas être allergique aux mathématiques de base. <br>
+        L’objet Math possède une petite dizaine de propriétés et une grosse trentaine de méthodes dont certaines vont être très utiles 
+        dans de nombreuses situations.
+    </p>
+
+    <h2>Les propriétés de l’objet Math</h2>
+    <p>
+        Les propriétés de l’objet Math stockent des constantes mathématiques utiles. <br> <br>
+        • <b>Math.E</b> a pour valeur le nombre d’Euler (base des logarithmes naturels ou encore exponentiel de 1), soit environ 2,718 ; <br>
+        • <b>Math.LN2</b> a pour valeur le logarithme naturel de 2, soit environ 0,693 ; <br>
+        • <b>Math.LN10</b> a pour valeur le logarithme naturel de 10, soit environ 2,302 ; <br>
+        • <b>Math.LOG2E</b> a pour valeur le logarithme naturel de 2, soit environ 0,693; <br>
+        • <b>Math.LOG10E</b> a pour valeur le logarithme naturel de 10, soit environ 2,302 ; <br>
+        • <b>Math.PI</b> a pour valeur pi, soit environ 3,14159 ; <br>
+        • <b>Math.SQRT1_2</b> a pour valeur la racine carrée de ½, soit environ 0,707 ; <br>
+        • <b>Math.SQRT2</b> a pour valeur la racine carrée de 2, soit environ 1,414. <br>
+    </p>
+    <p>
+       
+    </p>
+    <div class="div-code">
+    <pre>
+    // Propriétés de l’objet Math
+    document.write('Math.E = ' + Math.E);
+    document.write('Math.LN2 = ' + Math.LN2);
+    document.write('Math.LN10 = ' + Math.LN10);            
+    document.write('Math.LOG2E = ' + Math.LOG2E);
+    document.write('Math.LOG10E = ' + Math.LOG10E);
+    document.write('Math.PI = ' + Math.PI);
+    document.write('Math.SQRT1_2 = ' + Math.SQRT1_2);
+    document.write('Math.SQRT2 = ' + Math.SQRT2);    
+    </pre>
+    </div>
+    <script>
+        // Propriétés de l’objet Math
+        document.write('<div class="result">');
+
+        document.write('Math.E = ' + Math.E + '<br>');
+        document.write('Math.LN2 = ' + Math.LN2 + '<br>');
+        document.write('Math.LN10 = ' + Math.LN10 + '<br>');            
+        document.write('Math.LOG2E = ' + Math.LOG2E + '<br>');
+        document.write('Math.LOG10E = ' + Math.LOG10E + '<br>');
+        document.write('Math.PI = ' + Math.PI + '<br>');
+        document.write('Math.SQRT1_2 = ' + Math.SQRT1_2 + '<br>');
+        document.write('Math.SQRT2 = ' + Math.SQRT2 + '<br>');
+
+        document.write('</div>');
+    </script>
+
+    <h2>Les méthodes de l’objet Math</h2>
+    <p>
+        L’objet Math possède des méthodes qui permettent d’arrondir des nombres, de générer des nombres aléatoires ou encore 
+        de calculer le cosinus, sinus, tangente, logarithme ou l’exponentielle d’un nombre.
+    </p>
+    
+    <ol>
+        <li>
+            Les méthodes <b>floor()</b>, <b>ceil()</b>, <b>round()</b> et <b>trunc()</b> permettent toutes les quatre d’arrondir ou de tronquer 
+            un nombre décimal afin de le transformer en entier.
+            <ul>
+                <li>
+                    La méthode <b>floor()</b> va arrondir la valeur passée en argument à l’entier immédiatement inférieur (ou égal) à cette valeur.
+                </li>    
+                <li>
+                    La méthode <b>ceil()</b>, au contraire, va arrondir la valeur passée en argument à l’entier immédiatement supérieur (ou égal) 
+                    à cette valeur.
+                </li>
+                <li>
+                    La méthode <b>round()</b> va elle arrondi la valeur passée en argument à l’entier le plus proche. Ainsi, si la partie décimale 
+                    de la valeur passée est supérieure à 0,5, la valeur sera arrondie à l’entier supérieur. Dans le cas contraire, la valeur 
+                    sera arrondie à l’entier inférieur. Dans le cas où la partie décimale vaut exactement 0,5, la valeur sera arrondie à l’entier supérieur 
+                    (dans la direction de l’infini positif).
+                </li>
+                <li>
+                    La méthode <b>trunc()</b> va tout simplement ignorer la partie décimale d’un nombre et ne retourner que sa partie entière.
+                </li>
+            </ul>
+        </li>   
+        
+        <li>
+            La méthode <b>random()</b> : permet de générer un nombre décimal compris entre 0 (inclus) et 1 (exclu) de manière pseudo-aléatoire. 
+            On va ensuite pouvoir multiplier son résultat par un autre nombre afin d’obtenir un nombre pseudo-aléatoire compris dans l’intervalle de notre choix.
+        </li>
+        <li>
+            Les méthodes <b>min()</b> et <b>max()</b> :  La méthode <b>min()</b> renvoie le plus petit nombre d’une série de nombres passés en arguments. 
+            La méthode <b>max()</b>, au contraire, va renvoyer le plus grand nombre d’une série de nombres passés en arguments. Dans les deux cas, si l’une des valeurs 
+            fournies en argument n’est pas un nombre et ne peut pas être convertie en nombre, alors ces méthodes renverront la valeur NaN.
+        </li>
+        <li>
+            La méthode <b>abs()</b> : retourne la valeur absolue d’un nombre, c’est-à-dire le nombre en question sans signe. Si la valeur fournie en argument n’est pas 
+            un nombre et ne peut pas être convertie en nombre, alors elle renverra NaN.
+        </li>
+        <li>
+            Les méthodes <b>cos()</b>, <b>sin()</b>, <b>tan()</b>, <b>acos()</b>, <b>asin()</b> et <b>atan()</b> : retournent respectivement : <br>
+            le cosinus, le sinus, la tangente, l’arc cosinus, l’arc sinus et l’arc tangente d’une valeur passée en argument. <br>
+            Les valeurs passées et retournées sont exprimées en radians. Pour convertir une valeur en radians en une valeur en degrés, 
+            il suffit de multiplier la valeur en radians par 180 et de diviser par pi (180° = pi radian, 360° = 2pi radian).
+        </li>
+        
+    </ol>
+
+
+    <div class="div-code">
+        <pre>
+        let nb1 = 12.3456;
+        let nb2 = 2.45;
+        let nb3 = 3.54;
+        
+        document.write('Math.floor(' + nb1 + ') = ' + Math.floor(nb1));
+        document.write('Math.ceil(' + nb1 + ') = ' + Math.ceil(nb1));
+        document.write('Math.round(' + nb1 + ') = ' + Math.round(nb1));
+        document.write('Math.trunc(' + nb1 + ') = ' + Math.trunc(nb1));
+        document.write('-------------------');
+        
+        document.write('Math.floor(' + nb2 + ') = ' + Math.floor(nb2));
+        document.write('Math.ceil(' + nb2 + ') = ' + Math.ceil(nb2));
+        document.write('Math.round(' + nb2 + ') = ' + Math.round(nb2));
+        document.write('Math.trunc(' + nb2 + ') = ' + Math.trunc(nb2));
+        document.write('-------------------');
+
+        document.write('Math.floor(' + nb3 + ') = ' + Math.floor(nb3));
+        document.write('Math.ceil(' + nb3 + ') = ' + Math.ceil(nb3));
+        document.write('Math.round(' + nb3 + ') = ' + Math.round(nb3));
+        document.write('Math.trunc(' + nb3 + ') = ' + Math.trunc(nb3));
+        document.write('-------------------');
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+        let nb1 = 12.3456;
+        let nb2 = 2.45;
+        let nb3 = 3.54;
+        
+        document.write('Math.floor(' + nb1 + ') = ' + Math.floor(nb1) + '<br>');
+        document.write('Math.ceil(' + nb1 + ') = ' + Math.ceil(nb1) + '<br>');
+        document.write('Math.round(' + nb1 + ') = ' + Math.round(nb1) + '<br>');
+        document.write('Math.trunc(' + nb1 + ') = ' + Math.trunc(nb1) + '<br>');
+        document.write('-------------------<br>');
+        
+        document.write('Math.floor(' + nb2 + ') = ' + Math.floor(nb2) + '<br>');
+        document.write('Math.ceil(' + nb2 + ') = ' + Math.ceil(nb2) + '<br>');
+        document.write('Math.round(' + nb2 + ') = ' + Math.round(nb2) + '<br>');
+        document.write('Math.trunc(' + nb2 + ') = ' + Math.trunc(nb2) + '<br>');
+        document.write('-------------------<br>');
+
+        document.write('Math.floor(' + nb3 + ') = ' + Math.floor(nb3) + '<br>');
+        document.write('Math.ceil(' + nb3 + ') = ' + Math.ceil(nb3) + '<br>');
+        document.write('Math.round(' + nb3 + ') = ' + Math.round(nb3) + '<br>');
+        document.write('Math.trunc(' + nb3 + ') = ' + Math.trunc(nb3) + '<br>');
+        document.write('-------------------<br>');
+       
+        document.write('</div>');             
+    </script>
+
+<div class="div-code">
+    <pre>
+    document.write("Math.random() : retourne un nombre aléatoire entre 0 et 1 : " + Math.random());
+    document.write("Math.random() * 100  : retourne un nombre aléatoire entre 0 et 1, multiplié par 100 : " + Math.random() * 100);
+    document.write("Math.round(Math.random() * 100) :  0 et 1, multiplié par 100 et arrondi : " + Math.round(Math.random() * 100));
+    </pre>
+</div>
+
+<script>
+    document.write('<div class="result">');
+    
+    document.write("Math.random() : retourne un nombre aléatoire entre 0 et 1 : " + Math.random() + '<br>');
+    document.write("Math.random() * 100  : retourne un nombre aléatoire entre 0 et 1, multiplié par 100 : " + Math.random() * 100 + '<br>');
+    document.write("Math.round(Math.random() * 100) : retourne un nombre aléatoire entre 0 et 1, multiplié par 100 et arrondi : " + Math.round(Math.random() * 100) + '<br>');
+   
+   
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    // Les méthodes min() et max()
+    document.write('Math.min(-2,-1, 0, -10, 2, 3, 4, 5) = ' + Math.min(-2,-1, 0, -10, 2, 3, 4, 5));
+    document.write('Math.max(-2,-1, 0, 50, 2, 3, 4, 5) = ' + Math.max(-2,-1, 0, 50, 2, 3, 4, 5));
+    document.write('Math.min(1, 2, 3, 4, 5, "a") = ' + Math.min(1, 2, 3, 4, 5, "a"));
+    document.write('Math.max(1, 2, 3, 4, 5, "a") = ' + Math.max(1, 2, 3, 4, 5, "a"));
+    </pre>
+</div>
+
+<script>
+    document.write('<div class="result">');
+    
+    // Les méthodes min() et max()
+    document.write('Math.min(-2,-1, 0, -10, 2, 3, 4, 5) = ' + Math.min(-2,-1, 0, -10, 2, 3, 4, 5) + '<br>');
+    document.write('Math.max(-2,-1, 0, 50, 2, 3, 4, 5) = ' + Math.max(-2,-1, 0, 50, 2, 3, 4, 5) + '<br>');
+    document.write('Math.min(1, 2, 3, 4, 5, "a") = ' + Math.min(1, 2, 3, 4, 5, "a") + '<br>');
+    document.write('Math.max(1, 2, 3, 4, 5, "a") = ' + Math.max(1, 2, 3, 4, 5, "a") + '<br>');
+
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    // La méthode abs()
+    document.write('Math.abs(-2) = ' + Math.abs(-2));
+    document.write('Math.abs(-145.4567) = ' + Math.abs(-145.4567));
+    document.write('Math.abs(5) = ' + Math.abs(5));
+    document.write('Math.abs("hello") = ' + Math.abs("hello"));
+    </pre>
+</div>
+
+<script>
+    document.write('<div class="result">');
+    
+    // La méthode abs()
+    document.write('Math.abs(-2) = ' + Math.abs(-2) + '<br>');
+    document.write('Math.abs(-145.4567) = ' + Math.abs(-145.4567) + '<br>');
+    document.write('Math.abs(5) = ' + Math.abs(5) + '<br>');
+    document.write('Math.abs("hello") = ' + Math.abs("hello") + '<br>');
+    document.write('</div>');             
+</script>
+
+<div class="div-code">
+    <pre>
+    // La méthode cos()
+    document.write('Math.cos(0) = ' + Math.cos(0));
+    document.write('Math.cos(Math.PI) = ' + Math.cos(Math.PI));
+    document.write('Math.cos(Math.PI / 2) = ' + Math.cos(Math.PI / 2));
+    </pre>
+</div>
+
+<script>
+    document.write('<div class="result">');
+    
+    // La méthode cos()
+    document.write('Math.cos(0) = ' + Math.cos(0) + '<br>');
+    document.write('Math.cos(Math.PI) = ' + Math.cos(Math.PI) + '<br>');
+    document.write('Math.cos(Math.PI / 2) = ' + Math.cos(Math.PI / 2) + '<br>');
+
+    document.write('<br>Notez qu’ici, d’un point de vue mathématiques pur, le cosinus de pi radians / 2 est égal à 0. Le résultat renvoyé dans le navigateur' + 
+    ' est légèrement différent (6e-17 = 0.0000….0006) car une approximation de pi est utilisée.');
+    document.write('</div>');             
+</script>
+<p>
+    <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">Plus d'infos sur MDN Web docs</a>
+</p>
+    </div>
+    </div>
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

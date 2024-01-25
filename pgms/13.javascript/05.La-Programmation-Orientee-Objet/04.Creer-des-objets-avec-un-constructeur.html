@@ -32,6 +32,34 @@
         <p id="p2"></p>
         <p id="p3"></p>
         <p id="p4"></p>
+
+        <div class="div-code">
+            <pre>
+                <code class="language-js">
+                    // Définition de la fonction constructeur Utilisateur
+                    function Utilisateur(prenom, nom, age)
+                    {
+                        this.prenom = prenom;
+                        this.nom = nom;
+                        this.age = age;
+                        this.nomComplet = function() {
+                            return this.prenom + " " + this.nom;
+                        }
+                    }
+
+                    // Instanciation de deux objets à partir de la fonction constructeur
+                    let utilisateur1 = new Utilisateur("John", "Doe", 30);
+                    let utilisateur2 = new Utilisateur("Jane", "Smith", 25);
+
+                    // Affichage des propriétés et méthodes de chaque objet
+                    document.getElementById("p1").innerHTML = utilisateur1.prenom + ' ' + utilisateur1.nom + ' ' + utilisateur1.age +
+                    ' ans -> nom complet : ' + utilisateur1.nomComplet();    
+                    
+                    document.getElementById("p2").innerHTML = utilisateur1.nom + ' ' + utilisateur1.prenom + ' ' + utilisateur1.age + 
+                    ' ans -> nom complet : ' + utilisateur2.nomComplet();    
+                </code>  
+            </pre>
+        </div>
         
         <script>
 

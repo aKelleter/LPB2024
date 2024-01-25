@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriétés et méthodes de l’objet global Array (tableau)</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Propriétés et méthodes de l’objet global Array (tableau)</h1>
+    <hr>  
+    <h2>Présentation des tableaux et de l’objet global Array</h2>
+    <p>
+        Les variables de type Array, ou variables tableaux, sont des variables particulières qu’on retrouve dans 
+        de nombreux langages de programmation et qui permettent de stocker plusieurs valeurs à la fois avec un système 
+        e clef ou d’indice associé à chaque valeur. En JavaScript, les tableaux sont avant tout des objets qui dépendent 
+        de l’objet global Array. Dans cette nouvelle leçon, nous allons voir de que sont les tableaux et comment définir 
+        des tableaux en JavaScript. Nous nous intéresserons ensuite aux propriétés et méthodes de l’objet Array.
+    </p>
+    <h2>Présentation et création de tableaux en JavaScript</h2>
+    <p>
+        Les tableaux sont des éléments qui vont pouvoir contenir plusieurs valeurs. En JavaScript, comme les tableaux 
+        sont avant tout des objets, il peut paraitre évident qu’un tableau va pouvoir contenir plusieurs valeurs comme 
+        n’importe quel objet. <br> <br>
+
+        Le JavaScript ne gère qu’un type de tableau : les tableaux numérotés (pas les tableaux associatifs). Les clefs numériques 
+        associées à chaque valeur vont être générées automatiquement. La première valeur d’un tableau va posséder la clef 0, 
+        la deuxième valeur possèdera la clef 1, et etc. On va pouvoir stocker n’importe quel type de valeur en valeurs d’un tableau.
+    </p>
+    
+
+    <h2>Création d'un tableau en JavaScript</h2>
+    <p>
+        Les tableaux ne sont pas des valeurs primitives. Cependant, nous ne sommes pas obligés d’utiliser le constructeur Array() 
+        avec le mot clef new pour créer un tableau en JavaScript. <br> <br>
+        En effet, une syntaxe alternative et plus performante (et qu’on préfèrera donc toujours à la syntaxe new Array()) est 
+        disponible en JavaScript et nous permet des créer des tableaux qui vont tout de même pouvoir utiliser les propriétés et 
+        méthodes du constructeur Array(). Cette syntaxe utilise les crochets […] comme ceci :
+    </p>
+
+    <div class="div-code">
+        <pre>
+        let listeNombre = [1, 2, 3, 4, 5];
+        let listeMots = ["Bonjour", "tout", "le", "monde"];
+        let produits = ["Livre", 20, "Cahier", 5, ["Stylo", 2]];
+        let listeVide = [];
+        document.write("listeNombre : "+ listeNombre);
+        document.write("listeMots : "+ listeMots);
+        document.write("produits : "+ produits);
+        document.write("listeVide : "+ listeVide);    
+        </pre>        
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+            let listeNombre = [1, 2, 3, 4, 5];
+            let listeMots = ["Bonjour", "tout", "le", "monde"];
+            let produits = ["Livre", 20, "Cahier", 5, ["Stylo", 2]];
+            let listeVide = [];
+            document.write("listeNombre : "+ listeNombre + '<br>');
+            document.write("listeMots : "+ listeMots + '<br>');
+            document.write("produits : "+ produits + '<br>');
+            document.write("listeVide : "+ listeVide + '<br>');
+       
+        document.write('</div>');             
+    </script>
+
+    <h2>Accéder à une valeur dans un tableau</h2>
+    <p>
+        Pour accéder à une valeur en particulier dans un tableau, il suffit de préciser le nom du tableau puis l’indice 
+        associé à la valeur à laquelle on souhaite accéder entre crochets. <br> <br>
+
+        Dans le cas où un tableau stocke un autre tableau, il faudra utiliser deux paires de crochets : <br>
+        - la première paire va mentionner l’indice relatif à la valeur à laquelle on souhaite accéder dans notre tableau de base 
+        (c’est-à-dire l’indice lié au sous tableau en l’occurrence, tandis que : <br>
+        - la deuxième parie de crochets va nous permettre de préciser l’indice lié à la valeur à laquelle on souhaite accéder 
+        dans notre sous tableau.
+    </p>
+
+    <script>
+        document.write('<div class="result">');
+
+            
+            document.write("listeNombre[0] : "+ listeNombre[0] + '<br>');
+            document.write("listeMots[2] : "+ listeMots[2] + '<br>');
+            document.write("produits[4][0] : "+ produits[4][0] + '<br>');
+            document.write("listeVide[0] : "+ listeVide[0] + '<br>');
+       
+        document.write('</div>');
+    </script>
+
+    <h2>Utiliser une boucle <span class="danger">for…of</span> pour parcourir toutes les valeurs d’un tableau</h2>
+    <p>
+        Pour parcourir un tableau élément par élément, on va pouvoir utiliser une boucle spécialement créée dans ce but qui est la boucle for…of. 
+        Regardons immédiatement comment utiliser ce type de boucle pratique :
+    </p>
+
+    <div class="div-code">
+        <pre>
+        let listeNbre = [1, 2, 3, 4, 5];
+        for (let nombre of listeNbre) {
+            document.write(nombre + " ");
+        }
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+            let listeNbre = [1, 2, 3, 4, 5];
+            for (let nombre of listeNbre) {
+                document.write(nombre + " ");
+            }
+       
+        document.write('</div>');   
+    </script>
+
+    <p>
+        Ici, on définit une variable let nombre (on peut lui donner le nom qu’on souhaite) qui va stocker les 
+        différentes valeurs de notre tableau une à une. La boucle <b>for… of</b> va en effet exécuter son code en boucle 
+        jusqu’à ce qu’elle arrive à la fin du tableau.
+    </p>
+
+    <h2>Tableaux associatifs en JavaScript, objets littéraux et boucle <span class="danger">for… in</span></h2>
+
+    <p>
+        Dans nombre d’autres langages informatique (dont le PHP, par exemple), on peut créer des tableaux en choisissant 
+        d’attribuer une clef textuelle à chaque nouvelle valeur. On appelle ces tableaux des tableaux associatifs. <br> <br>
+        En JavaScript, ce type de tableau n’existe tout simplement pas. La chose qui va le plus se rapprocher d’un tableau 
+        associatif en JavaScript est finalement un objet littéral. Par ailleurs, notez qu’on va pouvoir <b>utiliser 
+        une boucle for… in pour parcourir les propriétés d’un objet littéral une à une. La boucle for…in est l’équivalent 
+        de la boucle for…of mais pour les objets</b>.
+    </p>
+
+    <div class="div-code">
+        <pre>
+        let personnage1 = {
+            name: "Link",
+            force: 10,
+            isImportant: true,
+            weapons: ["sword", "shield", "bow"]
+        };    
+        
+        for(let prop in personnage1) {
+            document.write(prop + " : " + personnage1[prop]);
+        }
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+            let personnage1 = {
+                name: "Link",
+                force: 10,
+                isImportant: true,
+                weapons: ["sword", "shield", "bow"]
+            };    
+            
+            for(let prop in personnage1) {
+                document.write(prop + " : " + personnage1[prop] + "<br>");
+            }
+       
+        document.write('</div>');   
+    </script>
+
+    <p>
+        On comment ici par initialiser une variable let prop (propriété). A chaque nouveau passage dans la boucle, cette variable 
+        reçoit le nom d’une propriété de notre objet littéral let personnage1. On accède à la valeur liée au nom de la propriété en 
+        question avec la syntaxe pierre[propriete] et on l’affiche avec document.write.
+    </p>
+
+    <h2>Les propriétés et les méthodes du constructeur Array()</h2>
+
+    <p>
+        Le constructeur Array() ne possède que deux propriétés : <br> <br>
+        - la propriété <b>length</b> qui retourne le nombre d’éléments d’un tableau et <br>
+        - la propriété <b>prototype</b> qui est une propriété que possèdent tous les constructeurs en JavaScript. <br> <br>
+        Array() possède également une trentaine de méthodes et certaines d’entre elles vont être très puissantes et vont pouvoir nous être 
+        très utiles. Nous allons ici étudier celles qu’il faut connaitre.
+    </p>
+
+    <h2>Les méthodes du constructeur Array</h2>
+     <ol>
+        <li>
+            Les méthodes <b>push() et pop()</b> : <br>
+            La méthode <b>push()</b> va nous permettre d’ajouter des éléments en fin de tableau et va retourner 
+            la nouvelle taille du tableau. Nous allons passer les éléments à ajouter en argument. <br>
+            La méthode <b>pop()</b> va elle nous permettre de supprimer le dernier élément d’un tableau et va retourner l’élément supprimé. <br> <br>
+        </li>
+        <li>
+            Les méthodes <b>unshift() et shift()</b> : <br>
+            La méthode <b>unshift()</b> va nous permettre d’ajouter des éléments en début de tableau et va retourner la nouvelle taille du tableau. 
+            Nous allons passer les éléments à ajouter en argument. <br>
+            La méthode <b>shift()</b> va elle nous permettre de supprimer le premier élément d’un tableau et va retourner l’élément supprimé. <br>            
+            Ces deux méthodes sont donc les équivalentes des méthodes push() et pop() à la différence que les éléments vont être ajoutés ou supprimés en 
+            début de tableau et non pas en fin. <br> <br>
+        </li>
+        <li>
+            La méthode <b>splice()</b> :  permet d'ajouter, supprimer ou remplacer des éléments dans un tableau, on peut également utiliser splice(). 
+            L’avantage de cette méthode est qu’elle nous permet d’ajouter, de supprimer ou de remplacer des éléments n’importe où dans un tableau.<br>
+            La méthode splice() va pouvoir prendre trois arguments : <br>
+            - une position de départ à partir d’où commencer le changement, <br>
+            - le nombre d’éléments à remplacer et finalement <br>
+            - les éléments à ajouter au tableau<br>
+            En précisant la position de départ 0, les changements seront effectués à partir du début du tableau. En précisant la position 1, ils se 
+            feront à partir du deuxième élément, etc. <br>
+            En précisant une position négative, les changements seront faits en comptant à partir de la fin :
+            -1 pour commencer en partant du dernier élément, -2 pour commencer en partant de l’avant dernier élément, etc. <br> 
+            Si on précise 0 en nombre éléments à remplacer, alors aucun élément ne sera supprimé du tableau de base. Dans ce cas, il sera nécessaire 
+            de préciser des éléments à rajouter. Enfin, si on ne précise pas d’éléments à rajouter au tableau, le nombre d’éléments à remplacer tel 
+            quel précisé en deuxième argument seront supprimés du tableau à partir de la position indiquée en premier argument. <br> 
+            Cette méthode va également retourner un tableau contenant les éléments supprimés. <br> <br>
+        </li>
+        <li>
+            La méthode <b>slice()</b> : retourne un tableau créé en découpant un tableau de départ.<br>
+            Cette méthode va prendre en premier argument facultatif <b>la position de départ où doit commencer</b> la découpe de notre tableau de départ. 
+            Si la position passée est un nombre négatif, alors le début de la découpe sera calculé à partir de la fin du tableau de départ. 
+            Si aucune position de départ n’est passée, la découpe commencera depuis le début du tableau de départ. <br>
+            On va également pouvoir lui passer en second argument facultatif <b>la position où doit s’arrêter</b> la découpe du tableau de départ. 
+            Si la position passée est un nombre négatif, alors la fin de la découpe sera calculé à partir de la fin du tableau de départ. 
+            Si aucune position de fin n’est passée, alors on récupèrera le tableau de départ jusqu’à la fin pour créer notre nouveau tableau.
+            <br> <br>
+        </li>
+        <li>
+            La méthode <b>concat()</b> : permet de fusionner différents tableaux entre eux pour en créer un 
+            nouveau qu’elle va renvoyer. Cette méthode va prendre en arguments les tableaux que l’on souhaite concaténer à un premier de 
+            départ qu’on va pouvoir choisir arbitrairement. Notez que l’<b>on peut fusionner autant de tableaux que l’on veut</b> entre eux. 
+            <b>Les tableaux de départ ne sont pas modifiés.</b>
+            <br> <br>
+        </li>
+        <li>
+            La méthode <b>includes()</b> : permet de déterminer si un tableau contient une valeur qu’on va passer en argument. 
+            Si c’est le cas, includes() renvoie true. Dans le cas contraire, cette méthode renvoie false. 
+            <b>Cette méthode est sensible à la casse</b> (une majuscule est considérée comme une entité différente d’une minuscule).
+            <br> <br>
+        </li>
+        <li>
+            La méthode <b>join()</b> : permet de créer une chaîne de caractères à partir d’un tableau. 
+            On va pouvoir préciser en argument le séparateur à utiliser entre chaque élément du tableau. 
+            Si aucun séparateur n’est précisé, alors les éléments seront séparés par des virgules.
+            <br> <br>
+        </li>
+     </ol>
+
+     <h4>push() / pop()</h4>
+     <div class="div-code">
+        <pre>
+        let listeNb = [1, 2, 3, 4, 5, 6];
+        document.write("listeNbre : " + listeNb);
+        let taille = listeNb.push(7);
+        document.write("listeNbre.push(7) : " + listeNb + " -> Taille du tableau : " + taille);
+        let element = listeNb.pop();
+        document.write("listeNbre.pop() : " + listeNb + " -> L' élément supprimé est le :  " + element);
+        </pre>
+     </div>
+
+     <script>
+        document.write('<div class="result">');
+
+            let listeNb = [1, 2, 3, 4, 5, 6];
+            document.write("listeNbre : " + listeNb + "<br>");
+            let taille = listeNb.push(7);
+            document.write("listeNbre.push(7) : " + listeNb + " -> Taille du tableau : " + taille + "<br>");
+            let element = listeNb.pop();
+            document.write("listeNbre.pop() : " + listeNb + " -> L' élément supprimé est le :  " + element + "<br>");
+       
+        document.write('</div>');
+     </script>
+
+    <h4>unshift() / shift()</h4>
+    <div class="div-code">
+        <pre>
+        let listeNoms = ["Link", "Zelda", "Ganondorf"];
+        let listeVies = [3, 6, 9];
+
+        // Affichage avant modification
+        document.write("listeNoms : " + listeNoms);
+        document.write("listeVies : " + listeVies);    
+
+        document.write("---------------------");
+
+        // Ajoute un élément en début de tableau
+            let size = listeNoms.unshift("Sheik");
+            document.write("listeNoms : " + listeNoms + " -> taille du tableau  : " + size);
+
+            // Supprime le premier élément du tableau
+            let elementDeleted = listeVies.shift();                
+            document.write("listeVies : " + listeVies + " -> élément supprimé : "  + elementDeleted);
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+            let listeNoms = ["Link", "Zelda", "Ganondorf"];
+            let listeVies = [3, 6, 9];
+
+            // Affichage avant modification
+            document.write("listeNoms : " + listeNoms + "<br>");
+            document.write("listeVies : " + listeVies + "<br>");    
+
+            document.write("---------------------<br>");
+
+            // Ajoute un élément en début de tableau
+            let size = listeNoms.unshift("Sheik");
+            document.write("listeNoms : " + listeNoms + " -> taille du tableau  : " + size + "<br>");
+
+            // Supprime le premier élément du tableau
+            let elementDeleted = listeVies.shift();                
+            document.write("listeVies : " + listeVies + " -> élément supprimé : "  + elementDeleted +  "<br>");
+
+    
+        document.write('</div>');
+    </script>
+
+    <p>
+        Dans le code ci-dessus, vous pouvez noter qu’on arrive à afficher les différentes valeurs de notre tableau listeNoms et listeVies. Nous 
+        avons pû déjà observer ce phénomène dans les leçons précédentes. <br> <br> 
+        Cela est dû au fait que lorsqu’un tableau doit être représenté par une valeur texte, JavaScript appelle automatiquement la méthode 
+        <b>toString()</b> sur celui-ci qui concatène les éléments du tableau et renvoie une chaîne de caractères contenant chacun des éléments, 
+        séparés par des virgules. En pratique, on n’utilisera pas ce genre d’écriture car nous n’avons aucun contrôle sur ce qui est renvoyé. 
+        Pour un affichage rapide, cependant, c’est la méthode la plus simple et c’est donc une méthode que je vais utiliser dans cette leçon 
+        pour vous montrer les différents résultats des opérations.
+    </p>
+
+    <h4>splice()</h4>
+    <div class="div-code">
+        <pre>
+        let jours = ["Lundi", "Mardi", "Mercredi", "Vendredi", "Samedi" ];
+        document.write("jours : " + jours);
+
+        // Ajoute jeudi au 3ème indice
+        jours.splice(3, 0, "Jeudi");
+        document.write("jours.splice(3, 0, 'Jeudi') : " + jours);
+
+        // Ajoute dimanche au 2ème indice à la place de mercredi et jeudi
+        jours.splice(2, 2, "Dimanche");
+        document.write("jours.splice(2, 2, 'Dimanche') : " + jours);    
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+           let jours = ["Lundi", "Mardi", "Mercredi", "Vendredi", "Samedi" ];
+           document.write("jours : " + jours + "<br>");
+
+           // Ajoute jeudi au 3ème indice
+           jours.splice(3, 0, "Jeudi");
+           document.write("jours.splice(3, 0, 'Jeudi') : " + jours + "<br>");
+
+           // Ajoute dimanche au 2ème indice à la place de mercredi et jeudi
+           jours.splice(2, 2, "Dimanche");
+           document.write("jours.splice(2, 2, 'Dimanche') : " + jours + "<br>");   
+
+        document.write('</div>');
+    </script>
+
+    <p>
+        Le code parle de lui-même. On ajoute l’élément “Jeudi” au 3ème indice du tableau jours. On ajoute ensuite l’élément “Dimanche” 
+        au 2ème indice en remplaçant mercredi et jeudi.
+    </p>
+
+    <h4>slice()</h4>
+    <div class="div-code">
+        <pre>
+            let words = ["Nous ", "sommes", "bientôt", "le", "week-end" ];
+            document.write("words : " + words);  
+            
+            $sliceOfWords = words.slice(2, 4);
+            document.write("words.slice(2, 4) : " + $sliceOfWords);
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+
+        let words = ["Nous ", "sommes", "bientôt", "le", "week-end" ];
+        document.write("words : " + words + "<br>");  
+        
+        $sliceOfWords = words.slice(2, 4);
+        document.write("words.slice(2, 4) : " + $sliceOfWords + "<br>");
+          
+
+        document.write('</div>');
+    </script>
+    <p>
+        On récupère ici un nouveau tableau créé à partir du tableau words. Ce nouveau tableau va contenir les éléments du tableau words 
+        compris entre les indices 2 et 4 (non compris). On récupère donc les éléments “bientôt” et “le”.
+    </p>
+
+    <h4>concat()</h4>
+    <div class="div-code">
+        <pre>
+        let t1 = ["Lundi", "Mardi", "Mercredi"];    
+        let t2 = ["Jeudi", "Vendredi", "Samedi", "Dimanche"];
+        let t3 = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet"];
+
+        document.write("t1 : " + t1);
+        document.write("t2 : " + t2);
+        document.write("t3 : " + t3);
+
+        let t4 = t1.concat(t2, t3);
+        document.write("t4 = t1.concat(t2, t3) : " + t4);
+        </pre>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+        
+        let t1 = ["Lundi", "Mardi", "Mercredi"];    
+        let t2 = ["Jeudi", "Vendredi", "Samedi", "Dimanche"];
+        let t3 = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet"];
+
+        document.write("t1 : " + t1 + "<br>");
+        document.write("t2 : " + t2 + "<br>");
+        document.write("t3 : " + t3 + "<br>");
+
+        let t4 = t1.concat(t2, t3);
+        document.write("t4 = t1.concat(t2, t3) : " + t4 + "<br>");
+
+        document.write('</div>');
+    </script>
+    <p>
+        On concatène ici les tableaux t1, t2 et t3 pour créer un nouveau tableau t4. On aurait pu concaténer autant de tableaux que l’on 
+        souhaite. Les tableaux de départ ne sont pas modifiés.
+    </p>
+
+    <h4>includes()</h4>
+    <div class="div-code">
+        <pre>
+        let suite = ["Coeur", "Carreau", "Trèfle", "Pique"];
+        document.write("suite : " + suite);
+        document.write("suite.includes('Carreau') : " + suite.includes('Carreau'));
+        document.write("suite.includes('carreau') : " + suite.includes('carreau'));
+        </pre>
+    </div>
+    <script>
+        document.write('<div class="result">');
+
+        let suite = ["Coeur", "Carreau", "Trèfle", "Pique"];
+        document.write("suite : " + suite + "<br>");
+        document.write("suite.includes('Carreau') : " + suite.includes('Carreau') + "<br>");
+        document.write("suite.includes('carreau') : " + suite.includes('carreau') + "<br>");
+
+        document.write('</div>');
+    </script>
+    <p>
+        On vérifie ici si le tableau suite contient l’élément “Carreau”. On vérifie ensuite si le tableau contient l’élément “carreau”. 
+        Comme vous pouvez le voir, la méthode includes() est sensible à la casse.
+    </p>
+
+    <h4>join()</h4>
+    <div class="div-code">
+        <pre>
+        let jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+        document.write("jours : " + jours);
+        document.write("jours.join() : " + jours.join());
+        document.write("jours.join(' ') : " + jours.join(' '));
+        document.write("jours.join(' - ') : " + jours.join(' - '));
+        </pre>
+    </div>
+    <script>
+        document.write('<div class="result">');
+
+        let joursDeLaSemaine = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+        document.write("jours : " + joursDeLaSemaine + "<br>");
+        document.write("jours.join() : " + joursDeLaSemaine.join() + "<br>");
+        document.write("jours.join(' ') : " + joursDeLaSemaine.join(' ') + "<br>");
+        document.write("jours.join(' - ') : " + joursDeLaSemaine.join(' - ') + "<br>");
+
+        document.write('</div>');
+    </script>
+    <p>
+        <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">Plus d'infos sur MDN Web docs</a>
+    </p>
+
+    </div>
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>
