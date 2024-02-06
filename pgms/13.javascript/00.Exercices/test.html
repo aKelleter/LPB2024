@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>2. Définir et appeler une fonction avec arguments</h2>
+            <div class="exo">
+                Dans cet exercice vous devez : <br>
+                - créez une fonction nommée divideByTwo(arg1, arg2) qui prend 2 arguments (arg1 et arg2) <br>
+                - la fonction doit diviser par deux (arg1 + arg2) si l'addition de (arg1 + arg2) est un nombre pair sinon on retourne un message <br>
+                - appeler la fonction divideByTwo avec deux paramètres de votre choix (faire plusieurs essais) et stocker le résultat dans une variable nommée resultat <br>
+                - afficher le contenu de la variable resultat dans la console <br>
+                - afficher le contenu de la variable resultat dans la page HTML <br> <br>
+                <div><a href="ex2.html">Solution</a></div>
+            </div>
+
+    <script>
+
+        function divideByTwo(arg1, arg2)
+        {
+
+            let division = null;        
+
+            if((arg1 + arg2)%2 == 0){
+                division = (arg1 + arg2) / 2;
+            }else{
+                division = "Division par 2 non autorisée";
+            }
+
+            return division;                                    
+
+        }
+        let resultat = divideByTwo(3,2);
+
+        document.write(resultat);
+
+    </script>
+    
+</body>
+</html>

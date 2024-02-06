@@ -111,22 +111,41 @@
 
     <div class="div-code">
         <pre>
-            let age = prompt("Quel âge avez-vous ?", 18);
+            //let age = prompt("Quel âge avez-vous ?", 18);
 
             let welcome = (age < 18) ?
             () => document.write("Salut Bro") :
             () => document.write("Bonjour Monsieur");
+
+            /*
+            let welcome2 = null;
+            if(age < 18){
+                welcome2 = () => document.write("Salut Bro");
+            }else{
+                welcome2 = () => document.write("Bonjour Monsieur");
+            }
+            */
 
             welcome();
         </pre>
     </div>
 
     <script>
-        //let age = prompt("Quel âge avez-vous ?", 18);
+        let age = prompt("Quel âge avez-vous ?", 18);
 
-        let welcome = (age < 18) ?
-        () => document.write("Salut Bro") :
+        let welcome = (age < 18) ? 
+        () => document.write("Salut Bro") : 
         () => document.write("Bonjour Monsieur");
+
+        /*
+        let welcome2 = null;
+        if(age < 18){
+            welcome2 = () => document.write("Salut Bro");
+        }else{
+            welcome2 = () => document.write("Bonjour Monsieur");
+        }
+        */
+
 
         welcome();
     </script>  

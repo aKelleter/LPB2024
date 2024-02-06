@@ -246,6 +246,11 @@
             Si aucun séparateur n’est précisé, alors les éléments seront séparés par des virgules.
             <br> <br>
         </li>
+        <li>
+            La méthode <b>forEach(callback)</b> : permet d’exécuter une fonction sur chaque élément d’un tableau.
+            forEach() ne modifie pas le tableau sur lequel elle est appelée, en revanche, la fonction de 
+            retour (callback) utilisée peut modifier le tableau.
+        </li>
      </ol>
 
      <h4>push() / pop()</h4>
@@ -458,13 +463,13 @@
 
     <h4>join()</h4>
     <div class="div-code">
-        <pre>
-        let jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
-        document.write("jours : " + jours);
-        document.write("jours.join() : " + jours.join());
-        document.write("jours.join(' ') : " + jours.join(' '));
-        document.write("jours.join(' - ') : " + jours.join(' - '));
-        </pre>
+    <pre>
+    let jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+    document.write("jours : " + jours);
+    document.write("jours.join() : " + jours.join());
+    document.write("jours.join(' ') : " + jours.join(' '));
+    document.write("jours.join(' - ') : " + jours.join(' - '));
+    </pre>
     </div>
     <script>
         document.write('<div class="result">');
@@ -477,6 +482,20 @@
 
         document.write('</div>');
     </script>
+
+<h4>forEach(callback)</h4>
+<div class="div-code">
+    <pre>
+    let array1 = ['a', 'b', 'c', 'd'].forEach(element => document.write(element));
+    </pre>
+</div>
+<script>
+    document.write('<div class="result">');
+    
+    let array1 = ['a', 'b', 'c', 'd'].forEach(element => document.write(element));
+
+    document.write('</div>');
+</script>
     <p>
         <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">Plus d'infos sur MDN Web docs</a>
     </p>
