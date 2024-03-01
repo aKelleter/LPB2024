@@ -17,14 +17,16 @@ a.link{
     margin: 8px;
 }
 
-a.link-second{
-    color: rgb(7, 106, 159); 
-    background-color: rgb(158, 209, 239);   
-    border: 1px solid rgb(36, 112, 194);
-    font-size: 1.1em;
-    font-weight: bold;
+a.a-sommaire{
+    color: rgb(7, 106, 159);       
+    font-size: 1.1em;   
     text-decoration: none;
     margin: 8px;
+}
+
+a.a-sommaire:hover{
+    color: rgb(252, 21, 117);
+    text-decoration: underline;
 }
 
 a.link:hover{
