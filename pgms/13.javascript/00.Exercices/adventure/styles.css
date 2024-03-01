@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700;900&display=swap");
+
+:root{
+    --body-backg-color: rgb(45, 63, 44);
+    --danger-color: rgb(217, 12, 12);
+    --backg-msg-danger-color: rgb(255, 208, 208);
+    --success-color: rgb(39, 156, 18);
+    --backg-msg-success-color: rgb(222, 254, 180);
+    --danger-color-hover: rgb(147, 13, 13);
+    --link-color: rgb(1, 248, 116);
+    --link-hover-color: rgb(160, 15, 15);
+    --body-color: rgb(0, 0, 0);
+    --result-backg-color: rgb(26, 47, 4);
+    --color-black: rgb(0, 0, 0);
+    --color-white: rgb(255, 255, 255);
+    --color-secondary: rgba(237, 192, 11, 0.936);
+    --color-limegreen: rgb(50, 205, 50);
+    --questions-backg-color: rgb(40, 99, 64);
+    --direction-backg-color-hover: rgb(185, 234, 247);
+    --direction-border-color: rgb(122, 122, 122);
+    --direction-color: rgb(0, 0, 0);
+
+    --border-width: 1px;
+}
+
+/* ***************************** */
+/*        ELEMENTS RULES         */
+/* ***************************** */
+
+body {
+  font-family: "Exo 2", sans-serif;
+  font-size: 1.1rem;
+  background-color: var(--body-backg-color);
+  color: var(--body-color);  
+}
+
+footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+h1{
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: var(--link-color);
+}
+
+h2 {
+    color: var(--menu-item-color);
+}
+
+h2.title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--menu-item-color);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+hr {
+    margin: 1rem 0;
+    border: var(--border-width) solid var(--link-color);
+    opacity: .25;
+}
+
+footer{
+    margin-bottom: 5rem;
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+h4{
+    margin-bottom: 0;
+}
+
+/* ***************************** */
+/*         CLASSES RULES         */
+/* ***************************** */
+
+.action{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.direction {
+    display: inline;
+    background-color: var(--direction-backg-color);
+    border: var(--border-width) solid var(--direction-border-color);
+    padding: 1rem;
+    color: var(--direction-color);
+    margin: 1rem;    
+    border-radius: 5px;
+}
+.direction:hover {
+    background-color: var( --direction-backg-color-hover);
+    border: var(--border-width) solid var(--direction-border-color);
+    padding: 1rem;
+    color: var(--direction-color);
+    cursor: pointer;
+}
+
+.container {   
+    margin: 0 1rem 0 1rem;
+}
+
+.screen {
+    margin: auto;
+    max-width: 65%;
+    text-align: justify;
+}
+
+.btn-classic {
+    font-size: 1.2rem;
+    color: var(--link-color);
+    border: 1px solid var(--link-color);
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;    
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-classic:hover {
+    background-color: var(--link-color);
+    color: var(--body-backg-color);
+    border: 1px solid var(--link-color);
+}
+
+.mt-15 {
+    margin-top: 1.5rem;
+}
+
+.danger {
+    color: var(--danger-color);
+}
+.message{
+    padding: 0.7rem;
+    margin: 0.7rem 0;
+    border-radius: 5px;
+    text-align: center;
+    color: var(--color-white);
+
+}
+
+.questions {
+    background-color: var(--questions-backg-color);
+    color: var(--link-color);
+}
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    color: var(--color-secondary);
+}
+
+.reponses {
+    background-color: var(--result-backg-color);
+    color: var(--link-color);
+}
+.reponse{
+    margin: 10px 0;
+    padding: 3px;
+}
+
+.reponse:hover {
+    background-color: var(--link-color);
+    color: var(--body-backg-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ***************************** */
+/*           IDs RULES           */
+/* ***************************** */
+
+#content {
+    display: block;
+    width: 90%;
+    margin: auto;
+}
+
+/* ***************************** */
+/*          FORM RULES           */
+/* ***************************** */
+

@@ -5,11 +5,14 @@
 let menu = document.querySelector('nav');
 
 if(path === "root") {
-    menu.innerHTML = '<a class="btn-mini" href="index.html">Index du Cours</a>';
+    menu.innerHTML = '<a class="btn-mini" href="index.html">Index du Cours</a>';   
+    menu.innerHTML += ' <a class="btn-mini" href="00.Exercices/adventure/">Jeu Adventure</a>';
+
 }else if(path === "chapter")  {
-    menu.innerHTML = '<a class="btn-mini" href="../">Index du Cours</a> <a href="index.html" class="btn-mini">Chapitre en cours</a>';
+    menu.innerHTML = '<a class="btn-mini" href="../">Index du Cours</a> <a href="index.html" class="btn-mini">Chapitre en cours</a>';    
 }else {
     menu.innerHTML = '<a class="btn-mini" href="../">Index du Cours</a> <a href="index.html" class="btn-mini">Chapitre en cours</a>';
+    
 }
 
 /**
