@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'environnement du navigateur</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>L'environnement du navigateur</h1>
+    <hr>  
+    <p> 
+        Le langage JavaScript a été initialement créé pour les navigateurs web. 
+    </p>
+    <p>
+        Depuis, il a évolué et est devenu un langage aux multiples utilisations et plateformes.
+    </p>
+        Une plateforme peut être un navigateur, ou un serveur Web ou tout autre hôte (une machine à café moderne,
+        si elle peut exécuter JavaScript). 
+        Chacun d’entre eux fournit des fonctionnalités spécifiques à la plate-forme. 
+        La spécification JavaScript appelle cela un environnement hôte.
+    </p>
+    <p>
+        Un environnement hôte fournit ses propres objets et fonctions en plus du noyau du langage. Les navigateurs Web permettent 
+        de contrôler les pages Web. Node.js fournit des fonctionnalités côté serveur, etc.
+        
+        Voici une vue globale de ce que nous avons lorsque JavaScript s’exécute dans un navigateur Web :
+    </p>
+    <img src="img/windowObjects.svg" alt="Environnement du navigateur">
+
+    <p>
+        Il existe un objet “racine” appelé "window". Il a 2 rôles :
+    </p>
+    <ol>
+        <li>Premièrement, c’est un objet global pour le code JavaScript.</li>
+        <li>Deuxièmement, il représente la “fenêtre du navigateur” et fournit des méthodes pour la contrôler.</li>
+    </ol>
+    <p>
+        Par exemple, nous l’utilisons ici comme un objet global :
+    </p>
+
+    <div class="div-code">
+    <pre>
+    function sayHi()
+    {
+        alert("Hello");
+    }
+      
+    // les fonctions globales sont des méthodes de l'objet global :
+    window.sayHi();
+    </pre>
+    </div>
+
+    <p>Et nous l’utilisons ici comme une fenêtre du navigateur pour voir la hauteur de la fenêtre :</p>
+
+    <div class="div-code">
+    <pre>
+    alert(window.innerHeight); // hauteur de la fenêtre intérieure
+
+    document.write("Hauteur de la fenêtre intérieure : " + window.innerHeight);
+    </pre>
+    </div>
+        
+    <script>
+        document.write('<div class="result">');
+        document.write("Hauteur de la fenêtre intérieure : " + window.innerHeight);
+        document.write('</div>');
+    </script>
+    <p>
+        Il y a d’autres méthodes et propriétés spécifiques à la fenêtre, nous les étudierons plus tard. 
+    </p>
+
+    <h2>DOM (Document Object Model)</h2>
+
+    <p><a href="https://developer.mozilla.org/fr/docs/Glossary/DOM">Spécification du DOM</a></a:hre></p>
+    <p>
+        Document Object Model, ou DOM en abrégé, représente tout le contenu de la page sous forme d’objets pouvant être modifiés.<br>
+        L’objet document est le “point d’entrée” principal de la page. Nous pouvons changer ou créer n’importe quoi sur la page 
+        en l’utilisant. <br>
+        Par exemple :
+    </p>
+    <div class="div-code">
+    <pre>
+    // change la couleur de fond en bleu
+    document.body.style.background = "#005090";
+        
+    // réinitialisation après 1 seconde
+    setTimeout(() => document.body.style.background = "", 1000);
+    </pre>
+    </div>  
+    <script>
+    document.write('<div class="result">');
+    document.write('ACTIVER LE CODE POUR VOIR LE RESULTAT');
+    /*
+    document.write('... vient de changer la couleur du fond en bleu');
+
+    // change la couleur de fond en bleu
+    document.body.style.background = "#005090";
+        
+    // réinitialisation après 1 seconde
+    setTimeout(() => document.body.style.background = "", 1000);
+    */
+    document.write('</div>');
+    </script>
+
+    <h2>BOM (Browser Object Model)</h2>
+
+    <p>
+        Le "modèle d’objet du navigateur" (BOM en anglais) contient des objets supplémentaires fournis par le navigateur 
+        (l’environnement hôte) pour travailler avec tout ce qui ne correspond pas à l'objet "document".
+    </p>
+    <p>
+        Par exemple : <br>
+        <ul>
+            <li>
+                L’objet <span class="highlight">navigator</span> fournit des informations contextuelles à propos du navigateur 
+                et du système d’exploitation. Il y a beaucoup de propriétés mais les deux plus connues sont : 
+                <span class="highlight">navigator.userAgent</span> – qui donne des informations sur le navigateur actuel, 
+                et <span class="highlight">navigator.platform</span> sur la plateforme (peut permettre de faire la différence 
+                entre Windows/Linux/Mac etc).
+            </li>
+            <li>
+                L’objet <span class="highlight">location</span> nous permet de lire l’URL courante et permet de rediriger le 
+                navigateur vers une nouvelle adresse.
+            </li>
+        </ul>            
+        
+        Voici comment l’on peut utiliser l’objet location :
+    </p>
+    <div class="div-code">
+    <pre>
+    document.write("URL actuelle : " + location.href); // affiche l'URL actuelle
+
+    if (confirm("Go to Wikipedia?")) {
+        location.href = "https://wikipedia.org"; // rediriger le navigateur vers une autre URL
+    }
+    </pre>
+    </div>  
+    <script>
+    document.write('<div class="result">');
+
+    document.write("URL actuelle : " + location.href + "<br>"); // affiche l'URL actuelle
+    document.write('ACTIVER LE CODE POUR VOIR LE RESULTAT');
+    /*
+    if (confirm("Go to Wikipedia?")) {
+        location.href = "https://wikipedia.org"; // rediriger le navigateur vers une autre URL
+    }
+    */
+
+    document.write('</div>');
+    </script>
+   
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

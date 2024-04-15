@@ -15,7 +15,7 @@ if(path === "root") {
 /**
  * Gestion du footer
  */
-let version = "0.6.0";
-let updated = "01/03/2024 16:10";
+let version = "0.7.0";
+let updated = "15/04/2024 16:00";
 let footer = document.querySelector('footer');
 footer.innerHTML = `Le cours de Javascript v${version} - Updated: ${updated} - LPB 2024 - <a href="#top">Top</a>`;

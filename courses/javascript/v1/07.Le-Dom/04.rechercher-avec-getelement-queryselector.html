@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rechercher avec getElement*, querySelector* </title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Rechercher avec getElement*, querySelector*</h1>
+    <hr>  
+    <p> 
+        Les outils de navigation du DOM sont très pratiques quand les éléments sont proches les uns des autres. 
+        Mais s’ils ne le sont pas ? Comment atteindre un élément arbitraire de la page ?
+    </p>
+    <p>
+        Il existe d’autres méthodes de recherche pour cela.
+    </p>
+
+    <h2>document.getElementById ou juste id ?</h2>
+    <p>
+        Si un élément possède un attribut "id", on peut atteindre cet élément en utilisant la méthode <span class="highlight">document.getElementById(id)</span>, 
+        peu importe où elle se trouve.
+    </p>
+    <p>
+        Par exemple :
+    </p>
+    <div class="div-code">
+    <pre>
+    &lt;div id="elem"&gt;
+        &lt;div id="elem-content"&gt;Elément&lt;/div&gt;
+    &lt;/div&gt;
+      
+    &lt;script&gt;
+        // récupération de l'élément :
+        let elem = document.getElementById('elem');
+      
+        // on met son arrière-plan rouge :
+        elem.style.background = 'red';
+    &lt;/script&gt;
+    </pre>
+    </div>
+    <div id="elem">
+        <div id="elem-content">Elément</div>
+    </div>
+    <script>
+        // récupération de l'élément :
+        let elem = document.getElementById('elem');
+      
+        // on met son arrière-plan rouge :
+        elem.style.background = 'red';
+    </script>
+
+    <p>Il y a aussi une variable globale nommée selon l’id qui référence l’élément :</p>
+
+    <div class="div-code">
+    <pre>
+    &lt;div id="elem"&gt;
+        &lt;div id="elem-content"&gt;Elément&lt;/div&gt;
+    &lt;/div&gt;
+      
+    &lt;script&gt;
+        // elem est une référence à l'élément du DOM ayant l'id "elem"
+        elem.style.background = 'red';
+    
+        // id="elem-content" contient un tiret, donc ça ne peut pas être un nom de variable
+        // ...mais on peut y accéder en utilisant les crochets : window['elem-content']
+    &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>…A moins qu’on déclare une variable JavaScript avec le même nom, auquel cas celle-ci obtient la priorité :</p>
+
+    <div class="div-code">
+    <pre>
+    &lt;div id="elem"&gt; &lt;/div&gt;
+      
+    &lt;script&gt;        
+        let elem = 5; // maintenant elem vaut 5, ce n'est plus une référence à <div id="elem">  
+        alert(elem); // 5  
+    &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p class="danger">Ne pas utiliser les variables globales nommées selon l’id pour accéder aux éléments !</p>
+    <p>
+        Ce comportement est décrit dans la spécification, mais il est pris en charge principalement pour la compatibilité .
+        Le navigateur essaie de nous aider en mélangeant les noms de JS et du DOM. C’est bien pour des scripts simples, intégré dans du HTML, 
+        mais en général ce n’est pas bon. Il peut y avoir des conflits de noms. Aussi, quand quelqu’un lira le code JS sans avoir le HTML 
+        à côté, ce ne sera pas évident pour lui d’où vient la variable.
+    </p>
+    <p>
+        Dans ce tutoriel, on utilise id pour directement référencer un élément rapidement, quand il sera évident d’où il vient.
+        Dans la vraie vie, document.getElementById est la méthode à avantager.
+    </p>
+
+    <p class="danger">RAPPLE : L'ID doit être unique</p>
+    <p>
+        L’id doit être unique. Il ne peut y avoir qu’un élément dans le document avec un id donné.
+        S’il y a de multiples éléments avec le même id, alors le comportement de la méthode qui l’utilise est imprévisible, 
+        par exemple <b>document.getElementById pourra renvoyer n’importe lequel de ces éléments aléatoirement</b>. Donc suivez la règle         et gardez l’id unique.
+    </p>
+
+    <p class="danger">Seulement document.getElementById, pas anyElem.getElementById</p>
+    <p>
+        La méthode getElementById ne peut être appelée que sur l’objet document . Elle va chercher l’id dans le document entier.
+    </p>
+
+    <h2>querySelectorAll</h2>
+    <p>
+        De loin, la méthode la plus polyvalente, <span class="highlight">elem.querySelectorAll(css)</span> renvoie tous les éléments à 
+        l’intérieur de "elem" correspondant au sélecteur CSS donné en paramètre.
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;ul&gt;
+            &lt;li&gt;Le&lt;/li&gt;
+            &lt;li&gt;test&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;ul&gt;
+            &lt;li&gt;a&lt;/li&gt;
+            &lt;li&gt;réussi&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;script&gt;
+            let elements = document.querySelectorAll('ul > li:last-child');
+          
+            for (let elem of elements) {
+              alert(elem.innerHTML); // "test", "réussi"
+            }
+        &lt;/script&gt;
+    </pre>
+    </div>   
+    <p>Cette méthode est très puissante, car tous les sélecteurs CSS peuvent être utilisés.</p>   
+    
+    <p class="danger">On peut aussi utiliser des pseudo-classes</p>
+    <p>
+        Les pseudo-classes dans le sélecteur CSS comme :hover et :active sont aussi acceptés. 
+        Par exemple, document.querySelectorAll(':hover') renverra l’ensemble des éléments dont le curseur est au-dessus 
+        en ce moment (dans l’ordre d’imbrication : du plus extérieur &lt;html&gt; au plus imbriqué).
+    </p>
+
+    <h2>querySelector</h2>
+    <p>
+        Un appel à <span class="highlight">elem.querySelector(css)</span> renverra le premier élément d’un sélecteur CSS donné.
+        En d’autres termes, le résultat sera le même que <span class="highlight">elem.querySelectorAll(css)[0]</span>, mais celui-ci 
+        cherchera tous les éléments et en choisira un seul, alors que elem.querySelector n’en cherchera qu’un. C’est donc plus rapide, 
+        et plus court à écrire.
+    </p>
+
+    <h2>matches</h2>
+    <p>
+        
+    </p>
+    
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

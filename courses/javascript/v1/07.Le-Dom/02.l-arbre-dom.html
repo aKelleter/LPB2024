@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'arbre DOM</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>L'arbre DOM</h1>
+    <hr>  
+    <p> 
+        L’épine dorsale d’un document HTML est constituée de <span class="highlight">balises</span>.
+        Selon le modèle d’objets de document (DOM), chaque balise HTML est un <span class="highlight">objet</span>. Les balises imbriquées sont des “enfants” 
+        de celle qui les entoure. Le texte à l’intérieur d’une balise est également un objet.
+    </p>
+    <p>    
+        Tous ces objets sont accessibles via JavaScript, et nous pouvons les utiliser pour modifier la page.
+    <p>
+    <p>
+        Exemple :
+    </p>
+    
+    <div class="div-code">
+    <pre>
+    document.body.style.background = 'red'; // change la couleur de fond
+
+    setTimeout(() => document.body.style.background = '', 3000); // réinitialise après 3 secondes
+    </pre>   
+    </div>
+
+    <p>
+        Ici, nous avons utilisé <span class="highlight">style.background</span> pour changer la couleur d’arrière-plan de document.body, mais il existe de nombreuses autres propriétés, telles que :
+    </p>
+    <ul>
+        <li>innerHTML – Contenu HTML du nœud.</li>
+        <li>innerHTML – Contenu HTML du nœud.</li>
+        <li> offsetWidth – la largeur du nœud (en pixels)</li>
+        <li>...</li>
+    </ul>   
+    <p>
+        Bientôt, nous apprendrons plus de façons de manipuler le DOM, mais nous devons d’abord connaître sa structure.
+    </p>
+
+    <h2>Un exemple de DOM</h2>
+    <p>
+        Voici un exemple simple de document HTML :
+    </p>
+    <div class="div-code">
+    <pre>
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Une page web&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Du texte sur la page
+    &lt;/body&gt;
+    &lt;/html&gt;
+    </pre>
+    </div>
+
+    <img src="img/dom.png" alt="dom">
+
+   
+    <p>
+        Chaque nœud de l’arbre est un objet. <br> <br>
+
+        Les balises sont des nœuds d’élément (ou simplement des éléments) et forment la structure arborescente : <span class="highlight">&lt;html&gt;</span> est à la 
+        racine, puis &lt;head&gt; et &lt;body&gt; sont ses enfants, etc. <br>  <br>
+
+        Le texte à l’intérieur des éléments forme des nœuds textuel, étiquetés comme <span class="highlight">#text</span>. 
+        Un nœud texte ne contient qu’une chaîne de caractères. Il peut ne pas avoir d’enfants.
+
+        Par exemple, la balise &lt;title&gt; a le texte "Une page web". Elle est représentée par un nœud texte <span class="highlight">#text</span> enfant 
+        de l’élément &lt;title&gt;.
+    </p>
+    <p>
+        Les espaces et les nouvelles lignes sont des caractères totalement valides, comme les lettres et les chiffres. 
+        Ils forment des nœuds de texte et deviennent une partie du DOM. Ainsi, par exemple, dans l’exemple ci-dessus, 
+        la balise <span class="highlight">&lt;head&gt;</span> contient des espaces avant <span class="highlight">&lt;title&gt;</span>, 
+        et ce texte devient un nœud <span class="highlight">#text</span> (il contient une nouvelle ligne et quelques espaces uniquement).
+    </p>
+    <p>
+        Il n’y a que deux exclusions de haut niveau :
+
+        <ol>
+            <li>Les espaces et les nouvelles lignes avant &lt;head&gt; sont ignorés pour des raisons historiques.</li>
+            <li>
+                Si nous mettons quelque chose après &lt;/body&gt;, alors cela est automatiquement déplacé à l’intérieur du body, à la fin, 
+                car la spécification HTML exige que tout le contenu soit à l’intérieur de &lt;body&gt;. Il ne peut donc pas y avoir d’espace 
+                après &lt;/body&gt;.
+            </li>
+        </ol>
+
+        Dans d’autres cas, tout est simple – s’il y a des espaces (comme n’importe quel caractère) dans le document, alors ils 
+        deviennent des nœuds texte dans le DOM, et si nous les supprimons, il n’y en aura pas.
+    </p>
+
+    <h2>Autocorrection</h2>
+    <p>
+        Si le navigateur rencontre du HTML mal formé, il le corrige automatiquement lors de la création du DOM. <br>
+        Par exemple, la balise la plus haute est toujours <span class="highlight">&lt;html&gt;</span>. Même si elle n’existe pas dans le document, elle existera dans le DOM, 
+        car le navigateur la créera. Il en va de même pour <span class="highlight">&lt;body&gt;</span>.
+        Par exemple, si le fichier HTML est le seul mot "Hello", le navigateur l’intègrera dans <span class="highlight">&lt;html&gt;</span> et <span class="highlight">&lt;body&gt;</span>, et ajoutera le 
+        &lt;head&gt; requis.
+    </p>
+
+    <p>
+        Lors de la génération du DOM, les navigateurs traitent automatiquement les erreurs dans le document, ferment les balises, etc.
+    </p>
+    
+
+    <div class="div-code">
+    <pre>
+    &lt;p&gt;Hello
+    &lt;li&gt;Je
+    &lt;li&gt;suis
+    &lt;li&gt;ici
+    </pre>   
+    </div>
+    <p>
+        Cas spécifique avec les tableaux. Selon la spécification DOM, ils doivent avoir un &lt;tbody&gt;, mais le texte HTML peut (officiellement) 
+        l’omettre. Ensuite, le navigateur crée automatiquement le &lt;tbody&gt; dans le DOM.
+    </p>
+
+    <h2>Autres types de noeuds</h2>
+    <p>
+        Il existe d’autres types de nœuds en plus des éléments et des nœuds de texte. <br>
+        Par exemple, les commentaires : <span class="highlight">&lt;!-- un commentaire--&gt;</span>    
+    </p>
+    <p>
+        Nous pourrions penser – pourquoi un commentaire est-il ajouté au DOM ? Cela n’affecte en rien la représentation visuelle. 
+        Mais il y a une règle – si quelque chose est en HTML, alors il doit aussi être dans l’arborescence DOM.
+    </p>
+    <p>
+        <strong>Tout en HTML, même les commentaires, fait partie intégrante du DOM.</strong>
+    </p>
+    <p>
+        La directive <span class="highlight">&lt;!DOCTYPE...&gt;</span> est également un nœud.  C’est dans l’arborescence du DOM juste avant 
+        <span class="highlight">&lt;html&gt;</span>. Peu de gens le savent. Nous n’allons pas toucher ce nœud, nous ne le dessinons même pas 
+        sur les diagrammes pour cette raison, mais il est là.
+    </p>
+    <p>
+        L’objet <span class="highlight">document</span> qui représente l’ensemble du document est également, formellement, un nœud dom.
+    </p>
+    <p>
+        Il existe <a href="https://dom.spec.whatwg.org/#node" target="_blank">12 types de nœuds</a>. Dans la pratique, nous travaillons 
+        généralement avec 4 d’entre eux :
+    </p>
+        <ol>
+            <li>le document – le “point d’entrée” dans le dom.</li>
+            <li> les nœuds de type éléments – les balises HTML, les blocs de construction de l’arborescence.</li>
+            <li>les nœuds de type texte – contient du texte.</li>
+            <li>
+                les commentaires – parfois, nous pouvons y mettre des informations, elles ne seront pas affichées, mais le JavaScript peut les lire 
+                depuis le dom.
+            </li>
+        </ol>
+    <p>
+        Pour voir la structure du DOM en temps réel, essayez le live DOM viewer. Tapez simplement le document, et il apparaîtra comme un DOM 
+        en un instant.
+    </p>
+
+    <p>
+        Une autre façon d’explorer le DOM est d’utiliser les outils de développement du navigateur. En fait, c’est la boîte à outils que nous 
+        utilisons lors du développement. <br>
+        Pour ce faire, ouvrez une page web (<a href="dom.html">dom.html</a>) et activez les outils de développement du navigateur, 
+        ensuite passez à l’onglet éléments/inspecteur.
+    </p>
+
+    <p>
+        Vous pouvez voir le DOM, cliquez sur les éléments, voir leurs détails et ainsi de suite. <br>
+        Veuillez noter que la structure du DOM dans les outils de développement est simplifiée. 
+        Les nœuds texte sont affichés comme du texte. Et il n’y a aucun nœud texte “vide” (espace uniquement). C’est très bien, car la plupart du temps 
+        nous nous intéressons aux nœuds de type éléments.
+    </p>
+    
+
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

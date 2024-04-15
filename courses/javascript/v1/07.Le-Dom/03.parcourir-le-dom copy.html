@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcourir le DOM</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Parcourir le DOM</h1>
+    <hr>  
+    <p> 
+        Le DOM nous permet de faire n’importe quoi avec les éléments et leur contenu, mais nous devons d’abord atteindre l’objet DOM correspondant.
+    </p>
+    <p>
+        Toutes les opérations sur le DOM commencent par l’objet <span class="highlight">document</span>. C’est le “point d’entrée” principal du DOM. De là, nous pouvons accéder à n’importe quel nœud.
+        
+        Voici une image des liens qui permettent de voyager entre les nœuds DOM :
+    </p>
+    <img src="img/dom-links.svg" alt="éléments du DOM">
+
+    <h2>En haut : documentElement et body</h2>
+    
+    <p>
+        Les nœuds supérieurs de l’arbre sont disponibles directement en tant que propriétés de document :
+    </p>
+    <ul>
+        <li>
+            <span class="highlight">&lt;html&gt;</span> = <span class="highlight">document.documentElement</span>
+             Le nœud de document le plus haut est document.documentElement. C’est le noeud DOM de la balise &lt;html&gt;.
+        <li><span class="highlight">&lt;body&gt;</span> = <span class="highlight">document.body</span>
+            Un autre nœud DOM largement utilisé est l’élément &lt;body&gt; – document.body.
+        <li><span class="highlight">&lt;head&gt;</span> = <span class="highlight">document.head</span>
+            La balise &lt;head&gt; est disponible en tant que document.head. 
+    </ul>
+    <p class="danger">
+        Il y a un hic : document.body peut être null <br>
+        Un script ne peut pas accéder à un élément qui n’existe pas au moment de l’exécution.
+        En particulier, si un script se trouve dans &lt;head&gt;, alors <span class="highlight">document.body</span> n’est pas disponible, car le navigateur ne l’a pas encore lu.
+    </p>
+    <p>       
+        Dans le monde du DOM, la valeur null signifie “n’existe pas” ou “pas ce genre de nœud”.
+    </p>
+
+    <h2>Enfants : childNodes, firstChild, lastChild</h2>
+
+    <p>
+        Nous utiliserons désormais deux termes :
+    </p>
+
+    <ol>
+        <li>
+            Noeuds enfants (ou enfants) – éléments qui sont des enfants directs. En d’autres termes, 
+            ils sont imbriqués dans le parent juste au-dessus. Par exemple, &lt;head&gt; et &lt;body&gt; sont des enfants de l’élément &lt;html&gt;.
+        </li>
+        <li>
+            Descendants – tous les éléments imbriqués dans l’élément parent donné, y compris les enfants, leurs enfants, etc.
+        </li>
+    </ol>
+    <div class="div-code">
+    <pre>
+    &lt;html&gt;
+        &lt;body&gt;
+            &lt;div&gt;Begin&lt;/div&gt;
+
+            &lt;ul&gt;
+                &lt;li&gt;&lt;b&gt;Information&lt;/b&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+    </pre>
+    </div>
+
+    <p>
+        Par exemple, ici &lt;body&gt; a des enfants &lt;div&gt; et &lt;ul&gt; (et quelques nœuds texte vides) :
+    </p>
+    <p>
+        … Et les descendants de &lt;body&gt; ne sont pas seulement des enfants directs &lt;div&gt;, &lt;ul&gt; 
+        mais aussi des éléments plus profondément imbriqués, tels que &lt;li&gt; (un enfant de &lt;ul&gt; ) et &lt;b&gt; (un enfant de &lt;li&gt;)
+        – c'est le sous-arbre entier.
+    </p>
+    <h3>La collection <span class="highlight">childNodes</span> répertorie tous les nœuds enfants, y compris les nœuds texte.</h3>
+    <p>
+        L’exemple ci-dessous montre des enfants de document.body :        
+    </p>
+
+    <div class="div-code">
+    <pre>
+        &lt;html&gt;
+            &lt;body&gt;
+              &lt;div&gt;Begin&lt;/div&gt;
+            
+              &lt;ul&gt;
+                &lt;li&gt;Information&lt;/li&gt;
+              &lt;/ul&gt;
+            
+              &lt;div&gt;End&lt;/div&gt;
+            
+              &lt;script&gt;
+                for (let i = 0; i < document.body.childNodes.length; i++) {
+                  document.write( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT, Text
+                }
+              &lt;/script&gt;
+              &lt;p&gt;...more stuff...&lt;/p&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;
+    </pre>
+    </div>
+    <p><a href="chilnodes.html" target="_blank">Vérifier l'affichage de ce code</a></p>
+
+    <p>
+        Veuillez noter un détail intéressant ici. Si nous exécutons l’exemple ci-dessus, le dernier élément affiché est un objet Text
+        (la chaîne des éléments affichés). En fait, le document contient plus de choses en dessous (paragraphe), mais au moment de l’exécution du script, 
+        le navigateur ne l’a pas encore lu, donc le script ne le voit pas.
+    </p>
+
+    <h3>Les propriétés <span class="highlight">firstChild</span> et <span class="highlight">lastChild</span> donnent un accès rapide aux premier et dernier enfants.</h3>
+
+    <p>
+        Ce ne sont que des raccourcis. S’il existe des nœuds enfants, ce qui suit est toujours vrai :
+    </p>
+
+    <div class="div-code">
+    <pre>
+        elem.childNodes[0] === elem.firstChild
+        elem.childNodes[elem.childNodes.length - 1] === elem.lastChild  
+    </pre>
+    </div>
+
+    <p>
+        Il y a aussi une fonction spéciale <span class="highlight">elem.hasChildNodes()</span> pour vérifier s’il y a des nœuds enfants.
+    </p>
+
+    <h2>Collections DOM</h2>
+    <p>
+        Comme nous pouvons le voir, <span class="highlight">childNodes</span> ressemble à un tableau. Mais en réalité ce n’est pas un tableau, mais plutôt une * collection * – 
+        un objet itérable spécial semblable à un tableau.
+    </p>
+
+    <p>Il y a deux conséquences importantes :</p>
+    <p>1. Nous pouvons utiliser for..of pour itérer dessus :</p>
+    <div class="div-code">
+    <pre>
+        for (let node of document.body.childNodes) {
+            alert(node); // affiche tous les nœuds enfants de la collection
+        }
+    </pre>
+    </div>
+    <p>C’est parce qu’il est itérable.</p>
+
+    <p>2. Les méthodes de tableau ne fonctionneront pas, car ce n’est pas un tableau :</p>
+    <div class="div-code">
+    <pre>
+        alert(document.body.childNodes.filter); // undefined (there's no filter method!)
+        alert( Array.from(document.body.childNodes).filter ); // function
+    </pre>
+    </div>
+
+    <p>
+        La première chose est sympa. La seconde est tolérable, car nous pouvons utiliser Array.from pour créer un “vrai” tableau à partir de 
+        la collection, si nous voulons des méthodes de tableau :
+    </p>
+    <p class="danger">Les collections DOM sont en lecture seule</p>
+    <p>
+        Les collections DOM, et plus encore – toutes les propriétés de navigation répertoriées dans ce chapitre sont en lecture seule.
+        Nous ne pouvons pas remplacer un enfant par autre chose en attribuant childNodes[i] = .... <br>
+        Changer le DOM nécessite d’autres méthodes. Nous les verrons dans le prochain chapitre.
+    </p>
+    <p class="danger">Les collections DOM sont live</p>
+    <p>
+        Presque toutes les collections DOM avec des exceptions mineures sont live. En d’autres termes, elles reflètent l’état actuel du DOM.
+        Si nous gardons une référence à element.childNodes, et ajoutons/supprimons des nœuds dans le DOM, alors ils apparaissent 
+        automatiquement dans la collection.
+    </p>
+
+    <p class="danger">N’utilisez pas for..in pour parcourir les collections</p>
+    <p>
+        Les collections sont itérables en utilisant for..of. Parfois, les gens essaient d’utiliser <span class="highlight">for..in</span>. <br>
+        À ne pas faire. La boucle for..in parcourt toutes les propriétés énumérables. Et les collections ont des propriétés “supplémentaires” 
+        rarement utilisées que nous ne voulons généralement pas obtenir.
+    </p>
+
+    <h2>Frères, sœurs et parent</h2>
+    <p>
+        Les frères et sœurs sont des nœuds qui sont les enfants du même parent.
+        Par exemple, ici &lt;head&gt; et &lt;body&gt; sont des frères et sœurs :
+    </p>
+    <div class="div-code">
+    <pre>
+    &lt;html&gt;
+        &lt;head&gt;&lt;/head&gt;
+        &lt;body&gt;&lt;/body&gt;
+    &lt;/html&gt;
+    </pre>
+    </div>
+    <p>&lt;body&gt; est dit être le frère “suivant” de &lt;head&gt;,</p>
+    <p>&lt;head&gt; est dit être le frère “précédent” de &lt;body&gt;.</p>
+
+    <p>
+        Le frère suivant est dans la propriété <span class="highlight">nextSibling</span>, et le précédent – dans <span class="highlight">previousSibling</span>. <br> <br>
+        Le parent est disponible en tant que <span class="highlight">parentNode</span>.
+    </p>
+
+    <div class="div-code">
+    <pre>
+    // le parent de &lt;body&gt; est &lt;html&gt;
+    alert( document.body.parentNode === document.documentElement ); // true
+    
+    // après &lt;head&gt; vient &lt;body&gt;
+    alert( document.head.nextSibling ); // HTMLBodyElement
+    
+    // avant &lt;body&gt; vient &lt;head&gt;
+    alert( document.body.previousSibling ); // HTMLHeadElement
+    </pre>
+    </div>
+
+    <h2>Navigation par élément uniquement</h2>
+
+    <p>
+        Les propriétés de navigation répertoriées ci-dessus font référence à tous les nœuds. Par exemple, dans childNodes, nous pouvons voir 
+        à la fois les nœuds texte, les nœuds élément et même les nœuds commentaire s’il en existe.
+    </p>
+    <p>
+        Mais pour de nombreuses tâches, nous ne voulons pas de nœuds texte ou commentaire. Nous voulons manipuler des nœuds élément qui 
+        représentent des balises et forment la structure de la page.
+    </p>
+    <p>
+        Voyons donc plus de liens de navigation qui ne prennent en compte que les nœuds élément :
+    </p>
+
+    <img src="img/dom-links-elements.svg" alt="les noeuds de type éléments">
+
+    <p>
+        Les liens sont similaires à ceux donnés ci-dessus, juste avec le mot Element à l’intérieur :
+    </p>
+    <ul>
+        <li><span class="highlight">children</span> – seuls les enfants qui sont des nœuds élément.</li>
+        <li><span class="highlight">firstElementChild</span>, <span class="highlight">lastElementChild</span> – enfants du premier et du dernier élément.</li>
+        <li><span class="highlight">previousElementSibling</span>, <span class="highlight">nextElementSibling</span> – éléments voisins.</li>
+        <li><span class="highlight">parentElement</span> – élément parent.</li>
+    </ul>
+
+    <p class="danger">Pourquoi parentElement ? Le parent peut-il ne pas être un élément ?</p>
+    <p>
+        La propriété <span class="highlight">parentElement</span> renvoie l’élément parent, tandis que <span class="highlight">parentNode</span> retourne le parent “peu importe le nœud”. Ces propriétés sont généralement les mêmes : elles obtiennent toutes deux le parent. <br>
+        À la seule exception de document.documentElement (la balise HTML) :
+    </p>
+    <div class="div-code">
+    <pre>
+        alert( document.documentElement.parentNode ); // document
+        alert( document.documentElement.parentElement ); // null
+    </pre>
+    </div>
+
+    <p>
+        La raison en est que le nœud racine document.documentElement (&lt;html&gt;) à la balise <span class="highlight">document</span> comme parent. 
+        Mais document n’est pas un nœud élément, donc parentNode le renvoie et pas parentElement.
+    </p>
+
+    <p>
+        Ce détail peut être utile lorsque nous voulons passer d’un élément arbitraire elem à &lt;html&gt;, mais pas au document :
+    </p>
+    <div class="div-code">
+    <pre>
+        while(elem = elem.parentElement) { // remonter jusqu'à <html>
+            alert( elem );
+          }
+    </pre>
+    </div>
+
+    <h2>Plus de liens</h2>
+
+    <h3>Les tableaux</h3>
+    <p>
+        Jusqu’à présent, nous avons décrit les propriétés de navigation de base. <br>
+        Certains types d’éléments DOM peuvent fournir des propriétés supplémentaires, spécifiques à leur type, pour plus de commodité. <br>
+        Les tableaux en sont un excellent exemple et représentent un cas particulièrement important : <br>
+    </p>
+    
+    <p>L’élément &lt;table&gt; supporte (en plus de ce qui précède) les propriétés suivantes:</p>
+    <ul>
+        <li><span class="highlight">table.rows</span> – la collection d’éléments &lt;tr&gt; du tableau.&lt;/li&gt;
+        <li><span class="highlight">table.caption/tHead/tFoot</span> – références aux éléments &lt;caption&gt;, &lt;thead&gt;, &lt;tfoot&gt;./li>
+        <li>
+            <span class="highlight">table.tBodies</span> – la collection d’éléments &lt;tbody&gt; (peut être multiple selon la norme, mais il y en aura toujours au moins une – 
+            même si elle n’est pas dans le HTML source, le navigateur la mettra dans le DOM).
+        </li>
+    </ul>    
+
+    <p>
+        &lt;thead&gt;, &lt;tfoot&gt;, &lt;tbody&gt; les éléments fournissent la propriété rows : 
+    </p>
+    <ul>
+        <li><span class="highlight">tbody.rows</span> – la collection de &lt;tr&gt; à l’intérieur. </li>
+    </ul>
+
+    <p>
+        Les éléments &lt;tr&gt; ont également des propriétés spéciales :
+    </p>   
+
+    <ul>
+        <li><span class="highlight">tr.cells</span> – la collection de cellules &lt;td&gt; et &lt;th&gt; à l’intérieur du &lt;tr&gt; donné.</li>
+        <li><span class="highlight">tr.sectionRowIndex</span> – la position (index) du &lt;tr&gt; donné à l’intérieur du &lt;thead&gt;/&lt;tbody&gt;/&lt;tfoot&gt;.</li>
+        <li><span class="highlight">tr.rowIndex</span> – le nombre de &lt;tr&gt; dans le tableau dans son ensemble (y compris toutes les lignes du tableau).</li>
+    </ul>
+    
+    
+    <p>
+        Ainsi que &lt;td&gt; et &lt;th&gt; : 
+    </p>
+
+    <ul>
+        <li><span class="highlight">td.cellIndex</span> – le numéro de la cellule à l’intérieur du &lt;tr&gt; qui l’entoure.</li>
+    </ul>
+    
+    <h3>
+        Il existe également des propriétés de navigation supplémentaires pour les formulaires HTML. 
+        Nous les examinerons plus tard lorsque nous commencerons à travailler avec des formulaires.
+    </h3>
+
+    <h2>3 Exercices</h2>
+    <h3>1. Les enfants du DOM</h3>
+    <p>Regardez cette page :</p>
+    <div class="div-code">
+    <pre>
+    &lt;html&gt;
+        &lt;body&gt;
+            &lt;div&gt;Users:&lt;/div&gt;            
+            &lt;ul&gt;
+                &lt;li&gt;John&lt;/li&gt;
+                &lt;li&gt;Pete&lt;/li&gt;
+            &lt;/ul&gt;     
+        &lt;/body&gt;
+    &lt;/html&gt;
+    </pre>
+    </div>   
+    
+    <p>
+        Pour chacun des éléments suivants, donnez au moins un moyen d’y accéder :
+    </p>
+    <ul>
+        <li>Le noeud &lt;div&gt; du DOM ?</li>
+        <li>Le noeud &lt;ul&gt;du DOM ?</li>
+        <li>Le deuxième &lt;li&gt; (avec Pete) ?</li>
+    </ul>    
+    <p>Il existe plusieurs façons :)</p>
+
+    <h3>1. Les frères et les sœurs</h3>
+    <p>
+        Question : Si element – est un nœud de type élément arbitraire du DOM …
+    </p>
+    <p>
+        1. Est-il vrai que <b>elem.lastChild.nextSibling</b>b> est toujours égal à null ? <br>
+        2. Est-il vrai que <b>elem.children[0].previousSibling</b> est toujours égal à null ?    
+    </p>
+    <p>Qu'en pensez-vous ? :)</p>
+
+    <h3>3. Sélectionnez toutes les cellules diagonales</h3>
+    <p>
+        Écrivez le code pour colorer toutes les cellules du tableau diagonal en rouge. <br>
+        Vous devrez obtenir toutes les diagonales &lt;td&gt; de la &lt;table&gt; et les colorer en utilisant le code :
+    </p>
+    <div class="div-code">
+    <pre>
+        // colorer en rouge
+        td.style.backgroundColor = 'red';
+    </pre>
+    </div>
+    <p>Le résultat devrait être :</p>
+    <img src="img/diagonale.png" alt="diagonale rouge">
+    <p>
+        Nous utiliserons les propriétés <span class="highlight">rows</span> et <span class="highlight">cells</span> pour accéder aux cellules du tableau en diagonale.
+    </p>
+    <p><a href="diagonale.html" target="_blank">Code HTML de base</a></p>
+
+
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

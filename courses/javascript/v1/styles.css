@@ -74,15 +74,30 @@ footer{
 h4{
     margin-bottom: 0;
 }
+
 code {
     color: var(--code-color);
  
 }
 
 
+
+
 /* ***************************** */
 /*         CLASSES RULES         */
 /* ***************************** */
+
+
+
+.highlight {
+    color: var(--code-color);
+    background-color: var(--code-backg-color);
+    padding: 3px;
+    border: var(--border-width) solid var(--code-border-color);
+    border-radius: 0.2rem;    
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
 
 .div-code {
     color: var(--code-color);   
