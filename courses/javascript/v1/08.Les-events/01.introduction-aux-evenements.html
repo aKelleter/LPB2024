@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction aux évènements dans le navigateur</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Introduction aux évènements dans le navigateur</h1>
+    <hr>  
+    <p> 
+        Un événement est un signal indiquant que quelque chose s'est produit. 
+        Tous les nœuds du DOM génèrent de tels signaux (mais les événements ne sont pas limités au DOM).
+        Voici une liste des événements DOM les plus utiles :
+    </p>
+    <h3>Événements de la souris : </h3>
+    <ul>
+        <li>click - lorsque la souris clique sur un élément (les dispositifs à écran tactile le génèrent lors d'un tapotement).</li>
+        <li>menu contextuel - lorsque la souris clique avec le bouton droit sur un élément.</li>
+        <li>mouseover / mouseout - lorsque le curseur de la souris survole / quitte un élément.</li>
+        <li>mousedown / mouseup - lorsque le bouton de la souris est pressé / relâché au-dessus d'un élément.</li>
+        <li>mousemove - lorsque la souris est déplacée.</li>
+    </ul>
+
+    <h3>Événements liés au clavier :</h3>
+    <ul>
+        <li>keydown et keyup - lorsqu'une touche du clavier est enfoncée et relâchée.</li>
+    </ul>
+
+    <h3>Événements liés aux éléments du formulaire :</h3>
+    <ul>
+        <li>submit - lorsque le visiteur soumet un &lt;form&gt;.</li>
+        <li>focus - lorsque le visiteur se concentre sur un élément, par exemple sur un &lt;input&gt;.</li>
+    </ul>
+
+    <h3>Événements de document :</h3>
+    <ul>
+        <li>DOMContentLoaded - lorsque le HTML est chargé et traité, le DOM est entièrement construit.</li>
+    </ul>
+
+    <h3>Événements CSS :</h3>
+    <ul>
+        <li>transitionend - lorsque l'animation CSS se termine.</li>
+    </ul>
+
+    <p>
+        Il y a beaucoup d'autres événements. Nous reviendrons plus en détail sur certains d'entre eux dans les prochains chapitres.
+    </p>
+
+    <h2>Les gestionnaires d'évènements (Event handlers)</h2>
+
+    <p>
+        Pour réagir aux événements, nous pouvons assigner un gestionnaire - une fonction qui s'exécute en cas d'événement. <br>
+        Les gestionnaires sont un moyen d'exécuter du code JavaScript en cas d'actions de l'utilisateur.
+        Il existe plusieurs façons d'assigner un gestionnaire. Voyons-les, en commençant par la plus simple.
+    </p>
+
+    <h3>L'attribut HTML (HTML-attribut )</h3>
+   
+    <p>
+        Un gestionnaire peut être défini en HTML à l'aide d'un attribut appelé on&lt;event&gt;. <br>
+        Par exemple, pour attribuer un gestionnaire de clic à une entrée, nous pouvons utiliser onclick, comme ici :
+    </p>
+
+    <div class="div-code">
+    <pre>
+        &lt;input value="Click me" onclick="alert('Click!')" type="button"&gt;
+    </pre>
+    </div>
+
+    <p>
+        Au clic de la souris, le code contenu dans onclick s'exécute.
+        Veuillez noter qu'à l'intérieur de onclick, nous utilisons des guillemets simples, car l'attribut lui-même est entre guillemets doubles. Si nous oublions que le code se trouve à l'intérieur de l'attribut et que nous utilisons des guillemets doubles à l'intérieur, 
+        comme ceci : <span class="highlight">onclick="alert("Click !")"</span>, cela ne fonctionnera pas correctement.
+    </p>
+    <p>
+        Un attribut HTML n'est pas un endroit pratique pour écrire beaucoup de code, nous ferions donc mieux de créer une fonction JavaScript et de l'appeler à cet endroit.
+    </p>
+    <p>
+        Ici, un clic exécute la fonction countRabbits() :
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;script&gt;
+            function countRabbits() {
+                for(let i=1; i&lt;=3; i++) {
+                alert("Rabbit number " + i);
+                }
+            }
+        &lt;/script&gt;
+
+        &lt;input type="button" onclick="countRabbits()" value="Count rabbits!"&gt;
+    </pre>
+    </div>
+
+    <p>
+        Comme nous le savons, les noms d'attributs HTML ne sont pas sensibles à la casse, donc ONCLICK fonctionne aussi bien que onClick et 
+        onCLICK... Mais en général, les attributs sont en minuscules : onclick.
+    </p>
+
+    <h2>Les propriétés du DOM  (DOM property)</h2>
+    <p>
+        Nous pouvons assigner un gestionnaire à l'aide d'une propriété DOM on&lt;event&gt;. <br> <br>
+        Par exemple, elem.onclick :
+    </p>
+
+    <div class="div-code">
+    <pre>
+      &lt;input id="elem" type="button" value="Click me"&gt;
+
+      &lt;script&gt;
+        elem.onclick = function() {
+            alert('Thank you');
+        };
+      &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>
+        Si le gestionnaire est attribué à l'aide d'un attribut HTML, le navigateur le lit, crée une nouvelle fonction à partir du contenu 
+        de l'attribut et l'écrit dans la propriété DOM. <br>
+        Cette méthode est donc en fait la même que la précédente. <br> <br>
+        Ces deux morceaux de code fonctionnent de la même manière :
+    </p>
+
+    <p>1. ONLY HTML</p>
+    <div class="div-code">
+    <pre>
+        &lt;input type="button" onclick="alert('Click!')" value="Button"&gt;
+    </pre>
+    </div>
+
+    <p>1. HTML + JS</p>
+    <div class="div-code">
+    <pre>
+        &lt;input type="button" id="button" value="Button"&gt;
+        &lt;script&gt;
+            button.onclick = function() {
+                alert('Click!');
+            };
+        &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>
+        Dans le premier exemple, l'attribut HTML est utilisé pour initialiser le bouton.onclick, tandis que dans le second exemple, c'est 
+        le script et là toute la différence. 
+    </p>
+    <p>
+        Comme il n'y a qu'une seule propriété onclick, nous ne pouvons pas assigner plus d'un gestionnaire d'événement.
+        Dans l'exemple ci-dessous, l'ajout d'un gestionnaire avec JavaScript écrase le gestionnaire existant :
+    </p>
+
+    <div class="div-code">
+    <pre>
+        &lt;input type="button" id="elem" onclick="alert('Before')" value="Click me"&gt;
+        &lt;script&gt;
+        elem.onclick = function() { // overwrites the existing handler
+            alert('After'); // only this will be shown
+        };
+        &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>Pour supprimer un gestionnaire, affectez elem.onclick = null.</p>
+
+    <h2>Accès à l'élément : this</h2>
+    <p>
+        La valeur de this à l'intérieur d'un gestionnaire est l'élément. L'élément sur lequel est appliqué le gestionnaire.
+        Dans le code ci-dessous, le bouton affiche son contenu en utilisant this.innerHTML :
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;button onclick="alert(this.innerHTML)"&gt;Click me&lt;/button&gt;
+    </pre>
+    </div>
+
+    <h2>Les erreurs possibles</h2>
+    <p>
+        Si vous commencez à travailler avec des événements, veuillez noter quelques subtilités.
+        Nous pouvons définir une fonction existante comme gestionnaire :
+    </p>
+    <div class="div-code">
+    <pre>
+        function sayThanks() {
+            alert('Thanks!');
+        }
+          
+        elem.onclick = sayThanks;
+    </pre>
+    </div>
+    <p class="danger">Mais attention : la fonction doit être assignée comme sayThanks, et non comme sayThanks().</p>
+    <div class="div-code">
+    <pre>
+        // right
+        button.onclick = sayThanks;
+        
+        // wrong
+        button.onclick = sayThanks();
+    </pre>
+    </div>   
+    <p>
+        Si nous ajoutons des parenthèses, sayThanks() devient un appel de fonction. La dernière ligne prend donc le résultat de 
+        l'exécution de la fonction, qui est indéfini (puisque la fonction ne renvoie rien), et l'affecte à onclick. 
+        Cela ne fonctionne pas. <br>
+        ...D'un autre côté, dans le balisage, nous avons besoin des parenthèses :
+    </p> 
+    <div class="div-code">
+    <pre>
+        &lt;input type="button" id="button" onclick="sayThanks()"&gt;
+    </pre>
+    </div>
+    <p>
+        La différence est facile à expliquer. Lorsque le navigateur lit l'attribut, il crée une fonction de traitement avec un corps 
+        à partir du contenu de l'attribut. <br>
+        C'est donc le balisage qui génère cette propriété :
+    </p>
+
+    <div class="div-code">
+    <pre>
+        button.onclick = function() {
+            sayThanks(); // &lt;-- le contenu de l'attribut est placé ici
+        };
+    </pre>
+    </div>
+
+    <h3>N'utilisez pas setAttribute pour les gestionnaires.</h3>
+    <p>
+        Un tel appel ne fonctionnera pas :
+    </p>
+    <div class="div-code">
+    <pre>
+        // un clic sur &lt;body&gt; génère des erreurs,
+        // les attributs étant toujours des chaînes de caractères, la fonction devient une chaîne de caractères
+        document.body.setAttribute('onclick', function() { alert(1) });
+    </pre>
+    </div>
+
+    <h3>Questions relatives à l'affaire DOM-property.</h3>
+    <p>Attribuer un gestionnaire à elem.onclick, et non à elem.ONCLICK, car les propriétés DOM sont sensibles à la casse.</p>
+
+    <h2>addEventListener</h2>
+    <p>
+        Le problème fondamental des méthodes d'affectation des gestionnaires d'évènements mentionnés ci-dessus est qu'il est impossible d'affecter 
+        plusieurs gestionnaires à un même événement. <br> <br>
+        Supposons qu'une partie de notre code veuille mettre en évidence un bouton au moment du clic, et qu'une autre veuille afficher 
+        un message au moment du même clic. Nous aimerions assigner deux gestionnaires d'événements pour cela. 
+        Mais une nouvelle propriété DOM écrasera la propriété existante :
+    </p>
+    <div class="div-code">
+    <pre>
+        input.onclick = function() { alert(1); }
+        // ...
+        input.onclick = function() { alert(2); } // remplace le gestionnaire précédent
+    </pre>
+    </div>
+    <p>
+        Les développeurs des normes web l'ont compris depuis longtemps et ont proposé une autre façon de gérer les gestionnaires 
+        en utilisant les méthodes spéciales <span class="highlight">addEventListener</span> et <span class="highlight">removeEventListener</span> qui ne sont pas soumises à une telle contrainte.
+        La syntaxe pour ajouter un gestionnaire :
+    </p>
+    <div class="div-code">
+    <pre>
+        element.addEventListener(event, handler, [options]);
+    </pre>
+    </div>
+    <p>
+        Ici, <span class="highlight">event</span> est le nom de l'événement (par exemple, "click" ou "submit"). <br>
+        <span class="highlight">handler</span> est la fonction à appeler. <br>
+        <span class="highlight">options</span> est un objet facultatif qui peut contenir des propriétés supplémentaires pour configurer le comportement. <br>
+        <br> <br>     
+        Propriétés des options:        
+        <ul>
+            <li><b>once</b> : si true, l'écouteur est automatiquement supprimé après son déclenchement.</li>
+            <li><b>passive</b> : si true, alors le gestionnaire n'appellera pas preventDefault(), nous expliquerons cela plus tard dans Actions par défaut du navigateur.</li>
+            <li><b>capture</b> : la phase où traiter l'événement, qui sera abordée plus loin dans le chapitre Bulles et capture. Pour des raisons historiques, les options peuvent aussi être false/true, c'est la même chose que {capture : false/true}.</li>
+        </ul>
+    </p>
+
+    <h3>Pour supprimer le gestionnaire, utilisez <span class="highlight">removeEventListener</span> :</h3>
+    <div class="div-code">
+    <pre>
+        element.removeEventListener(event, handler, [options]);
+    </pre>
+    </div>
+    <h3>La suppression d'un gestionnaire nécessite la même fonction</h3>
+    <p>
+        Pour supprimer un gestionnaire, il faut lui passer exactement la même fonction que celle qui lui a été attribuée. <br>        
+        Ceci ne fonctionne pas :
+    </p>
+    <div class="div-code">
+    <pre>
+        elem.addEventListener( "click" , () => alert('Thanks!'));
+        // ....
+        elem.removeEventListener( "click", () => alert('Thanks!'));
+    </pre>
+    </div>
+    <p>
+        Le gestionnaire ne sera pas supprimé, car removeEventListener obtient une autre fonction - avec le même code, mais cela n'a pas d'importance, puisqu'il s'agit d'un objet fonction différent.
+        Voici la bonne méthode :
+    </p>
+    <div class="div-code">
+    <pre>
+        function handler() {
+            alert( 'Thanks!' );
+        }
+          
+        input.addEventListener("click", handler);
+        // ....
+        input.removeEventListener("click", handler);
+    </pre>
+    </div>
+    <p>
+        Plusieurs appels à addEventListener permettent d'ajouter plusieurs gestionnaires, comme ceci :
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;input id="elem" type="button" value="Click me"/&gt;
+
+        &lt;script&gt;
+        function handler1() {
+            alert('Thanks!');
+        };
+
+        function handler2() {
+            alert('Thanks again!');
+        }
+
+        elem.onclick = () =&gt; alert("Hello");
+        elem.addEventListener("click", handler1); // Thanks!
+        elem.addEventListener("click", handler2); // Thanks again!
+        &lt;/script&gt;
+    </pre>
+    </div>
+    <p>
+        Comme nous pouvons le voir dans l'exemple ci-dessus, nous pouvons définir des gestionnaires à la fois en utilisant une propriété DOM 
+        et addEventListener. Mais en général, nous n'utiliserons qu'une seule de ces méthodes.
+    </p>
+
+    <h3>Pour certains événements, les gestionnaires ne fonctionnent qu'avec addEventListener</h3>
+    <p>
+        Il existe des événements qui ne peuvent pas être assignés via une propriété DOM. Seulement avec addEventListener.
+        Par exemple, l'événement DOMContentLoaded, qui se déclenche lorsque le document est chargé et que le DOM a été construit.
+    </p>
+    <div class="div-code">
+    <pre>
+        // ne s'exécutera jamais
+        document.onDOMContentLoaded = function() {
+        alert("DOM built");
+        };
+
+        // Ceci fonctionne
+        document.addEventListener("DOMContentLoaded", function() {
+        alert("DOM built");
+        });
+    </pre>
+    </div>
+    <p>Ainsi, addEventListener est plus universel. Toutefois, de tels événements constituent l'exception plutôt que la règle.</p>
+    
+    <h2>L'objet évènement (Event Object)</h2>
+    <p>
+        Pour gérer correctement un événement, nous devons en savoir plus sur ce qui s'est passé. Pas seulement un "clic" ou 
+        un "enfoncement de touche", mais quelles étaient les coordonnées du pointeur ? Quelle touche a été pressée ? Et ainsi de suite.
+        Lorsqu'un événement se produit, le navigateur crée un objet événement, y ajoute des détails et le transmet en tant qu'argument 
+        au gestionnaire. <br> <br>
+        Voici un exemple d'obtention des coordonnées d'un pointeur à partir de l'objet événement :
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;input type="button" value="Click me" id="elem"&gt;
+
+        &lt;script&gt;
+        elem.onclick = function(event) {
+            // show event type, element and coordinates of the click
+            alert(event.type + " at " + event.currentTarget);
+            alert("Coordinates: " + event.clientX + ":" + event.clientY);
+        };
+        &lt;/script&gt;
+    </pre>
+    </div>
+    <p>
+        Quelques propriétés de l'objet événement : <br> <br>
+
+        <b>event.type</b> <br>
+            Type d'événement, ici "click". <br>
+        <b>event.currentTarget</b> <br>
+            Elément qui a géré l'événement. C'est exactement la même chose que <b>this</b>, à moins que le gestionnaire soit une fonction 
+            fléchée, ou que son this soit lié à quelque chose d'autre, alors nous pouvons obtenir l'élément à partir de event.currentTarget. <br>
+        <b>event.clientX / event.clientY</b> <br> 
+            Coordonnées relatives à la fenêtre du curseur, pour les événements de pointeur.
+        <br> <br>
+        Il existe d'autres propriétés. Beaucoup d'entre elles dépendent du type d'événement : les événements clavier ont un ensemble de 
+        propriétés, les événements pointeur - un autre, nous les étudierons plus tard lorsque nous passerons aux détails des différents 
+        événements.
+    </p>
+    <h3>L'objet événement est également disponible dans les gestionnaires HTML</h3>
+    <p>
+        Si nous attribuons un gestionnaire en HTML, nous pouvons également utiliser l'objet événement, comme ceci :
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;input type="button" onclick="alert(event.type)" value="Event type"&gt;
+    </pre>
+    </div>
+    <input type="button" onclick="alert(event.type)" value="Event type">
+    <p>
+        C'est possible parce que lorsque le navigateur lit l'attribut, il crée un gestionnaire comme celui-ci : 
+        <b>function(event) { alert(event.type) }</b>. <br>
+        Autrement dit, son premier argument est appelé "event", et le corps est tiré de l'attribut.
+    </p>
+
+    <h2>Gestionnaires d'objets : handleEvent</h2>
+    <p>
+        Nous pouvons assigner non seulement une fonction, mais aussi un objet comme gestionnaire d'événement en utilisant 
+        addEventListener. Lorsqu'un événement se produit, la méthode handleEvent est appelée.
+        Par exemple :
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;button id="elem"&gt;Click me&lt;/button&gt;
+
+        &lt;script&gt;
+          let obj = {
+            handleEvent(event) {
+              alert(event.type + " at " + event.currentTarget);
+            }
+          };
+        
+          elem.addEventListener('click', obj);
+        &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>
+        Comme nous pouvons le voir, lorsque addEventListener reçoit un objet comme gestionnaire, il appelle obj.handleEvent(event) 
+        en cas d'événement. Nous pourrions également utiliser des objets d'une classe personnalisée, comme ceci :
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;button id="elem"&gt;Click me&lt;/button&gt;
+
+        &lt;script&gt;
+        class Menu {
+            handleEvent(event) {
+                switch(event.type) {
+                    case 'mousedown':
+                    elem.innerHTML = "Mouse button pressed";
+                    break;
+                    case 'mouseup':
+                    elem.innerHTML += "...and released.";
+                    break;
+                }
+            }
+        }
+
+        let menu = new Menu();
+
+        elem.addEventListener('mousedown', menu);
+        elem.addEventListener('mouseup', menu);
+        &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>
+        Ici, le même objet gère les deux événements. Veuillez noter que nous devons explicitement configurer les événements à écouter à 
+        l'aide de addEventListener. L'objet menu ne reçoit ici que les événements mousedown et mouseup, et aucun autre type d'événement.
+    </p> 
+
+    <p>
+        La méthode handleEvent n'est pas obligée de faire tout le travail toute seule. Elle peut appeler d'autres méthodes spécifiques 
+        à l'événement à la place, comme ceci :
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;button id="elem"&gt;Click me&lt;/button&gt;
+
+        &lt;script&gt;
+        class Menu {
+            handleEvent(event) {
+            // mousedown -&gt; onMousedown
+            let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
+            this[method](event);
+            }
+
+            onMousedown() {
+            elem.innerHTML = "Mouse button pressed";
+            }
+
+            onMouseup() {
+            elem.innerHTML += "...and released.";
+            }
+        }
+
+        let menu = new Menu();
+        elem.addEventListener('mousedown', menu);
+        elem.addEventListener('mouseup', menu);
+        &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>
+        Maintenant que les gestionnaires d'événements sont clairement séparés, cela peut être plus facile à prendre en charge.
+    </p>
+
+    <h2>Résumé</h2>
+    <p>
+        Il existe trois façons d'assigner des gestionnaires d'événements :
+        <ul>
+            <li>Attribut HTML : onclick="...".</li>
+            <li>Propriété DOM : elem.onclick = function.</li>
+            <li>Méthodes : elem.addEventListener(event, handler[, phase]) pour ajouter, removeEventListener pour supprimer.</li>
+        </ul>
+    </p>    
+    <p>
+        Les attributs HTML sont utilisés avec parcimonie, parce que JavaScript au milieu d'une balise HTML a l'air un peu bizarre et 
+        étranger. On ne peut pas non plus y écrire beaucoup de code. <br> <br>
+        Les propriétés DOM peuvent être utilisées, mais nous ne pouvons pas assigner plus d'un gestionnaire pour un événement 
+        particulier. Dans de nombreux cas, cette limitation n'est pas urgente. <br> <br>
+        La dernière méthode est la plus flexible, mais c'est aussi la plus longue à écrire. Il y a quelques événements qui ne 
+        fonctionnent qu'avec elle, par exemple <b>transitionend</b> et <b>DOMContentLoaded</b>. De plus, addEventListener supporte 
+        les objets en tant que gestionnaires d'événements. Dans ce cas, la méthode handleEvent est appelée en cas d'événement. <br> <br>
+        Quelle que soit la manière dont vous assignez le gestionnaire, il reçoit un objet événement comme premier argument. 
+        Cet objet contient les détails de ce qui s'est passé.
+        Nous en apprendrons plus sur les événements en général et sur les différents types d'événements un peu plus tard.
+    </p>
+     
+    <h2>Exercices</h2>
+    <h3>1. Caché sur le clic</h3>
+    <p>
+        Ajoutez du JavaScript au bouton pour faire disparaître <div id="text"> lorsque nous cliquons dessus.
+        La démo : <a href="solutions/exo1.html">exo1</a>
+    </p>
+    <h3>2. S'auto cacher</h3>
+    <p>
+        Créez un bouton qui se cache lorsqu'on clique dessus.
+        La démo : <a href="solutions/exo2.html">exo2</a>
+    </p>
+    <h3>3. Quels sont les gestionnaires qui s'exécutent ?</h3>
+    <p>
+        Il y a un bouton dans la variable. Il n'y a pas de gestionnaire sur ce bouton.
+        Quels gestionnaires s'exécutent au clic après le code suivant ? Quelles alertes apparaissent ?
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;button id="button"&gt;Click me&lt;/button&gt;
+
+        button.addEventListener("click", () => alert("1"));
+        button.removeEventListener("click", () => alert("1"));        
+        button.onclick = () => alert(2);
+    </pre>
+    </div>
+   
+
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

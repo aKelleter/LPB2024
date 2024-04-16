@@ -112,8 +112,8 @@
 
     <h2>querySelectorAll</h2>
     <p>
-        De loin, la méthode la plus polyvalente, <span class="highlight">elem.querySelectorAll(css)</span> renvoie tous les éléments à 
-        l’intérieur de "elem" correspondant au sélecteur CSS donné en paramètre.
+        De loin, la méthode la plus polyvalente, <span class="highlight">parentNode.querySelectorAll(css-selectors)</span> renvoie tous les éléments à 
+        l’intérieur du "parentNode" correspondant au sélecteur CSS donné en paramètre.
     </p>
     <div class="div-code">
     <pre>
@@ -145,16 +145,248 @@
 
     <h2>querySelector</h2>
     <p>
-        Un appel à <span class="highlight">elem.querySelector(css)</span> renverra le premier élément d’un sélecteur CSS donné.
-        En d’autres termes, le résultat sera le même que <span class="highlight">elem.querySelectorAll(css)[0]</span>, mais celui-ci 
-        cherchera tous les éléments et en choisira un seul, alors que elem.querySelector n’en cherchera qu’un. C’est donc plus rapide, 
+        Un appel à <span class="highlight">document.querySelector(css)</span> renverra le premier élément d’un sélecteur CSS donné.
+        En d’autres termes, le résultat sera le même que <span class="highlight">parentNode.querySelectorAll(css)[0]</span>, mais celui-ci 
+        cherchera tous les éléments et en choisira un seul, alors que document.querySelector n’en cherchera qu’un. C’est donc plus rapide, 
         et plus court à écrire.
     </p>
 
     <h2>matches</h2>
     <p>
-        
+        Les méthodes précédentes recherchaient dans le DOM.
+        La commande <span class="highlight">element.matches(css)</span> ne recherche rien, elle vérifie simplement que "element" correspond au sélecteur CSS donné. 
+        Elle renvoie true ou false. Cette méthode devient utile quand on itère sur des éléments (comme dans un array par exemple) et 
+        qu’on veut filtrer ceux qui nous intéressent.
     </p>
+
+    <ul id="birds">
+        <li class="bird">perroquet amazone</li>
+        <li class="bird endangered">aigle des Philippines</li>
+        <li class="bird">pélican blanc</li>
+    </ul>
+    
+    <div class="div-code">
+    <pre>
+        &lt;ul id="birds"&gt;
+            &lt;li class="bird"&gt;perroquet amazone&lt;/li&gt;
+            &lt;li class="bird endangered"&gt;aigle des Philippines&lt;/li&gt;
+            &lt;li class="bird"&gt;pélican blanc&lt;/li&gt;
+        &lt;/ul&gt;
+
+        var birds = document.getElementsByClassName('bird');
+
+        for (var i = 0; i < birds.length; i++) {
+            if (birds[i].matches(".endangered")) {
+               document.write(
+                "Le/l' - " + birds[i].textContent + "- est en voie de disparition !",
+                );
+            }
+        }
+    </pre>    
+    </div>
+
+    <script>
+    document.write('<div class="result">');
+        var birds = document.getElementsByClassName('bird');
+
+        for (var i = 0; i < birds.length; i++) {
+            if (birds[i].matches(".endangered")) {
+               document.write(
+                "Le/l' - " + birds[i].textContent + "- est en voie de disparition !",
+                );
+            }
+        }
+    document.write('</div>');
+    </script>   
+
+    <h2>closest</h2>
+
+    <p>
+        Les ancêtres d’un élément sont : le parent, le parent du parent, son propre parent etc… Les ancêtres forment une chaîne de 
+        parents depuis l’élément jusqu’au sommet. <br> <br>
+        La méthode <span class="highlight">elem.closest(css)</span> cherche l’ancêtre le plus proche qui correspond au sélecteur CSS. 
+        L’élément "elem" est lui-même inclus dans la recherche. <br> <br>       
+        En d’autres mots, la méthode closest part de l’élément et remonte en regardant chacun des parents. S’il correspond au sélecteur, 
+        la recherche s’arrête et l’ancêtre est renvoyé. 
+    </p>
+
+    <div class="div-code">
+    <pre>
+        &lt;h1&gt;Contenu&lt;/h1&gt;
+
+        &lt;div class="contents"&gt;
+        &lt;ul class="book"&gt;
+            &lt;li class="chapter"&gt;Chapître 1&lt;/li&gt;
+            &lt;li class="chapter"&gt;Chapître 2&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/div&gt;
+
+        &lt;script&gt;
+            let chapter = document.querySelector('.chapter'); // LI
+          
+            document.write(chapter.closest('.book')); // UL
+            document.write(chapter.closest('.contents')); // DIV
+          
+            document.write(chapter.closest('h1')); // null (car h1 n'est pas un ancêtre)
+        &lt;/script&gt;
+    </pre>
+    </div>
+
+    <h1>Contenu</h1>
+
+    <div class="contents">
+    <ul class="book">
+        <li class="chapter">Chapître 1</li>
+        <li class="chapter">Chapître 2</li>
+    </ul>
+    </div>
+
+    <script>
+        document.write('<div class="result">');
+        let chapter = document.querySelector('.chapter'); // LI
+          
+        document.write(chapter.closest('.book')); // UL
+        document.write('<br>');
+        document.write(chapter.closest('.contents')); // DIV
+        document.write('<br>');  
+        document.write(chapter.closest('h1')); // null (car h1 n'est pas un ancêtre)  
+        document.write('</div>');      
+    </script>
+
+    <h2>getElementsBy*</h2>
+
+    <p>
+        Il y a aussi d’autres méthodes pour rechercher des balises par tag, classe, etc… <br> <br>
+        Aujourd’hui, elles sont principalement de l’histoire ancienne, car <span class="highlight">querySelector</span> est plus puissante et plus courte à écrire. <br>
+        Donc ici, on va surtout en parler dans le souci d’être complet, comme elles peuvent encore se retrouver dans des vieux scripts.
+    </p>
+    <p>    
+        <span class="highlight">elem.getElementsByTagName(tag)</span> cherche les éléments avec le tag donné et renvoie l’ensemble de ces éléments. 
+        Le paramètre tag peut aussi être une étoile "*" pour signifier n’importe quel tag. <br>
+        <span class="highlight">elem.getElementsByClassName(className)</span> renvoie les éléments qui ont la classe CSS donnée. <br>
+        <span class="highlight">document.getElementsByName(name)</span> renvoie les éléments qui ont l’attribut name, dans tout le document. 
+        Très rarement utilisé. <br>
+    </p>
+
+    <p>Par exemple :</p>
+    <div class="div-code">
+    <pre>
+        // récupérer toutes les divs du document.
+        let divs = document.getElementsByTagName('div');
+    </pre>
+    </div>
+
+    <p class="danger">N’oubliez pas la lettre "s" !</p>
+    <p>
+        Les développeurs en devenir oublient parfois la lettre "s". Ils essaient donc d’appeler <span class="highlight">get<b>Element</b>ByTagName</span> au lieu de <span class="highlight">get<b>Elements</b>ByTagName</span>.
+        La lettre "s" letter n’apparaît pas dans <span class="highlight">getElementById</span>, car cette méthode renvoie un seul élément. Mais <span class="highlight">getElementsByTagName</span> renvoie un ensemble d’éléments, il y a donc un "s".
+    </p>
+
+    <p class="danger">Elle renvoie une liste, pas un élément !</p>
+    <p>
+        Une autre erreur répandue est d’écrire :
+    </p>
+    <div class="div-code">
+    <pre>
+        // ne fonctionne pas :
+        document.getElementsByTagName('input').value = 5;
+    </pre>
+    </div>
+
+    <p>
+        Cela ne va pas marcher, parce qu’on essaie d’affecter une valeur à un ensemble d’objets plutôt qu’à un élément de cet ensemble. 
+        On devrait plutôt itérer sur l’ensemble ou récupérer un élément par son index, et lui affecter la valeur, comme ceci :
+    </p>
+
+    <div class="div-code">
+    <pre>
+        // doit fonctionner (s'il y a un élément 'input' )
+        document.getElementsByTagName('input')[0].value = 5;
+    </pre>
+    </div>
+
+    <h2>Ensembles courants / current sets</h2>
+
+    <p>
+        Toutes les méthodes "getElementsBy*" renvoient l’ensemble courant. De tels ensembles montrent toujours l’état courant du document et se mettent à jour automatiquement quand celui-ci change.
+        Dans l’exemple ci-dessous, il y a deux scripts :
+    </p>
+    <p>        
+        1. Le premier crée une référence à l’ensemble des &lt;div&gt;. Maintenant, sa longueur est 1. <br>
+        2. Le second se lance après que le navigateur aie rencontré un autre &lt;div&gt;, donc sa longueur est 2. <br>
+    </p>
+
+    <div class="div-code">
+    <pre>
+        &lt;div&gt;Premier div&lt;/div&gt;
+
+        &lt;script&gt;
+        let divs = document.getElementsByTagName('div');
+        alert(divs.length); // 1
+        &lt;/script&gt;
+
+        &lt;div&gt;Second div&lt;/div&gt;
+
+        &lt;script&gt;
+        alert(divs.length); // 2
+        &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>
+        A l’opposé, querySelectorAll renvoie un ensemble statique. C’est comme un tableau fixe d’éléments
+        Si on l’utilise, alors les deux scripts ci-dessus renvoient 1:
+    </p>
+
+    <div class="div-code">
+    <pre>
+        &lt;div&gt;Premier div&lt;/div&gt;
+
+        &lt;script&gt;
+        let divs = document.querySelectorAll('div');
+        alert(divs.length); // 1
+        &lt;/script&gt;
+
+        &lt;div&gt;Second div&lt;/div&gt;
+
+        &lt;script&gt;
+        alert(divs.length); // 1
+        &lt;/script&gt;
+    </pre>
+    </div>
+
+    <p>
+        Maintenant, on voit facilement la différence. L’ensemble statique ne s’est pas incrémenté après l’apparition d’un nouveau div 
+        dans le document.
+    </p>
+
+    <h2>Résumé</h2>
+    <p>
+        Il y a 6 principales méthodes pour rechercher des balises dans le DOM :
+    </p>
+    <img src="img/methodes-recherches-dom.png" alt="méthodes de recherches dans le DOM">
+    <p>
+        De loin, les plus utilisées sont querySelector et querySelectorAll, mais getElement(s)By* peut être de temps en temps utile ou 
+        rencontrée dans des scripts plus anciens.
+    </p>
+
+    <h2>Exercices</h2>
+
+    <h3>4. Recherche d'éléments</h3>
+    <p>
+        Comment trouver ?… <br> <br>
+
+        Le tableau avec id="age-table". <br>
+        Tous les éléments label dans ce tableau (il devrait y en avoir 3). <br>
+        Le premier td dans ce tableau (avec le mot “Age”). <br>
+        Le form avec name="search". <br>
+        Le premier input dans ce formulaire. <br>
+        Le dernier input dans ce formulaire. <br>
+
+    </p>
+    Ouvrez <a href="exo4-form.html" target="_blank">exo4</a >dans un onglet à part et utilisez les outils du navigateur pour cela.
+    
+
     
     </div><!--screen-->
     </div><!--container-->
