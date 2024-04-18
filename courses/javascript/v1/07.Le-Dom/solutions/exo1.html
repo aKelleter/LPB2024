@@ -1,0 +1,129 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>    
+  <div>Users:</div>
+  <ul>
+    <li>John</li>
+    <li>Pete</li>
+  </ul> 
+
+  <div class="div-code">
+  <pre>
+        
+    // le noeud div du DOM ---------------------------------------------
+    // -----------------------------------------------------------------
+      
+      let div1 = document.body.firstElementChild
+      // ou
+      let div2 = document.body.children[0]
+      // ou (le premier nœud est l'espace, nous prenons donc le deuxième)
+      let div3 = document.body.childNodes[1]
+      // ou
+      let div4 = document.querySelector('div');
+
+      
+      document.write(div1 + ' -&gt; ' + div1.innerHTML);
+      document.write('&lt;br&gt;');
+      document.write(div2 + ' -&gt; ' + div2.innerHTML);
+      document.write('&lt;br&gt;');
+      document.write(div3 + ' -&gt; ' + div3.innerHTML);
+      document.write('&lt;br&gt;');
+      document.write(div4 + ' -&gt; ' + div4.innerHTML);
+      document.write('&lt;br&gt;-------------------------------------------&lt;br&gt;');
+
+
+
+
+
+    // le noeud ul du DOM ---------------------------------------------
+    // -----------------------------------------------------------------
+
+      let  ul1 = document.querySelector('ul');
+      document.write(ul1 + ' -&gt; ' + ul1.innerHTML);      
+      document.write('&lt;br&gt;');
+      
+      
+      let  ul2 = document.body.children[1];
+      document.write(ul2 + ' -&gt; ' + ul2.innerHTML);
+      document.write('&lt;br&gt;-------------------------------------------&lt;br&gt;');
+
+
+
+
+    //Le deuxième &lt;li&gt; (avec Pete) : ---------------------------------------------
+    // ---------------------------------------------------------------------------
+
+      // obtenir &lt;ul&gt;, puis obtenir son dernier élément enfant
+      let li1 = document.body.children[1].lastElementChild;  
+      let li2 = ul2.lastElementChild;
+      let li3 = document.querySelector('ul &gt; li:last-child');
+
+      document.write(li1 + ' -&gt; ' + li1.innerHTML + '&lt;br&gt;');
+      document.write(li2 + ' -&gt; ' + li2.innerHTML + '&lt;br&gt;');
+      document.write(li3 + ' -&gt; ' + li3.innerHTML + '&lt;br&gt;');
+  </pre> 
+  </div>
+
+  <script>
+
+    // le noeud div du DOM ---------------------------------------------
+    // -----------------------------------------------------------------
+      
+      let div1 = document.body.firstElementChild
+      // ou
+      let div2 = document.body.children[0]
+      // ou (le premier nœud est l'espace, nous prenons donc le deuxième)
+      let div3 = document.body.childNodes[1]
+      // ou
+      let div4 = document.querySelector('div');
+
+      
+      document.write(div1 + ' -> ' + div1.innerHTML);
+      document.write('<br>');
+      document.write(div2 + ' -> ' + div2.innerHTML);
+      document.write('<br>');
+      document.write(div3 + ' -> ' + div3.innerHTML);
+      document.write('<br>');
+      document.write(div4 + ' -> ' + div4.innerHTML);
+      document.write('<br>-------------------------------------------<br>');
+
+
+
+
+
+    // le noeud ul du DOM ---------------------------------------------
+    // -----------------------------------------------------------------
+
+      let  ul1 = document.querySelector('ul');
+      document.write(ul1 + ' -> ' + ul1.innerHTML);      
+      document.write('<br>');
+      
+      
+      let  ul2 = document.body.children[1];
+      document.write(ul2 + ' -> ' + ul2.innerHTML);
+      document.write('<br>-------------------------------------------<br>');
+
+
+
+  
+    //Le deuxième <li> (avec Pete) : ---------------------------------------------
+    // ---------------------------------------------------------------------------
+
+      // obtenir <ul>, puis obtenir son dernier élément enfant
+      let li1 = document.body.children[1].lastElementChild;  
+      let li2 = ul2.lastElementChild;
+      let li3 = document.querySelector('ul > li:last-child');
+
+      document.write(li1 + ' -> ' + li1.innerHTML + '<br>');
+      document.write(li2 + ' -> ' + li2.innerHTML + '<br>');
+      document.write(li3 + ' -> ' + li3.innerHTML + '<br>');
+  
+    
+  
+  </script> 
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles.css">
+    <title>EXO4 : Solution</title>
+</head>    
+<body>
+  <form name="search">
+    <label>Cherchez dans le site :
+      <input type="text" name="search">
+    </label>
+    <input type="submit" value="Search!">
+  </form>
+
+  <hr>
+
+  <form name="search-person">
+    Recherchez les visiteurs :
+    <table id="age-table">
+      <tr>
+        <td>Age:</td>
+        <td id="age-list">            
+          <label>
+            <input type="radio" name="age" value="young">moins de 18
+          </label>
+          <label>
+            <input type="radio" name="age" value="mature">18-50
+          </label>
+          <label>
+            <input type="radio" name="age" value="senior">plus de 50
+          </label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Infos complémentaires :</td>
+        <td>
+          <input type="text" name="info[0]">
+          <input type="text" name="info[1]">
+          <input type="text" name="info[2]">
+        </td>
+      </tr>
+
+    </table>
+
+    <input type="submit" value="Search!">
+  </form>
+  <div class="div-code">
+  <pre>
+    
+    // 1. Le tableau avec `id="age-table"`.   
+    let table = document.getElementById('age-table')
+
+        // Affichages
+        table.style.background = "red"; // fond rouge            
+        document.write("TABLE " + table + "&lt;br&gt;");
+        document.write("CONTENU rows[0]cells[0] -&gt; " + table.rows[0].cells[0].innerHTML + "&lt;br&gt;"); // afficher le contenu de la première cellule de la première ligne  
+        document.write("------------------------------------&lt;br&gt;");
+
+
+
+    
+    // 2. Tous les éléments 'label' dans le tableau
+    document.write("------------------------------------&lt;br&gt;");        
+    document.write("2. Tous les éléments 'label' dans le tableau.&lt;br&gt;");     
+    document.write("------------------------------------&lt;br&gt;");  
+    let labels = table.getElementsByTagName('label')
+    // ou
+    let labels2 = document.querySelectorAll('#age-table label');
+
+        // Affichages
+        document.write("TOUS LES LABELS " + labels + "&lt;br&gt;");
+        document.write("TOUS LES LABELS (2)" + labels2 + "&lt;br&gt;");
+        document.write("------------------------------------&lt;br&gt;");
+
+
+
+
+    // 3. Le premier td dans ce tableau (avec le mot "Age")
+    table.rows[0].cells[0]
+    // ou
+    table.getElementsByTagName('td')[0]
+    // ou
+    table.querySelector('td')
+
+
+
+
+    // 4. Le formulaire avec le nom "search"
+    // en supposant qu'il n'y ait qu'un élément avec name="search" dans le document.
+    let form = document.getElementsByName('search')[0]
+    // ou spécifiquement un formulaire
+    document.querySelector('form[name="search"]')
+
+
+
+    // 5. Le premier input dans ce formulaire
+    form.getElementsByTagName('input')[0]
+    // ou
+    form.querySelector('input')
+
+
+
+
+    // 6. Le dernier input dans ce formulaire
+    let inputs = form.querySelectorAll('input') // trouve tous les inputs
+    inputs[inputs.length-1] // prend le dernier  
+  </pre>  
+  </div>
+
+  <script>
+
+        // 1. Le tableau avec `id="age-table"`.   
+        document.write("------------------------------------<br>");        
+        document.write('1. Le tableau avec `id="age-table"`.<br>');     
+        document.write("------------------------------------<br>");        
+        let table = document.getElementById('age-table')
+
+            // Affichages
+            table.style.background = "red"; // fond rouge            
+            document.write("TABLE " + table + "<br>");
+            document.write("CONTENU rows[0]cells[0] -> " + table.rows[0].cells[0].innerHTML + "<br>"); // afficher le contenu de la première cellule de la première ligne  
+            document.write("------------------------------------<br>");
+
+
+
+        
+        // 2. Tous les éléments 'label' dans le tableau
+        document.write("------------------------------------<br>");        
+        document.write("2. Tous les éléments 'label' dans le tableau.<br>");     
+        document.write("------------------------------------<br>");  
+        let labels = table.getElementsByTagName('label')
+        // ou
+        let labels2 = document.querySelectorAll('#age-table label');
+
+            // Affichages
+            document.write("TOUS LES LABELS " + labels + "<br>");
+            document.write("TOUS LES LABELS (2)" + labels2 + "<br>");
+            document.write("------------------------------------<br>");
+
+
+
+
+        // 3. Le premier td dans ce tableau (avec le mot "Age")
+        table.rows[0].cells[0]
+        // ou
+        table.getElementsByTagName('td')[0]
+        // ou
+        table.querySelector('td')
+
+
+
+
+        // 4. Le formulaire avec le nom "search"
+        // en supposant qu'il n'y ait qu'un élément avec name="search" dans le document.
+        let form = document.getElementsByName('search')[0]
+        // ou spécifiquement un formulaire
+        document.querySelector('form[name="search"]')
+
+
+
+        // 5. Le premier input dans ce formulaire
+        form.getElementsByTagName('input')[0]
+        // ou
+        form.querySelector('input')
+
+
+
+
+        // 6. Le dernier input dans ce formulaire
+        let inputs = form.querySelectorAll('input') // trouve tous les inputs
+        inputs[inputs.length-1] // prend le dernier
+
+    
+
+  </script>
+</body>
+</html>

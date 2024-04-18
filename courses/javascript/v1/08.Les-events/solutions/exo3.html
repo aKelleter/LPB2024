@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles.css">
+    <title>EXO 3 EVENT : Solution</title>
+</head>
+<body>
+    <button id="button">Click me</button>
+
+    <p>
+        
+        La réponse : 1 et 2.
+        Le premier handler se déclenche, car il n'est pas supprimé par removeEventListener. Pour supprimer le gestionnaire, nous 
+        devons passer exactement la fonction qui a été assignée. Et dans le code, une nouvelle fonction est passée, 
+        qui semble identique, mais qui est toujours une autre fonction.
+        Pour supprimer un objet fonction, nous devons stocker une référence à cet objet, comme ceci :
+        
+    </p>
+    <div class="div-code">
+    <pre>
+        &lt;script&gt;
+            button.addEventListener("click", () =&gt; alert("1"));
+            button.removeEventListener("click", () =&gt; alert("1"));
+            button.onclick = () =&gt; alert(2);
+        &lt;/script&gt;
+
+    
+        &lt;script&gt;
+            function handler() {
+                alert(1);
+            }
+
+            button.addEventListener("click", handler);
+            button.removeEventListener("click", handler);
+        &lt;/script&gt;    
+    </pre>
+    </div>    
+
+    <script>
+        button.addEventListener("click", () => alert("1"));
+        button.removeEventListener("click", () => alert("1"));
+        button.onclick = () => alert(2);
+    </script>
+
+   
+    <script>
+        function handler() {
+            alert(1);
+        }
+
+        button.addEventListener("click", handler);
+        button.removeEventListener("click", handler);
+    </script>
+    
+</body>
+</html>

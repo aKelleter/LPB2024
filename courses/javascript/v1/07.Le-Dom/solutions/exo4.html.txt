@@ -1,0 +1,5 @@
+document.getElementById('age-table').style.background = 'red';
+document.querySelectorAll('#age-table label');
+table.getElementsByTagName('label')[0].style.background = "blue";
+table.getElementsByTagName('label')[1].style.background = "green";
+table.getElementsByTagName('label')[2].style.background = "blue";
