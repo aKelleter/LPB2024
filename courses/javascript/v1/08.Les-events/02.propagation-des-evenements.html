@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La propagation des évènements</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>La propagation des évènements</h1>
+    <hr>  
+    <p>
+        <a href="tests/test02.html" target="_blank">Tester la propagation des évenèments</a>
+    </p>
+    <p> 
+        La propagation des évènements est un concept important en JavaScript. Lorsqu'un évènement se produit sur un élément, il se propage de l'élément enfant à l'élément parent.
+        Un exemple simple est le clic sur un bouton. Lorsque vous cliquez sur un bouton, l'évènement de clic se propage de l'élément bouton à l'élément parent.
+    </p>
+    <div class="div-code">
+        <pre>
+            &lt;div onclick="alert('The handler!')"&gt;
+                &lt;em&gt;If you click on &lt;code&gt;EM&lt;/code&gt;, the handler on &lt;code&gt;DIV&lt;/code&gt; runs.&lt;/em&gt;
+            &lt;/div&gt;
+        </pre>
+    </div>      
+    <div onclick="alert('The handler!')">
+        <em>Si vous cliquez sur <code>EM</code>, le gestionnaire sur la <code>DIV</code> s'exécute.</em>
+    </div>
+    <hr>
+    <p>
+        N'est-ce pas un peu étrange ? Pourquoi le gestionnaire sur la &lt;div&gt; s'exécute-t-il lorque l'on clique effectivement sur &lt;em&gt; ?
+    </p>
+    <h2>La propagation, le bouillonnement ou effervescence (Bubbling)</h2>
+    <p>
+        Le principe de la propagation est simple.
+    </p>
+    <p>
+        Qu'est-ce que l'Event Bubbling ? La propagation d'événements est un concept du DOM (Document Object Model). 
+        Il se produit lorsqu'un élément cible reçoit un événement, et que cet événement remonte (on peut dire qu'il est transmis ou 
+        propagé) à ses éléments parents et ancêtres dans l'arbre DOM jusqu'à l'élément racine.
+    </p>
+    <p>
+        Supposons que nous ayons 3 éléments imbriqués FORM > DIV > P avec un gestionnaire sur chacun d'entre eux :
+    </p>
+    <div class="div-code">
+        <pre>
+            &lt;form onclick="alert('form')"&gt;
+                &lt;div onclick="alert('div')"&gt;
+                    &lt;p onclick="alert('p')"&gt;Click me or eat me if you can :)&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        </pre>
+    </div>    
+    <form onclick="alert('form')">
+        <div onclick="alert('div')">
+            <p onclick="alert('p')">Click me or eat me if you can :)</p>
+        </div>
+    </form>
+    <hr>
+    <p>
+        Un clic sur la partie intérieure de &lt;p&gt; exécute <span class="highlight">onclick</span> d'abord : <br>
+        <ul>
+            <li>Sur ce &lt;p&gt;. </li>
+            <li>Puis sur la &lt;div&gt; extérieur. </li>
+            <li>Puis sur le &lt;form&gt; extérieur. </li>
+            <li>Et ainsi de suite jusqu'à l'objet document. </li>
+        </ul>
+    </p>
+    <p>
+        <img src="img/event-order-bubbling.svg" alt="propagation des évènements">
+        <p><code>&lt;p&gt;</code> étant l'élément le plus profondément imbriqué</p>
+    </p>
+    <p class="code"><b>ATTENTION</b> <br> <br>
+        Presque tous les événements sont des "bulles" et sont propageable. <br>
+        Le mot clé de cette phrase est <b>"presque"</b>. <br>
+        Par exemple, un événement de type focus ne fait pas de bulles. Il y a d'autres exemples, nous les rencontrerons. 
+        Mais il s'agit toujours d'une exception, plutôt que d'une règle, car la plupart des événements font des bulles.
+    </p>
+    <h2>Evènement cible (event.target)</h2>
+    <p>
+        Lorsque l'évènement se propage, il passe par plusieurs éléments. La plupart de ces éléments ne sont pas ceux sur lesquels 
+        l'évènement s'est produit. Mais il y a toujours un seul élément sur lequel l'évènement s'est produit réellement. 
+        Il est appelé l'élément cible.
+    </p>
+    <p>
+        Il faut savoir qu'un gestionnaire sur un élément parent peut toujours obtenir des détails sur l'endroit où l'évènement s'est 
+        produit. <br> L'élément le plus profondément imbriqué à l'origine de l'événement est appelé élément cible, accessible sous 
+        la forme d'un <span class="highlight">event.target</span>.
+    </p>
+    <p>
+        Notez les différences entre <span class="highlight">this</span> et <span class="highlight">event.target</span> :
+        <ul>
+            <li>
+                <span class="highlight">event.target</span> – est l'élément "cible" qui a initié l'événement, il n'est pas modifié par la propagation (bubbling).                 
+            </li>
+            <li>
+                <span class="highlight">this</span> est l'élément "courant", celui sur lequel un gestionnaire est en cours d'exécution (= event.currentTarget).
+            </li>
+        </ul>
+    </p>
+    <p>
+        <span class="code">Important</span>, par exemple, si nous avons un seul gestionnaire sur le formulaire : <span class="highlight">form.onclick</span>, il peut "attraper" tous les clics à l'intérieur du formulaire. 
+        Quel que soit l'endroit où le clic s'est produit, il remonte jusqu'à &lt;form&gt; et exécute le gestionnaire.
+    </p>
+    <p>
+        Dans le gestionnaire <span class="highlight">form.onclick</span> :
+        <ul>
+            <li><span class="highlight">this (=event.currentTarget)</span> est l'élément &lt;form&gt;, car le gestionnaire s'exécute sur lui.</li>
+            <li><span class="highlight">event.target</span> est l'élément cliqué à l'intérieur du formulaire.</li>
+        </ul>       
+    </p>
+    <a href="tests/test02.html" target="_blank">Exemple</a>
+    <p>
+        Il est bien entendu possible que <span class="highlight">event.target</span> corresponde à <span class="highlight">this</span>. Cela se produit lorsque le clic est effectué directement sur 
+        l'élément &lt;form&gt;.
+    </p>
+    <h2>Stopper la propagation (stop bubbling)</h2>
+    <p>
+        Un événement part de l'élément cible et se propage vers le haut. 
+        Normalement, il remonte jusqu'à l'élément <code>&lt;html&gt;</code>, ensuite jusqu'à l'objet <code>&lt;document&gt;</code>. Certains événements atteignent 
+        même la fenêtre ( l'objet <code>window</code>), appelant tous les gestionnaires sur son chemin.
+    </p>
+    <p>
+
+        Mais n'importe quel gestionnaire peut décider que l'événement a été entièrement traité et arrêter la propagation.
+        La méthode pour cela est <span class="highlight">event.stopPropagation()</span>.
+        Dans l'exemple ci-dessous, <span class="highlight">body.onclick</span> ne fonctionne pas si vous cliquez sur 
+        l'élément <code>&lt;button&gt;</code> :
+    </p>
+    <div class="div-code">
+        <pre>
+            &lt;body onclick="alert(`the bubbling doesn't reach here`)"&gt;
+                &lt;button onclick="event.stopPropagation()"&gt;Click me&lt;/button&gt;
+            &lt;/body&gt;
+        </pre>
+    </div>
+    <a href="tests/test03.html" target="_blank">Stop propagation : test</a>
+    <p class="code">
+        A savoir : <code>event.stopImmediatePropagation()</code> <br> <br>
+
+        Si un élément possède plusieurs gestionnaires d'événements, même si l'un d'entre eux arrête la propagation, les autres continuent 
+        à s'exécuter. <br> <br>
+        En d'autres termes, <code>event.stopPropagation()</code> arrête la remontée, mais sur l'élément actuel, tous les autres gestionnaires
+        continue de s'exécuter. <br> <br>
+        Pour arrêter la propagation et empêcher les gestionnaires de l'élément courant de s'exécuter, il existe une méthode : <br>
+        <code>event.stopImmediatePropagation()</code>. Après cette méthode, aucun autre gestionnaire ne s'exécute.
+    </p>
+    <p class="code">
+        <b>ATENTION : N'arrêtez pas la propagation sans en avoir une réelle nécessité !</b> <br> <br>
+        La propagation est pratique. Ne l'arrêtez pas sans un besoin réel, évident et architecturalement bien pensé. <br>
+        Parfois, <code>event.stopPropagation()</code> crée des pièges cachés qui peuvent devenir des problèmes par la suite.
+    </p>
+    <p> 
+        Par exemple :    
+        <ol>
+            <li>Nous créons un menu imbriqué. Chaque sous-menu gère les clics sur ses éléments et appelle stopPropagation afin que le menu extérieur ne se déclenche pas.</li>
+            <li>Plus tard, nous décidons d'enregistrer les clics sur l'ensemble de la fenêtre, afin de suivre le comportement des utilisateurs (où les gens cliquent). C'est ce que font certains systèmes d'analyse. En général, le code utilise document.addEventListener('click'...) pour capturer tous les clics.</li>
+            <li>Notre système d'analyse ne fonctionnera pas dans la zone où les clics sont arrêtés par stopPropagation. Malheureusement, nous avons une "zone morte".</li>
+        </ol>
+
+        <p>
+            Il n'est généralement pas nécessaire d'empêcher la propagation. Une tâche qui semble l'exiger peut être résolue par 
+            d'autres moyens. L'un d'entre eux consiste à utiliser des événements personnalisés, que nous aborderons plus tard. Nous pouvons 
+            également écrire nos données dans l'objet événement dans un gestionnaire et les lire dans un autre, de sorte que nous pouvons 
+            transmettre aux gestionnaires sur les parents des informations sur le traitement ci-dessous.
+        </p>    
+    </p>
+    <h2>La capture (capturing)</h2>
+
+    
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+</body>
+</html>

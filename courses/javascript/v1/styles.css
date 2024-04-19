@@ -80,6 +80,14 @@ code {
  
 }
 
+li  {
+    line-height: 1.8rem;
+}
+
+p {
+    line-height: 1.6rem;
+}
+
 
 
 
@@ -125,16 +133,16 @@ code {
 }  
 
 .code {
-    background-color: var(--menu-backg-color);
+    background-color: var(--header-backg-color);
     color: var(--menu-item-color);
     border: 1px solid var(--menu-item-color);
     border-radius: 5px;
     padding: 5px;
     margin-right: 0;    
-    font-weight: bold;
+    /*font-weight: bold;*/
     word-break: keep-all;
     overflow-wrap: break-word;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }   
 
 .exo {
