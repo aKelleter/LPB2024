@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actions par défaut du navigateur</title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Actions par défaut du navigateur</h1>
+    <hr>  
+    <p> 
+        Beaucoup d’évènements mènent à l’exécution d’actions par le navigateur. <br> <br>
+        Par exemple: <br>
+        <ul>
+            <li>Un clic sur un lien – initie la navigation vers son URL.</li>
+            <li>Un clic sur un bouton d’envoi de formulaire – initie son envoie vers le serveur.</li>
+            <li>Appuyer sur un bouton de la souris au-dessus d’un texte et la déplacer – sélectionne le texte.</li>
+        </ul>        
+        Si nous gérons un évènement avec JavaScript, nous pouvons ne pas avoir envie de déclencher l’action de navigateur associée, et déclencher un autre comportement à la place.
+    </p>
+    <h2>Empêcher les actions du navigateur</h2>
+    <p>
+        Il y a deux manières de dire au navigateur que nous ne souhaitons pas qu’il agisse: <br>
+        <ul>
+            <li>La manière principale est d’utiliser l’objet <code>event</code>. Il y a une méthode <code>event.preventDefault()</code>.</li>
+            <li>Si le gestionnaire d’évènement a été assigné en utilisant <code>on&lt;event&gt;</code> (pas par addEventListener), 
+                alors renvoyer false fonctionne de la même manière.</li>
+        </ul>
+        Dans cet HTML un clic sur un lien n’entraine pas une navigation, le navigateur ne fait rien :
+    </p>
+    <textarea class="codem">
+        <a href="/" onclick="return false">Cliquez ici</a>
+        ou
+        <a href="/" onclick="event.preventDefault()">ici</a>
+    </textarea>
+    <p>
+        <a href="/" onclick="return false">Cliquez ici</a>
+        ou
+        <a href="/" onclick="event.preventDefault()">ici</a>
+    </p>
+    <h2>Exemple : le menu</h2>
+    <p>Considérez le menu d’un site, comme ceci:</p>
+    <textarea class="codem">
+        <ul id="menu" class="menu">
+          <li><a href="/html">HTML</a></li>
+          <li><a href="/javascript">JavaScript</a></li>
+          <li><a href="/css">CSS</a></li>
+        </ul>
+    </textarea>
+    <p>
+        <ul id="menu" class="menu">
+          <li><a href="/html">HTML</a></li>
+          <li><a href="/javascript">JavaScript</a></li>
+          <li><a href="/css">CSS</a></li>
+        </ul>
+    </p>
+    <p>
+        Donc nous utilisons &lt;a&gt;. Mais normalement nous avons l’intention de gérer les clics avec JavaScript. 
+        Donc nous devrions empêcher les actions par défaut du navigateur. <br>
+        Comme ici:    
+    </p>
+    <textarea class="codem">
+        menu.onclick = function(event) {
+            if (event.target.nodeName != 'A') return;
+          
+            let href = event.target.getAttribute('href');
+            alert( href ); // ...peut être en chargement depuis le serveur, génération d'UI etc
+          
+            return false; // empêche l'action du navigateur (ne va pas sur l'URL)
+        };
+    </textarea>
+    <script>
+         menu.onclick = function(event) {
+            if (event.target.nodeName != 'A') return;
+          
+            let href = event.target.getAttribute('href');
+            alert( href ); // ...peut être en chargement depuis le serveur, génération d'UI etc
+          
+            return false; // empêche l'action du navigateur (ne va pas sur l'URL)
+          };
+    </script>
+    <p>
+        Si nous enlevons/commentons <code>return false</code>, alors après l’exécution de notre code le navigateur fera son “action par défaut”,
+        càd, naviguer vers l’URL dans href. Et nous n’avons pas besoin de ça ici comme nous gérons nous-mêmes les clics.
+    </p>
+    
+    
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La propagation des évènements</title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
     <link rel="stylesheet" href="../styles.css">
     <script> let path = "chapter";</script> 
 </head>
@@ -20,13 +23,12 @@
         La propagation des évènements est un concept important en JavaScript. Lorsqu'un évènement se produit sur un élément, il se propage de l'élément enfant à l'élément parent.
         Un exemple simple est le clic sur un bouton. Lorsque vous cliquez sur un bouton, l'évènement de clic se propage de l'élément bouton à l'élément parent.
     </p>
-    <div class="div-code">
-        <pre>
-            &lt;div onclick="alert('The handler!')"&gt;
+    <textarea class="codem">        
+            <div onclick="alert('The handler!')">
                 &lt;em&gt;If you click on &lt;code&gt;EM&lt;/code&gt;, the handler on &lt;code&gt;DIV&lt;/code&gt; runs.&lt;/em&gt;
             &lt;/div&gt;
-        </pre>
-    </div>      
+        
+    </textarea>      
     <div onclick="alert('The handler!')">
         <em>Si vous cliquez sur <code>EM</code>, le gestionnaire sur la <code>DIV</code> s'exécute.</em>
     </div>
@@ -46,15 +48,13 @@
     <p>
         Supposons que nous ayons 3 éléments imbriqués FORM > DIV > P avec un gestionnaire sur chacun d'entre eux :
     </p>
-    <div class="div-code">
-        <pre>
+    <textarea class="codem"> 
             &lt;form onclick="alert('form')"&gt;
                 &lt;div onclick="alert('div')"&gt;
                     &lt;p onclick="alert('p')"&gt;Click me or eat me if you can :)&lt;/p&gt;
                 &lt;/div&gt;
             &lt;/form&gt;
-        </pre>
-    </div>    
+    </textarea>
     <form onclick="alert('form')">
         <div onclick="alert('div')">
             <p onclick="alert('p')">Click me or eat me if you can :)</p>
@@ -131,13 +131,11 @@
         Dans l'exemple ci-dessous, <span class="highlight">body.onclick</span> ne fonctionne pas si vous cliquez sur 
         l'élément <code>&lt;button&gt;</code> :
     </p>
-    <div class="div-code">
-        <pre>
-            &lt;body onclick="alert(`the bubbling doesn't reach here`)"&gt;
-                &lt;button onclick="event.stopPropagation()"&gt;Click me&lt;/button&gt;
-            &lt;/body&gt;
-        </pre>
-    </div>
+    <textarea class="codem"> 
+            <body onclick="alert(`the bubbling doesn't reach here`)">
+                <button onclick="event.stopPropagation()">Click me </button>
+            </body>;
+    </textarea>
     <a href="tests/test03.html" target="_blank">Stop propagation : test</a>
     <p class="code">
         A savoir : <code>event.stopImmediatePropagation()</code> <br> <br>
@@ -170,11 +168,126 @@
         </p>    
     </p>
     <h2>La capture (capturing)</h2>
+    <p>
+        Il existe une autre phase du traitement des événements appelée "capture". Elle est rarement utilisée dans le code réel, 
+        mais peut parfois être utile.
+    </p>
+    <p>
+        Le standard DOM Events décrit 3 phases de propagation des événements :
+    </p>
+    <ul>
+        <li>Phase de capture - l'événement descend jusqu'à l'élément.</li>
+        <li>Phase de cible - l'événement a atteint l'élément cible.</li>
+        <li>Phase de bouillonnement - l'événement remonte de l'élément.</li>
+    </ul>
+    <p>
+
+        Voici l'image, tirée de la spécification, des phases de capture (1), de ciblage (2) et de bouillonnement (3) 
+        pour un événement de clic sur un <td> à l'intérieur d'un tableau :
+    </p>
+    <img src="img/eventflow.svg" alt="3 phases de la propagation des évènements">
+    <p>
+            En d'autres termes, pour un clic sur &lt;td&gt;, l'événement passe d'abord par la chaîne des ancêtres jusqu'à l'élément 
+            (phase de capture), puis il atteint la cible et s'y déclenche (phase de cible), et enfin il remonte 
+            (phase de bouillonnement), en appelant les gestionnaires sur son chemin.
+    </p>
+    <p>
+            Jusqu'à présent, nous n'avons parlé que du bouillonnement, car la phase de capture est rarement utilisée.            
+            En fait, la phase de capture était invisible pour nous, parce que les gestionnaires ajoutés en utilisant 
+            la propriété on&lt;event&gt; ou en utilisant les attributs HTML ou en utilisant l'argument double addEventListener
+                (event, handler) ne savent rien de la capture, ils ne fonctionnent que sur les 2ème et 3ème phases.
+    </p>
+    <p>
+            Pour capturer un événement lors de la phase de capture, nous devons définir l'option de capture du gestionnaire à true :
+    </p>
+    <textarea class="codem">
+        elem.addEventListener(..., {capture: true})
+
+        // ou, tout simplement, "true", qui est un alias de {capture: true}
+        elem.addEventListener(..., true)
+    </textarea>
+    <p>
+        Il existe deux valeurs possibles pour l'option capture :
+    </p>
+    <p>    
+        Si elle est fausse (valeur par défaut), le gestionnaire est activé lors de la phase de bouillonnement. <br>
+        Si elle est vraie, le gestionnaire est activé lors de la phase de capture. <br> <br>
+
+        Notez que, bien qu'il y ait formellement 3 phases, la deuxième phase ("phase cible" : l'événement a atteint l'élément) 
+        n'est pas traitée séparément : les gestionnaires des phases de capture et de bouillonnement se déclenchent à cette phase.
+
+        Voyons ce qu'il en est de la capture et du bouillonnement en action :
+    </p>
+    <textarea class="codem">
+        <style>
+            form, div, p {
+              margin: 10px;
+              border: 1px solid blue;
+            }
+        </style>
+          
+        <form>FORM
+          <div>DIV
+            <p>P</p>
+          </div>
+        </form>
+        
+        <script>
+          for(let elem of document.querySelectorAll('*')) {
+            elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName} - ${event.eventPhase}`), true);
+            elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName} - ${event.eventPhase}`));
+          }
+        </script>
+    </textarea>
+    <p><a href="tests/test04.html" target="_blank">Demo</a></p>
+    <p>
+        Le code définit des gestionnaires de clics sur chaque élément du document pour voir lesquels fonctionnent. <br> <br>
+
+        Si vous cliquez sur &lt;p&gt;, la séquence est la suivante : <br> <br>
+
+        HTML → BODY → FORM → DIV -> P (phase de capture, le premier auditeur) :
+        P → DIV → FORM → BODY → HTML (phase de bouillonnement, le deuxième auditeur).
+
+        Notez que le P apparaît deux fois, car nous avons défini deux listeners : capturing et bubbling. La cible se déclenche à la fin de la 
+        première phase et au début de la seconde. <br> <br>
+
+        Il existe une propriété <code>event.eventPhase</code> qui nous indique le numéro de la phase sur laquelle l'événement a été capturé. Mais elle est 
+        rarement utilisée, car nous la connaissons généralement dans le gestionnaire.
+    </p>
+    <p class="code">
+        <b>Pour supprimer le gestionnaire, removeEventListener a besoin de la même phase</b> <br> <br>
+
+        Si nous ajoutons un addEventListener(..., true), nous devons mentionner la même phase dans removeEventListener(..., true) 
+        pour supprimer correctement le handler.
+    </p>
+    <p class="code">
+        <b>Les gestionnaires d'un même élément et d'une même phase fonctionnent dans l'ordre prévu.</b> <br>
+        Si nous avons plusieurs gestionnaires d'événements sur la même phase, assignés au même élément avec addEventListener, 
+        ils s'exécutent dans le même ordre que celui dans lequel ils ont été créés.
+    </p>
+    <p class="code">
+        La fonction <code>event.stopPropagation()</code> pendant la capture empêche également la formation de bulles. <br> <br>
+        La méthode <code>event.stopPropagation(</code>) et sa sœur <code>event.stopImmediatePropagation()</code> peuvent également être appelées 
+        lors de la phase de capture. Dans ce cas, non seulement la poursuite de la capture est stoppée, mais aussi la formation de bulles. <br> <br>
+        En d'autres termes, normalement, l'événement descend d'abord ("capture") et remonte ensuite ("bouillonnement"). 
+        Mais si <code>event.stopPropagation()</code> est appelé pendant la phase de capture, le déplacement de l'événement s'arrête 
+        et il n'y a pas de bouillonnement.
+    </p>
 
     
     </div><!--screen-->
     </div><!--container-->
     <footer></footer>  
     <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
 </body>
 </html>

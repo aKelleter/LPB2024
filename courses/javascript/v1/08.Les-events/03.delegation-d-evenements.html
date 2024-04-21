@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La délégation d'évènement</title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>La délégation d'évènement</h1>
+    <hr>  
+    <p> 
+        La capture et le bouillonement (“bubbling”) nous permettent d’implémenter l’un des modèles de gestion d’événements les plus 
+        puissants appelés <code>Délégation d’événement</code>. <br> <br>
+
+        L’idée est que si nous avons beaucoup d’éléments traités de la même manière, au lieu d’assigner un gestionnaire à chacun d’eux 
+        – nous mettons un seul gestionnaire sur leur ancêtre commun.        
+        Dans le gestionnaire, nous obtenons <code>event.target</code> pour voir où l’événement s’est réellement produit et le gérer.
+    </p>
+    <p>Le code HTML</p>
+    <textarea class="codem">
+        <table>
+          <tr>
+            <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+          </tr>
+          <tr>
+            <td class="nw"><strong>Northwest</strong><br>Metal<br>Silver<br>Elders</td>
+            <td class="n">...</td>
+            <td class="ne">...</td>
+          </tr>
+          <tr>...2 more lines of this kind...</tr>
+          <tr>...2 more lines of this kind...</tr>
+        </table>
+    </textarea>
+    <p>
+        Le tableau a 9 cellules, mais il pourrait y en avoir 99 ou 9999, peu importe. <br> <br>
+
+        Notre tâche est de surligner une cellule &lt;td&gt; en cliquant dessus.
+
+        Au lieu d’assigner un gestionnaire onclick à chaque &lt;td&gt; – nous allons configurer le gestionnaire “foure-tout” sur 
+        l’élément &lt;table&gt;. <br> <br>
+
+        Il utilisera <code>event.target</code> pour obtenir l’élément cliqué et le surligner.
+    </p>
+    <p>Le code</p>
+    <textarea class="codem">
+        let selectedTd;
+
+        table.onclick = function(event)
+        {
+            let td = event.target.closest('td'); // (1)          
+            if (!td) return; // (2)
+          
+            if (!table.contains(td)) return; // (3)          
+            highlight(td); // (4)
+        };
+
+        function highlight(td)
+        {
+            if (selectedTd) { // supprimer le surlignage le cas échéant
+                selectedTd.classList.remove('highlight');
+            }
+            selectedTd = td;
+            selectedTd.classList.add('highlight'); // surligner le nouveau td
+        }
+    </textarea>
+    <p>
+        Un tel code ne se soucie pas du nombre de cellules dans le tableau. Nous pouvons ajouter / supprimer &lt;td&gt; 
+        dynamiquement à tout moment et le surlignage fonctionnera toujours.
+    </p>
+    <p>
+        Pour être précis, dans le gestionnaire table.onclick, nous devons prendre event.target et découvrir si le clic était à 
+        l’intérieur de &lt;td&gt; ou non.
+    </p>
+    <p>
+        <b><code> Explications: </code></b> <br>
+        <ol>
+            <li>La méthode <code>elem.closest(selector)</code> retourne l’ancêtre le plus proche qui correspond au sélecteur. 
+                Dans notre cas, nous recherchons &lt;td&gt; en remontant de l’élément source. </li>
+            <li>Si <code>event.target</code> n’est pas à l’intérieur d’un &lt;td&gt;, alors l’appel renvoie immédiatement, car il n’y a rien à faire.</li>
+            <li>Dans le cas de tableaux imbriquées, event.target peut être un &lt;td&gt;, mais se trouvant en dehors du tableau actuel. 
+                Nous vérifions donc si c’est réellement la balise &lt;td&gt; de notre tableau.</li>   
+            <li>Si c’est le cas, surligner le.</li>
+        </ol>
+        En conséquence, nous avons un code de surlignage rapide et efficace, qui ne se soucie pas du nombre total de &lt;td&gt; dans le tableau.
+    </p>
+    <h2>Résumé</h2>
+    <p>Avantages:</p>
+    <ul>
+        <li>Simplifie l’initialisation et économise de la mémoire: pas besoin d’ajouter de nombreux gestionnaires. </li>
+        <li>Moins de code: lors de l’ajout ou de la suppression d’éléments, pas besoin d’ajouter/supprimer des gestionnaires.</li>
+        <li>Modifications DOM: nous pouvons ajouter/supprimer en masse des éléments avec innerHTML et autres.</li>
+    </ul>
+    <p>La délégation a bien sûr ses limites:</p>
+    <ul>
+        <li>Premièrement, l’événement doit bouillonner. Certains événements ne bouillonnent pas. De plus, les gestionnaires de bas niveau 
+            ne devraient pas utiliser event.stopPropagation().</li>
+        <li>Deuxièmement, la délégation peut ajouter une charge au processeur, car le gestionnaire au niveau du conteneur réagit aux événements 
+            à n’importe quel endroit du conteneur, qu’ils nous intéressent ou non. Mais généralement, la charge est négligeable, nous ne la prenons donc pas en compte.</li>
+    </ul>
+
+
+    
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>

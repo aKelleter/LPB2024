@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction et callback</title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Introduction et callback</h1>
+    <hr>     
+    <p class="code">
+        Pour démontrer l’utilisation des callbacks, des promesses et d’autres concepts abstraits, nous utiliserons certaines méthodes 
+        du navigateur : plus précisément, nous chargerons des scripts et effectuerons des manipulations simples de documents.
+    </p>
+    <p>
+        De nombreuses fonctions sont fournies par les environnements hôtes JavaScript qui vous permettent de planifier des actions asynchrones. 
+        En d’autres termes, des actions que nous lançons maintenant, mais qui se terminent plus tard.
+    </p>
+    <p>
+        Par exemple, une de ces fonctions est la fonction <code>setTimeout</code>.
+        Il existe d’autres exemples concrets d’actions asynchrones, par exemple le chargement de scripts et de modules (nous les aborderons 
+        dans les chapitres suivants).
+
+        Regardez la fonction <code>loadScript(src)</code>, qui charge un script avec le src donné:
+    </p>
+    <textarea class="codem">
+        function loadScript(src)
+        {
+            // crée une balise &lt;script&gt; et l'ajoute à la page
+            // ceci fait que le script avec la src donnée commence à se charger et s'exécute une fois terminé.
+            let script = document.createElement('script');
+            script.src = src;
+            document.head.append(script);
+        }
+    </textarea>
+    <p>
+        Il insère dans le document une nouvelle balise, créée dynamiquement, <code>&lt;script src="..."&gt;</code> avec le src donné. Le navigateur commence 
+        automatiquement à la charger et l’exécute lorsqu’elle est terminée.
+        Nous pouvons utiliser cette fonction comme suit :
+    </p>
+    <textarea class="codem">
+        // charger et exécuter le script au chemin donné
+        loadScript('/my/script.js');
+    </textarea>
+   
+
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>

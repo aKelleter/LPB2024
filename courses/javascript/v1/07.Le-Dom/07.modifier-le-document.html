@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier le document</title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Modifier le document</h1>
+    <hr>  
+    <p> 
+        La modification DOM est la clé pour créer des pages “live”. <br>
+        Ici, nous verrons comment créer de nouveaux éléments “à la volée” et modifier le contenu de la page existante.
+    </p>
+    <h2>Exemple : afficher un message</h2>
+    <p>
+        Démontrons en utilisant un exemple. Nous allons ajouter un message sur la page qui est plus joli que alert.
+        Voici à quoi cela ressemblera :
+    </p>
+    <textarea class="codem">
+        <style>
+            .alert {
+            padding: 15px;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            color: #3c763d;
+            background-color: #dff0d8;
+            }
+        </style>
+        
+        <div class="alert">
+          <strong>Hi there!</strong> You've read an important message.
+        </div>
+    </textarea>
+    <style>
+        .alert {
+        padding: 15px;
+        border: 1px solid #d6e9c6;
+        border-radius: 4px;
+        color: #3c763d;
+        background-color: #dff0d8;
+        }
+    </style>
+    <div class="alert">
+        <strong>Hi there!</strong> You've read an important message.
+    </div>
+    <p>
+        C’était un exemple HTML. Créons maintenant la même div avec JavaScript (en supposant que les styles sont déjà dans le HTML ou un 
+        fichier CSS externe).
+    </p>
+    
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>

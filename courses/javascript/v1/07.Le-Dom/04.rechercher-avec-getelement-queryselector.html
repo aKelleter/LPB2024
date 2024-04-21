@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rechercher avec getElement*, querySelector* </title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
     <link rel="stylesheet" href="../styles.css">
     <script> let path = "chapter";</script> 
 </head>
@@ -29,8 +32,7 @@
     <p>
         Par exemple :
     </p>
-    <div class="div-code">
-    <pre>
+   <textarea class="codem">
     &lt;div id="elem"&gt;
         &lt;div id="elem-content"&gt;Elément&lt;/div&gt;
     &lt;/div&gt;
@@ -42,8 +44,8 @@
         // on met son arrière-plan rouge :
         elem.style.background = 'red';
     &lt;/script&gt;
-    </pre>
-    </div>
+    </textarea>
+
     <div id="elem">
         <div id="elem-content">Elément</div>
     </div>
@@ -57,8 +59,7 @@
 
     <p>Il y a aussi une variable globale nommée selon l’id qui référence l’élément :</p>
 
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
     &lt;div id="elem"&gt;
         &lt;div id="elem-content"&gt;Elément&lt;/div&gt;
     &lt;/div&gt;
@@ -70,21 +71,18 @@
         // id="elem-content" contient un tiret, donc ça ne peut pas être un nom de variable
         // ...mais on peut y accéder en utilisant les crochets : window['elem-content']
     &lt;/script&gt;
-    </pre>
-    </div>
+    </textarea>
 
     <p>…A moins qu’on déclare une variable JavaScript avec le même nom, auquel cas celle-ci obtient la priorité :</p>
 
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
     &lt;div id="elem"&gt; &lt;/div&gt;
       
     &lt;script&gt;        
         let elem = 5; // maintenant elem vaut 5, ce n'est plus une référence à <div id="elem">  
         alert(elem); // 5  
     &lt;/script&gt;
-    </pre>
-    </div>
+    </textarea>
 
     <p class="danger">Ne pas utiliser les variables globales nommées selon l’id pour accéder aux éléments !</p>
     <p>
@@ -115,8 +113,7 @@
         De loin, la méthode la plus polyvalente, <span class="highlight">parentNode.querySelectorAll(css-selectors)</span> renvoie tous les éléments à 
         l’intérieur du "parentNode" correspondant au sélecteur CSS donné en paramètre.
     </p>
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
         &lt;ul&gt;
             &lt;li&gt;Le&lt;/li&gt;
             &lt;li&gt;test&lt;/li&gt;
@@ -132,8 +129,7 @@
               alert(elem.innerHTML); // "test", "réussi"
             }
         &lt;/script&gt;
-    </pre>
-    </div>   
+    </textarea>  
     <p>Cette méthode est très puissante, car tous les sélecteurs CSS peuvent être utilisés.</p>   
     
     <p class="danger">On peut aussi utiliser des pseudo-classes</p>
@@ -165,8 +161,7 @@
         <li class="bird">pélican blanc</li>
     </ul>
     
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
         &lt;ul id="birds"&gt;
             &lt;li class="bird"&gt;perroquet amazone&lt;/li&gt;
             &lt;li class="bird endangered"&gt;aigle des Philippines&lt;/li&gt;
@@ -182,8 +177,7 @@
                 );
             }
         }
-    </pre>    
-    </div>
+    </textarea>
 
     <script>
     document.write('<div class="result">');
@@ -210,8 +204,7 @@
         la recherche s’arrête et l’ancêtre est renvoyé. 
     </p>
 
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
         &lt;h1&gt;Contenu&lt;/h1&gt;
 
         &lt;div class="contents"&gt;
@@ -229,8 +222,7 @@
           
             document.write(chapter.closest('h1')); // null (car h1 n'est pas un ancêtre)
         &lt;/script&gt;
-    </pre>
-    </div>
+    </textarea>
 
     <h1>Contenu</h1>
 
@@ -269,12 +261,10 @@
     </p>
 
     <p>Par exemple :</p>
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
         // récupérer toutes les divs du document.
         let divs = document.getElementsByTagName('div');
-    </pre>
-    </div>
+    </textarea>
 
     <p class="danger">N’oubliez pas la lettre "s" !</p>
     <p>
@@ -286,24 +276,20 @@
     <p>
         Une autre erreur répandue est d’écrire :
     </p>
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
         // ne fonctionne pas :
         document.getElementsByTagName('input').value = 5;
-    </pre>
-    </div>
+    </textarea>
 
     <p>
         Cela ne va pas marcher, parce qu’on essaie d’affecter une valeur à un ensemble d’objets plutôt qu’à un élément de cet ensemble. 
         On devrait plutôt itérer sur l’ensemble ou récupérer un élément par son index, et lui affecter la valeur, comme ceci :
     </p>
 
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
         // doit fonctionner (s'il y a un élément 'input' )
         document.getElementsByTagName('input')[0].value = 5;
-    </pre>
-    </div>
+    </textarea>
 
     <h2>Ensembles courants / current sets</h2>
 
@@ -316,8 +302,7 @@
         2. Le second se lance après que le navigateur aie rencontré un autre &lt;div&gt;, donc sa longueur est 2. <br>
     </p>
 
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
         &lt;div&gt;Premier div&lt;/div&gt;
 
         &lt;script&gt;
@@ -330,16 +315,14 @@
         &lt;script&gt;
         alert(divs.length); // 2
         &lt;/script&gt;
-    </pre>
-    </div>
+    </textarea>
 
     <p>
         A l’opposé, querySelectorAll renvoie un ensemble statique. C’est comme un tableau fixe d’éléments
         Si on l’utilise, alors les deux scripts ci-dessus renvoient 1:
     </p>
 
-    <div class="div-code">
-    <pre>
+    <textarea class="codem">
         &lt;div&gt;Premier div&lt;/div&gt;
 
         &lt;script&gt;
@@ -352,8 +335,7 @@
         &lt;script&gt;
         alert(divs.length); // 1
         &lt;/script&gt;
-    </pre>
-    </div>
+    </textarea>
 
     <p>
         Maintenant, on voit facilement la différence. L’ensemble statique ne s’est pas incrémenté après l’apparition d’un nouveau div 
@@ -393,5 +375,15 @@
     </div><!--container-->
     <footer></footer>  
     <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
 </body>
 </html>
