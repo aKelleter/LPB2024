@@ -22,7 +22,7 @@
     </p>
     <h2>Exemple : afficher un message</h2>
     <p>
-        Démontrons en utilisant un exemple. Nous allons ajouter un message sur la page qui est plus joli que alert.
+        Démontrons en utilisant un exemple. Nous allons ajouter un message sur la page qui est plus joli qu'un alert().
         Voici à quoi cela ressemblera :
     </p>
     <textarea class="codem">
@@ -56,7 +56,425 @@
         C’était un exemple HTML. Créons maintenant la même div avec JavaScript (en supposant que les styles sont déjà dans le HTML ou un 
         fichier CSS externe).
     </p>
+    <h2>Création d’un élément</h2>
+    <p>Pour créer des nœuds DOM, il existe deux méthodes :</p>
+    1. <code>document.createElement(tag)</code>
+    <p>
+        Crée un nouveau noeud élément avec la balise donnée :
+    </p>
+    <textarea class="codem">
+        let div = document.createElement('div');
+    </textarea>
+
+    <p>2. <code>document.createTextNode(text)</code></p>
+    <p>Crée un nouveau nœud texte avec le texte donné :</p>
+    <textarea class="codem">
+        let textNode = document.createTextNode('Here I am');
+    </textarea>
+    <p>
+        La plupart du temps, nous devons créer des nœuds d’élément, tels que la &lt;div&gt; pour le message.
+    </p>
+
+    <h2>Création du message</h2>
+    <p>La création de la &lt;div&gt; message se fait en 3 étapes :</p>
+    <textarea class="codem">
+        // 1. Create <div> element
+        let div = document.createElement('div');
+        
+        // 2. Set its class to "alert"
+        div.className = "alert";
+        
+        // 3. Fill it with the content
+        div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";    
+    </textarea>
+    <p>
+        Nous avons créé l’élément. Mais pour le moment, ce n’est que dans une variable nommée div, pas encore 
+        dans la page. Nous ne pouvons donc pas le voir.
+    </p>
+
+    <h2>Les méthodes d’insertion</h2>
+    <p>
+        Pour faire apparaître la div, nous devons l’insérer quelque part dans "document". Par exemple, dans l’élément &lt;body&gt;, 
+        référencé par document.body. <br>
+        Il existe une méthode spéciale append pour cela : <code>document.body.append(div)</code>. <br>           
+        Voici le code complet :    
+    </p>
+    <textarea class="codem">
+        <style>
+        .alert {
+          padding: 15px;
+          border: 1px solid #d6e9c6;
+          border-radius: 4px;
+          color: #3c763d;
+          background-color: #dff0d8;
+        }
+        </style>
+        
+        <script>
+          let div = document.createElement('div');
+          div.className = "alert";
+          div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+        
+          document.body.append(div);
+        </script>
+    </textarea>
+    <a href="tests/div.html" target="_blank">Demo</a>    
+    <p>
+        Ici, nous avons appelé append sur document.body, mais nous pouvons appeler la méthode append sur n’importe quel autre 
+        élément, pour y mettre un autre élément. Par exemple, nous pouvons ajouter quelque chose à &lt;div&gt; en appelant 
+        <code>div.append(anotherElement)</code>.
+    </p>
+    <p>
+        Voici plus de méthodes d’insertion, elles spécifient différents endroits où insérer un élément :
+    </p>
+    <ul>
+        <li>node.<b>append</b>(...nodes or strings) – ajouter des nœuds ou des chaînes de caractères à la fin de node,</li>
+        <li>node.<b>prepend</b>(...nodes or strings) – ajouter des nœuds ou des chaînes de caractères au début de node,</li>
+        <li>node.<b>before</b>(...nodes or strings) – insérer des nœuds ou des chaînes de caractères avant node,</li>
+        <li>node.<b>after</b>(...nodes or strings) – insérer des nœuds ou des chaînes de caractères après node,</li>
+        <li>node.<b>replaceWith</b>(...nodes or strings) – remplace node avec les nœuds ou chaînes de caractères donnés.</li>
+    </ul>
+    <p>
+        Toutes ces méthodes peuvent prendre un nombre quelconque d’arguments. Les arguments peuvent être des nœuds ou des chaînes 
+        de caractères.
+    </p>    
+    <p>
+        Voyons-les en action. <br>
+        Voici un exemple d’utilisation de ces méthodes pour ajouter des éléments à une liste et le texte avant/après :
+    </p>
+    <textarea class="codem">
+        <ol id="ol">
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+        </ol>
+        
+        <script>
+            ol.before('before'); // insère la chaîne de caractères "before" avant <ol>
+            ol.after('after'); // insère la chaîne de caractères "after" après <ol>
+        
+            let liFirst = document.createElement('li');
+            liFirst.innerHTML = 'prepend';
+            ol.prepend(liFirst); // insère liFirst au début de <ol>
+        
+            let liLast = document.createElement('li');
+            liLast.innerHTML = 'append';
+            ol.append(liLast); // insère liLast à la fin de <ol>
+        </script>
+    </textarea>
+    <a href="tests/ol.html" target="_blank">Demo</a>
+    <p>La liste finale sera donc :</p>
+    <textarea class="codem">
+        before
+        <ol id="ol">
+            <li>prepend</li>
+            <li>0</li>
+            <li>1</li>
+            <li>2</li>
+            <li>append</li>
+        </ol>
+        after
+    </textarea>
+    <p>
+        Comme indiqué, ces méthodes peuvent insérer plusieurs nœuds et morceaux de texte en un seul appel.
+        Par exemple, ici une chaîne de caractères et un élément sont insérés :
+    </p>
+    <textarea class="codem">
+        <div id="div"></div>
+        <script>
+          div.before('<p>Hello</p>', document.createElement('hr'));
+        </script>
+    </textarea>
+    <a href="tests/div2.html" target="_blank">Demo</a>
+    <p>
+        Remarque: les chaînes de caractères sont insérés comme des nœuds Text. En d’autres termes, les chaînes 
+        de caractères sont insérées de manière sûre, comme le fait <code>elem.textContent()</code>.
+        Avec un échappement approprié des caractères tels que &lt;, &gt;.
+    </p>
+    <textarea class="codem">
+        &amp;lt;p&amp;gt;Hello&amp;lt;/p&amp;gt;
+        <hr>
+        <div id="div"></div>    
+    </textarea>
+    <p>
+        Ainsi, ces méthodes ne peuvent être utilisées que pour insérer des nœuds DOM ou des morceaux de texte.
+        Mais que se passe-t-il si nous voulons insérer du HTML “en tant que html”, avec toutes les balises et 
+        les trucs qui fonctionnent, tel que <code>elem.innerHTML()</code> le fait ?
+    </p>
+    <h2>Les méthodes : insertAdjacentHTML/Text/Element</h2>
+    <p>
+        Pour cela, nous pouvons utiliser une autre méthode assez polyvalente : <code>elem.insertAdjacentHTML(where, html)</code>.
+        Le premier paramètre est un mot clé, spécifiant où insérer par rapport à "elem". Cela doit être une des chaînes de 
+        caractères suivantes  (sans prendre en compte la casse) :
+    </p>
+    <ul>        
+        <li>"<b>beforebegin</b>" – insère html immédiatement avant elem,</li>
+        <li>"<b>afterbegin</b>" – insère html dans elem, au début,</li>
+        <li>"<b>beforeend</b>" – insère html dans elem, à la fin,</li>
+        <li>"<b>afterend</b>" – insère html immédiatement après elem.</li>
+    </ul>
+    <p>
+        Le second paramètre est une chaîne HTML insérée “<b>au format HTML</b>”.
+        Par exemple :
+    </p>
+    <textarea class="codem">
+        <div id="div"></div>
+        <script>
+            div.insertAdjacentHTML('beforebegin', '<p>Hello</p>');
+            div.insertAdjacentHTML('afterend', '<p>Bye</p>');
+        </script>
+    </textarea>
+    <p>…produira :</p>
+    <textarea class="codem">
+        <p>Hello</p>
+        <div id="div"></div>
+        <p>Bye</p>
+    </textarea>
+
+    <a href="tests/insert.html" target="_blank">Demo</a>
+
+    <p>
+        La méthode a deux sœurs :
+        <ol>
+            <li>
+                <code>elem.insertAdjacentText(where, text)</code> – 
+                la même syntaxe, mais une chaîne de caractères text est insérée en tant que texte au lieu de HTML,
+            </li>
+            <li>
+                <code>elem.insertAdjacentElement(where, elem)</code> –
+                la même syntaxe, mais insère un élément.
+            </li>
+        </ol>
+    </p>
+    <p>
+        Elles existent principalement pour rendre la syntaxe “uniforme”. En pratique, seule insertAdjacentHTML est utilisée la 
+        plupart du temps. Parce que pour les éléments et le texte, nous avons des méthodes <b>append/prepend/before/after</b>. 
+        Elles sont plus courtes à écrire et peuvent insérer des nœuds/morceaux de texte. <br> <br>
+
+        Voici donc une variante alternative pour afficher un message :      
+    </p>
+    <textarea class="codem">
+        <style>
+            .alert {
+            padding: 15px;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            color: #3c763d;
+            background-color: #dff0d8;
+            }
+        </style>
+        
+        <script>
+            document.body.insertAdjacentHTML("afterbegin", `<div class="alert">
+                <strong>Hi there!</strong> You've read an important message.
+            </div>`);
+        </script>
+    </textarea>
+    <a href="tests/div3.html" target="_blank">Demo</a>
+
+    <h2>La suppression de noeuds</h2>
+    <p>
+        Pour supprimer un nœud, il existe une méthode <code>node.remove()</code>. <br>
+        Faisons disparaître notre message après une seconde :
+    </p>
+    <textarea class="codem">
+        <style>
+            .alert {
+              padding: 15px;
+              border: 1px solid #d6e9c6;
+              border-radius: px;
+              color: #3c763d;
+              background-color: #dff0d8;
+            }
+        </style>
+        
+        <script>
+          let div = document.createElement('div');
+          div.className = "alert";
+          div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+        
+          document.body.append(div);
+          setTimeout(() => div.remove(), 1000);
+        </script>
+    </textarea>
+    <a href="tests/div4.html" target="_blank">Demo</a>
+    <p>
+        Veuillez noter que : si nous voulons déplacer un élément vers un autre endroit – il n’est pas nécessaire de 
+        le supprimer de l’ancien. Toutes les méthodes d’insertion suppriment automatiquement le nœud de l’ancien 
+        emplacement. <br> <br>
+
+        Par exemple, permutons les éléments :
+    </p>
+    <textarea class="codem">
+        <div id="first">First</div>
+        <div id="second">Second</div>
+        <script>
+        // Inutile d'appeler remove
+        second.after(first); // Surpprime #first avant #second et l'insère après
+        </script>
+    </textarea>
+    <a href="tests/permute.html" target="_blank">Demo</a>
+
+    <h2>Le clonage de Noeuds : cloneNode()</h2>
+    <p>
+        Comment insérer un autre message similaire ? <br>
+        Nous pourrions créer une fonction et y mettre le code. Mais l’alternative serait de cloner la div existant 
+        et de modifier le texte à l’intérieur (si nécessaire). <br>
+        Parfois, lorsque nous avons un gros élément, cela peut être plus rapide et plus simple. <br>
+        L’appel <code>elem.cloneNode(true)</code> crée un clone “profond” de l’élément – avec tous les attributs et sous-éléments. 
+        Si nous appelons <code>elem.cloneNode(false)</code>, alors le clone est fait sans éléments enfants. <br> <br>
+
+        Un exemple de copie du message :
+    </p>
+    <textarea class="codem">
+        <style>
+            .alert {
+              padding: 15px;
+              border: 1px solid #d6e9c6;
+              border-radius: 4px;
+              color: #3c763d;
+              background-color: #dff0d8;
+            }
+        </style>
+        
+        <div class="alert" id="div">
+          <strong>Hi there!</strong> You've read an important message.
+        </div>
+        
+        <script>
+          let div2 = div.cloneNode(true); // clone the message
+          div2.querySelector('strong').innerHTML = 'Bye there!'; // change le clone
+        
+          div.after(div2); // affiche le clone après le div existant
+        </script>
+    </textarea>
+    <a href="tests/clone.html" target="_blank">Demo</a>
+
+    <h2>DocumentFragment</h2>
+    <p>
+        <code>DocumentFragment</code> représente un objet document minimal qui n'a pas de parent. Il est utilisé comme 
+        une version légère de <em>Document</em> pour stocker un segment de structure de document composé de nœuds, tout comme 
+        un document standard. La différence fondamentale est que, comme le fragment de document ne fait pas réellement 
+        partie de la structure du <em>DOM</em>, les changements faits au fragment n'affectent pas le document, ne causent pas de
+        <em>Reflow</em> (quand un navigateur doit réarranger et redessiner tout ou partie d'une page web), et ne provoquent pas les éventuels impacts de performance qui peuvent avoir lieu quand des changements 
+        sont faits. <br> <br>
+        Nous pouvons y ajouter d’autres nœuds, mais lorsque nous l’insérons quelque part, son contenu est inséré 
+        à la place. <br>
+        Par exemple, <code>getListContent()</code> ci-dessous génère un fragment avec des éléments &lt;li&gt;, qui 
+        sont ensuite insérés dans &lt;ul&gt; :
+    </p>
+    <textarea class="codem">
+        <ul id="ul"></ul>
+
+        <script>
+            function getListContent() {
+                let fragment = new DocumentFragment();
+
+                for(let i=1; i<=3; i++) {
+                    let li = document.createElement('li');
+                    li.append(i);
+                    fragment.append(li);
+                }
+
+                return fragment;
+            }
+
+            ul.append(getListContent()); // (*)
+        </script>
+    </textarea>
+    <a href="tests/fragment.html" target="_blank">Demo</a>
+    <p>
+        Veuillez noter qu’à la dernière ligne (*) nous ajoutons DocumentFragment, mais il “s’adapte”,
+        donc la structure résultante sera :
+    </p>
+    <textarea class="codem">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </textarea>
+    <p>
+        DocumentFragment est rarement utilisé explicitement. Pourquoi ajouter à un type spécial de nœud, si nous 
+        pouvons renvoyer un tableau de nœuds à la place ? Exemple réécrit :
+    </p>
+    <textarea class="codem">
+        <ul id="ul"></ul>
+
+        <script>
+            function getListContent() {
+                let result = [];
+
+                for(let i=1; i<=3; i++) {
+                    let li = document.createElement('li');
+                    li.append(i);
+                    result.push(li);
+                }
+
+            return result;
+        }
+
+        ul.append(...getListContent()); // append + "..." operator = friends!
+        </script>
+    </textarea>
+    <a href="tests/fragment2.html" target="_blank">Demo</a>
+
+    <p>
+        <code>DocumentFragment</code> est mentionné ici, principalement parce qu’il y a quelques concepts dessus, 
+        comme l’élément <code>template</code>, qui sera couvert beaucoup plus tard (en 2ème année).
+    </p>
+    <h2>Les anciennes méthodes d’insertion/suppression</h2>
+    <p class="highlight">
+        Ces informations aident à comprendre les anciens scripts, mais ne sont pas nécessaires pour du 
+        développement moderne. La seule raison pour laquelle nous listons ces méthodes ici est que vous 
+        pouvez les trouver dans de nombreux anciens scripts :
+    </p>
+    <ul>
+        <li>
+            <code>parentElem.appendChild(node)</code> – ajoute node à la fin de parentElem,
+        </li>
+        <li>
+            <code>parentElem.insertBefore(node, nextSibling)</code> – insère node avant nextSibling dans parentElem,    
+        </li>
+        <li>
+            <code>parentElem.removeChild(node)</code> – supprime node de parentElem,    
+        </li>
+        <li>
+            <code>parentElem.replaceChild(newNode, node)</code> – remplace node par newNode dans parentElem.
+        </li>
+    </ul>
+
+    <h2>Un mot sur “document.write”</h2>
+    <p>
+        Il existe une autre méthode très ancienne pour ajouter quelque chose à une page Web : <code>document.write</code>.        
+    </p>
+    <p>
+        L’appel à document.write(html) écrit le html dans la page “ici et maintenant”. La chaîne de caractères html 
+        peut être générée dynamiquement, donc c’est un peu flexible. Nous pouvons utiliser JavaScript pour créer 
+        une page Web à part entière et l’écrire. <br> <br>
+        La méthode vient de l’époque où il n’y avait pas de DOM, pas de standards … Des temps vraiment anciens. 
+        Il vit toujours, car il existe des scripts qui l’utilisent.
+    </p>
+    <p>
+        L’appel à <code>document.write()</code> ne fonctionne que pendant le chargement de la page.
+        Si nous l’appelons ensuite, le contenu du document existant est effacé.
+    </p>
+    <textarea class="codem">
+        <p>Dans une seconde, le contenu de cette page sera remplacé...</p>
+        <script>
+        // document.write après 1 seconde
+        // cela après que la page soit chargée, donc il efface le contenu existant
+        setTimeout(() => document.write('<b>...By this.</b>'), 1000);
+        </script>
+    </textarea>
+    <a href="tests/documentwrite.html" target="_blank">Demo</a>
+    <p>
+        C’est donc un peu inutilisable au stade “post chargement”, contrairement aux autres méthodes DOM que nous avons 
+        couvertes ci-dessus.
+    </p>
+    <h2>Exercices</h2>
     
+
     </div><!--screen-->
     </div><!--container-->
     <footer></footer>  
