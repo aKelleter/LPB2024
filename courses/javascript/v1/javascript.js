@@ -7,7 +7,7 @@ const VERSION = "0.12.1";
 const UPDATED = "23/04/2024 16:25";
 
 // AFFICHER : false ou CACHER : true - les liens des solutions
-const HOLLOW = true;
+const HOLLOW = false;
 
 /**
  * Gestion du menu de navigation
