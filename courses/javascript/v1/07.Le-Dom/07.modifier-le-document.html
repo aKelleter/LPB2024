@@ -473,7 +473,62 @@
         couvertes ci-dessus.
     </p>
     <h2>Exercices</h2>
-    
+    <h3>Effacer les éléments (&lt;li&gt;) de la liste (exo5)</h3>
+    <p>Créez une fonction clear(elem) qui supprime tout de l’élément dont l'id="liste".</p>
+    <textarea class="codem">
+        <ul id="liste">
+            <li>Item</li>
+            <li>Item</li>
+            <li>Item</li>
+        </ul>
+        
+        <script>
+            function clear(elem) {
+                // votre code
+            }
+        
+            clear(liste);
+        </script>
+    </textarea>
+    <a href="solutions/exo5.html" class="hollow" target="_blank">Solution Exo5</a>
+
+    <h3>Pourquoi la chaîne "aaa" reste-t-elle ? (exo6)</h3>
+    <p> 
+        Dans l’exemple ci-dessous, l’appel <code>table.remove()</code> supprime le tableau du document.
+        mais si vous l’exécutez, vous pouvez voir que le texte "aaa" est toujours visible. <br>        
+        Pourquoi cela se produit-il ?
+    </p>
+    <textarea class="codem">
+        <table id="table">
+            aaa
+            <tr>
+              <td>Test</td>
+            </tr>
+        </table>
+        
+        <script>        
+          table.remove();
+          // pourquoi y a-t-il encore "aaa" dans le document ?
+        </script>
+    </textarea>
+    <a href="solutions/exo6.html" class="hollow" target="_blank">Solution Exo6</a>
+
+    <h3>Créez une liste (exo7)</h3>
+    <p>
+        Écrivez une interface pour créer une liste à partir des entrées utilisateur. <br>
+
+        Pour chaque élément de la liste : <br>
+        <ul>
+            <li>Ajouter un élément &lt;ul&gt;</li>
+            <li>Interrogez un utilisateur sur son contenu en utilisant prompt. (boucle)</li>
+            <li>Créez le &lt;li&gt; avec et ajoutez-le à &lt;ul&gt;.</li>            
+            <li>Continuez jusqu’à ce que l’utilisateur annule l’entrée (en appuyant sur la touche Esc ou une entrée vide).</li>            
+        </ul>
+        Tous les éléments doivent être créés dynamiquement. <br>
+        Si un utilisateur tape des balises HTML, elles doivent être traitées comme un texte.
+    </p>
+    <a href="solutions/exo7.html" class="hollow" target="_blank">Solution Exo7</a>
+
 
     </div><!--screen-->
     </div><!--container-->

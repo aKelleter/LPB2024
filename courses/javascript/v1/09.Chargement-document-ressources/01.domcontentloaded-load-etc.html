@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page: DOMContentLoaded, load, beforeunload, unload</title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Page: DOMContentLoaded, load, beforeunload, unload</h1>
+    <hr>     
+    <p>
+        Le cycle de vie d’une page HTML comporte trois événements importants:
+    </p>
+    <p>
+        <ol>
+            <li><code>DOMContentLoaded</code> – le navigateur a complètement chargé le HTML et l’arborescence DOM est construite, 
+                mais les ressources externes telles que les images &lt;img&gt; et les feuilles de style peuvent ne pas être 
+                encore chargées.</li>
+            <li><code>load</code> – non seulement le HTML est chargé, mais également toutes les ressources externes : images, styles, etc.</li>
+            <li><code>beforeunload</code> / <code>unload</code> – l’utilisateur quitte la page.</li>
+        </ol>
+       
+    </p>
+    <p>
+        Chaque événement peut être utile:
+    </p>
+    <p>
+        <ul>
+            <li><code>DOMContentLoaded</code> événement – DOM est prêt, le gestionnaire peut donc rechercher des nœuds DOM, initialiser l’interface.</li>
+            <li><code>load</code> événement – les ressources externes sont chargées, donc les styles sont appliqués, les tailles d’image sont connues, etc.</li>
+            <li><code>beforeunload</code> événement – l’utilisateur quitte: nous pouvons vérifier si l’utilisateur a enregistré les modifications et leur demander s’ils veulent vraiment partir.</li>
+            <li><code>unload</code> – l’utilisateur est presque parti, mais nous pouvons toujours lancer certaines opérations, comme l’envoi de statistiques.</li>
+        </ul>
+        
+    </p>
+    <p>
+        Explorons les détails de ces événements.
+    </p>
+    <h2>DOMContentLoaded</h2>
+    <p>
+        L’événement <code>DOMContentLoaded</code> se produit sur l’objet document. <br>
+        Nous devons utiliser <code>addEventListener</code> pour l’attraper:
+    </p>
+    <textarea class="codem">
+        document.addEventListener("DOMContentLoaded", ready);
+        // et pas "document.onDOMContentLoaded = ..."
+    </textarea>
+    <p>Exemple</p>
+    <textarea class="codem">
+        <script>
+            function ready() {
+              alert('DOM is ready');
+                    
+              // l'image n'est pas encore chargée (sauf si elle a été mise en cache), donc la taille est 0x0          
+              alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+            }
+          
+            document.addEventListener("DOMContentLoaded", ready);
+        </script>
+          
+        <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+    </textarea>
+    <a href="tests/test01.html" target="_blank">Demo</a>
+    <p>
+        Dans l’exemple, le gestionnaire <code>DOMContentLoaded</code> s’exécute lorsque le document est chargé, afin qu’il puisse voir tous les éléments, 
+        y compris &lt;img&gt; dessous. Mais il n’attend pas que l’image se charge. Ainsi, alert n’affiche aucune taille. <br> <br>
+        À première vue, l’événement <code>DOMContentLoaded</code> est très simple. L’arbre DOM est prêt – voici l’événement. Il y a cependant quelques particularités.
+    </p>
+    <h3>DOMContentLoaded et les scripts</h3>
+    <p>
+        Lorsque le navigateur traite un document HTML et rencontre une balise &lt;script&gt;, il doit exécuter le script avant 
+        de continuer à construire le DOM. C’est une précaution, car les scripts peuvent vouloir modifier DOM, avec document.write 
+        par exemple, donc DOMContentLoaded doit attendre. <br> <br>
+
+        Donc DOMContentLoaded se produit définitivement après de tels scripts:
+    </p>
+    <textarea class="codem">
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+              alert("DOM ready!");
+            });
+        </script>
+          
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+          
+        <script>
+            alert("Library loaded, inline script executed");
+        </script>
+    </textarea>
+    <a href="tests/test02.html" target="_blank">Demo</a>
+    <p>
+        Dans l’exemple ci-dessus, nous voyons d’abord “Library loaded…”, puis “DOM ready!” (tous les scripts sont exécutés).
+    </p>
+    <p class="code">        
+        <b>Les scripts qui ne bloquent pas DOMContentLoaded</b> <br> <br>
+        Il existe deux exceptions à cette règle: <br>
+            *. Les scripts avec l’attribut <b>async</b>, que nous aborderons un peu plus tard, ne bloquent pas DOMContentLoaded. <br>
+            *. Les scripts qui sont générés dynamiquement avec <b>document.createElement('script')</b> puis ajoutés à la page Web ne bloquent pas non plus cet événement. <br>
+    </p>
+    <h3>DOMContentLoaded et les styles</h3>
+    <p>
+        Les feuilles de style externes n’affectent pas le DOM, donc DOMContentLoaded ne les attend pas.
+        Mais il y a une embûche. Si nous avons un script après le style, ce script doit attendre que la feuille de style 
+        se charge:
+    </p>
+    <textarea class="codem">
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <script>
+            // le script ne s'exécute pas tant que la feuille de style n'est pas chargée
+            alert(getComputedStyle(document.body).marginTop);
+        </script>
+    </textarea>
+    <p>
+        La raison en est que le script peut souhaiter obtenir des coordonnées et d’autres propriétés d’éléments dépendant du style, 
+        comme dans l’exemple ci-dessus. Naturellement, il doit attendre le chargement des styles.
+        Comme <b>DOMContentLoaded attend les scripts</b>, <b>il attend maintenant les styles avant eux également</b>.
+    </p>
+
+    <h3>Saisie automatique intégrée du navigateur</h3>
+    <p>
+        Firefox, Chrome et Opera remplissent automatiquement les formulairs sur DOMContentLoaded.
+    </p>
+        Par exemple, si la page a un formulaire avec login et mot de passe, et que le navigateur se souvient des valeurs, 
+        alors sur DOMContentLoaded, il peut essayer de les remplir automatiquement (si approuvé par l’utilisateur).
+    </p>
+    <p>
+        Donc, si DOMContentLoaded est reporté par des scripts à chargement long, le remplissage automatique attend également. 
+        Vous l’avez probablement vu sur certains sites (si vous utilisez le remplissage automatique du navigateur) – 
+        les champs de login/mot de passe ne sont pas remplis automatiquement immédiatement, mais il y a un délai jusqu’à ce 
+        que la page se charge complètement. C’est en fait le délai jusqu’à l’événement DOMContentLoaded.
+    </p>
+
+    <h2>window.onload</h2>
+    <p>
+        L’événement <code>load</code> sur l’objet <code>window</code> se déclenche lorsque la page entière est chargée, y compris les styles, images et 
+        autres ressources. Cet événement est disponible via la propriété <code>onload</code>.
+    </p>
+    <p>
+        L’exemple ci-dessous montre correctement les tailles d’image, car window.onload attend toutes les images:
+    </p>
+    <textarea class="codem">
+        <script>
+            window.onload = function() { // peut aussi utiliser window.addEventListener('load', (event) => {
+              alert('Page loaded');
+          
+              // l'image est chargée à ce moment
+              alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+            };
+          </script>
+          
+          <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+    </textarea>
+    <a href="tests/test03.html" target="_blank">Demo</a>
+
+    <h2>window.onunload</h2>
+    <p>
+        Lorsqu’un visiteur quitte la page, l’événement <code>unload</code> se déclenche sur <code>window</code>. 
+        Nous pouvons y faire quelque chose qui n’implique pas de retard, comme la fermeture des fenêtres contextuelles associées.
+        <br>
+        L’exception notable est l’envoi d’analyses.
+        <br>
+        Imaginons que nous recueillons des données sur la façon dont la page est utilisée: clics de souris, défilements, 
+        zones de page visualisées, etc.
+        <br>
+        Naturellement, l’événement <code>unload</code> est lorsque l’utilisateur nous quitte, et nous aimerions sauvegarder 
+        les données sur notre serveur.
+        <br>
+        Il existe une méthode spéciale <code>navigator.sendBeacon(url, data)</code> pour de tels besoins, décrite dans la 
+        spécification https://w3c.github.io/beacon/.
+        <br>
+        Il envoie les données en arrière-plan. La transition vers une autre page n’est pas retardée: le navigateur quitte la page, mais exécute toujours sendBeacon.
+    </p>
+    <p>    
+        Voici comment l’utiliser:
+    </p>
+    <textarea class="codem">
+        let analyticsData = { /* objet avec des données collectées */ };
+            window.addEventListener("unload", function() {
+            navigator.sendBeacon("/analytics", JSON.stringify(analyticsData));
+        });
+    </textarea>
+    <p>
+        Lorsque la demande sendBeacon est terminée, le navigateur a probablement déjà quitté le document, donc il n’y a aucun moyen 
+        d’obtenir une réponse du serveur (qui est vide habituellement pour l’analyse).
+        <br>
+        Si nous voulons annuler la transition vers une autre page, nous ne pouvons pas le faire ici. Mais nous pouvons 
+        utiliser un autre événement – <code>onbeforeunload</code>.
+    </p>
+
+    <h2>window.onbeforeunload</h2>
+    <p>
+        Si un visiteur a lancé la navigation hors de la page ou tente de fermer la fenêtre, le gestionnaire <code>beforeunload</code> 
+        demande une confirmation supplémentaire.
+        <br>
+        Si nous annulons l’événement, le navigateur peut demander au visiteur s’il en est sûr.
+        <br>
+        Vous pouvez l’essayer en exécutant ce code, puis en rechargeant la page:
+    </p>
+    <textarea class="codem">
+        <script>
+            window.onbeforeunload = function() {
+                return false;
+            };
+        </script>
+    </textarea>
+    <a href="tests/test04.html" target="_blank">Demo</a>
+    <p>Il n’y a aucun moyen de personnaliser le message affiché à l’utilisateur</p>
+
+    <h2>readyState</h2>
+    <p>
+        Que se passe-t-il si nous définissons le gestionnaire DOMContentLoaded après le chargement du document?
+    </p>
+    <p>
+        Naturellement, il ne fonctionne jamais.
+        <br>
+        Il y a des cas où nous ne savons pas si le document est prêt ou non. Nous aimerions que notre fonction s’exécute lorsque le DOM est chargé, que ce soit maintenant ou plus tard.
+        <br>
+        La propriété document.readyState nous renseigne sur l’état de chargement actuel.
+        <br>
+        Il y a 3 valeurs possibles:
+        <ol>
+            <li>"loading" – le document est en cours de chargement.</li>
+            <li>"interactive" – le document a été entièrement lu.</li>
+            <li>"complete" – le document a été entièrement lu et toutes les ressources (comme les images) sont également chargées.</li>
+          
+        </ol>
+        <br>
+       Nous pouvons donc vérifier document.readyState et configurer un gestionnaire ou exécuter le code immédiatement s’il est prêt.
+    </p>
+    <p>
+        Comme ceci:
+    </p>
+    <textarea class="codem">
+        function work() { /*...*/ }
+
+        if (document.readyState == 'loading') {
+
+        // en cours de chargement, attendez l'événement
+
+        document.addEventListener('DOMContentLoaded', work);
+        } else {
+            // DOM est prêt!
+            work();
+        }
+    </textarea>
+    <p>
+        Il y a aussi l’événement readystatechange qui se déclenche lorsque l’état change, nous pouvons donc afficher 
+        tous ces états comme ceci:
+    </p>
+    <textarea class="codem">
+        // état actuel
+        console.log(document.readyState);
+
+        // afficher les changements d'état
+        document.addEventListener('readystatechange', () => console.log(document.readyState));
+    </textarea>
+    <p>
+        L’événement <code>readystatechange</code> est un mécanisme alternatif de suivi de l’état de chargement du document, 
+        il est apparu il y a longtemps. De nos jours, il est rarement utilisé.
+        <br>
+        Voyons le flux complet des événements pour l’exhaustivité.
+        <br>
+        Voici un document avec &lt;iframe&gt;, &lt;img&gt; et des gestionnaires qui consignent les événements:
+    </p>
+    <textarea class="codem">
+        <script>
+            console.log('initial readyState:' + document.readyState);
+          
+            document.addEventListener('readystatechange', () => console.log('readyState:' + document.readyState));
+            document.addEventListener('DOMContentLoaded', () => console.log('DOMContentLoaded'));
+          
+            window.onload = () => console.log('window onload');
+          </script>
+          
+          <iframe src="iframe.html" onload="console.log('iframe onload')"></iframe>
+          
+          <img src="https://en.js.cx/clipart/train.gif" id="img">
+          <script>
+            img.onload = () => console.log('img onload');
+        </script>
+    </textarea>
+    <a href="tests/test05.html" target="_blank">Demo</a>
+    <p>
+            La sortie typique: <br> <br>
+
+            [1] readyState:loading initiale <br>
+            [2] readyState:interactive <br>
+            [2] DOMContentLoaded <br>
+            [3] iframe onload <br>
+            [4] img onload <br>
+            [4] readyState:complete <br>
+            [4] window onload <br>
+    </p>
+    <p>
+        Les nombres entre crochets indiquent l'ordre d'exécution. <br>
+        Les événements étiquetés avec le même chiffre se produisent à peu près au même moment (± quelques ms).
+        <br> <br>
+        <code>document.readyState</code> devient <b>interactive</b> juste avant <code>DOMContentLoaded</code>. 
+        Ces deux choses signifient en fait la même chose. <br>
+        <code>document.readyState</code> devient <b>complete</b> lorsque toutes les ressources (iframe et img) sont chargées.  <br> <br>
+        Ici, nous pouvons voir que cela se produit à peu près en même temps que img.onload (img est la dernière ressource) 
+        et window.onload. Passer à l’état <b>complete</b> signifie la même chose que <code>window.onload</code>. 
+        La différence est que <code>window.onload</code> fonctionne toujours après tous les autres gestionnaires de load.
+
+    </p>
+    
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>

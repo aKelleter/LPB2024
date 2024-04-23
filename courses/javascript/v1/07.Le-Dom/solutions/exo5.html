@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exo 5 : Effecer l'élément </title>
+</head>
+<body>
+    <h1>Exo 5 : Effacer les éléments (&lt;li&gt;) de la liste </h1>
+    <ul id="liste">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    
+    <script>
+        /*
+            function clear(elem) {
+                console.log(elem.childNodes.length);
+                for (let i=0; i < elem.childNodes.length; i++) {
+                    console.log(elem.childNodes[i]);
+                    elem.childNodes[i].remove();
+                }
+            }
+        */
+        /*
+            Cela ne fonctionnera pas, car l’appel à remove() décale la collection elem.childNodes, 
+            donc les éléments commencent à partir de l’index 0 à chaque fois. Mais i augmente et 
+            certains éléments seront ignorés.
+            La boucle for..of fait de même.
+        */
+
+        /*
+            La bonne variante pourrait être :
+        */
+        /*    
+            function clear(elem) {
+                console.log(elem.firstChild.length);
+                while (elem.firstChild) {
+                    console.log(elem.firstChild);
+                    elem.firstChild.remove();
+                }
+            }
+        */
+        /*
+            Et il existe également un moyen plus simple de faire de même :
+        */
+        /*    
+            function clear(elem) {
+                elem.innerHTML = '';
+            }
+        */
+    
+        clear(liste);
+    </script>
+    
+</body>
+</html>
