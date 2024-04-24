@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="">
     <title>Page: DOMContentLoaded, load, beforeunload, unload</title>
     <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
     <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
@@ -309,8 +310,40 @@
         Ici, nous pouvons voir que cela se produit à peu près en même temps que img.onload (img est la dernière ressource) 
         et window.onload. Passer à l’état <b>complete</b> signifie la même chose que <code>window.onload</code>. 
         La différence est que <code>window.onload</code> fonctionne toujours après tous les autres gestionnaires de load.
-
     </p>
+
+    <h2>Résumé</h2>
+    <p>Événements de chargement de page:</p>
+    <ul>
+        <li>
+            L’événement <code>DOMContentLoaded</code> se déclenche sur document lorsque le DOM est prêt. Nous pouvons appliquer JavaScript aux éléments à ce stade. 
+            <ul>   
+                <li>Les scripts tel que &lt;script&gt;...&lt;/script&gt; ou &lt;script src ="..."&gt;&lt;/script&gt bloquent <code>DOMContentLoaded</code>, le navigateur attend leur exécution.</li>
+                <li>Les images et autres ressources peuvent également continuer à se charger.</li>
+            </ul>
+        </li>
+        <li>
+            L’événement <code>load</code> sur <code>window</code> se déclenche lorsque la page et toutes les ressources sont chargées. 
+            Nous l’utilisons rarement, car il n’est généralement pas nécessaire d’attendre si longtemps.
+        </li>
+        <li>
+            L’événement <code>beforeunload</code> sur <code>window</code> se déclenche lorsque l’utilisateur veut quitter la page. Si nous annulons l’événement, 
+            le navigateur demande si l’utilisateur souhaite vraiment partir (par exemple, nous avons des modifications non enregistrées).
+        </li>
+        <li>
+            L’événement <code>unload</code> sur <code>window</code> se déclenche lorsque l’utilisateur quitte enfin, dans le gestionnaire nous ne pouvons faire que des choses simples 
+            qui n’impliquent pas de retards ou de demandes à un utilisateur. En raison de cette limitation, il est rarement utilisé. Nous pouvons envoyer 
+            une requête réseau avec <code>navigator.sendBeacon</code>.
+        </li>
+        <li>
+            <code>document.readyState</code> est l’état actuel du document, les modifications peuvent être suivies dans l’événement <code>readystatechange</code> 
+            <ul>
+                <li><code>loading</code> – le document est en cours de chargement.</li>
+                <li><code>interactive</code> – le document est analysé, se produit à peu près au même moment que DOMContentLoaded, mais avant lui.</li>
+                <li><code>complete</code> – le document et les ressources sont chargés, se produit à peu près en même temps que window.onload, mais avant lui.</li>
+            </ul>
+        </li>
+    </ul>
     
     </div><!--screen-->
     </div><!--container-->

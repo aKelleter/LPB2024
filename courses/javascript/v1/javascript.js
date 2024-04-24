@@ -3,11 +3,13 @@
  * CONFIGURATION DU COURS
  */
 
-const VERSION = "0.12.1";
-const UPDATED = "23/04/2024 16:25";
+const VERSION = "0.13.1";
+const UPDATED = "24/04/2024 16:05";
 
 // AFFICHER : false ou CACHER : true - les liens des solutions
 const HOLLOW = true;
+
+let linkFavicon = document.querySelector('link[rel="icon"]');
 
 /**
  * Gestion du menu de navigation
@@ -15,11 +17,13 @@ const HOLLOW = true;
 let menu = document.querySelector('nav');
 
 if(path === "root") {
-    menu.innerHTML = '<a class="btn-mini" href="../../../index.php">LPB2024</a> <a class="btn-mini" href="index.html">Index du Cours</a>';
+    menu.innerHTML = '<a class="btn-mini" href="../../../index.php">LPB2024</a> <a class="btn-mini" href="index.html">Index du Cours JS</a>';
+    linkFavicon.setAttribute("href", "assets/img/favicon.ico");
 }else if(path === "chapter")  {
-    menu.innerHTML = '<a class="btn-mini" href="../../../../index.php">LPB2024</a> <a class="btn-mini" href="../">Index du Cours</a> <a href="index.html" class="btn-mini">Chapitre en cours</a>';
+    menu.innerHTML = '<a class="btn-mini" href="../../../../index.php">LPB2024</a> <a class="btn-mini" href="../">Index du Cours JS</a> <a href="index.html" class="btn-mini">Leçons du chapitre en cours</a>';
+    linkFavicon.setAttribute("href", "../assets/img/favicon.ico");
 }else {
-    menu.innerHTML = '<a class="btn-mini" href="../../../index.php">LPB2024 </a> <a class="btn-mini" href="../">Index du Cours</a> <a href="index.html" class="btn-mini">Chapitre en cours</a>';
+    menu.innerHTML = '<a class="btn-mini" href="../../../index.php">LPB2024 </a> <a class="btn-mini" href="../">Index du Cours</a> <a href="index.html" class="btn-mini">Leçons du chapitre en cours</a>';
 }
 
 /**

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="">
     <title>Les script async et defer</title>
     <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
     <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
@@ -17,9 +18,246 @@
     <h1>Les script async et defer</h1>
     <hr>     
     <p>
-       ...coming soon
+        Dans les sites Web modernes, les scripts sont souvent “plus lourds” que le HTML: leur taille de téléchargement est plus grande et le temps de traitement 
+        est également plus long.
     </p>
-   
+    <p>
+        Lorsque le navigateur charge le HTML et rencontre une balise <b>&lt;script&gt;...&lt;/script&gt;</b>, il ne peut pas continuer à construire le DOM. Il doit exécuter le script 
+        de suite. Il en va de même pour les scripts externes <b>&lt;script src ="..."&gt;&lt;/script&gt;</b> le navigateur doit attendre le téléchargement du script, l’exécuter, puis 
+        traiter le reste de la page.
+    </p>
+    <p>
+        Cela conduit à deux problèmes importants:
+    </p>
+    <ol>
+        <li>Les scripts ne peuvent pas voir les éléments DOM en dessous d’eux, ils ne peuvent donc pas ajouter de gestionnaires, etc.</li>
+        <li>
+            S’il y a un script volumineux en haut de la page, il “bloque la page”. Les utilisateurs ne peuvent pas voir le contenu de la page 
+            tant qu’il n’est pas téléchargé et exécuté:
+        </li>
+    </ol>
+    <textarea class="codem">
+        <p>...contenu avant le script...</p>
+
+        &lt;script src="https://javascript.info/article/script-async-defer/long.js?speed=1"&gt;&lt;/script&gt;
+
+        <!-- Ceci n'est pas visible tant que le script n'est pas chargé -->
+        <p>...contenu après le script...</p>
+    </textarea>
+    <p>
+        Il existe quelques solutions pour contourner cela. Par exemple, nous pouvons mettre un script en bas de page. Comme ça, il peut voir les éléments au-dessus, 
+        et cela ne bloque pas l’affichage du contenu de la page:
+    </p>
+    <textarea class="codem">
+        &lt;body&gt;
+            ...tout le contenu est au-dessus du script...
+          
+            &lt;script src="https://javascript.info/article/script-async-defer/long.js?speed=1"&gt;&lt;/script&gt;
+        &lt;/body&gt;
+    </textarea>
+    <p>
+            Mais cette solution est loin d’être parfaite. Par exemple, le navigateur remarque le script (et peut commencer à le télécharger) uniquement après avoir 
+            téléchargé le document HTML complet. Pour les longs documents HTML, cela peut être un retard notable.
+    </p>
+    <p>
+            De telles choses sont invisibles pour les personnes utilisant des connexions très rapides, mais de nombreuses personnes dans le monde ont encore des 
+            vitesses Internet lentes et utilisent une connexion Internet mobile loin d’être parfaite.
+    </p>
+    <p>
+            Heureusement, il y a deux attributs de <b>&lt;script&gt;</b> qui résolvent le problème pour nous: <code>defer</code> et <code>async</code>.
+    </p>
+
+    <h2>defer</h2>
+    <p>
+            L’attribut defer indique au navigateur de ne pas attendre le script. Au lieu de cela, le navigateur continuera à traiter le HTML, à construire le DOM. 
+            Le script se charge “en arrière-plan”, puis s’exécute lorsque le DOM est entièrement construit. 
+    </p>
+    <p>
+            Voici le même exemple que ci-dessus, mais avec defer :
+    </p>
+    <textarea class="codem">
+            <p>...contenu avant le script...</p>
+
+            &lt;script defer src="https://javascript.info/article/script-async-defer/long.js?speed=1"&gt;&lt;/script&gt;
+            
+            <!-- visible immédiatement -->
+            <p>...contenu après le script...</p>
+    </textarea>
+    <ul>
+        <li>Les scripts avec <code>defer</code> ne bloquent jamais la page.</li>
+        <li>Les scripts avec <code>defer</code> s’exécutent toujours lorsque le DOM est prêt, mais avant l’événement <code>DOMContentLoaded</code>.</li>
+    </ul>
+    <p>L’exemple suivant montre que:</p>
+    <textarea class="codem">
+            <p>...le contenu avant les scripts...</p>
+
+            &lt;script&gt;
+                document.addEventListener('DOMContentLoaded', () => alert("DOM ready after defer!")); // (2)
+            &lt;/script&gt;
+
+            &lt;script defer src="https://javascript.info/article/script-async-defer/long.js?speed=1"&gt;&lt;/script&gt;
+
+            <p>...contenu après les scripts...</p>
+    </textarea>
+    <ul>
+            <li>Le contenu de la page s’affiche immédiatement.</li>
+            <li><code>DOMContentLoaded</code> attend le script différé. Il ne se déclenche que lorsque le script (2) est téléchargé et exécuté.</li>
+    </ul>
+    <p>Les scripts différés conservent leur ordre relatif, tout comme les scripts classiques.</p>
+    <p>Donc, si nous avons d’abord un long script, puis un plus petit, alors ce dernier attend.</p>
+    <textarea class="codem">
+            &lt;script defer src="https://javascript.info/article/script-async-defer/long.js"&gt;&lt;/script&gt;
+            &lt;script defer src="https://javascript.info/article/script-async-defer/small.js"&gt;&lt;/script&gt;
+    </textarea>
+    <p>
+            Les navigateurs analysent la page à la recherche de scripts et les téléchargent en parallèle pour améliorer les performances. Ainsi, dans l’exemple 
+            ci-dessus, les deux scripts se téléchargent en parallèle. Le small.js se termine probablement en premier.
+    </p>
+    <p>
+            … Mais l’attribut <code>defer</code>, en plus de dire au navigateur “de ne pas bloquer”, garantit que l’ordre relatif est conservé. Ainsi, même si <b>small.js</b> se 
+            charge en premier, il attend et s’exécute toujours après l’exécution de <b>long.js</b>. Mais la spécification exige que les scripts s’exécutent dans l’ordre 
+            des documents, donc elle attend que <b>long.js</b> s’exécute.
+    </p>
+    <p>
+            L'attribut <code>defer</code> est uniquement pour les scripts externes. L'attribut <code>defer</code> est ignoré si la balise &lt;script&gt; n'a pas de src.
+    </p>
+
+    <h2>Async</h2>
+    <ul>
+        <li>Le navigateur ne bloque pas les scripts async (comme <b>defer</b>).</li>
+        <li>D’autres scripts n’attendent pas les scripts <b>async</b>, et les scripts async ne les attendent pas.</li>
+        <li>    
+            <code>DOMContentLoaded</code> et les scripts asynchrones ne s’attendent pas : 
+            <ul>
+                <li>DOMContentLoaded peut se produire à la fois avant un script asynchrone (si un script async termine le chargement une fois la page terminée)</li>
+                <li>… ou après un script async (si un script async est court ou était dans le cache HTTP)</li>
+            </ul>
+        </li>
+    </ul>
+    <p>
+        En d’autres termes, les scripts async se chargent en arrière-plan et s’exécutent lorsqu’ils sont prêts. Le DOM et les autres scripts ne les attendent pas, 
+        et ils n’attendent rien. Un script entièrement indépendant qui s’exécute lorsqu’il est chargé. Aussi simple que cela puisse être, non ?
+    </p>
+    <p>
+        Donc, si nous avons plusieurs scripts async, ils peuvent s’exécuter dans n’importe quel ordre. Premier chargé – premier exécuté:
+    </p>
+    <textarea class="codem">
+        <p>...le contenu avant les scripts...</p>
+
+        &lt;script&gt;
+            document.addEventListener('DOMContentLoaded', () => alert("DOM ready!"));
+        &lt;/script&gt;
+
+        &lt;script async src="https://javascript.info/article/script-async-defer/long.js"&gt;&lt;/script&gt;
+        &lt;script async src="https://javascript.info/article/script-async-defer/small.js"&gt;&lt;/script&gt;
+
+        <p>...contenu après les scripts...</p>
+    </textarea>
+    <ul>
+        <li>Le contenu de la page apparaît immédiatement: <b>async</b> ne la bloque pas.</li>
+        <li><code>DOMContentLoaded</code> peut arriver soit avant ou après async, aucune garantie ici.</li>
+        <li>
+            Les scripts asynchrones n’attendent pas les uns les autres. Un script plus petit <b>small.js</b> passe en second, mais se charge probablement avant <b>long.js</b>, 
+            donc s’exécute en premier. C’est ce qu’on appelle une commande <b>“load-first”</b>.
+        </li>
+    </ul>
+    <p>
+        Les scripts asynchrones sont parfaits lorsque nous intégrons un script tiers indépendant dans la page: compteurs, publicités, etc., car ils ne dépendent pas de nos 
+        scripts et nos scripts ne doivent pas les attendre:
+    </p>
+    <textarea class="codem">
+        <!-- Google Analytics est généralement ajouté comme ceci -->
+        &lt;script async src="https://google-analytics.com/analytics.js"&gt;&lt;/script&gt;
+    </textarea>
+    <p>
+        <b>L’attribut async est uniquement pour les scripts externes</b> <br>
+        Tout comme defer, l’attribut <b>async</b> est ignoré si la balise &lt;script&gt; n’a pas de src.
+    </p>
+
+    <h2>Les scripts dynamiques</h2>
+
+    <p>Il existe un autre moyen important d’ajouter un script à la page.</p>
+    <p>Nous pouvons également ajouter un script dynamiquement en utilisant JavaScript:</p>
+
+    <textarea class="codem">
+        let script = document.createElement('script');
+        script.src = "/article/script-async-defer/long.js";
+        document.body.append(script); // (*)        
+    </textarea>
+    <p>Le script commence à se charger dès qu’il est ajouté au document (*).</p>
+    <p><b>Les scripts dynamiques se comportent comme “asynchrones” par défaut.</b></p>
+
+    <p>C’est-à-dire :</p>
+    <ul>
+        <li>Ils n’attendent rien et rien ne les attend.</li>
+        <li>Le script qui se charge en premier – s’exécute en premier (“load-first”).</li> 
+    </ul>
+    <textarea class="codem">
+        let script = document.createElement('script');
+        script.src = "/article/script-async-defer/long.js";
+
+        script.async = false;
+
+        document.body.append(script);
+    </textarea>
+    <p>
+        Par exemple, nous ajoutons ici deux scripts. Sans <b>script.async=false</b>, ils s’exécuteraient dans l’ordre de chargement (le <b>small.js</b> probablement en premier). 
+        Mais avec, l’ordre est “comme dans le document”:
+    </p>
+    <textarea class="codem">
+        function loadScript(src) {
+            let script = document.createElement('script');
+            script.src = src;
+            script.async = false;
+            document.body.append(script);
+          }
+          
+          // long.js s'exécute en premier à cause de async=false
+          loadScript("/article/script-async-defer/long.js");
+          loadScript("/article/script-async-defer/small.js");
+    </textarea>
+
+    <h2>Résumé</h2>
+    <p>
+        <b>Async</b> et <b>defer</b> ont un point commun: le téléchargement de tels scripts ne bloque pas le rendu des pages. Ainsi, l’utilisateur peut lire le contenu 
+        de la page et se familiariser immédiatement avec la page. <br> <br>
+        Mais il existe également des différences essentielles entre eux:
+    </p>
+    <table style="border: 1px solid #000000; padding: 10px;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #000000; padding: 10px;"></th>
+                <th style="border: 1px solid #000000; padding: 10px;"><b>L’ordre</b></th>
+                <th style="border: 1px solid #000000; padding: 10px;"><b>DOMContentLoaded</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="margin: 10px;">
+                <td style="border: 1px solid #000000; padding: 10px;"><code>async</code></td>
+                <td style="border: 1px solid #000000; padding: 10px;"><em>Load-first</em>. Leur ordre dans le document n’a pas d’importance – premier chargé, premier exécuté</td>
+                <td style="border: 1px solid #000000; padding: 10px;">Sans importance. Peut se charger et s’exécuter alors que le document n’a pas encore été entièrement téléchargé. Cela se produit si les scripts sont petits ou mis en cache et que le document est suffisamment long.</td>
+            </tr>
+            <tr style="margin: 10px;">
+                <td style="border: 1px solid #000000; padding: 10px;"><code>defer</code></td>
+                <td style="border: 1px solid #000000; padding: 10px;"><em>Ordre de document</em> (tel qu’il apparaît dans le document).</td>
+                <td style="border: 1px solid #000000; padding: 10px;">Exécute après le chargement et l’analyse du document (ils attendent si nécessaire), juste avant <code>DOMContentLoaded</code>.</td>
+            </tr>
+        </tbody>    
+    </table>
+    <br>
+    <fieldset class="code danger">
+        <p>En pratique, <b>defer</b> est utilisé <b>pour les scripts qui ont besoin de tout le DOM et/ou leur ordre d’exécution relatif est important</b>.</p>
+        <p>Et <b>async</b> est utilisé <b>pour des scripts indépendants</b>, comme des compteurs ou des publicités. Et <b>leur ordre d’exécution relatif n’a pas d’importance</b>.</p>
+    </fieldset>
+    <br>
+    <p class="code">        
+        <b>La page sans scripts devrait être utilisable</b> <br> <br>
+        Veuillez noter que si vous utilisez <b>defer</b> ou <b>async</b>, l’utilisateur verra alors la page avant le chargement du script. <br>
+        L’utilisateur peut donc lire la page, mais certains composants graphiques ne sont probablement pas encore prêts. <br>
+        Il devrait y avoir des indications de “chargement” aux bons endroits et les boutons désactivés devraient s’afficher comme tels, 
+        afin que l’utilisateur puisse voir clairement ce qui est prêt et ce qui ne l’est pas.
+    </p>
+
     
     </div><!--screen-->
     </div><!--container-->

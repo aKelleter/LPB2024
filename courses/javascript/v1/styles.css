@@ -20,6 +20,8 @@
     --result-backg-color: rgb(26, 47, 4);
     --color-black: rgb(0, 0, 0);
     --color-limegreen: rgb(50, 205, 50);
+    --code-color-blue: rgb(5, 52, 96);
+    
 
     --border-width: 1px;
 }
@@ -136,7 +138,7 @@ p {
 
 .code {
     background-color: var(--header-backg-color);
-    color: var(--menu-item-color);
+    color: var(--code-color-blue);
     border: 1px solid var(--menu-item-color);
     border-radius: 5px;
     padding: 5px;

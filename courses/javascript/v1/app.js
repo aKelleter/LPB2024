@@ -5,6 +5,7 @@
         for (let id of classes) {
             let cdmr = CodeMirror.fromTextArea(id, {
             mode: "javascript",
+            modeOption: null,
             lineNumbers: true,
             matchBrackets: true,
             theme: "eclipse",
