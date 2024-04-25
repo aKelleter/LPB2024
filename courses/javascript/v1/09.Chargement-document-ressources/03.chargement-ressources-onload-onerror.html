@@ -18,9 +18,86 @@
     <h1>Chargement des ressources: onload et onerror</h1>
     <hr>     
     <p>
-       ...coming soon
+        Le navigateur nous permet de suivre le chargement des ressources externes – scripts, iframes, images, etc.
     </p>
+    <p>Il y a deux événements pour cela:</p>
+    <ul>
+        <li><b>load</b> – l'élément a été chargé avec succès.</li>
+        <li><b>error</b> – une erreur s’est produite.</li>
+    </ul>
+
+    <h2>Chargement d'un script</h2>
+    <p>
+        Disons que nous devons charger un script tiers et appeler une fonction qui y réside.
+    </p>
+    <p>Nous pouvons le charger dynamiquement, comme ceci:</p>
+    <textarea class="codem">
+        let script = document.createElement('script');
+        script.src = "my.js";
+
+        document.head.append(script);
+    </textarea>
+    <p>
+        …Mais comment exécuter la fonction déclarée dans ce script? Nous devons attendre que le script se charge pour l’appeler.
+    </p>
+    <p class="code">        
+        <b>Veuillez noter :</b> <br>
+        Pour nos propres scripts, nous pourrions utiliser des [modules JavaScript] (info:modules) ici, mais ils ne sont pas largement adoptés 
+        par les bibliothèques tierces.
+    </p>
+
+    <h2>script.onload</h2>
+    <p>L’assistant principal est l’événement load. Il se déclenche après le chargement et l’exécution du script.</p>
+    <p>Par exemple:</p>
+    <textarea class="codem">
+        let script = document.createElement('script');
+
+        // peut charger n'importe quel script, depuis n'importe quel domaine
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"
+        document.head.append(script);
+
+        script.onload = function() {
+            let ver = _.VERSION;           
+            alert( ver ); // affiche la version de la bibliothèque
+        };
+    </textarea>
+    <a href="tests/test06.html" target="_blank">Demo</a>
+    <p>Donc, dans onload, nous pouvons utiliser des variables de script, exécuter des fonctions, etc.</p>
+    <p>…Et si le chargement échouait? Par exemple, il n’y a pas de tel script (erreur 404) ou le serveur est en panne (indisponible).</p>
    
+    <h2>script.onerror</h2>
+    <p>
+        Les erreurs qui se produisent pendant le chargement du script peuvent être suivies dans un événement error.
+    </p>
+    <p>Par exemple, demandons un script qui n’existe pas:</p>
+    <textarea class="codem">
+        let script = document.createElement('script');
+        script.src = "https://example.com/404.js"; // pas de tel script
+        document.head.append(script);
+
+        script.onerror = function() {
+            alert("Error loading " + this.src); // Erreur de chargement de https://example.com/404.js
+        };
+    </textarea>
+    <a href="tests/test07.html" target="_blank">Demo</a>
+    <p>
+        Veuillez noter que nous ne pouvons pas obtenir les détails des erreurs HTTP ici. Nous ne savons pas si c’était une erreur 404 ou 500 
+        ou autre chose. Juste que le chargement a échoué.
+    </p>
+    <p class="code danger">        
+        <b>/!\ Important</b> : <br> <br>
+
+        Les événements <code>onload</code> / <code>onerror</code> ne suivent que le chargement lui-même.
+        Les erreurs qui peuvent survenir lors du traitement et de l’exécution du script sont hors de portée de ces événements. <br>
+        C’est-à-dire: si un script s’est chargé avec succès, alors onload se déclenche, même s’il contient des erreurs de programmation. <br>
+        Pour suivre les erreurs de script, on peut utiliser le gestionnaire global <code>window.onerror</code>.
+    </p>
+
+    <h2>Autres ressources</h2>
+    <p>
+        Les événements <code>load</code> et <code>error</code> fonctionnent aussi pour d’autres ressources, essentiellement pour toute ressource qui 
+        a un src externe.
+    </p>
     
     </div><!--screen-->
     </div><!--container-->
