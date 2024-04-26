@@ -92,6 +92,10 @@ p {
     line-height: 1.6rem;
 }
 
+em {
+    font-weight: 600;
+}
+
 
 
 

@@ -3,8 +3,8 @@
  * CONFIGURATION DU COURS
  */
 
-const VERSION = "0.14.1";
-const UPDATED = "25/04/2024 16:10";
+const VERSION = "0.15.1";
+const UPDATED = "26/04/2024 16:05";
 
 // AFFICHER : false ou CACHER : true - les liens des solutions
 const HOLLOW = false;

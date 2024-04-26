@@ -98,7 +98,158 @@
         Les événements <code>load</code> et <code>error</code> fonctionnent aussi pour d’autres ressources, essentiellement pour toute ressource qui 
         a un src externe.
     </p>
-    
+    <p>Par exemple:</p>
+    <textarea class="codem">
+        let img = document.createElement('img');
+        img.src = "https://js.cx/clipart/train.gif"; // (*)
+
+        img.onload = function() {
+            alert(`Image loaded, size ${img.width}x${img.height}`);
+        };
+
+        img.onerror = function() {
+            alert("Error occurred while loading image");
+        };
+    </textarea>
+    <p>Il y a cependant deux remarques :</p>
+    <a href="tests/test08.html" target="_blank">Demo</a>
+    <ul>
+        <li>
+            La plupart des ressources commencent à se charger lorsqu’elles sont ajoutées au document. Mais &lt;img&gt; est une exception. 
+            Elle commence à se charger lorsqu’elle obtient un src (*).
+        </li>
+        <li>
+            Pour &lt;iframe&gt;, l’événement iframe.onload se déclenche lorsque le chargement de l’iframe est terminé, à la fois pour un 
+            chargement réussi et en cas d’erreur.
+        </li>
+    </ul>
+    <p>C’est pour des raisons historiques.</p>
+
+    <h2>Politique de crossorigin</h2>
+    <p>
+        Il y a une règle: les scripts d’un site ne peuvent pas accéder au contenu de l’autre site. Donc, par exemple un script 
+        sur https://facebook.com ne peut pas lire la boîte aux lettres de l’utilisateur sur https://gmail.com.
+    </p>
+    <p>
+        Ou, pour être plus précis, une origine (triplet domaine/port/protocole) ne peut pas accéder au contenu à partir d’une autre. 
+        Donc, même si nous avons un sous-domaine, ou juste un autre port, ce sont des origines différentes sans accès les uns aux autres. 
+    </p>
+    <p>Cette règle affecte également les ressources d’autres domaines.</p>
+    <p>
+        Si nous utilisons un script d’un autre domaine et qu’il contient une erreur, nous ne pouvons pas obtenir les détails de l’erreur.
+    </p>
+    <p>
+        Par exemple, prenons un script error.js qui consiste en un seul (mauvais) appel de fonction:
+    </p>
+    <textarea class="codem">
+        // 📁 error.js
+        noSuchFunction();   
+    </textarea>
+    <p>Maintenant, chargez-le depuis le même site où il se trouve:</p>
+    <textarea class="codem">
+        <script>
+            window.onerror = function(message, url, line, col, errorObj) {
+              alert(`${message}\n${url}, ${line}:${col}`);
+            };
+        </script>
+        <script src="error.js"></script>
+    </textarea>
+    <a href="tests/test09.html" target="_blank">Demo</a>
+    <p>Nous pouvons voir un bon rapport d’erreur, comme ceci:</p>
+    <p class="code">
+        ReferenceError: noSuchFunction is not defined <br>
+        http://127.0.0.1:5501/courses/javascript/v1/09.Chargement-document-ressources/tests/error.js, 1:1
+    </p>
+    <p>Maintenant, chargeons le même script à partir d’un autre domaine:</p>
+    <textarea class="codem">
+        <script>
+            window.onerror = function(message, url, line, col, errorObj) {
+              alert(`${message}\n${url}, ${line}:${col}`);
+            };
+        </script>
+        <script src="https://cors.javascript.info/article/onload-onerror/crossorigin/error.js"></script>
+    </textarea>
+    <a href="tests/test10.html" target="_blank">Demo</a>
+    <p>Le rapport est différent, comme ceci:</p>
+    <p class="code">
+        Script error. <br>
+        https://cors.javascript.info/article/onload-onerror/crossorigin/error.js, 0:0
+    </p>
+    <p>
+        Les détails peuvent varier en fonction du navigateur, mais l’idée est la même: toute information sur les éléments internes 
+        d’un script, y compris les traces de pile d’erreurs, est masquée. Exactement parce que c’est d’un autre domaine.
+    </p>
+    <p>Pourquoi avons-nous besoin de détails d’erreur?</p>
+    <p>
+        Il existe de nombreux services (et nous pouvons créer le nôtre) qui écoutent les erreurs globales en utilisant window.onerror, 
+        enregistrent les erreurs et fournissent une interface pour y accéder et les analyser. C’est génial, car nous pouvons voir de 
+        vraies erreurs, déclenchées par nos utilisateurs. Mais si un script vient d’une autre origine, alors il n’y a pas beaucoup 
+        d’informations sur les erreurs, comme nous venons de le voir.
+    </p>
+    <p>Une politique d’origine croisée similaire (CORS) est également appliquée pour d’autres types de ressources.</p>
+    <p class="code">
+        <b>Pour permettre l’accès cross-origin, la balise &lt;script&gt; doit avoir l’attribut crossorigin, et le serveur distant doit 
+        fournir des en-têtes spéciaux.</b>
+    </p>
+    <p>Il existe trois niveaux d’accès cross-origin:</p>
+    <ul>
+        <li><b>Aucun attribut crossorigin</b> – <span class="danger">accès interdit</span>.</li>
+        <li>
+            <b>crossorigin="anonymous"</b> – <span class="danger">accès autorisé si le serveur répond avec l’en-tête Access-Control-Allow-Origin avec * ou notre origine</span>. 
+            Le navigateur n’envoie pas d’autorisation d'information et de cookies au serveur distant.
+        </li>
+        <li>
+            <b>crossorigin="use-credentials"</b> – <span class="danger">accès autorisé si le serveur renvoie l’en-tête Access-Control-Allow-Origin avec notre origine 
+            et Access-Control-Allow-Credentials:true</span>. Le navigateur envoie des informations d’autorisation et des cookies au serveur distant.
+        </li>
+    </ul>
+    <p class="code">        
+        <b>Veuillez noter</b> : <br>
+        Vous pouvez en savoir plus sur l’accès cross-origin dans le chapitre Fetch: Requêtes Cross-Origin. Il décrit la méthode 
+        fetch pour les requêtes réseau, mais la politique est exactement la même.
+        Les “cookies” sont hors de notre portée actuelle, mais vous pouvez les lire dans le chapitre Cookies, 
+        document.cookie.
+    </p>
+    <p>Dans notre cas, nous n’avions aucun attribut crossorigin. L’accès cross-origin était donc interdit. Ajoutons-le.</p>
+    <p>
+        Nous pouvons choisir entre "<em>anonymous</em>" (aucun cookie envoyé, un en-tête côté serveur nécessaire) et "<em>use-credentials</em>" 
+        (envoie également des cookies, deux en-têtes côté serveur nécessaires).
+    </p>
+    <p>Si nous ne nous soucions pas des cookies, alors "anonymous" est la voie à suivre:</p>
+    <textarea class="codem">
+        <script>
+            window.onerror = function(message, url, line, col, errorObj) {
+              alert(`${message}\n${url}, ${line}:${col}`);
+            };
+        </script>
+        <script crossorigin="anonymous" src="https://cors.javascript.info/article/onload-onerror/crossorigin/error.js"></script>
+    </textarea>
+    <a href="tests/test11.html" target="_blank">Demo</a>
+    <p>
+        Maintenant, en supposant que le serveur fournit un en-tête Access-Control-Allow-Origin, tout va 
+        bien. Nous avons le rapport d’erreur complet.
+    </p>
+
+    <h2>Résumé</h2>
+    <p>
+        Les images &lt;img&gt;, les styles externes, les scripts et autres ressources fournissent 
+        des événements <code>load</code> et <code>error</code> pour suivre leur chargement:
+    </p>
+    <ul>
+        <li><code>load</code> se déclenche en cas de chargement réussi.</li>
+        <li><code>error</code> se déclenche en cas d’échec du chargement.</li>
+    </ul>
+    <p>
+        La seule exception est &lt;iframe&gt;: pour des raisons historiques, il déclenche toujours load,
+        pour tout achèvement de chargement, même si la page n’est pas trouvée.
+    </p>
+    <p>
+        L’événement <code>readystatechange</code> fonctionne également pour les ressources, mais est rarement utilisé, 
+        car les événements <code>load</code> / <code>error</code> sont plus simples.
+    </p>
+
+
+
     </div><!--screen-->
     </div><!--container-->
     <footer></footer>  
