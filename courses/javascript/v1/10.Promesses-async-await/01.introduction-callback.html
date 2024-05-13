@@ -95,7 +95,42 @@
     <p>
         Maintenant, si nous voulons appeler de nouvelles fonctions depuis le script, nous devons l’écrire dans le callback:
     </p>
-   
+
+    <textarea class="codem">
+        loadScript('/my/script.js', function() {
+            // le callback est exécuté après le chargement du script
+            newFunction(); // maintenant cela fonctionne
+            ...
+          });
+    </textarea>
+    <p> C’est l’idée: le deuxième argument est une fonction (généralement anonyme) qui s’exécute lorsque l’action est terminée. </p>
+    <p>Voici un exemple exécutable avec un vrai script :</p>
+    <textarea class="codem">
+        function loadScript(src, callback) {
+            let script = document.createElement('script');
+            script.src = src;
+            script.onload = () => callback(script);
+            document.head.append(script);
+          }
+          
+          loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
+            alert(`Cool, the script ${script.src} is loaded`);
+            alert( _ ); // _ est une fonction déclarée dans le script chargé
+          });
+    </textarea>
+
+    <p>
+        C’est ce qu’on appelle un style de programmation asynchrone basé sur les “callbacks”. Une fonction qui fait quelque chose de 
+        manière asynchrone doit fournir un argument callback où nous mettons la fonction à exécuter après qu’elle soit terminée.
+    </p>
+    <p>
+        Les callbacks sont une technique de base pour la programmation asynchrone. Mais ils ont des inconvénients, comme nous le verrons plus loin. 
+        Nous allons maintenant parler des promesses, qui sont une approche plus avancée pour gérer les tâches asynchrones.
+    </p>
+    <p>
+        Ici nous l’avons fait dans loadScript, mais bien sûr c’est une approche générale.
+    </p>
+    <a href="tests/test01.html" target="_blank">Demo</a>
 
     </div><!--screen-->
     </div><!--container-->

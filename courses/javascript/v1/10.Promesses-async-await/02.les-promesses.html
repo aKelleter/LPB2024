@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="">
+    <title>Les promesses</title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Les promesses</h1>
+    <hr>     
+    <p class="code">
+        Mise en situation : <br> <br>
+        Imaginez que vous êtes un grand chanteur et les fans vous demandent jour et nuit votre prochaine chanson.
+        Pour avoir un peu de paix, vous promettez de leur envoyer dès que celle-ci est publiée. Vous donnez à vos fans 
+        une liste d’abonnement. Ils peuvent y ajouter leur adresse mail, comme cela, quand le single est sorti, tous les 
+        emails reçoivent votre single. Et même si quelque chose arrive, comme un feu dans le studio, et que vous ne pouvez 
+        pas sortir le single, ils en seront aussi notifiés. <br>  <br>
+   
+        Tout le monde est content : vous, puisque l’on vous laisse plus tranquille, et vos fans parce qu’ils savent qu’ils ne rateront pas la chanson.
+    </p>
+    <p>
+        C’est une analogie réelle à un problème courant de programmation :
+    </p>
+    <ol>        
+        <li>
+            Un “producteur de code” qui réalise quelque chose mais nécessite du temps. 
+            Par exemple, un code qui charge des données à travers un réseau. C’est le “chanteur”.
+        </li>
+        <li>
+            Un “consommateur de code” qui attend un résultat du “producteur de code” quand il est prêt. 
+            Beaucoup de fonctions peuvent avoir besoin de ce résultat. Ces fonctions sont les “fans”.
+        </li>
+        <li>
+            Une promesse (promise) est un objet spécial en JavaScript qui lie le “producteur de code” et le “consommateur de code” ensemble. 
+            En comparant à notre analogie c’est la “liste d’abonnement”. Le “producteur de code” prend le temps nécessaire pour produire 
+            le résultat promis, et la “promesse” donne le résultat disponible pour le code abonné quand c’est prêt.
+        </li>
+    </ol>
+
+    <p>
+        L’analogie n’est pas la plus correcte, car les promesses en JavaScript sont un peu plus complexes qu’une simple liste d’abonnement : elles ont d’autres possibilités mais aussi certaines limitations. Toutefois c’est suffisant pour débuter.
+    </p>
+    <p>
+        La syntaxe du constructeur pour une promesse est :
+    </p>
+    <textarea class="codem">
+        let promise = new Promise(function(resolve, reject) {
+            // L'exécuteur (le code produit, le "chanteur")
+          });
+    </textarea>
+    <p>
+        La fonction passée à new Promise est appelée l’exécuteur. Quand new Promise est créée, elle est lancée automatiquement. 
+        Elle contient le producteur de code, qui doit produire un résulat final. Dans l’analogie ci-dessus : l’exécuteur est le “chanteur”.
+    </p>
+    <p>
+        Ses arguments resolve (tenir) et reject (rompre) sont les fonctions de retour directement fournies par JavaScript. Notre code est inclus seulement dans l’exécuteur.
+    </p>
+    <p>
+        Quand l’exécuteur obtient un résultat, qu’il soit rapide ou pas, cela n’a pas d’importance, il appellera une des deux fonctions de retour :
+    </p>
+    <ul>        
+        <li>resolve(value) –  si la tâche s’est terminée avec succès, avec le résultat value.</li>
+        <li>reject(error) – si une erreur est survenue, error est l’objet erreur.</li>
+    </ul>
+    <p>
+        Donc, pour résumer : l’exécuteur s’exécute automatiquement et tente d’effectuer un travail. 
+        Ensuite, il devrait appeler resolve s’il a réussi ou reject s’il y avait une erreur.
+    </p>     
+    <p>L’objet promise retourné par le constructeur new Promise a des propriétés internes :</p>
+    <ul>
+        <li>
+            <code>state</code> (état) – initialement à "<code>pending</code>" (en attente), se change soit en "<code>fulfilled</code>" (tenue) lorsque resolve est appelé ou "<code>rejected</code>" (rompue) si reject est appelé.
+        </li>
+        <li>
+            <code>result</code> – initialement à <code>undefined</code> se change en <code>value</code> quand resolve(value) est appelé ou en <code>error</code> quand reject(error) est appelé.
+        </li>
+    </ul>
+    <p>
+        <img src="img/promise-resolve-reject.svg" alt="promise-resolve-reject">
+    </p>
+    <p>
+        Voici un exemple d’un constructeur d’une promesse et d’une fonction exécutrice simple avec un “code produit” qui prend du temps 
+        (utilisant setTimeout) :
+    </p>
+    <textarea class="codem">
+        let promise = new Promise(function(resolve, reject) {
+            // la fonction est exécutée automatiquement quand la promesse est construite
+          
+            // On signale au bout d'une seconde que la tâche est terminée avec le résultat "done"
+            setTimeout(() => resolve("done"), 1000);
+          });
+    </textarea>
+    <p>On peut voir deux choses en lançant le code ci-dessus :</p>
+    <ol>
+        <li>L’exécuteur est appelé automatiquement et immédiatement (avec new Promise).</li>
+        <li>
+            L’exécuteur reçoit deux arguments : resolve et reject – ces deux fonctions sont pré-définies par le moteur JavaScript, 
+            ainsi nous n’avons pas besoin de les créer. Nous devons seulement appeler l’une ou l’autre quand le résultat est prêt.
+        </li>
+    </ol>
+    <p>
+        Après une seconde de “traitement” l’exécuteur appelle resolve("done") pour produire le résultat. Cela change l’état de l’objet promise :
+    </p>
+    <p>
+        <img src="img/promise-resolve-1.svg" alt="">
+    </p>
+    <p>
+        Pour résumer, l’exécuteur devrait réaliser une tâche (normalement quelque chose qui prend du temps) puis appelle resolve ou reject 
+        pour changer l’état de l’objet promesse correspondant.
+    </p>
+    <p>
+        Une promesse qui est soit tenue soit rejetée est appelée “settled” (acquitttée) par opposition à une promesse initialisée à 
+        “en attente”.
+    </p>
+    
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>
