@@ -121,7 +121,106 @@
         Une promesse qui est soit tenue soit rejetée est appelée “settled” (acquitttée) par opposition à une promesse initialisée à 
         “en attente”.
     </p>
+    <p>
+        <b>/!\</b> L’exécuteur devrait appeler seulement une fois <code>resolve</code> ou <code>reject</code>. N’importe quel changement d’état est définitif.
+        Les appels supplémentaires à resolve et reject sont ignorés
+    </p>
+    <h2>Async/await</h2>
+    <p>
+        Il existe une syntaxe spéciale pour travailler avec les promesses d’une manière plus confortable, appelée “async/await”. 
+        Elle est étonnamment facile à comprendre et à utiliser.
+    </p>
+    <h3>Fonctions asynchrones</h3>
+    <p>
+        Commençons par le mot-clé async. Il peut être placé avant une fonction, comme ceci:
+    </p>
+    <textarea class="codem">
+        async function f() {
+            return 1;
+        }
+    </textarea>
+    <p>
+        Le mot “async” devant une fonction signifie une chose simple : une fonction renvoie toujours une promesse. 
+        Les autres valeurs sont enveloppées dans une promesse résolue automatiquement.
+    </p>
+    <p>
+        Par exemple, cette fonction renvoie une promesse résolue avec le résultat 1 ; testons-la:
+    </p>
+    <textarea class="codem">
+        async function f() {
+            return 1;
+        }
+          
+        f().then(alert); // 1
+    </textarea>
+    <p>…Nous pourrions explicitement renvoyer une promesse, ce qui reviendrait au même:</p>
+    <textarea class="codem">
+        async function f() {
+            return Promise.resolve(1);
+        }
+          
+        f().then(alert); // 1
+    </textarea>
+    <p>
+        Ainsi, <code>async</code> s’assure que la fonction renvoie une promesse, et enveloppe les non-promesses dans celle-ci. 
+        Assez simple, non ? Mais pas seulement. Il y a un autre mot-clé, await, qui ne fonctionne qu’à l’intérieur des fonctions <code>async</code>, 
+        et c’est plutôt cool.
+    </p>
+    <h3>Await</h3>
+    <p>La syntaxe :</p>
+    <textarea class="codem">
+        // ne fonctionne que dans les fonctions asynchrones
+        let value = await promise;
+    </textarea>
+    <p>
+        Le mot-clé await fait en sorte que JavaScript attende que cette promesse se réalise et renvoie son résultat.
+        Voici un exemple avec une promesse qui se résout en 1 seconde:
+    </p>
+    <textarea class="codem">
+        async function f() {
+
+          let promise = new Promise((resolve, reject) => {
+            setTimeout(() => resolve("done!"), 1000)
+          });
+        
+          let result = await promise; // attendre que la promesse soit résolue (*)
+        
+          alert(result); // "done!"
+        }
+        
+        f();
+    </textarea>
+    <p>
+        L’exécution de la fonction fait une “pause” à la ligne (*) et reprend lorsque la promesse s’installe, result devenant son résultat. 
+        Ainsi le code ci-dessus affiche “done!” en une seconde.
+        Soulignons-le : await suspend littéralement l’exécution de la fonction jusqu’à ce que la promesse soit réglée, puis la reprend avec 
+        le résultat de la promesse. Cela ne coûte pas de ressources CPU, car le moteur JavaScript peut faire d’autres travaux pendant ce 
+        temps : exécuter d’autres scripts, gérer des événements, etc.       
+    </p>
+    <p class="code">
+        On ne peut pas utiliser <code>await</code> dans les fonctions régulières. <br>
+        Si nous essayons, nous verrons une erreur de syntaxe.
+        Nous obtiendrons cette erreur si nous oublions de mettre <code>async</code> avant une fonction. Comme indiqué précédemment, 
+        <code>await</code> ne fonctionne qu’à l’intérieur d’une fonction <code>async</code>.
+    </p>
+    <h2>Résumé</h2>
+    <p>Le mot-clé <code>async</code> devant une fonction a deux effets:</p>
+    <ol>
+        <li>Fait en sorte qu’elle retourne toujours une promesse.</li>
+        <li>Permet l’utilisation de await dans celle-ci.</li>
+    </ol>
+    <p>
+        Le mot-clé <code>await</code> devant une promesse fait en sorte que JavaScript attende jusqu’à ce que cette promesse se règle, 
+        puis:
+    </p>
+    <ol>
+        <li>Si c’est une erreur, l’exception est générée</li>
+        <li>Sinon, il renvoie le résultat.</li>
+    </ol>
+    <p>Ensemble, ils fournissent un cadre idéal pour écrire du code asynchrone facile à lire et à écrire.</p>
+
     
+
     </div><!--screen-->
     </div><!--container-->
     <footer></footer>  

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="">
+    <title>Découverte du format Json</title>
+    <link rel=stylesheet href="../vendors/codemirror/lib/codemirror.css">
+    <link rel=stylesheet href="../vendors/codemirror/addon/display/fullscreen.css">
+    <link rel=stylesheet href="../vendors/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script> let path = "chapter";</script> 
+</head>
+<body id="top">
+    <div class="container">
+    <div class="screen">
+    <nav></nav>     
+    <h1>Découverte du format Json</h1>
+    <hr>  
+    <h2>Définition</h2>
+    <p>
+        Signification de l'acronyme JSON : <br>
+        <b>JavaScript Object Notation (JSON)</b>
+    </p>
+    <p>
+        Json est un format de données textuel dérivé de la notation des objets du langage JavaScript. Il concurrence XML pour la représentation 
+        et la transmission d’information structurée. 
+    </p>   
+    <h2>Présentation</h2>
+    <p>
+        Les données sont au centre de toutes les préocupation. Toutefois, aujourd'hui plus que jamais, il devient critique de pouvoir travailler 
+        avec une multitude de données. Les programmeurs, développeurs et professionnels de l'informatique ont besoin de pouvoir transférer 
+        des structures de données et leur contenu de n'importe quel langage vers des formats reconnaissables par d'autres langages et 
+        plates-formes. Le JavaScript Object Notation (JSON) est le format d'échange de données qui répond à ce besoin.
+    </p>
+    <p>
+        Le format de données JSON est devenu populaire auprès des développeurs, car il se présente sous la forme de texte léger et lisible, 
+        en plus de nécessiter moins de codage et de rendre les processus plus rapides depuis que la désérialisation n'est plus requise.
+    </p>
+    <h2>Types de données JSON et exemples</h2>
+    <p>
+        Le JSON peut être utilisé dans les programmes JavaScript sans besoin d'analyse syntaxique ou de sérialisation. Il s'agit d'un moyen 
+        textuel de représenter des objets, des tableaux et des données scalaires JavaScript.
+    </p>
+    <p>
+        JSON est relativement facile à lire et à écrire, tout en restant facile à analyser et à générer pour les logiciels. 
+        Il est souvent utilisé pour sérialiser des données structurées et les échanger sur un réseau, généralement entre un serveur et 
+        des applications Web.
+    </p>
+    <p>
+        Le format JSON se compose de différents types de données :
+    </p>
+    <ol>
+        <li>Tableau</li>
+        <li>Objet</li>
+        <li>Nombre</li>
+        <li>Chaîne de caractères</li>
+        <li>Booléen</li>
+        <li>La valeur Null</li>        
+    </ol>
+    <h3>Tableau</h3>
+    <textarea class="codem">
+    {
+
+        "Personnages" :   
+        [ 
+            {
+                "name" : "Link", 
+                "age" : 17, 
+                "mission" : "Sauver le monde et la princesse Zelda. Vaincre Ganondorf/Ganon"
+            },
+            
+            {
+                "name" : "Zelda", 
+                "age" : 17,
+                "mission" : "Vaincre le mal (Ganon principalement) à chaque réincarnation"
+            }            
+        ] 
+    }
+    </textarea>
+    <p>A titre d'exemple, la même structure au format XML</p>
+    <textarea class="codem">
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <root>
+            <Personnages>
+                <name>Link</name>
+                <age>17</age>
+                <mission>Sauver le monde et la princesse Zelda. Vaincre Ganondorf/Ganon</mission>
+            </Personnages>
+            <Personnages>
+                <name>Zelda</name>
+                <age>17</age>
+                <mission>Vaincre le mal (Ganon principalement) à chaque réincarnation</mission>
+            </Personnages>
+        </root>
+    </textarea>
+
+    
+    <h3>Booléen</h3>
+    <textarea class="codem">
+    {
+        "isHero" : true
+    }
+    </textarea>
+
+    <h3>La valeur null</h3>
+    <textarea class="codem">
+    {
+        "isHero" : null
+    }
+    </textarea>
+
+    <h3>Nombre</h3>
+    <textarea class="codem">
+    {
+        "age" : 17
+    }
+    </textarea>
+    
+    <h3>Chaîne de caractères</h3>
+    <textarea class="codem">
+    {
+        "name" : "Link"
+    }
+    </textarea>
+
+    <h3>Objet</h3>
+    <textarea class="codem">
+    {
+        "name" : "Link", 
+        "age" : 17, 
+        "mission" : "Sauver le monde et la princesse Zelda. Vaincre Ganondorf/Ganon"        
+    }   
+    </textarea>
+
+    <h2>Principaux cas d'utilisation du JSON</h2>
+    <ol>
+        <li>Création d'un objet JSON à partir de données générées par l'utilisateur</li>
+        <li>Transfert des données entre les systèmes</li>
+        <li>Configuration des données pour les applications</li>
+        <li>Stockage des données dans un fichier</li>   
+        <li>Simplification des modèles de données complexes</li>
+    </ol>
+
+    <h3>Évaluer en JavaScript une expression JSON pour la transformer en Object se fait alors de la manière suivante : </h3>
+    <textarea class="codem">
+        let obj = JSON.parse('{ "name":"Link", "age":17, "mission":"Sauver le monde et la princesse Zelda. Vaincre Ganondorf/Ganon" }');
+        alert(obj.name); // Affiche le nom du personnage
+    </textarea>
+    <a href="tests/test01.html">Demo</a>
+
+    <h2>Les deux fonctions utiles</h2>
+    <p>
+        Un objet JSON interne a été ajouté aux navigateurs depuis longtemps, contenant les deux méthodes suivantes :
+    </p>
+
+    <ul>
+        <li><code>JSON.parse()</code> : Analyse une chaîne de caractères JSON et construit l'objet JavaScript ou la valeur décrite par cette chaîne.</li>
+        <li><code>JSON.stringify()</code> : Convertit une valeur JavaScript en chaîne JSON.</li>
+    </ul>
+
+
+
+    </div><!--screen-->
+    </div><!--container-->
+    <footer></footer>  
+    <script src="../javascript.js"></script>
+    <script src="../vendors/jquery/jquery.min.js"></script>
+    <script src="../vendors/codemirror/lib/codemirror.js"></script>
+    <script src="../vendors/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="../vendors/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../vendors/codemirror/mode/css/css.js"></script>
+    <script src="../vendors/codemirror/mode/php/php.js"></script>
+    <script src="../vendors/codemirror/mode/sql/sql.js"></script>   
+    <script src="../vendors/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../vendors/codemirror/addon/display/fullscreen.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>
